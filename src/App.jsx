@@ -8,17 +8,17 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
    Afinidad/equivalente: #5C7A5E
    ============================================================ */
 const COLORS = {
-  paper: "#F2EFE6",
-  paperDark: "#E8E3D5",
-  ink: "#1E2A28",
-  inkSoft: "#4B5A56",
-  primary: "#4A6B70",
-  primaryDark: "#33494D",
-  clay: "#9C6B4A",
-  garnet: "#7A4A52",
-  sage: "#5C7A5E",
-  gold: "#B08A3E",
-  line: "#C9C2AC",
+  paper: "#F5F1E7",
+  paperDark: "#EAE4D4",
+  ink: "#26302D",
+  inkSoft: "#57655F",
+  primary: "#3D7A80",
+  primaryDark: "#2C5A5E",
+  clay: "#B0703E",
+  garnet: "#A24B5A",
+  sage: "#4F8A5B",
+  gold: "#C99A3A",
+  line: "#D9D0B8",
   cardBg: "#FFFFFF",
 };
 
@@ -39,13 +39,13 @@ const COLORS = {
    módulos; solo cambia la paleta "estructural" (fondo, tinta, tarjetas).
    */
 const TEMA_CLARO = {
-  paper: "#F2EFE6", paperDark: "#E8E3D5", ink: "#1E2A28", inkSoft: "#4B5A56",
-  primary: "#4A6B70", primaryDark: "#33494D", clay: "#9C6B4A", garnet: "#7A4A52",
-  sage: "#5C7A5E", gold: "#B08A3E", line: "#C9C2AC", cardBg: "#FFFFFF",
+  paper: "#F5F1E7", paperDark: "#EAE4D4", ink: "#26302D", inkSoft: "#57655F",
+  primary: "#3D7A80", primaryDark: "#2C5A5E", clay: "#B0703E", garnet: "#A24B5A",
+  sage: "#4F8A5B", gold: "#C99A3A", line: "#D9D0B8", cardBg: "#FFFFFF",
 };
 const TEMA_OSCURO = {
   paper: "#1B211F", paperDark: "#141917", ink: "#EDEAE0", inkSoft: "#B7C4C0",
-  primary: "#7FA6AC", primaryDark: "#9CC1C6", clay: "#D2A47C", garnet: "#D98F97",
+  primary: "#6FB8BE", primaryDark: "#8FD1D6", clay: "#D2A47C", garnet: "#E3919F",
   sage: "#8FB491", gold: "#D9B76A", line: "#3B4441", cardBg: "#222A28",
 };
 const TEMA_ALTO_CONTRASTE = {
@@ -15035,7 +15035,7 @@ function Sello({ children, color }) {
         borderRadius: 6,
         padding: "1px 8px",
         transform: "rotate(-1.5deg)",
-        background: "rgba(255,255,255,0.35)",
+        background: COLORS.cardBg,
       }}
     >
       {children}
