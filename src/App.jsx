@@ -15688,8 +15688,8 @@ function fragmentoCoincidencia(texto, query, ventana = 100) {
   return (inicio > 0 ? "…" : "") + t.slice(inicio, fin) + (fin < t.length ? "…" : "");
 }
 
-function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscuela, onIrADiccionario, irA, modoEstudio }) {
-  const [q, setQ] = useState("");
+function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscuela, onIrADiccionario, irA, modoEstudio, terminoInicial }) {
+  const [q, setQ] = useState(terminoInicial || "");
   // Pool de términos candidatos para sugerencias "¿quisiste decir...?":
   // nombres de escuela, autores, conceptos/técnicas del glosario y los 21
   // nudos transversales — todo lo que alguien razonablemente escribiría
@@ -22413,6 +22413,86 @@ export default function App() {
   const prevSnapshotRef = useRef(null);
   const acabaDeCargarRef = useRef(false);
   const inputBuscadorRef = useRef(null);
+  const contenidoRef = useRef(null);
+  const [coincidenciasPagina, setCoincidenciasPagina] = useState({ total: 0, indice: 0, soportado: true });
+  const [terminoBuscadorGlobal, setTerminoBuscadorGlobal] = useState("");
+
+  // Buscador de cabecera: resalta coincidencias de texto EN la pantalla que
+  // ya se está viendo (como Ctrl+F), en vez de solo filtrar listas. Usa la
+  // CSS Custom Highlight API (sin tocar el DOM que React administra, así
+  // que no hay riesgo de choque con el reconciliador) y navega entre
+  // coincidencias con Enter/Shift+Enter. Si el navegador no soporta la API
+  // (fallback), o si no hay ninguna coincidencia visible en este módulo, se
+  // ofrece un enlace directo al Buscador global, que sí encuentra el
+  // término en cualquier escuela/concepto aunque no esté en pantalla.
+  useEffect(() => {
+    const soportado = typeof CSS !== "undefined" && "highlights" in CSS && typeof Highlight === "function";
+    if (!soportado) {
+      setCoincidenciasPagina({ total: 0, indice: 0, soportado: false });
+      return;
+    }
+    if (!filtro || filtro.trim().length < 2 || !contenidoRef.current) {
+      CSS.highlights.delete("psq-buscar");
+      CSS.highlights.delete("psq-buscar-actual");
+      setCoincidenciasPagina({ total: 0, indice: 0, soportado: true });
+      return;
+    }
+    const termino = filtro.trim().toLowerCase();
+    const walker = document.createTreeWalker(contenidoRef.current, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n) => (n.parentElement && n.parentElement.closest("script,style") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+    });
+    const rangos = [];
+    let nodo;
+    while ((nodo = walker.nextNode())) {
+      const texto = nodo.textContent.toLowerCase();
+      let desde = 0;
+      let pos;
+      while ((pos = texto.indexOf(termino, desde)) !== -1) {
+        const r = new Range();
+        r.setStart(nodo, pos);
+        r.setEnd(nodo, pos + termino.length);
+        rangos.push(r);
+        desde = pos + termino.length;
+      }
+    }
+    CSS.highlights.set("psq-buscar", new Highlight(...rangos));
+    setCoincidenciasPagina((prev) => ({ total: rangos.length, indice: rangos.length ? 0 : 0, soportado: true }));
+    if (rangos.length) {
+      CSS.highlights.set("psq-buscar-actual", new Highlight(rangos[0]));
+      rangos[0].startContainer.parentElement?.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      CSS.highlights.delete("psq-buscar-actual");
+    }
+    return () => {
+      CSS.highlights.delete("psq-buscar");
+      CSS.highlights.delete("psq-buscar-actual");
+    };
+  }, [filtro, tab]);
+
+  function irACoincidencia(direccion) {
+    if (!coincidenciasPagina.total || !contenidoRef.current) return;
+    const termino = filtro.trim().toLowerCase();
+    const walker = document.createTreeWalker(contenidoRef.current, NodeFilter.SHOW_TEXT);
+    const rangos = [];
+    let nodo;
+    while ((nodo = walker.nextNode())) {
+      const texto = nodo.textContent.toLowerCase();
+      let desde = 0;
+      let pos;
+      while ((pos = texto.indexOf(termino, desde)) !== -1) {
+        const r = new Range();
+        r.setStart(nodo, pos);
+        r.setEnd(nodo, pos + termino.length);
+        rangos.push(r);
+        desde = pos + termino.length;
+      }
+    }
+    if (!rangos.length) return;
+    const nuevoIndice = (coincidenciasPagina.indice + direccion + rangos.length) % rangos.length;
+    CSS.highlights.set("psq-buscar-actual", new Highlight(rangos[nuevoIndice]));
+    rangos[nuevoIndice].startContainer.parentElement?.scrollIntoView({ behavior: "smooth", block: "center" });
+    setCoincidenciasPagina((prev) => ({ ...prev, indice: nuevoIndice }));
+  }
 
   // Atajos de teclado para orientarse rápido en una app con mucho contenido:
   // «/» enfoca el buscador global desde cualquier pestaña (salvo si ya se
@@ -22827,10 +22907,16 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
               ref={inputBuscadorRef}
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
-              placeholder="Buscar…  ( / )"
-              aria-label="Buscar escuela, autor o concepto. Atajo: tecla oblicua"
+              onKeyDown={(ev) => {
+                if (ev.key === "Enter") {
+                  ev.preventDefault();
+                  irACoincidencia(ev.shiftKey ? -1 : 1);
+                }
+              }}
+              placeholder="Buscar en esta página…  ( / )"
+              aria-label="Buscar y resaltar coincidencias en la página actual. Atajo: tecla oblicua. Enter: siguiente, Shift+Enter: anterior."
               style={{
-                padding: "7px 12px 7px 30px",
+                padding: coincidenciasPagina.soportado && filtro.trim().length >= 2 ? "7px 64px 7px 30px" : "7px 12px 7px 30px",
                 borderRadius: 20,
                 border: "1px solid rgba(255,255,255,0.18)",
                 background: "rgba(255,255,255,0.08)",
@@ -22843,7 +22929,52 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
               onFocus={(ev) => { ev.currentTarget.style.background = "rgba(255,255,255,0.14)"; ev.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; }}
               onBlur={(ev) => { ev.currentTarget.style.background = "rgba(255,255,255,0.08)"; ev.currentTarget.style.borderColor = "rgba(255,255,255,0.18)"; }}
             />
+            {coincidenciasPagina.soportado && filtro.trim().length >= 2 && (
+              <div style={{ position: "absolute", right: 6, top: "50%", transform: "translateY(-50%)", display: "flex", alignItems: "center", gap: 1 }}>
+                <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: "rgba(255,255,255,0.65)", marginRight: 2, whiteSpace: "nowrap" }}>
+                  {coincidenciasPagina.total ? `${coincidenciasPagina.indice + 1}/${coincidenciasPagina.total}` : "0"}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => irACoincidencia(-1)}
+                  disabled={!coincidenciasPagina.total}
+                  aria-label="Coincidencia anterior en esta página"
+                  style={{ background: "none", border: "none", color: "rgba(255,255,255,0.7)", cursor: coincidenciasPagina.total ? "pointer" : "default", padding: 2, opacity: coincidenciasPagina.total ? 1 : 0.35 }}
+                >
+                  <ChevronRight size={11} style={{ transform: "rotate(180deg)" }} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => irACoincidencia(1)}
+                  disabled={!coincidenciasPagina.total}
+                  aria-label="Siguiente coincidencia en esta página"
+                  style={{ background: "none", border: "none", color: "rgba(255,255,255,0.7)", cursor: coincidenciasPagina.total ? "pointer" : "default", padding: 2, opacity: coincidenciasPagina.total ? 1 : 0.35 }}
+                >
+                  <ChevronRight size={11} />
+                </button>
+              </div>
+            )}
           </div>
+          {filtro.trim().length >= 2 && coincidenciasPagina.soportado && coincidenciasPagina.total === 0 && (
+            <button
+              onClick={() => { setTerminoBuscadorGlobal(filtro.trim()); setTab("buscador"); }}
+              className="psq-fade-in"
+              style={{
+                fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                fontSize: 10,
+                color: "#fff",
+                background: "rgba(255,255,255,0.14)",
+                border: "1px solid rgba(255,255,255,0.3)",
+                borderRadius: 20,
+                padding: "5px 10px",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+              title="No hay coincidencias visibles en este módulo — buscar en toda la aplicación"
+            >
+              sin resultados aquí — ver en Buscador global →
+            </button>
+          )}
 
           <button
             onClick={() => cambiarTema(tema === "claro" ? "oscuro" : tema === "oscuro" ? "alto-contraste" : "claro")}
@@ -23188,7 +23319,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
         );
       })()}
 
-      <div key={tab} className="psq-fade" style={{ padding: "22px clamp(12px, 4vw, 24px) 60px", maxWidth: 1180, margin: "0 auto", width: "100%", boxSizing: "border-box" }}>
+      <div ref={contenidoRef} key={tab} className="psq-fade" style={{ padding: "22px clamp(12px, 4vw, 24px) 60px", maxWidth: 1180, margin: "0 auto", width: "100%", boxSizing: "border-box" }}>
         {tab === "intro" && <ModuloIntroduccion irA={setTab} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} escuelas={escuelas} onIrAEscuela={irAEscuela} />}
         {tab === "buscador" && (
           <ModuloBuscador
@@ -23200,6 +23331,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             onIrADiccionario={irADiccionario}
             irA={setTab}
             modoEstudio={modoEstudio}
+            terminoInicial={terminoBuscadorGlobal}
           />
         )}
         {tab === "fundamentos" && (

@@ -78,3 +78,15 @@ button:active,
 .psq-modal {
   animation: psq-modal-in 0.18s ease;
 }
+
+/* Resaltado del buscador de página (CSS Custom Highlight API): todas las
+   coincidencias en un tono suave, la coincidencia activa en un tono fuerte
+   para orientarse al navegar con Enter / Shift+Enter. */
+::highlight(psq-buscar) {
+  background-color: #b08a3e55;
+  color: inherit;
+}
+::highlight(psq-buscar-actual) {
+  background-color: #b08a3e;
+  color: #1e2a28;
+}
