@@ -16627,10 +16627,10 @@ function ContenedorPanZoom({ children, altura = 420, escalaMin = 0.5, escalaMax 
 
   return (
     <div style={{ position: "relative" }}>
-      <div style={{ position: "absolute", top: 8, right: 8, zIndex: 2, display: "flex", flexDirection: "column", gap: 3 }}>
+      <div style={{ position: "absolute", top: 12, right: 12, zIndex: 2, display: "flex", flexDirection: "column", gap: 5 }}>
         <button className="psq-zoom-btn" onClick={() => zoomBoton(1.3)} title="Acercar" style={ESTILO_BOTON_ZOOM}>＋</button>
         <button className="psq-zoom-btn" onClick={() => zoomBoton(0.77)} title="Alejar" style={ESTILO_BOTON_ZOOM}>－</button>
-        <button className="psq-zoom-btn" onClick={reset} title="Restablecer vista" style={{ ...ESTILO_BOTON_ZOOM, fontSize: 11 }}>⟲</button>
+        <button className="psq-zoom-btn" onClick={reset} title="Restablecer vista" style={{ ...ESTILO_BOTON_ZOOM, fontSize: 12 }}>⟲</button>
       </div>
       <div
         ref={contRef}
@@ -16643,7 +16643,9 @@ function ContenedorPanZoom({ children, altura = 420, escalaMin = 0.5, escalaMax 
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
         style={{
-          height: altura, overflow: "hidden", borderRadius: 8, background: COLORS.paperDark,
+          height: altura, overflow: "hidden", borderRadius: 12,
+          background: `radial-gradient(1200px 500px at 50% -10%, ${COLORS.primary}12, transparent 60%), ${COLORS.paperDark}`,
+          boxShadow: `inset 0 0 0 1px ${COLORS.line}`,
           cursor: arrastrando ? "grabbing" : "grab", touchAction: "none", position: "relative",
         }}
       >
@@ -16665,8 +16667,9 @@ function ContenedorPanZoom({ children, altura = 420, escalaMin = 0.5, escalaMax 
   );
 }
 const ESTILO_BOTON_ZOOM = {
-  width: 26, height: 26, borderRadius: 6, border: `1px solid ${COLORS.line}`, background: COLORS.cardBg,
+  width: 30, height: 30, borderRadius: "50%", border: "none", background: COLORS.cardBg,
   color: COLORS.primaryDark, fontSize: 15, fontWeight: 700, cursor: "pointer", lineHeight: 1,
+  boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
 };
 
 function LineaDeTiempoGlobal({ escuelas, modoEstudio, onIrAEscuela }) {
@@ -16710,8 +16713,8 @@ function LineaDeTiempoGlobal({ escuelas, modoEstudio, onIrAEscuela }) {
   const escuelasOrdenadas = [...conAnio].sort((a, b) => a.anio - b.anio);
 
   return (
-    <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: "16px 10px", marginBottom: 20 }}>
-      <ContenedorPanZoom altura={440} escalaMin={0.4} escalaMax={5} escalaInicial={0.55}>
+    <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: "20px 16px", marginBottom: 22, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+      <ContenedorPanZoom altura={480} escalaMin={0.4} escalaMax={5} escalaInicial={0.6}>
         <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{ overflow: "visible", display: "block" }}>
           <line x1={PAD} y1={yEje} x2={W - PAD} y2={yEje} stroke={COLORS.line} strokeWidth={2} />
           {decadas.map((d) => (
@@ -16953,8 +16956,8 @@ function MapaConceptualEscuelas({ escuelas, onIrAEscuela }) {
   };
 
   return (
-    <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: "12px 10px", marginBottom: 20 }}>
-      <div style={{ position: "relative", maxWidth: 280, marginBottom: 8 }}>
+    <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: "18px 16px", marginBottom: 22, boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+      <div style={{ position: "relative", maxWidth: 280, marginBottom: 10 }}>
         <input
           value={buscarEscuela}
           onChange={(ev) => setBuscarEscuela(ev.target.value)}
@@ -16980,8 +16983,10 @@ function MapaConceptualEscuelas({ escuelas, onIrAEscuela }) {
         <button
           onClick={volverAVistaGeneral}
           style={{
-            fontFamily: FONT_MONO, fontSize: 10.5, padding: "5px 12px", borderRadius: 16, cursor: "pointer",
+            fontFamily: FONT_MONO, fontSize: 10.5, padding: "6px 13px", borderRadius: 16, cursor: "pointer",
             border: `1px solid ${COLORS.primaryDark}`, background: !perspFocalizada ? COLORS.primaryDark : "transparent", color: !perspFocalizada ? "#fff" : COLORS.primaryDark,
+            transform: !perspFocalizada ? "scale(1.04)" : "scale(1)", boxShadow: !perspFocalizada ? `0 3px 10px ${COLORS.primaryDark}45` : "none",
+            transition: "transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease",
           }}
         >
           ⊙ vista general
@@ -16991,8 +16996,10 @@ function MapaConceptualEscuelas({ escuelas, onIrAEscuela }) {
             key={hub.persp}
             onClick={() => irAHub(hub)}
             style={{
-              fontFamily: FONT_MONO, fontSize: 10.5, padding: "5px 12px", borderRadius: 16, cursor: "pointer",
+              fontFamily: FONT_MONO, fontSize: 10.5, padding: "6px 13px", borderRadius: 16, cursor: "pointer",
               border: `1.5px solid ${hub.color}`, background: perspFocalizada === hub.persp ? hub.color : "transparent", color: perspFocalizada === hub.persp ? "#fff" : hub.color, fontWeight: 700,
+              transform: perspFocalizada === hub.persp ? "scale(1.04)" : "scale(1)", boxShadow: perspFocalizada === hub.persp ? `0 3px 10px ${hub.color}55` : "none",
+              transition: "transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease",
             }}
           >
             {hub.persp}
@@ -17184,9 +17191,11 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
       />
 
       <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20, marginTop: 16, marginBottom: 20 }}>
-        <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 14.5, lineHeight: 1.65, color: COLORS.ink, margin: 0 }}>
-          Cada escuela de psicoterapia responde, con su propio vocabulario, a las mismas preguntas de fondo: ¿qué es el sufrimiento psíquico?, ¿cuál es el rol del terapeuta?, ¿qué produce el cambio? Esta aplicación organiza esas respuestas en ocho módulos: una introducción general (este), siete módulos dedicados a cada gran perspectiva —con su contexto histórico, sus fundamentos filosóficos, sus escuelas internas, técnicas y protocolos— y un módulo final de comparación explícita. El objetivo no es demostrar que todas las escuelas dicen lo mismo con otras palabras, sino exactamente lo contrario: mostrar con precisión dónde convergen y dónde divergen, y por qué.
-        </p>
+        <TextoConCitas
+          tamano={14.5}
+          truncar={160}
+          texto="Cada escuela de psicoterapia responde, con su propio vocabulario, a las mismas preguntas de fondo: ¿qué es el sufrimiento psíquico?, ¿cuál es el rol del terapeuta?, ¿qué produce el cambio? Esta aplicación organiza esas respuestas en ocho módulos: una introducción general (este), siete módulos dedicados a cada gran perspectiva —con su contexto histórico, sus fundamentos filosóficos, sus escuelas internas, técnicas y protocolos— y un módulo final de comparación explícita. El objetivo no es demostrar que todas las escuelas dicen lo mismo con otras palabras, sino exactamente lo contrario: mostrar con precisión dónde convergen y dónde divergen, y por qué."
+        />
       </div>
 
       {/* Resumen de cobertura: discreto por defecto (una línea elegante),
@@ -17980,6 +17989,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
         icono={<Network size={18} />}
         titulo="Escuelas Psicoterapéuticas"
         subtitulo="Recorrido continuo desde los fundamentos filosóficos de cada perspectiva hasta la técnica clínica concreta de cada escuela, con línea de tiempo y mapa conceptual como apoyo."
+        colorAcento={PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre]}
       />
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "16px 0 20px" }}>
@@ -18991,14 +19001,21 @@ function BloqueFundamento({ titulo, texto, destacado, truncar }) {
   );
 }
 
-function Cabecera({ icono, titulo, subtitulo }) {
+function Cabecera({ icono, titulo, subtitulo, colorAcento }) {
+  // El filete bajo el título: un solo color cuando la pantalla pertenece a
+  // una perspectiva concreta (colorAcento), o un degradado con las 7
+  // perspectivas cuando el módulo las mira todas a la vez — un mismo
+  // recurso visual, discreto, que ata toda la app a la misma identidad de
+  // color sin repetir la mancha grande de fondo en cada pantalla.
+  const gradienteSiete = `linear-gradient(to right, ${Object.values(PERSPECTIVA_COLOR).slice(0, 7).join(", ")})`;
   return (
-    <div style={{ borderBottom: `1px solid ${COLORS.line}`, paddingBottom: 12 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, color: COLORS.primaryDark }}>
-        {icono}
-        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 21, margin: 0 }}>{titulo}</h2>
+    <div style={{ paddingBottom: 14 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, color: colorAcento || COLORS.primaryDark }}>
+        <span style={{ display: "flex", color: colorAcento || COLORS.primaryDark }}>{icono}</span>
+        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 23, fontWeight: 600, margin: 0, color: COLORS.ink, letterSpacing: "-0.01em" }}>{titulo}</h2>
       </div>
-      {subtitulo && <p style={{ fontSize: 12.5, color: COLORS.inkSoft, marginTop: 6, maxWidth: 760, lineHeight: 1.5 }}>{subtitulo}</p>}
+      {subtitulo && <p style={{ fontSize: 13, color: COLORS.inkSoft, marginTop: 7, maxWidth: 760, lineHeight: 1.55, fontFamily: "'Lora', Georgia, serif" }}>{subtitulo}</p>}
+      <div style={{ height: 3, borderRadius: 2, marginTop: 14, background: colorAcento || gradienteSiete, opacity: colorAcento ? 0.85 : 0.55, transition: "background 0.4s ease" }} />
     </div>
   );
 }
@@ -19711,7 +19728,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                 </span>
               )}
             </div>
-            {e.fundamentacion ? <TextoConCitas texto={e.fundamentacion} truncar={vistaCompacta ? 320 : undefined} /> : <p style={{ margin: 0 }}><TextoVacio texto="Sin fundamentación registrada." /></p>}
+            {e.fundamentacion ? <TextoConCitas texto={e.fundamentacion} truncar={vistaCompacta ? 180 : undefined} /> : <p style={{ margin: 0 }}><TextoVacio texto="Sin fundamentación registrada." /></p>}
           </Desplegable>
 
           {e.biografiaAutor && !vistaCompacta && (
@@ -19724,10 +19741,10 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
 
           <Desplegable titulo="2 · Coordenadas filosóficas" subtitulo="ontología · epistemología · metodología · criterio de verdad" color={color} defaultAbierto={modoEstudio}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 16 }}>
-              <BloqueFundamento titulo="Ontología" texto={e.ontologia} truncar={vistaCompacta ? 220 : undefined} />
-              <BloqueFundamento titulo="Epistemología" texto={e.epistemologia} truncar={vistaCompacta ? 220 : undefined} />
-              <BloqueFundamento titulo="Metodología" texto={e.metodologia} truncar={vistaCompacta ? 220 : undefined} />
-              <BloqueFundamento titulo="Criterio de verdad" texto={e.criterioVerdad} destacado truncar={vistaCompacta ? 220 : undefined} />
+              <BloqueFundamento titulo="Ontología" texto={e.ontologia} truncar={vistaCompacta ? 140 : undefined} />
+              <BloqueFundamento titulo="Epistemología" texto={e.epistemologia} truncar={vistaCompacta ? 140 : undefined} />
+              <BloqueFundamento titulo="Metodología" texto={e.metodologia} truncar={vistaCompacta ? 140 : undefined} />
+              <BloqueFundamento titulo="Criterio de verdad" texto={e.criterioVerdad} destacado truncar={vistaCompacta ? 140 : undefined} />
             </div>
           </Desplegable>
 
@@ -19761,7 +19778,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           </Desplegable>
 
           <Desplegable titulo="4 · Psicopatología" subtitulo="en sus propios términos" color={color} defaultAbierto={modoEstudio}>
-            {e.psicopatologia ? <TextoConCitas texto={e.psicopatologia} truncar={vistaCompacta ? 320 : undefined} /> : <TextoVacio texto="Sin psicopatología registrada." />}
+            {e.psicopatologia ? <TextoConCitas texto={e.psicopatologia} truncar={vistaCompacta ? 180 : undefined} /> : <TextoVacio texto="Sin psicopatología registrada." />}
           </Desplegable>
 
           <Desplegable titulo="5 · Técnicas" subtitulo="clic para ver definición" color={COLORS.clay} defaultAbierto={modoEstudio}>
@@ -19803,7 +19820,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           </Desplegable>
 
           <Desplegable titulo="7 · Evidencia" color={color} defaultAbierto={modoEstudio}>
-            {e.evidencia ? <TextoConCitas texto={e.evidencia} truncar={vistaCompacta ? 320 : undefined} /> : <TextoVacio texto="Sin evidencia registrada." />}
+            {e.evidencia ? <TextoConCitas texto={e.evidencia} truncar={vistaCompacta ? 180 : undefined} /> : <TextoVacio texto="Sin evidencia registrada." />}
             {e.notasClinicas && (
               <div style={{ background: COLORS.paperDark, borderRadius: 4, padding: 10, marginBottom: 10, borderLeft: `3px solid ${COLORS.garnet}` }}>
                 <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>
@@ -19854,7 +19871,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
               color={COLORS.gold}
               defaultAbierto={modoEstudio}
             >
-              <TextoConCitas texto={e.notaDistincion} truncar={vistaCompacta ? 320 : undefined} />
+              <TextoConCitas texto={e.notaDistincion} truncar={vistaCompacta ? 180 : undefined} />
             </Desplegable>
           )}
 
