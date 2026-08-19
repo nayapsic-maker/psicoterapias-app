@@ -13407,17 +13407,17 @@ const STORAGE_KEY = "psicoterapias:datos-v1";
 
 async function cargarDatos() {
   try {
-    const res = await window.storage.get(STORAGE_KEY, false);
-    if (res && res.value) return JSON.parse(res.value);
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
   } catch (e) {
-    /* clave inexistente: usar semilla */
+    /* clave inexistente o corrupta: usar semilla */
   }
   return null;
 }
 
 async function guardarDatos(datos) {
   try {
-    await window.storage.set(STORAGE_KEY, JSON.stringify(datos), false);
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(datos));
     return true;
   } catch (e) {
     console.error("No se pudo guardar:", e);
@@ -15008,7 +15008,35 @@ function PanelHistorial({ historial, onCerrar }) {
         className="psq-modal"
         style={{ background: COLORS.paper, border: `1px solid ${COLORS.line}`, borderRadius: 8, maxWidth: 640, width: "100%", maxHeight: "80vh", overflowY: "auto", padding: 24, position: "relative", boxShadow: "0 10px 40px rgba(0,0,0,0.25)" }}
       >
-        <X size={16} onClick={onCerrar} style={{ position: "absolute", top: 16, right: 16, cursor: "pointer", color: COLORS.inkSoft }} />
+        <button
+          onClick={onCerrar}
+          aria-label="Cerrar"
+          style={{
+            position: "absolute",
+            top: 12,
+            right: 12,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 32,
+            height: 32,
+            borderRadius: "50%",
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+            color: COLORS.inkSoft,
+          }}
+          onMouseEnter={(ev) => {
+            ev.currentTarget.style.background = COLORS.paperDark;
+            ev.currentTarget.style.color = COLORS.ink;
+          }}
+          onMouseLeave={(ev) => {
+            ev.currentTarget.style.background = "transparent";
+            ev.currentTarget.style.color = COLORS.inkSoft;
+          }}
+        >
+          <X size={17} />
+        </button>
         <h3 style={{ fontFamily: "Georgia, serif", fontSize: 19, margin: "0 0 4px" }}>Historial de ediciones</h3>
         <p style={{ fontSize: 12, color: COLORS.inkSoft, margin: "0 0 14px", fontFamily: "ui-serif, Georgia, serif" }}>
           Registro automático de creaciones, ediciones y eliminaciones en esta sesión de la aplicación, detectado por comparación de cada guardado con el anterior.
@@ -15067,6 +15095,7 @@ function ModalDefinicion({ dato, onCerrar, onIrAProtocolo, onIrAEscuela }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
+        className="psq-modal"
         style={{
           background: COLORS.paper,
           border: `1px solid ${COLORS.line}`,
@@ -15080,7 +15109,35 @@ function ModalDefinicion({ dato, onCerrar, onIrAProtocolo, onIrAEscuela }) {
           boxShadow: "0 10px 40px rgba(0,0,0,0.25)",
         }}
       >
-        <X size={16} onClick={onCerrar} style={{ position: "absolute", top: 16, right: 16, cursor: "pointer", color: COLORS.inkSoft }} />
+        <button
+          onClick={onCerrar}
+          aria-label="Cerrar"
+          style={{
+            position: "absolute",
+            top: 12,
+            right: 12,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 32,
+            height: 32,
+            borderRadius: "50%",
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+            color: COLORS.inkSoft,
+          }}
+          onMouseEnter={(ev) => {
+            ev.currentTarget.style.background = COLORS.paperDark;
+            ev.currentTarget.style.color = COLORS.ink;
+          }}
+          onMouseLeave={(ev) => {
+            ev.currentTarget.style.background = "transparent";
+            ev.currentTarget.style.color = COLORS.inkSoft;
+          }}
+        >
+          <X size={17} />
+        </button>
         <Sello color={tipo === "técnica" ? COLORS.clay : COLORS.primary}>{tipo || "término"}</Sello>
         <h3 style={{ fontFamily: "Georgia, serif", fontSize: 19, margin: "10px 0 14px" }}>{termino}</h3>
         {encontrado ? (
@@ -15159,7 +15216,35 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
       >
         <div style={{ height: 6, background: gradientePerspectivas(persps, "to right") }} />
         <div style={{ padding: 24 }}>
-          <X size={16} onClick={onCerrar} style={{ position: "absolute", top: 16, right: 16, cursor: "pointer", color: COLORS.inkSoft }} />
+          <button
+          onClick={onCerrar}
+          aria-label="Cerrar"
+          style={{
+            position: "absolute",
+            top: 12,
+            right: 12,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 32,
+            height: 32,
+            borderRadius: "50%",
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+            color: COLORS.inkSoft,
+          }}
+          onMouseEnter={(ev) => {
+            ev.currentTarget.style.background = COLORS.paperDark;
+            ev.currentTarget.style.color = COLORS.ink;
+          }}
+          onMouseLeave={(ev) => {
+            ev.currentTarget.style.background = "transparent";
+            ev.currentTarget.style.color = COLORS.inkSoft;
+          }}
+        >
+          <X size={17} />
+        </button>
           <Sello color={COLORS.inkSoft}>{autor.esTambienEscuelaPropia ? "teoría fundante · autor híbrido" : "teoría fundante"}</Sello>
           <h3 style={{ fontFamily: "Georgia, serif", fontSize: 19, margin: "10px 0 2px" }}>{autor.nombre}</h3>
           <p style={{ fontFamily: FONT_MONO, fontSize: 11, color: COLORS.inkSoft, margin: "0 0 8px" }}>{autor.autoresPrincipales} · {autor.disciplina}</p>
@@ -16863,7 +16948,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
           { n: Object.keys(PROTOCOLOS_SEED).length + Object.values(PROCEDIMIENTOS_CLINICOS).reduce((a, v) => a + v.length, 0), label: "protocolos y técnicas", color: COLORS.gold },
           { n: CONCEPTOS_TRANSVERSALES.length, label: "nudos temáticos", color: COLORS.primaryDark },
         ].map((s) => (
-          <div key={s.label} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderTop: `3px solid ${s.color}`, borderRadius: 6, padding: "12px 10px", textAlign: "center" }}>
+          <div key={s.label} style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `3px solid ${s.color}`, borderRadius: 6, padding: "12px 10px", textAlign: "center" }}>
             <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 24, color: s.color }}>{s.n}</div>
             <div style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: COLORS.inkSoft, marginTop: 2 }}>{s.label}</div>
           </div>
@@ -16908,7 +16993,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
             <div
               key={p.id}
               onClick={() => irA("fundamentos")}
-              style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 6, padding: 16, cursor: "pointer" }}
+              style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 6, padding: 16, cursor: "pointer" }}
             >
               <Sello color={color}>{p.nombre}</Sello>
               {modoEstudio ? (
@@ -19129,7 +19214,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
       >
         expediente · {e.perspectiva}
       </div>
-      <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderTop: `3px solid ${color}`, borderRadius: "0 6px 6px 6px", padding: 20 }}>
+      <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `3px solid ${color}`, borderRadius: "0 6px 6px 6px", padding: 20 }}>
       <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 10, display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
         <span style={{ color }}>{e.perspectiva}</span>
         {e.subfamilia && (
@@ -20020,7 +20105,7 @@ function ComparadorProtocolos({ filas }) {
             const f = filas[idx];
             const color = f.tipo === "protocolo" ? COLORS.garnet : COLORS.clay;
             return (
-              <div key={idx} style={{ border: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 8, padding: 14, background: COLORS.cardBg }}>
+              <div key={idx} style={{ borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 8, padding: 14, background: COLORS.cardBg }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
                   <div>
                     <div style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: PERSPECTIVA_COLOR[f.perspectiva] }}>{f.escuela}</div>
@@ -21062,7 +21147,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
           <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft }}>(Kuhn, Popper, Feyerabend, Lakatos — por qué este diccionario no fuerza equivalencias)</span>
         </div>
         {filosofiaCienciaAbierta && (
-          <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: "14px 18px", display: "grid", gap: 12 }}>
+          <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: "14px 18px", display: "grid", gap: 12 }}>
             <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.6, color: COLORS.ink }}>
               La <strong>inconmensurabilidad</strong> es la tesis de que dos marcos teóricos pueden carecer de un criterio común bajo el cual comparar o traducir sin pérdida sus enunciados centrales — no es simplemente que estén en desacuerdo (el desacuerdo presupone un terreno común donde contradecirse), sino que ni siquiera comparten por completo el vocabulario observacional ni los criterios de qué cuenta como evidencia relevante.
             </p>
@@ -21358,7 +21443,7 @@ function PanelEstadisticasDiccionario({ enlaces, escuelas }) {
         </span>
       </div>
       {abierto && (
-        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: 16, display: "grid", gap: 16 }}>
+        <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: 16, display: "grid", gap: 16 }}>
           <div>
             <div style={{ fontFamily: FONT_MONO, fontSize: 10, color: COLORS.inkSoft, textTransform: "uppercase", marginBottom: 6 }}>Por tipo de relación</div>
             <div style={{ display: "grid", gap: 4 }}>
@@ -21435,7 +21520,7 @@ function IntroConceptosTransversales() {
   const [abierto, setAbierto] = useState(CONCEPTOS_TRANSVERSALES[0].id);
   const actual = CONCEPTOS_TRANSVERSALES.find((c) => c.id === abierto);
   return (
-    <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: 16, marginBottom: 6 }}>
+    <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: 16, marginBottom: 6 }}>
       <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, color: COLORS.inkSoft, marginTop: 0 }}>
         Antes de navegar escuela por escuela, esta es una referencia rápida: dieciocho nudos conceptuales (el síntoma, la ansiedad, el self, el inconsciente, la resistencia, la relación terapéutica, el mecanismo de cambio, el criterio de cura, el rol del terapeuta, la temporalidad, el lenguaje, el cuerpo, la motivación, la manualización, la culpa, el apego temprano, la muerte y la finitud, y la libertad y el determinismo) con el término y la definición propios de cada una de las siete perspectivas, lado a lado (donde aplica).
       </p>
@@ -22006,20 +22091,19 @@ export default function App() {
     Object.assign(COLORS, TEMAS[nuevo] || TEMA_CLARO);
     setTema(nuevo);
     setTemaVersion((v) => v + 1);
-    window.storage?.set(TEMA_STORAGE_KEY, nuevo, false).catch(() => {});
+    try {
+      window.localStorage.setItem(TEMA_STORAGE_KEY, nuevo);
+    } catch (e) {}
   }
   useEffect(() => {
-    window.storage
-      ?.get(TEMA_STORAGE_KEY, false)
-      .then((res) => {
-        const guardado = res?.value;
-        if (guardado && TEMAS[guardado]) {
-          Object.assign(COLORS, TEMAS[guardado]);
-          setTema(guardado);
-          setTemaVersion((v) => v + 1);
-        }
-      })
-      .catch(() => {});
+    try {
+      const guardado = window.localStorage.getItem(TEMA_STORAGE_KEY);
+      if (guardado && TEMAS[guardado]) {
+        Object.assign(COLORS, TEMAS[guardado]);
+        setTema(guardado);
+        setTemaVersion((v) => v + 1);
+      }
+    } catch (e) {}
   }, []);
   // Cada entrada del recorrido guarda no solo la pestaña (módulo) visitada,
   // sino —cuando aplica— la entidad concreta dentro de ese módulo (escuela,
@@ -22281,6 +22365,14 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
     reader.onload = (ev) => {
       try {
         const datos = JSON.parse(ev.target.result);
+        const camposValidos = ["escuelas", "enlaces", "enlacesTecnicas", "planes"].filter(
+          (campo) => campo in datos
+        );
+        if (camposValidos.length === 0 || camposValidos.some((campo) => !Array.isArray(datos[campo]))) {
+          setMensaje("El archivo no tiene el formato esperado de esta app.");
+          setTimeout(() => setMensaje(""), 3000);
+          return;
+        }
         // Mismo tratamiento que al cargar desde storage: las escuelas del archivo
         // importado que el usuario nunca editó manualmente se refrescan con la
         // semilla vigente del código, para que un respaldo antiguo no reintroduzca
@@ -22292,10 +22384,14 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
         setMensaje("Importado");
         setTimeout(() => setMensaje(""), 1500);
       } catch (err) {
-        alert("El archivo no es un JSON válido de esta app.");
+        setMensaje("El archivo no es un JSON válido de esta app.");
+        setTimeout(() => setMensaje(""), 3000);
       }
     };
-    reader.onerror = () => alert("No se pudo leer el archivo.");
+    reader.onerror = () => {
+      setMensaje("No se pudo leer el archivo.");
+      setTimeout(() => setMensaje(""), 3000);
+    };
     reader.readAsText(file);
     e.target.value = null;
   }
@@ -22315,7 +22411,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
     );
     if (!confirma) return;
     try {
-      await window.storage.delete(STORAGE_KEY, false);
+      window.localStorage.removeItem(STORAGE_KEY);
     } catch (e) {
       /* la clave puede no existir; no es un error real */
     }
@@ -22562,11 +22658,12 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
       </div>
 
       {/* Pestañas de carpeta */}
-      <div
-        role="tablist"
-        aria-label="Módulos de la aplicación"
-        style={{ display: "flex", background: COLORS.paperDark, borderBottom: `2px solid ${COLORS.primaryDark}`, padding: "0 20px", overflowX: "auto", WebkitOverflowScrolling: "touch" }}
-      >
+      <div style={{ position: "relative" }}>
+        <div
+          role="tablist"
+          aria-label="Módulos de la aplicación"
+          style={{ display: "flex", background: COLORS.paperDark, borderBottom: `2px solid ${COLORS.primaryDark}`, padding: "0 20px", overflowX: "auto", WebkitOverflowScrolling: "touch" }}
+        >
         {TABS.map((t) => {
           const Icon = t.icono;
           const activo = tab === t.id;
@@ -22611,6 +22708,19 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             </div>
           );
         })}
+        </div>
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 2,
+            width: 28,
+            background: `linear-gradient(to right, transparent, ${COLORS.paperDark})`,
+            pointerEvents: "none",
+          }}
+        />
       </div>
 
       {panelIntegridadAbierto && (
