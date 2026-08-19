@@ -79,6 +79,20 @@ button:active,
   animation: psq-modal-in 0.18s ease;
 }
 
+@keyframes psq-sello-girar {
+  from {
+    opacity: 0;
+    transform: rotate(-8deg) scale(0.92);
+  }
+  to {
+    opacity: 0.1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+.psq-sello-girar {
+  animation: psq-sello-girar 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 /* Resaltado del buscador de página (CSS Custom Highlight API): todas las
    coincidencias en un tono suave, la coincidencia activa en un tono fuerte
    para orientarse al navegar con Enter / Shift+Enter. */

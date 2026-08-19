@@ -88,16 +88,21 @@ const NOMBRE_CORTO_PERSPECTIVA = {
   transpersonal: "Transpersonal",
 };
 
+// Paleta más profunda y saturada que la original (tonos joya en vez de
+// apagados), conservando la misma lógica de un color por perspectiva —
+// se propaga sola a las 74 escuelas, la línea de tiempo, el mapa
+// conceptual, la tabla comparativa y los chips, todos referenciados por
+// esta misma constante.
 const PERSPECTIVA_COLOR = {
-  "Humanista-existencial": "#B08A3E",
-  "Psicodinámica": "#7A4A52",
-  "Sistémica": "#2F6690",
-  "Sistémica y familiar": "#2F6690",
-  "Conductual": "#5C7A5E",
-  "Cognitivo-Conductual": "#C77B3D",
-  "Integradora": "#8B5FA3",
-  "Integradora y ecléctica": "#8B5FA3",
-  "Transpersonal": "#4A3B6B",
+  "Humanista-existencial": "#A87A1E",
+  "Psicodinámica": "#7A3B45",
+  "Sistémica": "#1F5578",
+  "Sistémica y familiar": "#1F5578",
+  "Conductual": "#3E6B45",
+  "Cognitivo-Conductual": "#B3652A",
+  "Integradora": "#7A4A94",
+  "Integradora y ecléctica": "#7A4A94",
+  "Transpersonal": "#41306B",
 };
 
 /* Colores de relación traslacional: deliberadamente distintos de los 7
@@ -15918,7 +15923,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
     <div>
       <Cabecera
         icono={<Search size={18} />}
-        titulo="Buscador global unificado"
+        titulo="Buscador global"
         subtitulo="Búsqueda unificada sobre escuelas, autores, conceptos, protocolos y enlaces traslacionales, con sugerencias ortográficas cuando el término no se encuentra."
       />
 
@@ -17611,7 +17616,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
     <div style={{ background: COLORS.paper, minHeight: "60vh" }}>
       <Cabecera
         icono={<Scale size={18} />}
-        titulo="Módulo de comparaciones y diferencias"
+        titulo="Comparar, perspectiva por perspectiva"
         subtitulo="Comparación campo por campo entre perspectivas completas o escuelas seleccionadas, conservando en cada columna el vocabulario propio de su marco teórico."
       />
 
@@ -17985,6 +17990,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
         padding: 8,
       }}
     >
+      <SelloPerspectiva color={PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre] || COLORS.primary} />
       <Cabecera
         icono={<Network size={18} />}
         titulo="Escuelas Psicoterapéuticas"
@@ -18998,6 +19004,42 @@ function BloqueFundamento({ titulo, texto, destacado, truncar }) {
       </div>
       {texto ? <TextoConCitas texto={texto} truncar={truncar} /> : <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 14, color: COLORS.inkSoft, fontStyle: "italic" }}>—</p>}
     </div>
+  );
+}
+
+// Sello ornamental discreto, tipo timbre de expediente clínico antiguo:
+// un anillo doble con marcas radiales, en el color de la perspectiva
+// activa. Es deliberadamente abstracto (no una ilustración figurativa de
+// ningún autor concreto, para no inventar retratos) y muy tenue —
+// decoración de fondo, nunca compite con el contenido. Gira suavemente
+// al aparecer cada vez que cambia la perspectiva (key en el padre).
+function SelloPerspectiva({ color }) {
+  const marcas = Array.from({ length: 16 }, (_, i) => i * (360 / 16));
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 200 200"
+      width={150}
+      height={150}
+      className="psq-sello-girar"
+      style={{ position: "absolute", top: 4, right: 4, opacity: 0.1, pointerEvents: "none" }}
+    >
+      <circle cx="100" cy="100" r="92" fill="none" stroke={color} strokeWidth="1.5" />
+      <circle cx="100" cy="100" r="74" fill="none" stroke={color} strokeWidth="1" />
+      <circle cx="100" cy="100" r="6" fill={color} />
+      {marcas.map((deg) => (
+        <line
+          key={deg}
+          x1="100"
+          y1="18"
+          x2="100"
+          y2="30"
+          stroke={color}
+          strokeWidth="2"
+          transform={`rotate(${deg} 100 100)`}
+        />
+      ))}
+    </svg>
   );
 }
 
