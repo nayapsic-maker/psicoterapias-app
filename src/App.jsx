@@ -622,6 +622,7 @@ const ANIO_ORIGEN = {
   t3: { anio: 1965, fuente: "Assagioli, Psychosynthesis: A Manual of Principles and Techniques (origen en su tesis de 1911)." },
   t4: { anio: 1975, fuente: "~ Grof, desarrollo de la respiración holotrópica tras la prohibición legal del LSD (1973-75)." },
   t5: { anio: 1977, fuente: "Wilber, The Spectrum of Consciousness." },
+  t6: { anio: 1988, fuente: "Washburn, The Ego and the Dynamic Ground." },
 };
 
 /* ============================================================
@@ -1096,9 +1097,10 @@ const AUTORES_TEORICOS = [
     nombre: "Modelo dinámico-dialéctico del desarrollo transpersonal (perspectiva alternativa a Wilber)",
     autoresPrincipales: "Michael Washburn (1943- )",
     disciplina: "Psicología transpersonal / teoría del desarrollo",
+    esTambienEscuelaPropia: "t6",
     obraNuclear: "Washburn, M. (1988). The Ego and the Dynamic Ground: A Transpersonal Theory of Human Development. State University of New York Press.",
     aporteSintesis:
-      "Washburn propuso, frente al modelo estructural-jerárquico de Wilber (`t5`), un modelo dinámico-dialéctico: el desarrollo no avanza linealmente «trascendiendo e incluyendo» niveles sucesivos, sino que consiste en un movimiento de espiral en tres tiempos —unión pre-egoica original con el «Fundamento Dinámico» inconsciente, represión/alienación de ese fundamento durante la construcción del ego (necesaria pero costosa), y un eventual «regreso al servicio de la trascendencia» en el que el ego adulto se reconecta con ese mismo fundamento ya no de forma regresiva sino integradora. No administra ninguna ficha propia en esta app y —a diferencia de los demás autores de esta lista— tampoco fundamenta actualmente ninguna de las cinco escuelas transpersonales modeladas aquí: su modelo es, en la propia literatura secundaria del campo, el principal rival teórico de Wilber, no un antecedente que alguna de las fichas existentes cite o adopte. Se incluye como nodo de referencia por su relevancia historiográfica innegable en la disciplina, con esta ausencia de vínculo señalada explícitamente para no sugerir una dependencia textual que ninguna ficha de esta app declara.",
+      "Washburn propuso, frente al modelo estructural-jerárquico de Wilber (`t5`), un modelo dinámico-dialéctico: el desarrollo no avanza linealmente «trascendiendo e incluyendo» niveles sucesivos, sino que consiste en un movimiento de espiral en tres tiempos —unión pre-egoica original con el «Fundamento Dinámico» inconsciente, represión/alienación de ese fundamento durante la construcción del ego (necesaria pero costosa), y un eventual «regreso al servicio de la trascendencia» en el que el ego adulto se reconecta con ese mismo fundamento ya no de forma regresiva sino integradora. Administra ahora su propia ficha de escuela (`t6`) dentro de la perspectiva Transpersonal, presentada explícitamente como rival teórico de Wilber (`t5`) y no como una variante o antecedente de su modelo — la propia literatura secundaria del campo documenta esta como una de las controversias centrales, no resuelta, de la disciplina.",
     ontologia: "El desarrollo humano no es una ascensión jerárquica lineal de estructuras sucesivas, sino un movimiento en espiral: un fundamento dinámico inconsciente y pre-egoico se pierde necesariamente durante la formación del ego y puede reencontrarse después, en la madurez, ya no como regresión sino como una nueva forma de integración consciente.",
     epistemologia: "Hermenéutico-comparada, en diálogo crítico explícito con el psicoanálisis (particularmente con Jung y con las teorías de las relaciones objetales) para reinterpretar la regresión y el inconsciente profundo como recursos potencialmente evolutivos, no solo patológicos.",
     conceptosAportados: ["Fundamento Dinámico (Dynamic Ground)", "Regresión al servicio de la trascendencia", "Modelo espiral (frente al modelo jerárquico-lineal)", "Alienación necesaria del ego respecto de su origen pre-egoico"],
@@ -1492,6 +1494,11 @@ const FILOSOFIA_ESCUELA = {
     mapaDecisional: "Exponente magno del Idealismo Objetivo / Monismo espiritual anclado en la Estructura jerárquica (Holoarquía): el desarrollo «atraviesa múltiples niveles (fulcros)... donde cada nivel trasciende e incluye al anterior»; el objetivo final de la trascendencia es Atman, la Conciencia de Unidad.",
     clasificacionesHistoricas: "Reconfigura la clasificación del ser en un Monismo de espectro (Wolff): abarca simultáneamente los aspectos físicos, emocionales e intelectuales, y las dimensiones existenciales y espirituales, como bandas de una misma emanación.",
     crotty: { epistemologia: "Estructuralismo evolutivo transpersonal.", perspectiva: "—", metodologia: "Métodos escalonados según el fulcro dañado: el Camino del yogui, el Camino del santo y el Camino del sabio." },
+  },
+  t6: {
+    mapaDecisional: "Monismo espiritual dialéctico, no estructural: el desarrollo no «trasciende e incluye» niveles ascendentes, sino que se mueve en espiral entre unión, alienación y regreso a un único Fundamento Dinámico preexistente al ego.",
+    clasificacionesHistoricas: "Psicoanálisis junguiano-groftiano leído dialécticamente: retoma el «fondo» inconsciente pre-egoico de Jung y Grof, pero lo articula como un movimiento de tres tiempos (tesis-antítesis-síntesis) en vez de como niveles o capas discretas.",
+    crotty: { epistemologia: "Fenomenológico-dialéctico.", perspectiva: "—", metodologia: "Diagnóstico del momento del ciclo espiral (unión, alienación o umbral de regreso) y distinción clínica entre regresión integradora y regresión meramente regresiva." },
   },
   // ---------- INTEGRADORA ----------
   i2: {
@@ -4475,7 +4482,7 @@ const ESCUELAS_SEED = [
       "Trastornos sutiles / pseudorrealización (Fulcro 8)",
       "Emergencia espiritual y patología causal / No-Dual (Fulcro 9)",
     ],
-    notaDistincion: "No confundir con el Enfoque Holotrópico de Grof (`t4`): ver la nota completa en la ficha de `t4`. En síntesis, Wilber ordena el desarrollo en nueve fulcros diagnosticados hermenéuticamente y sin necesidad de estados alterados, mientras que Grof cartografía tres dominios (biográfico, perinatal, transpersonal) validados mediante inducción experiencial (respiración u, originalmente, LSD); el «Sistema COEX» aparece en ambos, pero Wilber lo cita como préstamo explícito de Grof, no como constructo propio. No confundir tampoco con la Psicología Transpersonal general (`t2`) ni con la Psicología Trascendental de Maslow (`t1`): la cartografía de los «fulcros» es un desarrollo posterior y específico de Wilber, no atribuible a Maslow ni al grupo fundador de 1967 en su conjunto.",
+    notaDistincion: "No confundir con el Enfoque Holotrópico de Grof (`t4`): ver la nota completa en la ficha de `t4`. En síntesis, Wilber ordena el desarrollo en nueve fulcros diagnosticados hermenéuticamente y sin necesidad de estados alterados, mientras que Grof cartografía tres dominios (biográfico, perinatal, transpersonal) validados mediante inducción experiencial (respiración u, originalmente, LSD); el «Sistema COEX» aparece en ambos, pero Wilber lo cita como préstamo explícito de Grof, no como constructo propio. No confundir tampoco con la Psicología Transpersonal general (`t2`) ni con la Psicología Trascendental de Maslow (`t1`): la cartografía de los «fulcros» es un desarrollo posterior y específico de Wilber, no atribuible a Maslow ni al grupo fundador de 1967 en su conjunto. Tampoco debe confundirse ni fusionarse con el Modelo Dinámico-Dialéctico de Washburn (`t6`): ver la notaDistincion completa en `t6`, que es, en la propia literatura secundaria del campo, el principal rival teórico de este modelo, no una variante ni un antecedente del mismo.",
     referencias: [
       "Wilber, K. (1980). El proyecto Atman: Una visión transpersonal del desarrollo humano. Editorial Kairós.",
       "Wilber, K. (1994). Psicología integral. Editorial Kairós. (Obra original Transformations of Consciousness, 1986).",
@@ -4483,6 +4490,40 @@ const ESCUELAS_SEED = [
       "Brown, D., Engler, J. (1980). A Rorschach Study of the Stages of Mindfulness Meditation. Journal of Transpersonal Psychology, 12(2), 143-192.",
       "Maliszewski, M., Twemlow, S., Brown, D., Engler, J. (1981). A Phenomenological Typology of Intensive Meditation. Re-Vision, 4.",
       "González, D. (1994). Prefacio. En K. Wilber, Psicología integral. Editorial Kairós.",
+    ],
+  },
+  {
+    id: "t6", perspectiva: "Transpersonal", subfamilia: "Modelo Dinámico-Dialéctico del Desarrollo", fundamentosTeoricos: ["washburn"], nombre: "Modelo Dinámico-Dialéctico del Desarrollo Transpersonal",
+    autores: "Michael Washburn",
+    fundamentacion: "Formulado por Michael Washburn en The Ego and the Dynamic Ground: A Transpersonal Theory of Human Development (1988), este modelo se presenta explícitamente como una alternativa rival al modelo estructural-jerárquico de Wilber (`t5`), no como una variante o desarrollo posterior de este. Frente a la secuencia lineal «trascender e incluir» de Wilber —donde cada fulcro se construye sobre el anterior sin retroceder—, Washburn propone un movimiento en espiral de tres tiempos: (1) una unión pre-egoica original del infante con un «Fundamento Dinámico» inconsciente (fuente de vitalidad psíquica, libido y potencial espiritual); (2) una represión necesaria pero costosa de ese Fundamento durante la construcción normal del ego, que se aliena de su origen para poder diferenciarse y funcionar en el mundo; y (3), en la adultez y solo en algunos casos, un «regreso al servicio de la trascendencia»: el ego adulto ya formado se reconecta con el Fundamento Dinámico, esta vez no de forma regresiva-fusional sino integradora. Wilber ha criticado explícitamente este modelo por incurrir, a su juicio, en la falacia pre/trans que él mismo describe (confundir un retorno regresivo a lo pre-egoico con un avance genuino hacia lo trans-egoico); Washburn y sus defensores responden que es precisamente Wilber quien, al negar cualquier valor desarrollador a la regresión, empobrece la comprensión clínica de estados numinosos tempranos genuinamente reactivados en la vida adulta. Es un debate activo y no resuelto dentro de la propia psicología transpersonal, no una disputa zanjada a favor de uno de los dos bandos.",
+    ontologia: "La psique se organiza en torno a un «Fundamento Dinámico» (Dynamic Ground) preexistente al ego, fuente común de la energía instintiva, la creatividad y el potencial espiritual —no una jerarquía de niveles discretos y ascendentes como en Wilber, sino un fondo psíquico único del que el ego se separa y al que puede regresar sin perder su organización adulta.",
+    epistemologia: "Fenomenológico-desarrollista: la validez de una etapa se establece por el relato introspectivo de quien la atraviesa (unión, alienación, reintegración), sin exigir un criterio de verdad diferenciado por nivel como en el modelo de Wilber; el criterio de «autenticidad» del regreso al Fundamento es clínico —¿se acompaña de mayor integración funcional del ego adulto, o de una regresión desorganizadora?—, no una prueba de coherencia estructural jerárquica.",
+    metodologia: "Diagnóstico del momento del ciclo espiral en que se encuentra la persona (unión originaria, alienación egoica en curso, o umbral de regreso a la trascendencia), y facilitación clínica de una reconexión con el Fundamento Dinámico que sea integradora y no meramente regresiva —distinguiendo activamente entre una regresión patológica al servicio de la evitación y una regresión genuina al servicio de la trascendencia.",
+    criterioVerdad: "Pragmático-clínico centrado en el resultado funcional del regreso al Fundamento: se valida si la reconexión deja al ego adulto más integrado y vital, no por su coherencia con una cartografía jerárquica de niveles de conciencia como exige el modelo de Wilber.",
+    conceptos: [
+      "Fundamento Dinámico (Dynamic Ground)",
+      "Movimiento en espiral (unión pre-egoica → alienación egoica → regreso integrador)",
+      "Alienación egoica (represión necesaria del Fundamento durante la construcción del ego)",
+      "Regresión al servicio de la trascendencia",
+      "Regresión meramente regresiva (distinguida clínicamente de la anterior)",
+    ],
+    psicopatologia: "El sufrimiento adulto puede derivar tanto de una alienación egoica excesivamente rígida respecto del Fundamento Dinámico (vacío, desvitalización, pérdida de acceso a la propia fuente creativa e instintiva) como de un regreso prematuro o desorganizador al Fundamento sin la contención egoica suficiente para integrarlo —un fracaso en cualquiera de los dos polos del movimiento en espiral, no una fijación en un fulcro estructural como en Wilber.",
+    tecnicas: [
+      "Facilitación de la reconexión con el Fundamento Dinámico mediante trabajo corporal, imaginación activa y estados meditativos, con atención clínica constante a la integración egoica del material emergente",
+      "Distinción clínica activa entre regresión integradora y regresión desorganizadora antes de facilitar cualquier reconexión profunda",
+    ],
+    evidencia: "El respaldo es predominantemente teórico-clínico e historiográfico, no experimental: el propio Washburn (1988, 2003) reconoce que su modelo es una síntesis conceptual —integra psicoanálisis (Jung, Grof), fenomenología existencial y misticismo comparado— antes que una teoría validada mediante estudios psicométricos propios. Rowan (2005) y otros historiadores de la psicología transpersonal documentan el debate Washburn-Wilber como una de las controversias teóricas centrales del campo, sin que ninguno de los dos modelos haya sido sometido a un diseño comparativo que permita zanjarlo empíricamente. Limitación honesta: al no existir instrumentos validados específicos para medir «alienación del Fundamento Dinámico» o «regreso integrador», el modelo se apoya en gran medida en estudios de caso y en la plausibilidad clínica narrada por sus propios practicantes, la misma limitación metodológica que Washburn atribuye críticamente al modelo estructural de Wilber.",
+    presentaciones: ["Vacío y desvitalización por alienación egoica rígida del Fundamento Dinámico", "Regresión desorganizadora por reconexión prematura con el Fundamento sin contención egoica suficiente"],
+    contraindicaciones: [
+      "Facilitar técnicas de reconexión profunda con el Fundamento Dinámico en personas con una organización egoica frágil o borderline: el propio modelo distingue entre regresión integradora y regresión meramente regresiva, y advierte que sin contención egoica suficiente el resultado es desorganización, no trascendencia.",
+      "Aplicar el modelo como si fuera una variante menor del de Wilber (`t5`): ambos autores lo presentan explícitamente como rivales teóricos incompatibles, no como perspectivas complementarias intercambiables.",
+    ],
+    notaDistincion: "No confundir con la Psicología Integral de Wilber (`t5`): son modelos presentados por sus propios autores como **rivales teóricos declarados**, no como variantes complementarias. Wilber propone una secuencia lineal «trascender e incluir» por nueve fulcros estructurales, sin necesidad de regresión; Washburn propone un movimiento en espiral donde la regresión al Fundamento Dinámico —lejos de ser siempre patológica— puede ser la vía misma hacia la trascendencia adulta. Wilber ha calificado el modelo de Washburn como un caso de la «falacia pre/trans» que él mismo describe (confundir regresión con progreso genuino); es importante no resolver esta disputa a favor de ninguno de los dos bandos dentro de esta ficha, ya que sigue activa en la literatura secundaria del campo. No confundir tampoco con el Enfoque Holotrópico de Grof (`t4`): aunque ambos valoran estados regresivos/no ordinarios como clínicamente productivos, Grof cartografía capas específicas (biográfica, perinatal, transpersonal) accedidas mediante inducción experiencial concreta (respiración, históricamente LSD), mientras que Washburn describe un movimiento dialéctico único y continuo (unión-alienación-regreso) sin la cartografía multicapa de Grof.",
+    referencias: [
+      "Washburn, M. (1988). The Ego and the Dynamic Ground: A Transpersonal Theory of Human Development. State University of New York Press.",
+      "Washburn, M. (2003). Embodied Spirituality in a Sacred World. State University of New York Press.",
+      "Rowan, J. (2005). The Transpersonal: Spirituality in Psychotherapy and Counselling (2.ª ed.). Routledge.",
+      "Wilber, K. (1996). Breve historia de todas las cosas. Editorial Kairós. (crítica de Wilber al modelo de Washburn como caso de la falacia pre/trans).",
     ],
   },
 ];
@@ -8937,6 +8978,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e17",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "p1", nombre: "Complejo de Edipo" },
     conceptoB: { escuela: "s1", nombre: "Triángulos" },
     relacion: "análogo funcional",
@@ -8976,6 +9018,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e21",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "p8", nombre: "Sincronicidad" },
     conceptoB: { escuela: "s4", nombre: "Circularidad" },
     relacion: "inconmensurable",
@@ -8985,6 +9028,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e22",
+    clusterId: "self",
     conceptoA: { escuela: "c2", nombre: "Creencias irracionales" },
     conceptoB: { escuela: "h1", nombre: "Incongruencia" },
     relacion: "solapamiento parcial",
@@ -9014,6 +9058,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e25",
+    clusterId: "desarrollo_temprano",
     conceptoA: { escuela: "s2", nombre: "Jerarquía" },
     conceptoB: { escuela: "p7", nombre: "Orden de nacimiento" },
     relacion: "inconmensurable",
@@ -9033,6 +9078,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e27",
+    clusterId: "self",
     conceptoA: { escuela: "c5", nombre: "Mente sabia" },
     conceptoB: { escuela: "h1", nombre: "Locus de evaluación interno" },
     relacion: "análogo funcional",
@@ -9052,6 +9098,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e29",
+    clusterId: "inconsciente",
     conceptoA: { escuela: "p6", nombre: "Forclusión" },
     conceptoB: { escuela: "s4", nombre: "Juego familiar" },
     relacion: "falso amigo",
@@ -9061,6 +9108,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e30",
+    clusterId: "motivacion",
     conceptoA: { escuela: "p1", nombre: "Pulsión (Trieb)" },
     conceptoB: { escuela: "c4", nombre: "Valores" },
     relacion: "falso amigo",
@@ -9070,6 +9118,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e31",
+    clusterId: "self",
     conceptoA: { escuela: "h1", nombre: "Organismo" },
     conceptoB: { escuela: "s1", nombre: "Diferenciación del self" },
     relacion: "solapamiento parcial",
@@ -9079,6 +9128,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e32",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "p3b", nombre: "Objeto transicional" },
     conceptoB: { escuela: "s6", nombre: "Documentos terapéuticos" },
     relacion: "análogo funcional",
@@ -9088,6 +9138,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e33",
+    clusterId: "motivacion",
     conceptoA: { escuela: "c3", nombre: "Creencias nucleares (core beliefs)" },
     conceptoB: { escuela: "p7", nombre: "Estilo de vida" },
     relacion: "análogo funcional",
@@ -9107,6 +9158,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e35",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "i3", nombre: "Niveles de cambio" },
     conceptoB: { escuela: "i2", nombre: "BASIC I.D." },
     relacion: "análogo funcional",
@@ -9126,6 +9178,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e37",
+    clusterId: "self",
     conceptoA: { escuela: "c6", nombre: "Historia de aprendizaje" },
     conceptoB: { escuela: "p5", nombre: "CCRT (deseo, respuesta del otro, respuesta del self)" },
     relacion: "análogo funcional",
@@ -9135,6 +9188,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e38",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "s2", nombre: "Complementariedad" },
     conceptoB: { escuela: "p7", nombre: "Compensación" },
     relacion: "falso amigo",
@@ -9144,6 +9198,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e39",
+    clusterId: "psicopatologia",
     conceptoA: { escuela: "h6", nombre: "Sentido del sufrimiento" },
     conceptoB: { escuela: "c5", nombre: "Aceptación radical" },
     relacion: "análogo funcional",
@@ -9163,6 +9218,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e41",
+    clusterId: "self",
     conceptoA: { escuela: "p8", nombre: "Persona (máscara social)" },
     conceptoB: { escuela: "c4", nombre: "Yo-como-contexto" },
     relacion: "falso amigo",
@@ -9172,6 +9228,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e42",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "h2", nombre: "PERMA" },
     conceptoB: { escuela: "c5", nombre: "Efectividad interpersonal" },
     relacion: "solapamiento parcial",
@@ -9181,6 +9238,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e43",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "h2", nombre: "Flujo (flow)" },
     conceptoB: { escuela: "c4", nombre: "Workability (utilidad funcional)" },
     relacion: "análogo funcional",
@@ -9190,6 +9248,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e44",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "h3", nombre: "Ajuste creativo" },
     conceptoB: { escuela: "c4", nombre: "Flexibilidad psicológica" },
     relacion: "equivalente aproximado",
@@ -9199,6 +9258,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e45",
+    clusterId: "psicopatologia",
     conceptoA: { escuela: "h4", nombre: "Supuestos últimos" },
     conceptoB: { escuela: "h6", nombre: "Vacío existencial" },
     relacion: "reinterpretación asimilativa",
@@ -9208,6 +9268,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e46",
+    clusterId: "culpa",
     conceptoA: { escuela: "h4", nombre: "Culpa existencial" },
     conceptoB: { escuela: "p7", nombre: "Sentimiento de inferioridad" },
     relacion: "análogo funcional",
@@ -9217,6 +9278,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e47",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "h5", nombre: "Cuatro dimensiones (Umwelt, Mitwelt, Eigenwelt, Überwelt)" },
     conceptoB: { escuela: "i2", nombre: "Perfil multimodal" },
     relacion: "análogo funcional",
@@ -9226,6 +9288,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e48",
+    clusterId: "ansiedad",
     conceptoA: { escuela: "h5", nombre: "Ansiedad ontológica" },
     conceptoB: { escuela: "h4", nombre: "Angustia existencial" },
     relacion: "equivalente aproximado",
@@ -9235,6 +9298,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e49",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "h1", nombre: "Valoración organísmica" },
     conceptoB: { escuela: "c3", nombre: "Empirismo colaborativo" },
     relacion: "falso amigo",
@@ -9244,6 +9308,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e50",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "h2", nombre: "Florecimiento" },
     conceptoB: { escuela: "h1", nombre: "Funcionamiento pleno" },
     relacion: "equivalente aproximado",
@@ -9253,6 +9318,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e51",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "h2", nombre: "Fortalezas de carácter" },
     conceptoB: { escuela: "p7", nombre: "Interés social" },
     relacion: "análogo funcional",
@@ -9262,6 +9328,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e52",
+    clusterId: "self",
     conceptoA: { escuela: "h2", nombre: "Resiliencia" },
     conceptoB: { escuela: "s1", nombre: "Diferenciación del self" },
     relacion: "análogo funcional",
@@ -9271,6 +9338,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e53",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "h2", nombre: "Crecimiento postraumático" },
     conceptoB: { escuela: "h6", nombre: "Sentido del sufrimiento" },
     relacion: "equivalente aproximado",
@@ -9280,6 +9348,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e54",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "h3", nombre: "Campo" },
     conceptoB: { escuela: "s2", nombre: "Estructura familiar" },
     relacion: "análogo funcional",
@@ -9289,6 +9358,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e55",
+    clusterId: "relacion_terapeutica",
     conceptoA: { escuela: "h3", nombre: "Contacto y frontera de contacto" },
     conceptoB: { escuela: "p4", nombre: "Intersubjetividad" },
     relacion: "análogo funcional",
@@ -9298,6 +9368,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e56",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "h3", nombre: "Autorregulación organísmica" },
     conceptoB: { escuela: "c15", nombre: "Refuerzo (positivo/negativo)" },
     relacion: "falso amigo",
@@ -9307,6 +9378,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e57",
+    clusterId: "libertad_determinismo",
     conceptoA: { escuela: "h4", nombre: "Libertad y responsabilidad" },
     conceptoB: { escuela: "i3", nombre: "Autoeficacia" },
     relacion: "solapamiento parcial",
@@ -9316,6 +9388,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e58",
+    clusterId: "relacion_terapeutica",
     conceptoA: { escuela: "h4", nombre: "Presencia" },
     conceptoB: { escuela: "p4", nombre: "Regulación mutua" },
     relacion: "análogo funcional",
@@ -9325,6 +9398,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e59",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "h4", nombre: "Despertar" },
     conceptoB: { escuela: "p8", nombre: "Individuación" },
     relacion: "análogo funcional",
@@ -9334,6 +9408,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e60",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "h5", nombre: "Paradoja" },
     conceptoB: { escuela: "s3", nombre: "Paradoja terapéutica" },
     relacion: "falso amigo",
@@ -9343,6 +9418,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e61",
+    clusterId: "desarrollo_temprano",
     conceptoA: { escuela: "h5", nombre: "Sedimentación" },
     conceptoB: { escuela: "c3", nombre: "Creencias nucleares (core beliefs)" },
     relacion: "análogo funcional",
@@ -9352,6 +9428,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e62",
+    clusterId: "motivacion",
     conceptoA: { escuela: "h6", nombre: "Tríada de valores" },
     conceptoB: { escuela: "c4", nombre: "Valores" },
     relacion: "falso amigo",
@@ -9361,6 +9438,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e63",
+    clusterId: "self",
     conceptoA: { escuela: "h6", nombre: "Autotrascendencia" },
     conceptoB: { escuela: "c4", nombre: "Yo-como-contexto" },
     relacion: "falso amigo",
@@ -9370,6 +9448,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e64",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "h6", nombre: "Noodinámica" },
     conceptoB: { escuela: "c5", nombre: "Dialéctica" },
     relacion: "análogo funcional",
@@ -9379,6 +9458,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e65",
+    clusterId: "inconsciente",
     conceptoA: { escuela: "h6", nombre: "Inconsciente espiritual" },
     conceptoB: { escuela: "p8", nombre: "Inconsciente colectivo" },
     relacion: "falso amigo",
@@ -9388,6 +9468,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e66",
+    clusterId: "relacion_terapeutica",
     conceptoA: { escuela: "h7", nombre: "Espíritu (colaboración, evocación, autonomía)" },
     conceptoB: { escuela: "i1", nombre: "Alianza de trabajo" },
     relacion: "solapamiento parcial",
@@ -9397,6 +9478,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e67",
+    clusterId: "resistencia",
     conceptoA: { escuela: "h7", nombre: "Discordancia" },
     conceptoB: { escuela: "s3", nombre: "Circuito de mantenimiento" },
     relacion: "análogo funcional",
@@ -9406,6 +9488,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e68",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "h2", nombre: "Bienestar subjetivo" },
     conceptoB: { escuela: "i1", nombre: "Esperanza/expectativas" },
     relacion: "solapamiento parcial",
@@ -9415,6 +9498,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e69",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "h3", nombre: "Polaridades" },
     conceptoB: { escuela: "s3", nombre: "Cambio 1 y cambio 2" },
     relacion: "falso amigo",
@@ -9424,6 +9508,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e70",
+    clusterId: "relacion_terapeutica",
     conceptoA: { escuela: "h5", nombre: "Encuentro (Begegnung)" },
     conceptoB: { escuela: "i1", nombre: "Relación terapéutica" },
     relacion: "análogo funcional",
@@ -9433,6 +9518,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e71",
+    clusterId: "inconsciente",
     conceptoA: { escuela: "p2", nombre: "Mecanismos de defensa" },
     conceptoB: { escuela: "c4", nombre: "Evitación experiencial" },
     relacion: "análogo funcional",
@@ -9442,6 +9528,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e72",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "p2", nombre: "Fuerza yoica" },
     conceptoB: { escuela: "c5", nombre: "Tolerancia al malestar" },
     relacion: "análogo funcional",
@@ -9451,6 +9538,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e73",
+    clusterId: "inconsciente",
     conceptoA: { escuela: "p3", nombre: "Identificación proyectiva" },
     conceptoB: { escuela: "s4", nombre: "Juego psicótico familiar" },
     relacion: "falso amigo",
@@ -9460,6 +9548,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e74",
+    clusterId: "sintoma",
     conceptoA: { escuela: "p5", nombre: "Problema focal" },
     conceptoB: { escuela: "s3", nombre: "Función del síntoma" },
     relacion: "análogo funcional",
@@ -9469,6 +9558,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e75",
+    clusterId: "self",
     conceptoA: { escuela: "p6", nombre: "Estadio del espejo" },
     conceptoB: { escuela: "h1", nombre: "Self" },
     relacion: "falso amigo",
@@ -9478,6 +9568,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e76",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "p6", nombre: "Orden simbólico" },
     conceptoB: { escuela: "s6", nombre: "Relato dominante" },
     relacion: "análogo funcional",
@@ -9487,6 +9578,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e77",
+    clusterId: "temporalidad",
     conceptoA: { escuela: "p7", nombre: "Meta final ficticia (finalismo ficticio, Vaihinger)" },
     conceptoB: { escuela: "s5", nombre: "Orientación al futuro" },
     relacion: "análogo funcional",
@@ -9496,6 +9588,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e78",
+    clusterId: "self",
     conceptoA: { escuela: "p8", nombre: "Arquetipos (Sombra, Ánima, Self)" },
     conceptoB: { escuela: "h1", nombre: "Tendencia actualizante" },
     relacion: "falso amigo",
@@ -9505,6 +9598,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e79",
+    clusterId: "motivacion",
     conceptoA: { escuela: "p1", nombre: "Ello" },
     conceptoB: { escuela: "c15", nombre: "Refuerzo (positivo/negativo)" },
     relacion: "falso amigo",
@@ -9514,6 +9608,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e80",
+    clusterId: "self",
     conceptoA: { escuela: "p2", nombre: "Esfera libre de conflicto" },
     conceptoB: { escuela: "c4", nombre: "Yo-como-contexto" },
     relacion: "falso amigo",
@@ -9523,6 +9618,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e81",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "p2", nombre: "Adaptación" },
     conceptoB: { escuela: "s2", nombre: "Complementariedad" },
     relacion: "falso amigo",
@@ -9532,6 +9628,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e82",
+    clusterId: "inconsciente",
     conceptoA: { escuela: "p3", nombre: "Contención (Bion)" },
     conceptoB: { escuela: "c5", nombre: "Validación" },
     relacion: "análogo funcional",
@@ -9541,6 +9638,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e83",
+    clusterId: "rol_terapeuta",
     conceptoA: { escuela: "p4", nombre: "Psicología de dos personas" },
     conceptoB: { escuela: "s4", nombre: "Neutralidad" },
     relacion: "falso amigo",
@@ -9550,6 +9648,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e84",
+    clusterId: "rol_terapeuta",
     conceptoA: { escuela: "p4", nombre: "Autorrevelación" },
     conceptoB: { escuela: "s4", nombre: "Curiosidad e irreverencia (post-Milán)" },
     relacion: "análogo funcional",
@@ -9559,6 +9658,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e85",
+    clusterId: "manualizacion",
     conceptoA: { escuela: "p5", nombre: "Continuo apoyo-expresivo" },
     conceptoB: { escuela: "i2", nombre: "Ajuste (matching)" },
     relacion: "análogo funcional",
@@ -9568,6 +9668,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e86",
+    clusterId: "ansiedad",
     conceptoA: { escuela: "p5", nombre: "Triángulo del conflicto y de la persona" },
     conceptoB: { escuela: "s1", nombre: "Triángulos" },
     relacion: "falso amigo",
@@ -9577,6 +9678,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e87",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "p6", nombre: "Lo real" },
     conceptoB: { escuela: "s3", nombre: "Doble vínculo" },
     relacion: "inconmensurable",
@@ -9586,6 +9688,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e88",
+    clusterId: "inconsciente",
     conceptoA: { escuela: "p6", nombre: "Objeto a" },
     conceptoB: { escuela: "i1", nombre: "Placebo psicológico" },
     relacion: "falso amigo",
@@ -9595,6 +9698,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e89",
+    clusterId: "inconsciente",
     conceptoA: { escuela: "p8", nombre: "Complejos" },
     conceptoB: { escuela: "c3", nombre: "Esquemas" },
     relacion: "análogo funcional",
@@ -9604,6 +9708,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e90",
+    clusterId: "self",
     conceptoA: { escuela: "p2", nombre: "Autonomía secundaria del yo" },
     conceptoB: { escuela: "i3", nombre: "Niveles de cambio" },
     relacion: "falso amigo",
@@ -9613,6 +9718,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e91",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "p5", nombre: "Duelo por la terminación" },
     conceptoB: { escuela: "s6", nombre: "Club de vida" },
     relacion: "falso amigo",
@@ -9622,6 +9728,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e92",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "p6", nombre: "Deseo del Otro" },
     conceptoB: { escuela: "h7", nombre: "Discurso de cambio" },
     relacion: "falso amigo",
@@ -9631,6 +9738,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e93",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "s2", nombre: "Límites" },
     conceptoB: { escuela: "c15", nombre: "Control de estímulos" },
     relacion: "análogo funcional",
@@ -9640,6 +9748,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e94",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "s2", nombre: "Subsistemas" },
     conceptoB: { escuela: "i2", nombre: "Perfil multimodal" },
     relacion: "falso amigo",
@@ -9649,6 +9758,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e95",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "s5", nombre: "Excepciones" },
     conceptoB: { escuela: "c3", nombre: "Distorsiones cognitivas" },
     relacion: "falso amigo",
@@ -9658,6 +9768,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e96",
+    clusterId: "resistencia",
     conceptoA: { escuela: "s5", nombre: "«Muerte de la resistencia»" },
     conceptoB: { escuela: "p1", nombre: "Resistencia" },
     relacion: "falso amigo",
@@ -9667,6 +9778,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e97",
+    clusterId: "apego",
     conceptoA: { escuela: "s1", nombre: "Proceso de transmisión multigeneracional" },
     conceptoB: { escuela: "p4", nombre: "Modelos operativos internos" },
     relacion: "análogo funcional",
@@ -9676,6 +9788,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e98",
+    clusterId: "resistencia",
     conceptoA: { escuela: "s1", nombre: "Corte emocional" },
     conceptoB: { escuela: "c4", nombre: "Evitación experiencial" },
     relacion: "análogo funcional",
@@ -9685,6 +9798,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e99",
+    clusterId: "ansiedad",
     conceptoA: { escuela: "s1", nombre: "Ansiedad crónica" },
     conceptoB: { escuela: "c5", nombre: "Regulación emocional" },
     relacion: "falso amigo",
@@ -9694,6 +9808,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e100",
+    clusterId: "relacion_terapeutica",
     conceptoA: { escuela: "s2", nombre: "Alineaciones" },
     conceptoB: { escuela: "i4", nombre: "Marco de referencia compartido" },
     relacion: "falso amigo",
@@ -9703,6 +9818,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e101",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "s2", nombre: "Holón" },
     conceptoB: { escuela: "c6", nombre: "Historia de aprendizaje" },
     relacion: "falso amigo",
@@ -9712,6 +9828,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e102",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "s3", nombre: "Circuito de mantenimiento" },
     conceptoB: { escuela: "c15", nombre: "Extinción" },
     relacion: "falso amigo",
@@ -9721,6 +9838,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e103",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "s4", nombre: "Hipótesis" },
     conceptoB: { escuela: "c3", nombre: "Pensamientos automáticos" },
     relacion: "falso amigo",
@@ -9730,6 +9848,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e104",
+    clusterId: "motivacion",
     conceptoA: { escuela: "s5", nombre: "Cambio pretratamiento" },
     conceptoB: { escuela: "i3", nombre: "Balance decisional" },
     relacion: "falso amigo",
@@ -9739,6 +9858,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e105",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "s5", nombre: "Lenguaje de posibilidades" },
     conceptoB: { escuela: "c2", nombre: "Aceptación incondicional (de sí, de otros, de la vida)" },
     relacion: "falso amigo",
@@ -9748,6 +9868,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e106",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "s5", nombre: "Pequeños pasos" },
     conceptoB: { escuela: "c15", nombre: "Moldeamiento" },
     relacion: "análogo funcional",
@@ -9757,6 +9878,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e107",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "s6", nombre: "Acontecimientos extraordinarios" },
     conceptoB: { escuela: "c3", nombre: "Tríada cognitiva" },
     relacion: "falso amigo",
@@ -9766,6 +9888,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e108",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "s6", nombre: "Doble escucha" },
     conceptoB: { escuela: "c3", nombre: "Empirismo colaborativo" },
     relacion: "análogo funcional",
@@ -9775,6 +9898,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e109",
+    clusterId: "ansiedad",
     conceptoA: { escuela: "c1", nombre: "Inhibición recíproca" },
     conceptoB: { escuela: "c5", nombre: "Dialéctica" },
     relacion: "falso amigo",
@@ -9784,6 +9908,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e110",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "c2", nombre: "Modelo A-B-C" },
     conceptoB: { escuela: "p5", nombre: "CCRT (deseo, respuesta del otro, respuesta del self)" },
     relacion: "falso amigo",
@@ -9793,6 +9918,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e111",
+    clusterId: "psicopatologia",
     conceptoA: { escuela: "c2", nombre: "«Debeísmo»" },
     conceptoB: { escuela: "c3", nombre: "Creencias nucleares (core beliefs)" },
     relacion: "análogo funcional",
@@ -9802,6 +9928,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e112",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "c4", nombre: "Hexaflex" },
     conceptoB: { escuela: "p8", nombre: "Individuación" },
     relacion: "falso amigo",
@@ -9811,6 +9938,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e113",
+    clusterId: "relacion_terapeutica",
     conceptoA: { escuela: "c6", nombre: "Reforzamiento natural" },
     conceptoB: { escuela: "s6", nombre: "Saberes locales" },
     relacion: "falso amigo",
@@ -9820,6 +9948,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e114",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "c15", nombre: "Castigo" },
     conceptoB: { escuela: "p7", nombre: "Compensación" },
     relacion: "falso amigo",
@@ -9829,6 +9958,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e115",
+    clusterId: "psicopatologia",
     conceptoA: { escuela: "c2", nombre: "Baja tolerancia a la frustración" },
     conceptoB: { escuela: "c5", nombre: "Tolerancia al malestar" },
     relacion: "falso amigo",
@@ -9838,6 +9968,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e116",
+    clusterId: "ansiedad",
     conceptoA: { escuela: "c2", nombre: "Tremendismo (catastrofismo)" },
     conceptoB: { escuela: "p2", nombre: "Angustia señal" },
     relacion: "falso amigo",
@@ -9847,6 +9978,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e117",
+    clusterId: "inconsciente",
     conceptoA: { escuela: "c6", nombre: "Evocación" },
     conceptoB: { escuela: "p4", nombre: "Enactment" },
     relacion: "análogo funcional",
@@ -9856,6 +9988,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e118",
+    clusterId: "relacion_terapeutica",
     conceptoA: { escuela: "c6", nombre: "Intimidad" },
     conceptoB: { escuela: "h5", nombre: "Encuentro (Begegnung)" },
     relacion: "falso amigo",
@@ -9865,6 +9998,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e119",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "c15", nombre: "Generalización del estímulo" },
     conceptoB: { escuela: "c3", nombre: "Esquemas" },
     relacion: "análogo funcional",
@@ -9874,6 +10008,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e120",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "i1", nombre: "Efecto Dodo" },
     conceptoB: { escuela: "i2", nombre: "Ajuste (matching)" },
     relacion: "solapamiento parcial",
@@ -9883,6 +10018,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e121",
+    clusterId: "self",
     conceptoA: { escuela: "i4", nombre: "Teoría anfitriona" },
     conceptoB: { escuela: "h1", nombre: "Self" },
     relacion: "falso amigo",
@@ -9892,6 +10028,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e122",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "i4", nombre: "Asimilación" },
     conceptoB: { escuela: "s6", nombre: "Externalización" },
     relacion: "falso amigo",
@@ -9901,6 +10038,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e123",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "i1", nombre: "Experiencia emocional correctiva" },
     conceptoB: { escuela: "c5", nombre: "Validación" },
     relacion: "análogo funcional",
@@ -9910,6 +10048,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e124",
+    clusterId: "estructura_de_personalidad",
     conceptoA: { escuela: "i2", nombre: "Perfil multimodal" },
     conceptoB: { escuela: "h5", nombre: "Cuatro dimensiones (Umwelt, Mitwelt, Eigenwelt, Überwelt)" },
     relacion: "falso amigo",
@@ -9919,6 +10058,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e125",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "i2", nombre: "Orden de disparo" },
     conceptoB: { escuela: "s4", nombre: "Circularidad" },
     relacion: "falso amigo",
@@ -9928,6 +10068,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e126",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "i3", nombre: "Círculos viciosos (Wachtel)" },
     conceptoB: { escuela: "s3", nombre: "Circuito de mantenimiento" },
     relacion: "análogo funcional",
@@ -9937,6 +10078,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e127",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "i4", nombre: "Significado reinterpretado" },
     conceptoB: { escuela: "s6", nombre: "Relato dominante" },
     relacion: "falso amigo",
@@ -9946,6 +10088,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e128",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "i4", nombre: "Secuenciación" },
     conceptoB: { escuela: "i3", nombre: "Niveles de cambio" },
     relacion: "análogo funcional",
@@ -9955,6 +10098,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e129",
+    clusterId: "relacion_terapeutica",
     conceptoA: { escuela: "i4", nombre: "Contexto relacional" },
     conceptoB: { escuela: "p4", nombre: "Regulación mutua" },
     relacion: "análogo funcional",
@@ -9964,6 +10108,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e130",
+    clusterId: "motivacion",
     conceptoA: { escuela: "i2", nombre: "Modalidad preferida" },
     conceptoB: { escuela: "h6", nombre: "Tríada de valores" },
     relacion: "falso amigo",
@@ -9973,6 +10118,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e131",
+    clusterId: "resistencia",
     conceptoA: { escuela: "s3", nombre: "Soluciones intentadas" },
     conceptoB: { escuela: "p1", nombre: "Resistencia" },
     relacion: "análogo funcional",
@@ -9982,6 +10128,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e132",
+    clusterId: "temporalidad",
     conceptoA: { escuela: "i3", nombre: "Etapas y procesos de cambio" },
     conceptoB: { escuela: "s5", nombre: "Orientación al futuro" },
     relacion: "solapamiento parcial",
@@ -9991,6 +10138,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e133",
+    clusterId: "ansiedad",
     conceptoA: { escuela: "s1", nombre: "Proyección familiar" },
     conceptoB: { escuela: "p3", nombre: "Identificación proyectiva" },
     relacion: "análogo funcional",
@@ -10002,6 +10150,7 @@ const ENLACES_SEED = [
   /* ---------- DICCIONARIO TRASLACIONAL INTRA-HUMANISTA ---------- */
   {
     id: "e134",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "h6", nombre: "Intención paradójica" },
     conceptoB: { escuela: "h3", nombre: "Silla vacía" },
     relacion: "análogo funcional",
@@ -10011,6 +10160,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e135",
+    clusterId: "temporalidad",
     conceptoA: { escuela: "h1", nombre: "Empatía" },
     conceptoB: { escuela: "h4", nombre: "Aquí y ahora existencial" },
     relacion: "solapamiento parcial",
@@ -10020,6 +10170,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e136",
+    clusterId: "cuerpo_somatico",
     conceptoA: { escuela: "h9", nombre: "Sensación sentida (felt sense)" },
     conceptoB: { escuela: "h3", nombre: "Awareness" },
     relacion: "análogo funcional",
@@ -10029,6 +10180,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e137",
+    clusterId: "motivacion",
     conceptoA: { escuela: "h10", nombre: "Subversión" },
     conceptoB: { escuela: "h6", nombre: "Voluntad de sentido" },
     relacion: "falso amigo",
@@ -10038,6 +10190,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e138",
+    clusterId: "cuerpo_somatico",
     conceptoA: { escuela: "h8", nombre: "Redecisión" },
     conceptoB: { escuela: "h9", nombre: "Cambio-sentido (felt shift)" },
     relacion: "análogo funcional",
@@ -10047,6 +10200,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e139",
+    clusterId: "cuerpo_somatico",
     conceptoA: { escuela: "h1", nombre: "Tendencia actualizante" },
     conceptoB: { escuela: "h9", nombre: "Sensación sentida (felt sense)" },
     relacion: "análogo funcional",
@@ -10056,6 +10210,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e140",
+    clusterId: "rol_terapeuta",
     conceptoA: { escuela: "h4", nombre: "Revelación del terapeuta" },
     conceptoB: { escuela: "h1", nombre: "Congruencia del terapeuta" },
     relacion: "equivalente aproximado",
@@ -10065,6 +10220,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e141",
+    clusterId: "criterio_cura",
     conceptoA: { escuela: "h10", nombre: "Empoderamiento" },
     conceptoB: { escuela: "h6", nombre: "Autotrascendencia" },
     relacion: "falso amigo",
@@ -10074,6 +10230,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e142",
+    clusterId: "motivacion",
     conceptoA: { escuela: "h3", nombre: "Polaridades" },
     conceptoB: { escuela: "h6", nombre: "Tríada de valores" },
     relacion: "falso amigo",
@@ -10083,6 +10240,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e143",
+    clusterId: "cuerpo_somatico",
     conceptoA: { escuela: "h5", nombre: "Descripción fenomenológica" },
     conceptoB: { escuela: "h9", nombre: "Formar la sensación-sentida del problema" },
     relacion: "análogo funcional",
@@ -10092,6 +10250,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e144",
+    clusterId: "lenguaje_narrativa",
     conceptoA: { escuela: "h8", nombre: "Guion de vida" },
     conceptoB: { escuela: "p7", nombre: "Estilo de vida" },
     relacion: "reinterpretación asimilativa",
@@ -10101,6 +10260,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e145",
+    clusterId: "self",
     conceptoA: { escuela: "h10", nombre: "Conciencia feminista" },
     conceptoB: { escuela: "h1", nombre: "Locus de evaluación interno" },
     relacion: "falso amigo",
@@ -10120,6 +10280,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e147",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "c15", nombre: "Reforzamiento diferencial" },
     conceptoB: { escuela: "c2", nombre: "«Debeísmo»" },
     relacion: "inconmensurable",
@@ -10129,6 +10290,7 @@ const ENLACES_SEED = [
   },
   {
     id: "e148",
+    clusterId: "mecanismo_cambio",
     conceptoA: { escuela: "c4", nombre: "Defusión" },
     conceptoB: { escuela: "c3", nombre: "Reestructuración cognitiva" },
     relacion: "falso amigo",
@@ -12848,6 +13010,16 @@ const ENLACES_SEED = [
     relacion: "reinterpretación asimilativa", fidelidad: "baja",
     nota: "Grof incorpora preparación de relajación corporal —de raíz conductual, tomada de Jacobson y Wolpe— en las sesiones de respiración holotrópica, pero la resignifica por completo: en su origen conductual, la relajación es la técnica misma, el fin último que inhibe recíprocamente la ansiedad; en el enfoque holotrópico, la relajación es solo un paso preparatorio instrumental para facilitar el acceso posterior a un estado no ordinario de conciencia intensificado, exactamente el objetivo opuesto (activación, no calma) que persigue el resto de la sesión."
   },
+  {
+    id: "e474",
+    clusterId: "criterio_cura",
+    conceptoA: { escuela: "t6", nombre: "Movimiento en espiral (unión pre-egoica → alienación egoica → regreso integrador)" },
+    conceptoB: { escuela: "t5", nombre: "Fulcros de desarrollo (etapas personales, previas a las transpersonales)" },
+    relacion: "solapamiento parcial",
+    fidelidad: "media",
+    nota:
+      "No es un caso más de escuelas que simplemente enfatizan distinto: Washburn presenta su modelo explícitamente como rival del de Wilber, y Wilber ha respondido acusando al modelo de Washburn de incurrir en la falacia pre/trans que él mismo describe —confundir una regresión hacia lo pre-egoico con un avance genuino hacia lo trans-egoico—. Ambos comparten el objetivo de fondo (la reconexión adulta con una fuente psíquica más amplia que el ego cotidiano es deseable y clínicamente relevante) y el mismo campo de literatura secundaria que documenta su disputa, lo que impide llamarlos inconmensurables en sentido fuerte: comparten preguntas, autores citados en común (Jung, Grof) y un vocabulario clínico parcialmente traducible. Pero divergen en el mecanismo central: Wilber describe una secuencia estructural ascendente sin necesidad de regresión; Washburn describe un movimiento dialéctico donde la regresión —lejos de ser un signo de fracaso— puede ser la vía misma hacia la trascendencia. Solapamiento parcial genuino: no se resuelve aquí a favor de ninguno de los dos, ya que el propio campo no lo ha resuelto.",
+  },
 ];
 
 /* ============================================================
@@ -14038,6 +14210,10 @@ const GLOSARIO = [
   { escuela: "t5", termino: "Proceso 1-2-3 (fusión, diferenciación, integración)", tipo: "concepto", definicion: "Estructura trifásica que el self debe negociar en cada fulcro: fusión/identificación con el nuevo nivel, diferenciación/trascendencia de él, e integración/inclusión como componente funcional de la nueva totalidad.", fuente: "Wilber, K. (1994). Psicología integral. Editorial Kairós." },
   { escuela: "t5", termino: "Gran Holoarquía", tipo: "concepto", definicion: "Estructura en la que cada nivel de desarrollo trasciende e incluye al nivel anterior, en vez de reemplazarlo o negarlo.", fuente: "Wilber, K. (1986). Transformations of Consciousness. Shambhala." },
   { escuela: "t5", termino: "Falacia pre/trans", tipo: "concepto", definicion: "Error diagnóstico de confundir estados pre-personales (regresivos, previos al desarrollo del ego) con estados trans-personales (que trascienden un ego ya desarrollado), tratando lo patológico como espiritual o lo espiritual como patológico.", fuente: "Wilber, K. (1980). The Atman Project. Quest Books." },
+  { escuela: "t6", termino: "Fundamento Dinámico (Dynamic Ground)", tipo: "concepto", definicion: "Fuente psíquica preexistente al ego, común de la vitalidad instintiva, la creatividad y el potencial espiritual, de la que el ego se separa al formarse y a la que puede regresar de forma integradora en la adultez.", fuente: "Washburn, M. (1988). The Ego and the Dynamic Ground. State University of New York Press." },
+  { escuela: "t6", termino: "Movimiento en espiral del desarrollo", tipo: "concepto", definicion: "Secuencia de tres tiempos —unión pre-egoica con el Fundamento Dinámico, alienación egoica necesaria, y regreso integrador— que Washburn propone como alternativa a la secuencia lineal de fulcros de Wilber.", fuente: "Washburn, M. (1988). The Ego and the Dynamic Ground. State University of New York Press." },
+  { escuela: "t6", termino: "Regresión al servicio de la trascendencia", tipo: "concepto", definicion: "Reconexión adulta con el Fundamento Dinámico que, a diferencia de una regresión meramente patológica, deja al ego más integrado y vital en vez de desorganizarlo.", fuente: "Washburn, M. (1988). The Ego and the Dynamic Ground. State University of New York Press." },
+  { escuela: "t6", termino: "Alienación egoica", tipo: "concepto", definicion: "Represión necesaria pero costosa del Fundamento Dinámico durante la construcción normal del ego, que permite la diferenciación y el funcionamiento adaptativo pero deja al sujeto desconectado de su propia fuente vital.", fuente: "Washburn, M. (1988). The Ego and the Dynamic Ground. State University of New York Press." },
   { escuela: "t5", termino: "Proyecto Atman", tipo: "concepto", definicion: "«El desarrollo es evolución y la evolución es trascendencia... y el objetivo final de la trascendencia es Atman, la Conciencia de Unidad esencial en sólo Dios» (Wilber, 1980).", fuente: "Wilber, K. (1980). The Atman Project. Quest Books." },
   { escuela: "t5", termino: "Camino del yogui (nivel psíquico)", tipo: "técnica", definicion: "Vía contemplativa dirigida fundamentalmente al nivel psíquico del desarrollo transpersonal.", fuente: "Wilber, K. (1986). Transformations of Consciousness. Shambhala." },
   { escuela: "t5", termino: "Camino del santo (nivel sutil)", tipo: "técnica", definicion: "Vía contemplativa orientada básicamente al nivel sutil del desarrollo transpersonal.", fuente: "Wilber, K. (1986). Transformations of Consciousness. Shambhala." },
