@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "lucide-react";
+import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy, Sparkles } from "lucide-react";
 
 /* ============================================================
    PALETA Y TOKENS
@@ -126,7 +126,7 @@ const RELACION_INFO = {
    inline original para no arriesgar regresiones en 10.000 líneas
    ya probadas)
    ============================================================ */
-const FONT_MONO = "'JetBrains Mono', ui-monospace, monospace";
+const FONT_MONO = "'Quicksand', system-ui, sans-serif";
 const FONT_SERIF = "'Fraunces', Georgia, serif";
 // Estilo tipográfico ÚNICO para cualquier referencia bibliográfica plana
 // (una entrada de CITAS_AMPLIADAS en formato string o de e.referencias),
@@ -150,7 +150,7 @@ function estiloReferenciaBibliografica() {
   };
 }
 const FONT_TEXTO = "'Lora', Georgia, serif";
-const CAMPO_STYLE = { width: "100%", padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` };
+const CAMPO_STYLE = { width: "100%", padding: 6, borderRadius: 8, border: `1px solid ${COLORS.line}` };
 
 /* Clasificación aproximada del criterio de verdad declarado en cada
    escuela, para el sello visual del módulo 0/1 (recomendación estética
@@ -15032,7 +15032,7 @@ function Sello({ children, color }) {
         letterSpacing: "0.03em",
         color: color,
         border: `1px solid ${color}`,
-        borderRadius: 3,
+        borderRadius: 6,
         padding: "1px 8px",
         transform: "rotate(-1.5deg)",
         background: "rgba(255,255,255,0.35)",
@@ -15060,7 +15060,7 @@ function SelloCriterio({ texto }) {
         letterSpacing: "0.04em",
         color: "#fff",
         background: c.color,
-        borderRadius: 3,
+        borderRadius: 6,
         padding: "2px 7px",
         transform: "rotate(1.2deg)",
         boxShadow: "1px 1px 0 rgba(30,42,40,0.15)",
@@ -15114,7 +15114,7 @@ function BarraFidelidad({ nivel, color }) {
   const valor = { completa: 1, alta: 0.85, media: 0.62, baja: 0.32 }[nivel] ?? 0.5;
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: 5 }}>
-      <span style={{ width: 46, height: 5, borderRadius: 3, background: COLORS.line, overflow: "hidden", display: "inline-block" }}>
+      <span style={{ width: 46, height: 5, borderRadius: 6, background: COLORS.line, overflow: "hidden", display: "inline-block" }}>
         <span style={{ display: "block", height: "100%", width: `${valor * 100}%`, background: color || COLORS.primary, borderRadius: 3 }} />
       </span>
       <span style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: COLORS.inkSoft }}>{nivel}</span>
@@ -15126,12 +15126,12 @@ function Etiqueta({ children }) {
   return (
     <span
       style={{
-        fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+        fontFamily: "'Quicksand', system-ui, sans-serif",
         fontSize: 10.5,
         color: COLORS.inkSoft,
         background: COLORS.paperDark,
         border: `1px solid ${COLORS.line}`,
-        borderRadius: 4,
+        borderRadius: 8,
         padding: "2px 6px",
         marginRight: 6,
         marginBottom: 6,
@@ -15149,12 +15149,12 @@ function EtiquetaDefinible({ termino, escuelaId, tipo, onAbrir, color, icono, co
       onClick={() => onAbrir(escuelaId, termino, tipo)}
       title={icono === "→" ? "Ver en el diccionario traslacional" : "Ver definición"}
       style={{
-        fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+        fontFamily: "'Quicksand', system-ui, sans-serif",
         fontSize: 10.5,
         color: color || COLORS.primaryDark,
         background: COLORS.cardBg,
         border: `1px solid ${color || COLORS.primary}`,
-        borderRadius: 4,
+        borderRadius: 8,
         padding: "2px 6px",
         marginRight: 6,
         marginBottom: 6,
@@ -15166,7 +15166,7 @@ function EtiquetaDefinible({ termino, escuelaId, tipo, onAbrir, color, icono, co
     >
       {termino}
       {typeof contador === "number" && contador > 0 && (
-        <span style={{ fontSize: 8.5, background: COLORS.garnet, color: "#fff", borderRadius: 8, padding: "0 4px" }}>{contador}</span>
+        <span style={{ fontSize: 8.5, background: COLORS.garnet, color: "#fff", borderRadius: 14, padding: "0 4px" }}>{contador}</span>
       )}
       <span style={{ fontSize: 9, opacity: 0.7 }}>{icono || "ⓘ"}</span>
     </span>
@@ -15187,7 +15187,7 @@ function PanelHistorial({ historial, onCerrar }) {
       <div
         onClick={(e) => e.stopPropagation()}
         className="psq-modal"
-        style={{ background: COLORS.paper, border: `1px solid ${COLORS.line}`, borderRadius: 8, maxWidth: 640, width: "100%", maxHeight: "80vh", overflowY: "auto", padding: 24, position: "relative", boxShadow: "0 10px 40px rgba(0,0,0,0.25)" }}
+        style={{ background: COLORS.paper, border: `1px solid ${COLORS.line}`, borderRadius: 14, maxWidth: 640, width: "100%", maxHeight: "80vh", overflowY: "auto", padding: 24, position: "relative", boxShadow: "0 10px 40px rgba(0,0,0,0.25)" }}
       >
         <button
           onClick={onCerrar}
@@ -15236,13 +15236,13 @@ function PanelHistorial({ historial, onCerrar }) {
         ) : (
           <div style={{ display: "grid", gap: 8 }}>
             {visibles.map((h, i) => (
-              <div key={i} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `3px solid ${colorAccion[h.accion] || COLORS.primary}`, borderRadius: 4, padding: "8px 12px" }}>
+              <div key={i} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `3px solid ${colorAccion[h.accion] || COLORS.primary}`, borderRadius: 8, padding: "8px 12px" }}>
                 <div style={{ display: "flex", gap: 8, alignItems: "baseline", flexWrap: "wrap" }}>
-                  <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: colorAccion[h.accion] || COLORS.primary, fontWeight: 700 }}>
+                  <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, textTransform: "uppercase", color: colorAccion[h.accion] || COLORS.primary, fontWeight: 700 }}>
                     {h.accion}
                   </span>
-                  <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft }}>{h.tipo}</span>
-                  <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, marginLeft: "auto" }}>
+                  <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.inkSoft }}>{h.tipo}</span>
+                  <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.inkSoft, marginLeft: "auto" }}>
                     {new Date(h.ts).toLocaleString("es-ES", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })}
                   </span>
                 </div>
@@ -15280,7 +15280,7 @@ function ModalDefinicion({ dato, onCerrar, onIrAProtocolo, onIrAEscuela }) {
         style={{
           background: COLORS.paper,
           border: `1px solid ${COLORS.line}`,
-          borderRadius: 8,
+          borderRadius: 14,
           maxWidth: 620,
           width: "100%",
           maxHeight: "85vh",
@@ -15324,22 +15324,22 @@ function ModalDefinicion({ dato, onCerrar, onIrAProtocolo, onIrAEscuela }) {
         {encontrado ? (
           <>
             <div style={{ marginBottom: 12 }}>
-              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, textTransform: "uppercase", color: COLORS.primary, marginBottom: 3 }}>Definición</div>
+              <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, textTransform: "uppercase", color: COLORS.primary, marginBottom: 3 }}>Definición</div>
               <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 14.5, lineHeight: 1.6, color: COLORS.ink, margin: 0 }}>{dato.definicion}</p>
             </div>
             {dato.funcion && (
               <div style={{ marginBottom: 12 }}>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, textTransform: "uppercase", color: COLORS.sage, marginBottom: 3 }}>Función</div>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, textTransform: "uppercase", color: COLORS.sage, marginBottom: 3 }}>Función</div>
                 <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 14, lineHeight: 1.6, color: COLORS.ink, margin: 0 }}>{dato.funcion}</p>
               </div>
             )}
             {dato.contextos && (
               <div style={{ marginBottom: 12 }}>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>Contextos / dificultades</div>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>Contextos / dificultades</div>
                 <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 14, lineHeight: 1.6, color: COLORS.ink, margin: 0 }}>{dato.contextos}</p>
               </div>
             )}
-            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 11, color: COLORS.inkSoft, borderTop: `1px dashed ${COLORS.line}`, paddingTop: 10 }}>
+            <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 11, color: COLORS.inkSoft, borderTop: `1px dashed ${COLORS.line}`, paddingTop: 10 }}>
               — {dato.fuente}
             </div>
             {escuelaId && (
@@ -15358,7 +15358,7 @@ function ModalDefinicion({ dato, onCerrar, onIrAProtocolo, onIrAEscuela }) {
             )}
           </>
         ) : (
-          <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 6, padding: 12 }}>
+          <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 12, padding: 12 }}>
             <AlertTriangle size={16} color={COLORS.gold} style={{ flexShrink: 0, marginTop: 2 }} />
             <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.5, color: COLORS.ink }}>{dato.mensajePendiente}</p>
           </div>
@@ -15393,7 +15393,7 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
       <div
         onClick={(e) => e.stopPropagation()}
         className="psq-modal"
-        style={{ background: COLORS.paper, border: `1px solid ${COLORS.line}`, borderRadius: 8, maxWidth: 640, width: "100%", maxHeight: "85vh", overflowY: "auto", padding: 0, position: "relative", boxShadow: "0 10px 40px rgba(0,0,0,0.25)" }}
+        style={{ background: COLORS.paper, border: `1px solid ${COLORS.line}`, borderRadius: 14, maxWidth: 640, width: "100%", maxHeight: "85vh", overflowY: "auto", padding: 0, position: "relative", boxShadow: "0 10px 40px rgba(0,0,0,0.25)" }}
       >
         <div style={{ height: 6, background: gradientePerspectivas(persps, "to right") }} />
         <div style={{ padding: 24 }}>
@@ -15440,7 +15440,7 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
                   fontWeight: 700,
                   color: "#fff",
                   background: PERSPECTIVA_COLOR[p] || COLORS.inkSoft,
-                  borderRadius: 4,
+                  borderRadius: 8,
                   padding: "2px 8px",
                 }}
               >
@@ -15453,7 +15453,7 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
           </div>
 
           {esHibridoDePerspectivas && (
-            <div style={{ display: "flex", alignItems: "center", gap: 8, background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: "8px 12px", marginBottom: 14 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: "8px 12px", marginBottom: 14 }}>
               <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.ink, fontStyle: "italic" }}>
                 Autor de doble filiación: fundamenta escuelas en {persps.length} perspectivas distintas ({persps.join(" y ")}). No es un solapamiento accidental — cada perspectiva abajo agrupa las escuelas concretas que lo citan en ese terreno.
               </span>
@@ -15461,7 +15461,7 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
           )}
 
           {autor.esTambienEscuelaPropia && (
-            <div style={{ display: "flex", alignItems: "center", gap: 8, background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: "8px 12px", marginBottom: 14 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: "8px 12px", marginBottom: 14 }}>
               <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.ink, fontStyle: "italic" }}>
                 Este autor administra también su propia escuela clínica en la app.
               </span>
@@ -15566,7 +15566,7 @@ function MenuOpcion({ icon, label, detalle, onClick, activo, tono }) {
         width: "100%",
         border: "none",
         background: activo ? COLORS.paperDark : "transparent",
-        borderRadius: 6,
+        borderRadius: 12,
         padding: "8px 10px",
         cursor: onClick ? "pointer" : "default",
         textAlign: "left",
@@ -15578,7 +15578,7 @@ function MenuOpcion({ icon, label, detalle, onClick, activo, tono }) {
       <span style={{ width: 16, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: tono || COLORS.inkSoft }}>{icon}</span>
       <span style={{ display: "grid" }}>
         <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 13, fontWeight: 500 }}>{label}</span>
-        {detalle && <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft }}>{detalle}</span>}
+        {detalle && <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.inkSoft }}>{detalle}</span>}
       </span>
     </button>
   );
@@ -15586,10 +15586,10 @@ function MenuOpcion({ icon, label, detalle, onClick, activo, tono }) {
 
 function Boton({ children, onClick, variant = "default", small, title, style, disabled, "aria-label": ariaLabel }) {
   const base = {
-    fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+    fontFamily: "'Quicksand', system-ui, sans-serif",
     fontSize: small ? 11 : 12.5,
     padding: small ? "4px 8px" : "7px 14px",
-    borderRadius: 4,
+    borderRadius: 8,
     cursor: disabled ? "default" : "pointer",
     border: `1px solid ${COLORS.primaryDark}`,
     display: "inline-flex",
@@ -15614,7 +15614,7 @@ function CampoTexto({ label, value, onChange, area }) {
   const Comp = area ? "textarea" : "input";
   return (
     <label style={{ display: "block", marginBottom: 10 }}>
-      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+      <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}>
         {label}
       </div>
       <Comp
@@ -15627,7 +15627,7 @@ function CampoTexto({ label, value, onChange, area }) {
           fontSize: 13.5,
           padding: "6px 8px",
           border: `1px solid ${COLORS.line}`,
-          borderRadius: 4,
+          borderRadius: 8,
           background: COLORS.cardBg,
           color: COLORS.ink,
           boxSizing: "border-box",
@@ -15642,7 +15642,7 @@ function ListaEditable({ label, items, onChange }) {
   const [nuevo, setNuevo] = useState("");
   return (
     <div style={{ marginBottom: 10 }}>
-      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+      <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.05em" }}>
         {label}
       </div>
       <div style={{ marginBottom: 6 }}>
@@ -15674,7 +15674,7 @@ function ListaEditable({ label, items, onChange }) {
             fontSize: 12.5,
             padding: "4px 8px",
             border: `1px solid ${COLORS.line}`,
-            borderRadius: 4,
+            borderRadius: 8,
           }}
         />
       </div>
@@ -15939,7 +15939,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
             fontSize: 15,
             fontFamily: "'Lora', Georgia, serif",
             border: `1.5px solid ${COLORS.primary}`,
-            borderRadius: 6,
+            borderRadius: 12,
             outline: "none",
           }}
         />
@@ -16079,7 +16079,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
 
       {resultados && total > 0 && (
         <div style={{ display: "grid", gap: 24 }}>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 11, color: COLORS.inkSoft }}>{total} resultados encontrados, ordenados por relevancia dentro de cada bloque</div>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 11, color: COLORS.inkSoft }}>{total} resultados encontrados, ordenados por relevancia dentro de cada bloque</div>
 
           {resultados.perspectivasR.length > 0 && (
             <BloqueResultados titulo="Perspectivas y su contexto" color={COLORS.primary}>
@@ -16298,7 +16298,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
 function BloqueResultados({ titulo, color, children }) {
   return (
     <div>
-      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.04em", color, marginBottom: 10, borderBottom: `1px solid ${color}`, paddingBottom: 6 }}>
+      <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.04em", color, marginBottom: 10, borderBottom: `1px solid ${color}`, paddingBottom: 6 }}>
         {titulo}
       </div>
       <div style={{ display: "grid", gap: 8 }}>{children}</div>
@@ -16413,10 +16413,10 @@ function ResultadoItem({ color, etiqueta, titulo, texto, onClick, query, modoEst
       tabIndex={0}
       onClick={onClick}
       onKeyDown={activarConTeclado(onClick)}
-      style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 6, padding: "10px 14px", cursor: "pointer" }}
+      style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 12, padding: "10px 14px", cursor: "pointer" }}
     >
       <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap", marginBottom: 3 }}>
-        <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color, textTransform: "uppercase" }}>{etiqueta}</span>
+        <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color, textTransform: "uppercase" }}>{etiqueta}</span>
         <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 14 }}>
           <TextoResaltado texto={titulo} query={query} />
         </span>
@@ -16970,7 +16970,7 @@ function MapaConceptualEscuelas({ escuelas, onIrAEscuela }) {
           style={{ ...CAMPO_STYLE, fontSize: 12.5, fontFamily: "'Lora', Georgia, serif", padding: "6px 10px" }}
         />
         {coincidenciasBusqueda.length > 0 && (
-          <div style={{ position: "absolute", zIndex: 6, top: "100%", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, marginTop: 3 }}>
+          <div style={{ position: "absolute", zIndex: 6, top: "100%", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, marginTop: 3 }}>
             {coincidenciasBusqueda.map((n) => (
               <div
                 key={n.e.id}
@@ -17153,7 +17153,7 @@ function DetalleCobertura({ escuelas, enlaces, glosario, protocolos, nudos }) {
           cursor: "pointer",
           padding: "4px 0",
           color: COLORS.inkSoft,
-          fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+          fontFamily: "'Quicksand', system-ui, sans-serif",
           fontSize: 11,
         }}
       >
@@ -17168,9 +17168,9 @@ function DetalleCobertura({ escuelas, enlaces, glosario, protocolos, nudos }) {
           style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(120px, 100%), 1fr))", gap: 10, marginTop: 10 }}
         >
           {stats.map((s) => (
-            <div key={s.label} style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `3px solid ${s.color}`, borderRadius: 6, padding: "12px 10px", textAlign: "center" }}>
+            <div key={s.label} className="psq-tarjeta-viva" style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `3px solid ${s.color}`, borderRadius: 12, padding: "12px 10px", textAlign: "center" }}>
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: 22, color: s.color }}>{s.n}</div>
-              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, marginTop: 2 }}>{s.label}</div>
+              <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.inkSoft, marginTop: 2 }}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -17195,7 +17195,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         subtitulo="Siete perspectivas de la psicoterapia, cada una con su propia ontología del psiquismo, su propia noción de cambio terapéutico y su propio criterio de verdad."
       />
 
-      <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20, marginTop: 16, marginBottom: 20 }}>
+      <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20, marginTop: 16, marginBottom: 20 }}>
         <TextoConCitas
           tamano={14.5}
           truncar={160}
@@ -17219,7 +17219,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
           style={{
             display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
             background: modoEstudio ? `${COLORS.gold}18` : COLORS.paperDark, border: `1px solid ${modoEstudio ? COLORS.gold : COLORS.line}`,
-            borderRadius: 6, padding: "10px 14px", marginBottom: 20,
+            borderRadius: 12, padding: "10px 14px", marginBottom: 20,
           }}
         >
           <span style={{ fontFamily: FONT_MONO, fontSize: 11, color: modoEstudio ? COLORS.gold : COLORS.ink }}>
@@ -17252,7 +17252,8 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
             <div
               key={p.id}
               onClick={() => irA("fundamentos")}
-              style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 6, padding: 16, cursor: "pointer" }}
+              className="psq-tarjeta-viva"
+              style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 12, padding: 16, cursor: "pointer" }}
             >
               <Sello color={color}>{p.nombre}</Sello>
               {modoEstudio ? (
@@ -17386,7 +17387,7 @@ function TablaComparativa({ entidades, campos, colorDe, idDe, nombreDe, onClickE
           }
         />
       </div>
-      <div style={{ overflowX: "auto", maxWidth: "100%", border: `1px solid ${COLORS.line}`, borderRadius: 6, maxHeight: "70vh", overflowY: "auto" }}>
+      <div style={{ overflowX: "auto", maxWidth: "100%", border: `1px solid ${COLORS.line}`, borderRadius: 12, maxHeight: "70vh", overflowY: "auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: `160px repeat(${entidades.length}, minmax(min(220px, 100%), 1fr))`, minWidth: 160 + entidades.length * 220 }}>
           {/* Cabecera de columnas */}
           <div style={{ background: COLORS.paperDark, borderBottom: `2px solid ${COLORS.line}`, padding: 8, position: "sticky", top: 0, left: 0, zIndex: 3 }} />
@@ -17528,7 +17529,7 @@ function SelectorEscuelasComparador({ escuelas, seleccionadas, setSeleccionadas,
             style={{ width: "100%", padding: "7px 10px", fontSize: 12.5, fontFamily: "'Lora', Georgia, serif", border: `1px solid ${COLORS.line}`, borderRadius: 4 }}
           />
           {disponibles.length > 0 && (
-            <div style={{ position: "absolute", zIndex: 5, top: "100%", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 4, marginTop: 2, boxShadow: "0 4px 12px rgba(0,0,0,0.12)" }}>
+            <div style={{ position: "absolute", zIndex: 5, top: "100%", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 8, marginTop: 2, boxShadow: "0 4px 12px rgba(0,0,0,0.12)" }}>
               {disponibles.map((e) => (
                 <div
                   key={e.id}
@@ -17710,7 +17711,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
             const texto = campoActual.get(p);
             if (!texto) return null;
             return (
-              <div key={p.id} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderLeft: `5px solid ${color}`, borderRadius: 6, padding: 16 }}>
+              <div key={p.id} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderLeft: `5px solid ${color}`, borderRadius: 12, padding: 16 }}>
                 <Sello color={color}>{p.nombre}</Sello>
                 <p style={{ margin: "8px 0 0", fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.6, color: COLORS.ink }}>{texto}</p>
               </div>
@@ -17747,7 +17748,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
               const color = PERSPECTIVA_COLOR[e.perspectiva] || COLORS.primary;
               const texto = cE.get(e);
               return (
-                <div key={e.id} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderLeft: `5px solid ${color}`, borderRadius: 6, padding: 16 }}>
+                <div key={e.id} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderLeft: `5px solid ${color}`, borderRadius: 12, padding: 16 }}>
                   <Sello color={color}>{e.perspectiva}</Sello>
                   <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 14, margin: "4px 0 6px" }}>{e.nombre}</div>
                   {texto ? (
@@ -17779,8 +17780,8 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
         <VacioAviso texto="Añade escuelas con el buscador de arriba para empezar a compararlas — puedes mezclar escuelas de perspectivas distintas." />
       )}
 
-      <div style={{ marginTop: 24, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 16 }}>
-        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 10 }}>
+      <div style={{ marginTop: 24, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 16 }}>
+        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 10 }}>
           Número de escuelas modeladas por perspectiva
         </div>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -17790,7 +17791,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
             return (
               <div key={p.id} style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <span style={{ width: 10, height: 10, borderRadius: "50%", background: color, display: "inline-block" }} />
-                <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 11, color: COLORS.ink }}>
+                <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 11, color: COLORS.ink }}>
                   {p.nombre}: {n}
                 </span>
               </div>
@@ -18008,7 +18009,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
               key={p.id}
               onClick={() => irAPerspectiva(p.id)}
               style={{
-                fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                fontFamily: "'Quicksand', system-ui, sans-serif",
                 fontSize: 11.5,
                 fontWeight: activo ? 700 : 400,
                 padding: "7px 12px",
@@ -18039,7 +18040,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
           gap: 8,
           margin: "0 0 20px",
           padding: "10px 14px",
-          borderRadius: 8,
+          borderRadius: 14,
           cursor: "pointer",
           background: vistaAutores ? COLORS.ink : "#fff",
           border: `1.5px solid ${COLORS.ink}`,
@@ -18054,7 +18055,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
       </div>
 
       {vistaAutores && (
-        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: 16, marginBottom: 20 }}>
+        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 14, padding: 16, marginBottom: 20 }}>
           <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.inkSoft, marginTop: 0, marginBottom: 14, fontStyle: "italic" }}>
             Teorías de base (a menudo de psicología experimental, biología o filosofía) que fundamentan varias escuelas clínicas, separadas deliberadamente de las escuelas mismas: sus autores no administran una psicoterapia propia.
           </p>
@@ -18067,7 +18068,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
                 <div
                   key={autor.id}
                   onClick={() => setAutorGlobalAbierto(autor)}
-                  style={{ cursor: "pointer", display: "flex", border: `1px solid ${COLORS.line}`, borderRadius: 6, overflow: "hidden", background: COLORS.paperDark }}
+                  style={{ cursor: "pointer", display: "flex", border: `1px solid ${COLORS.line}`, borderRadius: 12, overflow: "hidden", background: COLORS.paperDark }}
                 >
                   <div style={{ width: 5, flexShrink: 0, background: gradientePerspectivas(persps, "to bottom") }} />
                   <div style={{ padding: 12, flex: 1, minWidth: 0 }}>
@@ -18083,7 +18084,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
                             fontWeight: 700,
                             color: PERSPECTIVA_COLOR[p] || COLORS.inkSoft,
                             border: `1px solid ${PERSPECTIVA_COLOR[p] || COLORS.line}`,
-                            borderRadius: 4,
+                            borderRadius: 8,
                             padding: "1px 6px",
                           }}
                         >
@@ -18122,7 +18123,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
 
       {resultadosFiltro ? (
         <div>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 10 }}>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 10 }}>
             {resultadosFiltro.length} resultado{resultadosFiltro.length !== 1 ? "s" : ""} para «{filtro}» en todas las perspectivas
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 10 }}>
@@ -18140,9 +18141,9 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
                     // lista de resultados). Se limpia al abrir la ficha.
                     if (setFiltro) setFiltro("");
                   }}
-                  style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${c}`, borderRadius: 6, padding: 12, cursor: "pointer" }}
+                  style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${c}`, borderRadius: 12, padding: 12, cursor: "pointer" }}
                 >
-                  <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: c }}>{e.perspectiva}</div>
+                  <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: c }}>{e.perspectiva}</div>
                   <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>{e.nombre}</div>
                 </div>
               );
@@ -18213,7 +18214,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
               gap: 10,
               marginTop: 18,
               padding: "12px 16px",
-              borderRadius: 8,
+              borderRadius: 14,
               cursor: "pointer",
               background: vistaLinea ? color : COLORS.paperDark,
               border: `1.5px solid ${color}`,
@@ -18223,12 +18224,12 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
             <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, color: vistaLinea ? "#fff" : COLORS.ink }}>
               🕓 Línea de tiempo de {persp.nombre}
             </span>
-            <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: vistaLinea ? "#fff" : color, fontWeight: 700 }}>
+            <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: vistaLinea ? "#fff" : color, fontWeight: 700 }}>
               {vistaLinea ? "ocultar ▲" : "ver ▼"}
             </span>
           </div>
           {vistaLinea && (
-            <div style={{ marginTop: 10, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: "18px 14px 10px" }}>
+            <div style={{ marginTop: 10, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 14, padding: "18px 14px 10px" }}>
               <LineaDeTiempoPerspectiva
                 escuelas={escuelas.filter((e) => e.perspectiva === NOMBRE_CORTO_PERSPECTIVA[persp.id])}
                 color={color}
@@ -18251,7 +18252,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
               gap: 10,
               marginTop: 18,
               padding: "12px 16px",
-              borderRadius: 8,
+              borderRadius: 14,
               cursor: "pointer",
               background: vistaPanorama ? persp && PERSPECTIVA_COLOR[persp.nombre] : COLORS.paperDark,
               border: `1.5px solid ${persp && PERSPECTIVA_COLOR[persp.nombre]}`,
@@ -18261,7 +18262,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
             <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, color: vistaPanorama ? "#fff" : COLORS.ink }}>
               📊 Panorama de protocolos, técnicas y procedimientos de {persp.nombre}
             </span>
-            <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: vistaPanorama ? "#fff" : PERSPECTIVA_COLOR[persp.nombre], fontWeight: 700 }}>
+            <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: vistaPanorama ? "#fff" : PERSPECTIVA_COLOR[persp.nombre], fontWeight: 700 }}>
               {vistaPanorama ? "ocultar ▲" : "ver ▼"}
             </span>
           </div>
@@ -18289,7 +18290,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
             zIndex: 40,
             background: COLORS.primaryDark,
             color: "#fff",
-            borderRadius: 8,
+            borderRadius: 14,
             padding: "12px 16px",
             boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
             maxWidth: 300,
@@ -18297,7 +18298,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
           }}
         >
           <div style={{ fontWeight: 700, fontSize: 12.5, marginBottom: 6 }}>✓ Guardado: {toastGuardado.nombre}</div>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, lineHeight: 1.7, color: "#D8DEDA" }}>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, lineHeight: 1.7, color: "#D8DEDA" }}>
             <div>✓ {toastGuardado.conceptos} concepto(s) · {toastGuardado.tecnicas} técnica(s)</div>
             <div>{toastGuardado.tieneProtocolo ? "✓" : "⚠"} protocolo {toastGuardado.tieneProtocolo ? "asociado" : "no sembrado aún"}</div>
             <div>{toastGuardado.tieneCitas ? "✓" : "⚠"} citas ampliadas {toastGuardado.tieneCitas ? "presentes" : "no sembradas aún"}</div>
@@ -18314,29 +18315,29 @@ function SeccionClasificacionFilosoficaInterna({ clasif, color }) {
     <div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 12, marginBottom: 12 }}>
         <div>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Eje 1 — Independencia y cantidad</div>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Eje 1 — Independencia y cantidad</div>
           <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.ejeIndependenciaCantidad}</p>
         </div>
         <div>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Eje 2 — Naturaleza de la sustancia</div>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Eje 2 — Naturaleza de la sustancia</div>
           <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.ejeNaturalezaSustancia}</p>
         </div>
         <div>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Meta-eje</div>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Meta-eje</div>
           <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.metaEje}</p>
         </div>
       </div>
       <div style={{ borderTop: `1px dashed ${COLORS.gold}`, paddingTop: 10, marginBottom: 10 }}>
-        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Los grandes «ismos»</div>
+        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Los grandes «ismos»</div>
         <p style={{ margin: "0 0 8px", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.ismos}</p>
-        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Hessen (incluye criterio de verdad)</div>
+        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Hessen (incluye criterio de verdad)</div>
         <p style={{ margin: "0 0 8px", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.hessen}</p>
-        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Wolff</div>
+        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Wolff</div>
         <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.wolff}</p>
       </div>
       {clasif.crotty && (
-        <div style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: 10 }}>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase", marginBottom: 4 }}>Esquema de Crotty</div>
+        <div style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: 10 }}>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase", marginBottom: 4 }}>Esquema de Crotty</div>
           {clasif.crotty.epistemologia && <p style={{ margin: "0 0 4px", fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Epistemología: </strong>{clasif.crotty.epistemologia}</p>}
           {clasif.crotty.perspectiva && <p style={{ margin: "0 0 4px", fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Perspectiva teórica: </strong>{clasif.crotty.perspectiva}</p>}
           {(clasif.crotty.metodos || clasif.crotty.metodologia) && <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Metodología / métodos: </strong>{clasif.crotty.metodos || clasif.crotty.metodologia}</p>}
@@ -18354,16 +18355,16 @@ function SeccionClasificacionFilosoficaEscuelaInterna({ filo }) {
   return (
     <div>
       <div style={{ marginBottom: 10 }}>
-        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Mapa decisional de la ontología</div>
+        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Mapa decisional de la ontología</div>
         <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{filo.mapaDecisional}</p>
       </div>
       <div style={{ marginBottom: 10 }}>
-        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Clasificaciones históricas (Ismos / Hessen / Wolff)</div>
+        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Clasificaciones históricas (Ismos / Hessen / Wolff)</div>
         <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{filo.clasificacionesHistoricas}</p>
       </div>
       {filo.crotty && (
-        <div style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: 10 }}>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase", marginBottom: 4 }}>Esquema de Crotty</div>
+        <div style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: 10 }}>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase", marginBottom: 4 }}>Esquema de Crotty</div>
           {filo.crotty.epistemologia && filo.crotty.epistemologia !== "—" && <p style={{ margin: "0 0 4px", fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Epistemología: </strong>{filo.crotty.epistemologia}</p>}
           {filo.crotty.perspectiva && filo.crotty.perspectiva !== "—" && <p style={{ margin: "0 0 4px", fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Perspectiva teórica: </strong>{filo.crotty.perspectiva}</p>}
           {filo.crotty.metodologia && filo.crotty.metodologia !== "—" && <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Metodología / métodos: </strong>{filo.crotty.metodologia}</p>}
@@ -18428,24 +18429,24 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
   return (
     <div>
       {comparando.length > 0 && (
-        <div style={{ marginBottom: 14, background: COLORS.cardBg, border: `1.5px solid ${color}`, borderRadius: 6, padding: 12 }}>
+        <div style={{ marginBottom: 14, background: COLORS.cardBg, border: `1.5px solid ${color}`, borderRadius: 12, padding: 12 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-            <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color, fontWeight: 700 }}>
+            <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", color, fontWeight: 700 }}>
               Comparador rápido ({comparando.length}/3 seleccionadas)
             </span>
-            <span onClick={() => setComparando([])} style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, cursor: "pointer", textDecoration: "underline" }}>
+            <span onClick={() => setComparando([])} style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: COLORS.inkSoft, cursor: "pointer", textDecoration: "underline" }}>
               limpiar selección
             </span>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: `repeat(${escuelasComparadas.length}, 1fr)`, gap: 12, overflowX: "auto" }}>
             {escuelasComparadas.map((e) => (
-              <div key={e.id} style={{ background: COLORS.paperDark, borderRadius: 4, padding: 10, minWidth: 200 }}>
+              <div key={e.id} style={{ background: COLORS.paperDark, borderRadius: 8, padding: 10, minWidth: 200 }}>
                 <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13, marginBottom: 6 }}>{e.nombre}</div>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9, textTransform: "uppercase", color: COLORS.primary, marginBottom: 2 }}>Conceptos clave</div>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9, textTransform: "uppercase", color: COLORS.primary, marginBottom: 2 }}>Conceptos clave</div>
                 <ul style={{ margin: "0 0 8px", paddingLeft: 16, fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", lineHeight: 1.4 }}>
                   {(e.conceptos || []).slice(0, 3).map((c, i) => <li key={i}>{c}</li>)}
                 </ul>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9, textTransform: "uppercase", color: COLORS.clay, marginBottom: 2 }}>Técnicas</div>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9, textTransform: "uppercase", color: COLORS.clay, marginBottom: 2 }}>Técnicas</div>
                 <ul style={{ margin: 0, paddingLeft: 16, fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", lineHeight: 1.4 }}>
                   {(e.tecnicas || []).slice(0, 3).map((c, i) => <li key={i}>{c}</li>)}
                 </ul>
@@ -18454,7 +18455,7 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
                   tabIndex={0}
                   onClick={() => onIrAEscuela && onIrAEscuela(e.id)}
                   onKeyDown={activarConTeclado(() => onIrAEscuela && onIrAEscuela(e.id))}
-                  style={{ display: "inline-block", marginTop: 8, fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color, cursor: "pointer", textDecoration: "underline" }}
+                  style={{ display: "inline-block", marginTop: 8, fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color, cursor: "pointer", textDecoration: "underline" }}
                 >
                   → ficha completa
                 </span>
@@ -18474,13 +18475,13 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
               {mostrarHeader && (
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: i === 0 ? 0 : 6 }}>
                   <span style={{ width: 8, height: 8, borderRadius: "50%", background: color, flexShrink: 0 }} />
-                  <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, letterSpacing: 0.5, textTransform: "uppercase", color: color, fontWeight: 700 }}>
+                  <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, letterSpacing: 0.5, textTransform: "uppercase", color: color, fontWeight: 700 }}>
                     {sp.subfamilia}
                   </span>
                   <span style={{ flex: 1, height: 1, background: COLORS.line }} />
                 </div>
               )}
-              <div style={{ borderLeft: `3px solid ${color}`, paddingLeft: 10, background: COLORS.paperDark, borderRadius: 4, padding: "8px 10px", marginLeft: sp.subfamilia ? 16 : 0, display: "flex", gap: 8, alignItems: "flex-start" }}>
+              <div style={{ borderLeft: `3px solid ${color}`, paddingLeft: 10, background: COLORS.paperDark, borderRadius: 8, padding: "8px 10px", marginLeft: sp.subfamilia ? 16 : 0, display: "flex", gap: 8, alignItems: "flex-start" }}>
                 {sp.escuela && escuelas && (
                   <input
                     type="checkbox"
@@ -18495,12 +18496,12 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
                     <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: 13.5 }}>{sp.nombre}</span>
                     {sp.escuela && enlaces && <BadgeEnlaces escuelaId={sp.escuela} enlaces={enlaces} small />}
                     {!sp.escuela && (
-                      <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9, color: COLORS.garnet, border: `1px solid ${COLORS.garnet}`, borderRadius: 3, padding: "0 5px" }}>
+                      <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9, color: COLORS.garnet, border: `1px solid ${COLORS.garnet}`, borderRadius: 6, padding: "0 5px" }}>
                         no modelada como escuela aparte
                       </span>
                     )}
                     {enConstruccion && (
-                      <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9, color: "#fff", background: COLORS.clay, borderRadius: 3, padding: "1px 6px", letterSpacing: 0.3 }}>
+                      <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9, color: "#fff", background: COLORS.clay, borderRadius: 6, padding: "1px 6px", letterSpacing: 0.3 }}>
                         ⚠ en construcción — falta fuente primaria
                       </span>
                     )}
@@ -18513,7 +18514,7 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
                       onClick={() => onIrAEscuela(sp.escuela)}
                       onKeyDown={activarConTeclado(() => onIrAEscuela(sp.escuela))}
                       style={{
-                        fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                        fontFamily: "'Quicksand', system-ui, sans-serif",
                         fontSize: 10.5,
                         color: color,
                         cursor: "pointer",
@@ -18532,20 +18533,20 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
         })}
       </div>
 
-      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 8 }}>
+      <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 8 }}>
         Convergencias y divergencias entre estas sub-perspectivas
       </div>
       <div style={{ display: "grid", gap: 10 }}>
         {data.tabla.map((fila, i) => (
-          <div key={i} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 12 }}>
+          <div key={i} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 12 }}>
             <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13, marginBottom: 6 }}>{fila.aspecto}</div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 10 }}>
               <div>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.sage, marginBottom: 2 }}>CONVERGE</div>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.sage, marginBottom: 2 }}>CONVERGE</div>
                 <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{fila.convergencia}</p>
               </div>
               <div>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, marginBottom: 2 }}>DIVERGE</div>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.garnet, marginBottom: 2 }}>DIVERGE</div>
                 <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{fila.divergencia}</p>
               </div>
             </div>
@@ -18711,7 +18712,7 @@ function LineaDeTiempoPerspectiva({ escuelas, color, onIrAEscuela, teorias = [] 
                 tabIndex={0}
                 onClick={() => onIrAEscuela(e.id)}
                 onKeyDown={activarConTeclado(() => onIrAEscuela(e.id))}
-                style={{ fontFamily: FONT_MONO, fontSize: 10.5, color, border: `1px solid ${color}`, borderRadius: 4, padding: "3px 8px", cursor: "pointer" }}
+                style={{ fontFamily: FONT_MONO, fontSize: 10.5, color, border: `1px solid ${color}`, borderRadius: 8, padding: "3px 8px", cursor: "pointer" }}
               >
                 {e.nombre}
               </span>
@@ -18728,7 +18729,7 @@ function FichaFundamento({ p, onIrAEscuela, escuelas, enlaces }) {
   const clasif = CLASIFICACION_FILOSOFICA_PERSPECTIVA[p.id];
   const debates = DEBATES_PERSPECTIVAS[p.id] || [];
   return (
-    <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20, position: "relative" }}>
+    <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20, position: "relative" }}>
       <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 20, color: COLORS.ink, marginTop: 0, marginBottom: 14, borderBottom: `2px solid ${color}`, paddingBottom: 8, maxWidth: "70%" }}>
         {p.nombre}
       </h3>
@@ -18766,17 +18767,17 @@ function FichaFundamento({ p, onIrAEscuela, escuelas, enlaces }) {
           <TextoVacio texto="Sin debates abiertos registrados para esta perspectiva." />
         ) : (
           debates.map((d, i) => (
-            <div key={i} style={{ marginBottom: 14, background: COLORS.paperDark, borderRadius: 6, padding: 12 }}>
+            <div key={i} style={{ marginBottom: 14, background: COLORS.paperDark, borderRadius: 12, padding: 12 }}>
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 14.5, fontWeight: 700, marginBottom: 8, color: COLORS.ink }}>{d.pregunta}</div>
               {d.posturas.map((pos, j) => (
                 <div key={j} style={{ marginBottom: 10 }}>
                   <span
                     style={{
-                      fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                      fontFamily: "'Quicksand', system-ui, sans-serif",
                       fontSize: 10,
                       color: "#fff",
                       background: j === 0 ? color : COLORS.inkSoft,
-                      borderRadius: 4,
+                      borderRadius: 8,
                       padding: "2px 7px",
                       display: "inline-block",
                       marginBottom: 5,
@@ -18868,8 +18869,8 @@ function Desplegable({ titulo, subtitulo, color, defaultAbierto = false, childre
   }, [defaultAbierto]);
   if (vacio) {
     return (
-      <div style={{ marginBottom: 10, border: `1px dashed ${COLORS.line}`, borderRadius: 6, padding: "10px 14px" }}>
-        <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.inkSoft }}>
+      <div style={{ marginBottom: 10, border: `1px dashed ${COLORS.line}`, borderRadius: 12, padding: "10px 14px" }}>
+        <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.inkSoft }}>
           {titulo}
         </span>
         <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic", marginLeft: 8 }}>
@@ -18879,7 +18880,7 @@ function Desplegable({ titulo, subtitulo, color, defaultAbierto = false, childre
     );
   }
   return (
-    <div style={{ marginBottom: 10, border: `1px solid ${COLORS.line}`, borderRadius: 6, overflow: "hidden" }}>
+    <div style={{ marginBottom: 10, border: `1px solid ${COLORS.line}`, borderRadius: 12, overflow: "hidden" }}>
       <div
         onClick={() => setAbierta(!abierta)}
         style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "9px 14px", background: COLORS.paperDark }}
@@ -18913,7 +18914,7 @@ function Desplegable({ titulo, subtitulo, color, defaultAbierto = false, childre
           );
         })()}
         {subtitulo && (
-          <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, textTransform: "none" }}>{subtitulo}</span>
+          <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.inkSoft, textTransform: "none" }}>{subtitulo}</span>
         )}
       </div>
       {abierta && <div style={{ padding: "14px", background: COLORS.cardBg }}>{children}</div>}
@@ -18946,7 +18947,7 @@ function BadgeCobertura({ escuelaId, integridad }) {
   );
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 14, fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5 }}>
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 14, fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5 }}>
       <Item label="Glosario" valor={enGlosario} ok={enGlosario > 0} />
       <Item label="Protocolo" valor={tieneProtocolo ? "✓" : "✗"} ok={tieneProtocolo} />
       <Item label="Citas" valor={tieneCitas ? "✓" : "✗"} ok={tieneCitas} />
@@ -18999,7 +19000,7 @@ function ChipsCoordenadas({ ontologia, epistemologia, metodologia, criterioVerda
 function BloqueFundamento({ titulo, texto, destacado, truncar }) {
   return (
     <div style={{ marginBottom: 14 }}>
-      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.06em", color: destacado ? COLORS.clay : COLORS.primary, marginBottom: 3 }}>
+      <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.06em", color: destacado ? COLORS.clay : COLORS.primary, marginBottom: 3 }}>
         {titulo}
       </div>
       {texto ? <TextoConCitas texto={texto} truncar={truncar} /> : <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 14, color: COLORS.inkSoft, fontStyle: "italic" }}>—</p>}
@@ -19007,38 +19008,31 @@ function BloqueFundamento({ titulo, texto, destacado, truncar }) {
   );
 }
 
-// Sello ornamental discreto, tipo timbre de expediente clínico antiguo:
-// un anillo doble con marcas radiales, en el color de la perspectiva
-// activa. Es deliberadamente abstracto (no una ilustración figurativa de
-// ningún autor concreto, para no inventar retratos) y muy tenue —
-// decoración de fondo, nunca compite con el contenido. Gira suavemente
-// al aparecer cada vez que cambia la perspectiva (key en el padre).
+// Garabato decorativo, amistoso y suelto: un racimo de círculos tipo
+// "flor" con un pétalo más grande flotando cerca, en el color de la
+// perspectiva activa. Nada de simbolismo institucional (ni sellos, ni
+// timbres) — solo una forma orgánica y alegre, muy tenue, que aparece
+// con un pequeño rebote cada vez que cambia la perspectiva.
 function SelloPerspectiva({ color }) {
-  const marcas = Array.from({ length: 16 }, (_, i) => i * (360 / 16));
+  const petalos = Array.from({ length: 6 }, (_, i) => {
+    const ang = (i / 6) * 2 * Math.PI;
+    return { cx: 100 + 42 * Math.cos(ang), cy: 100 + 42 * Math.sin(ang), r: 26 - (i % 2) * 4 };
+  });
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 200 200"
-      width={150}
-      height={150}
+      width={160}
+      height={160}
       className="psq-sello-girar"
-      style={{ position: "absolute", top: 4, right: 4, opacity: 0.1, pointerEvents: "none" }}
+      style={{ position: "absolute", top: 0, right: 0, opacity: 0.13, pointerEvents: "none" }}
     >
-      <circle cx="100" cy="100" r="92" fill="none" stroke={color} strokeWidth="1.5" />
-      <circle cx="100" cy="100" r="74" fill="none" stroke={color} strokeWidth="1" />
-      <circle cx="100" cy="100" r="6" fill={color} />
-      {marcas.map((deg) => (
-        <line
-          key={deg}
-          x1="100"
-          y1="18"
-          x2="100"
-          y2="30"
-          stroke={color}
-          strokeWidth="2"
-          transform={`rotate(${deg} 100 100)`}
-        />
+      {petalos.map((p, i) => (
+        <circle key={i} cx={p.cx} cy={p.cy} r={p.r} fill={color} />
       ))}
+      <circle cx="100" cy="100" r="20" fill={color} />
+      <circle cx="168" cy="55" r="12" fill={color} />
+      <circle cx="30" cy="150" r="7" fill={color} />
     </svg>
   );
 }
@@ -19078,7 +19072,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
 
   return (
     <div style={{ display: "grid", gap: 16 }}>
-      <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
+      <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
           <Sello color={color}>
             <Stamp size={12} /> panorama de perspectiva
@@ -19090,7 +19084,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
             <BloqueFundamento titulo="Origen histórico" texto={fund.origenHistorico} />
             <BloqueFundamento titulo="Unidad de análisis" texto={fund.unidadAnalisis} />
             <BloqueFundamento titulo="Relación mente-cuerpo" texto={fund.relacionMenteCuerpo} />
-            <div style={{ fontSize: 11.5, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: COLORS.primary, marginTop: 6 }}>
+            <div style={{ fontSize: 11.5, fontFamily: "'Quicksand', system-ui, sans-serif", color: COLORS.primary, marginTop: 6 }}>
               Ver ontología, epistemología, metodología, criterio de verdad y debates abiertos completos en el Módulo 0 · Fundamentos.
             </div>
           </>
@@ -19098,8 +19092,8 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
       </div>
 
       {conceptosGlosario.length > 0 && (
-        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 8 }}>
+        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20 }}>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 8 }}>
             Conceptos centrales de la perspectiva ({conceptosGlosario.length}) — definiciones del Glosario traslacional
           </div>
           <div>
@@ -19124,8 +19118,8 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
       )}
 
       {tecnicasGlosario.length > 0 && (
-        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 8 }}>
+        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20 }}>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 8 }}>
             Técnicas de la perspectiva ({tecnicasGlosario.length}) — definiciones del Glosario traslacional
           </div>
           <div>
@@ -19149,8 +19143,8 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
         </div>
       )}
 
-      <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.sage, marginBottom: 10 }}>
+      <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20 }}>
+        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", color: COLORS.sage, marginBottom: 10 }}>
           Protocolos disponibles en esta perspectiva ({protocolosP.length} de {escuelasP.length} escuelas)
         </div>
         {protocolosP.length === 0 && (
@@ -19163,7 +19157,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
             <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>
               {escuela.nombre} — {protocolo.nombre}
             </div>
-            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 3 }}>{protocolo.fuente}</div>
+            <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: COLORS.inkSoft, marginBottom: 3 }}>{protocolo.fuente}</div>
             <div style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5 }}>
               <strong>Población: </strong>
               {protocolo.poblacion}
@@ -19172,7 +19166,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
         ))}
         {sinProtocolo.length > 0 && (
           <div style={{ marginTop: 10, paddingTop: 10, borderTop: `1px dashed ${COLORS.line}` }}>
-            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>
+            <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>
               Sin manual estandarizado (usan la plantilla general adaptable del Módulo 2):
             </div>
             {sinProtocolo.map((e) => (
@@ -19183,8 +19177,8 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
       </div>
 
       {escuelasP.some((e) => PROCEDIMIENTOS_CLINICOS[e.id]) && (
-        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 10 }}>
+        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20 }}>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 10 }}>
             Procedimientos clínicos sistematizados (momentos terapéuticos, no validados por ensayo clínico)
           </div>
           {escuelasP
@@ -19201,8 +19195,8 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
       )}
 
       {SUBVARIANTES_ESCUELA && escuelasP.some((e) => SUBVARIANTES_ESCUELA[e.id]) && (
-        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: color, marginBottom: 10 }}>
+        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20 }}>
+          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", color: color, marginBottom: 10 }}>
             Escuelas con sub-variantes internas documentadas
           </div>
           {escuelasP
@@ -19210,7 +19204,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
             .map((e) => (
               <div key={e.id} style={{ marginBottom: 10 }}>
                 <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, marginBottom: 4 }}>
-                  {e.nombre} <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft }}>({SUBVARIANTES_ESCUELA[e.id].length})</span>
+                  {e.nombre} <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: COLORS.inkSoft }}>({SUBVARIANTES_ESCUELA[e.id].length})</span>
                 </div>
                 {SUBVARIANTES_ESCUELA[e.id].map((sv, i) => (
                   <Etiqueta key={i}>{sv.nombre}</Etiqueta>
@@ -19348,7 +19342,7 @@ function PasosInteractivos({ pasos, colorAcento = COLORS.sage }) {
           const completadosGrupo = g.items.filter((it) => completados.has(it.idx)).length;
           const minutosGrupo = g.items.reduce((a, it) => a + minutosPorPaso[it.idx], 0);
           return (
-            <div key={gi} style={{ border: `1px solid ${COLORS.line}`, borderRadius: 6, overflow: "hidden" }}>
+            <div key={gi} style={{ border: `1px solid ${COLORS.line}`, borderRadius: 12, overflow: "hidden" }}>
               <div
                 role="button"
                 tabIndex={0}
@@ -19391,7 +19385,7 @@ function BarraProgresoPasos({ completados, total, color, minutosTotales = 0 }) {
   const pct = Math.round((completados / total) * 100);
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 180 }}>
-      <div style={{ flex: 1, height: 5, background: COLORS.paperDark, borderRadius: 3, overflow: "hidden" }}>
+      <div style={{ flex: 1, height: 5, background: COLORS.paperDark, borderRadius: 6, overflow: "hidden" }}>
         <div style={{ width: `${pct}%`, height: "100%", background: color, transition: "width 0.2s ease" }} />
       </div>
       <span style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: COLORS.inkSoft, flexShrink: 0 }}>
@@ -19437,7 +19431,7 @@ function PasoIndividual({ numero, texto, completado, onToggle, color, quitarPref
 
       <div style={{ flex: 1 }}>
         {minutos > 0 && (
-          <span style={{ fontFamily: FONT_MONO, fontSize: 9, color, background: `${color}18`, padding: "1px 6px", borderRadius: 8, marginRight: 6 }}>
+          <span style={{ fontFamily: FONT_MONO, fontSize: 9, color, background: `${color}18`, padding: "1px 6px", borderRadius: 14, marginRight: 6 }}>
             ⏱ ~{minutos} min
           </span>
         )}
@@ -19473,7 +19467,7 @@ function DetalleCondiciones({ texto }) {
       <span
         onClick={() => setAbierto(!abierto)}
         style={{
-          fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+          fontFamily: "'Quicksand', system-ui, sans-serif",
           fontSize: 10.5,
           color: COLORS.garnet,
           cursor: "pointer",
@@ -19484,7 +19478,7 @@ function DetalleCondiciones({ texto }) {
         {abierto ? "▾ ocultar condiciones y delimitaciones" : "▸ ver condiciones y delimitaciones (enlace)"}
       </span>
       {abierto && (
-        <p style={{ margin: "6px 0 0", fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.ink, background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 4, padding: 10 }}>
+        <p style={{ margin: "6px 0 0", fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.ink, background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 8, padding: 10 }}>
           {texto}
         </p>
       )}
@@ -19530,7 +19524,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
         expediente · {e.perspectiva}
       </div>
       <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `3px solid ${color}`, borderRadius: "0 6px 6px 6px", padding: 20 }}>
-      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 10, display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
+      <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 10, display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
         <span style={{ color }}>{e.perspectiva}</span>
         {e.subfamilia && (
           <>
@@ -19548,15 +19542,15 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
               <input
                 value={e.nombre}
                 onChange={(ev) => onCambiar("nombre", ev.target.value)}
-                style={{ fontFamily: "Georgia,serif", fontSize: 20, fontWeight: 700, border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: "4px 8px", width: "100%" }}
+                style={{ fontFamily: "Georgia,serif", fontSize: 20, fontWeight: 700, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: "4px 8px", width: "100%" }}
               />
               <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 6 }}>
-                <label style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft }}>id:</label>
+                <label style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.inkSoft }}>id:</label>
                 <input
                   value={e.id}
                   onChange={(ev) => onCambiar("id", ev.target.value)}
                   title="Cambiar el id rompe cualquier referencia guardada como texto en otros módulos hasta que se corrija"
-                  style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 11, border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: "3px 6px", width: 140 }}
+                  style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 11, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: "3px 6px", width: 140 }}
                 />
                 <span style={{ fontFamily: "ui-serif,Georgia,serif", fontStyle: "italic", fontSize: 10.5, color: STATUS_COLORS.advertencia }}>
                   ⚠ afecta enlaces, planes y glosario existentes
@@ -19571,7 +19565,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
             <SelloCriterio texto={e.criterioVerdad} />
             <BadgeEnlaces escuelaId={e.id} enlaces={enlaces} onIrADiccionario={onIrADiccionario} />
             {e._editado && (
-              <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, marginLeft: 8 }}>
+              <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.inkSoft, marginLeft: 8 }}>
                 ✎ editado {new Date(e._editado).toLocaleString("es-ES", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })}
               </span>
             )}
@@ -19612,7 +19606,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
         />
       ) : (
         (e.fundamentosTeoricos || []).length > 0 && (
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 7, alignItems: "center", marginBottom: 14, padding: "8px 10px", background: COLORS.paperDark, borderRadius: 6, border: `1px solid ${COLORS.line}` }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 7, alignItems: "center", marginBottom: 14, padding: "8px 10px", background: COLORS.paperDark, borderRadius: 12, border: `1px solid ${COLORS.line}` }}>
             <span style={{ display: "flex", alignItems: "center", gap: 4, fontFamily: FONT_MONO, fontSize: 10, fontWeight: 700, textTransform: "uppercase", color: COLORS.ink }}>
               <BookOpen size={12} /> Fundamentos teóricos:
             </span>
@@ -19649,7 +19643,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
         const otras = escuelasFundamentadasPor(comoHibrido.id, escuelas || []);
         if (otras.length === 0) return null;
         return (
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 7, alignItems: "center", marginBottom: 14, padding: "8px 10px", background: "#F0EDE4", borderRadius: 6, border: `1px dashed ${COLORS.ink}` }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 7, alignItems: "center", marginBottom: 14, padding: "8px 10px", background: "#F0EDE4", borderRadius: 12, border: `1px dashed ${COLORS.ink}` }}>
             <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12, fontStyle: "italic", color: COLORS.ink }}>
               Esta escuela es, además, teoría fundante de:
             </span>
@@ -19674,7 +19668,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
       {editando ? (
         <CampoTexto label="Autores" value={e.autores} onChange={(v) => onCambiar("autores", v)} />
       ) : (
-        <p style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 12, color: COLORS.inkSoft, marginTop: -4, marginBottom: 14 }}>{e.autores}</p>
+        <p style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 12, color: COLORS.inkSoft, marginTop: -4, marginBottom: 14 }}>{e.autores}</p>
       )}
 
       {editando ? (
@@ -19709,7 +19703,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
               resumen numérico para escanear la ficha sin abrir nada. */}
 
           {vistaCompacta && (
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12, padding: "8px 10px", background: COLORS.paperDark, borderRadius: 6, fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.inkSoft }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12, padding: "8px 10px", background: COLORS.paperDark, borderRadius: 12, fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.inkSoft }}>
               <span><strong style={{ color: COLORS.ink }}>{e.autores || "—"}</strong></span>
               <span>·</span>
               <span>{(e.conceptos || []).length} conceptos</span>
@@ -19737,7 +19731,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           )}
 
           {modoEstudio && (
-            <div style={{ marginBottom: 14, background: COLORS.paperDark, border: `1px dashed ${color}`, borderRadius: 8, padding: 14, display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
+            <div style={{ marginBottom: 14, background: COLORS.paperDark, border: `1px dashed ${color}`, borderRadius: 14, padding: 14, display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
               {/* Brújula filosófica: solo aparece en modo estudio. La vista
                   normal ya muestra estas cuatro coordenadas como texto en
                   la sección 2, pero en modo estudio se busca una síntesis
@@ -19765,7 +19759,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           <Desplegable titulo="1 · Fundamentación" color={color} defaultAbierto={modoEstudio}>
             <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
               {/«.*»/.test(e.fundamentacion) && (
-                <span style={{ fontSize: 9.5, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: COLORS.clay, border: `1px solid ${COLORS.clay}`, borderRadius: 3, padding: "0 5px" }}>
+                <span style={{ fontSize: 9.5, fontFamily: "'Quicksand', system-ui, sans-serif", color: COLORS.clay, border: `1px solid ${COLORS.clay}`, borderRadius: 6, padding: "0 5px" }}>
                   cita textual verificable
                 </span>
               )}
@@ -19864,8 +19858,8 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           <Desplegable titulo="7 · Evidencia" color={color} defaultAbierto={modoEstudio}>
             {e.evidencia ? <TextoConCitas texto={e.evidencia} truncar={vistaCompacta ? 180 : undefined} /> : <TextoVacio texto="Sin evidencia registrada." />}
             {e.notasClinicas && (
-              <div style={{ background: COLORS.paperDark, borderRadius: 4, padding: 10, marginBottom: 10, borderLeft: `3px solid ${COLORS.garnet}` }}>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>
+              <div style={{ background: COLORS.paperDark, borderRadius: 8, padding: 10, marginBottom: 10, borderLeft: `3px solid ${COLORS.garnet}` }}>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>
                   Notas clínicas · técnicas contraindicadas
                 </div>
                 <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.ink }}>{e.notasClinicas}</p>
@@ -19925,40 +19919,40 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                   Esta escuela agrupa, en rigor, varias corrientes internas con ontología, epistemología, conceptos y manual propios.
                 </p>
                 {subvariantes.map((sv, i) => (
-                  <div key={i} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 6, padding: 14, marginBottom: 12 }}>
+                  <div key={i} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 12, padding: 14, marginBottom: 12 }}>
                     <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 14.5, marginBottom: 2 }}>{sv.nombre}</div>
-                    <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 8 }}>{sv.autores}</div>
+                    <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 8 }}>{sv.autores}</div>
 
                     <div style={{ marginBottom: 8 }}>
                       <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.55, fontStyle: "italic", color: COLORS.ink }}>
                         «{sv.definicionTextual}»
                       </p>
-                      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, marginTop: 2 }}>— {sv.fuenteDefinicion}</div>
+                      <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.inkSoft, marginTop: 2 }}>— {sv.fuenteDefinicion}</div>
                     </div>
 
                     {(sv.ontologia || sv.epistemologia || sv.metodologia || sv.criterioVerdad) && (
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 10, marginBottom: 8 }}>
                         {sv.ontologia && (
                           <div>
-                            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Ontología</div>
+                            <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Ontología</div>
                             <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.ontologia}</p>
                           </div>
                         )}
                         {sv.epistemologia && (
                           <div>
-                            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Epistemología</div>
+                            <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Epistemología</div>
                             <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.epistemologia}</p>
                           </div>
                         )}
                         {sv.metodologia && (
                           <div>
-                            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Metodología</div>
+                            <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Metodología</div>
                             <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.metodologia}</p>
                           </div>
                         )}
                         {sv.criterioVerdad && (
                           <div>
-                            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase" }}>Criterio de verdad</div>
+                            <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase" }}>Criterio de verdad</div>
                             <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.criterioVerdad}</p>
                           </div>
                         )}
@@ -19967,7 +19961,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
 
                     {sv.conceptosClave && (
                       <div style={{ marginBottom: 6 }}>
-                        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Conceptos clave</div>
+                        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Conceptos clave</div>
                         {sv.conceptosClave.map((c, j) => (
                           <Etiqueta key={j}>{c}</Etiqueta>
                         ))}
@@ -19998,12 +19992,12 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           >
             <div style={{ borderBottom: procedimientos ? `1px dashed ${COLORS.line}` : "none", paddingBottom: procedimientos ? 12 : 0, marginBottom: procedimientos ? 12 : 0 }}>
               {PROTOCOLOS_SEED[e.id] ? (
-                <span style={{ fontSize: 11.5, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: COLORS.sage }}>
+                <span style={{ fontSize: 11.5, fontFamily: "'Quicksand', system-ui, sans-serif", color: COLORS.sage }}>
                   ✓ Protocolo estandarizado disponible («{PROTOCOLOS_SEED[e.id].nombre}») — ver Módulo 2 · Planificador.
                 </span>
               ) : (
                 <div>
-                  <span style={{ fontSize: 11.5, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: COLORS.inkSoft }}>
+                  <span style={{ fontSize: 11.5, fontFamily: "'Quicksand', system-ui, sans-serif", color: COLORS.inkSoft }}>
                     Sin manual estandarizado propio — el Módulo 2 ofrece una plantilla general adaptable para esta escuela.
                   </span>
                   {TEXTOS_FUNDAMENTALES[e.id] && (
@@ -20024,11 +20018,11 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                 {procedimientos.map((proc, i) => (
                   <div key={i} style={{ borderLeft: `3px solid ${COLORS.sage}`, paddingLeft: 12, marginBottom: 14 }}>
                     <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, marginBottom: 2 }}>{proc.nombre}</div>
-                    <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
+                    <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
                     <PasosInteractivos pasos={proc.fases} colorAcento={COLORS.sage} />
                     {proc.porQueFunciona && (
-                      <div style={{ background: COLORS.paperDark, borderRadius: 4, padding: 10, marginTop: 6, marginBottom: 6, borderLeft: `3px solid ${COLORS.clay}` }}>
-                        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.clay, marginBottom: 3 }}>Por qué / para qué funciona</div>
+                      <div style={{ background: COLORS.paperDark, borderRadius: 8, padding: 10, marginTop: 6, marginBottom: 6, borderLeft: `3px solid ${COLORS.clay}` }}>
+                        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, textTransform: "uppercase", color: COLORS.clay, marginBottom: 3 }}>Por qué / para qué funciona</div>
                         <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}>{proc.porQueFunciona}</p>
                       </div>
                     )}
@@ -20056,8 +20050,8 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
 
           <Desplegable titulo="11 · Referencias" color={COLORS.garnet} defaultAbierto={modoEstudio} vacio={!citas && (e.referencias || []).length === 0}>
             {(citas?.length > 0 || (e.referencias || []).length > 0) && (
-              <div style={{ borderRadius: 4, padding: 10, border: `1px solid ${COLORS.line}` }}>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.inkSoft, marginBottom: 8 }}>
+              <div style={{ borderRadius: 8, padding: 10, border: `1px solid ${COLORS.line}` }}>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, textTransform: "uppercase", color: COLORS.inkSoft, marginBottom: 8 }}>
                   Referencias bibliográficas ({(citas?.length || 0) + (e.referencias || []).length})
                 </div>
                 {/* Estilo tipográfico ÚNICO para toda referencia bibliográfica plana
@@ -20080,7 +20074,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                         <span style={{ fontFamily: "Georgia,serif", fontSize: 22, color: color, lineHeight: 1, flexShrink: 0 }}>\u201c</span>
                         <div>
                           <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontStyle: "italic", fontSize: 13.5, lineHeight: 1.55, color: COLORS.ink }}>{c.idea}</p>
-                          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginTop: 3 }}>\u2014 {c.fuente}</div>
+                          <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginTop: 3 }}>\u2014 {c.fuente}</div>
                         </div>
                       </div>
                     )
@@ -20260,7 +20254,7 @@ function TablaProtocolosGenerica({ filas, ordenTabla, cambiarOrden, tituloVacio 
       <div
         style={{
           overflow: "auto", width: "100%", boxSizing: "border-box",
-          border: `1px solid ${COLORS.line}`, borderRadius: 8, maxHeight: "60vh",
+          border: `1px solid ${COLORS.line}`, borderRadius: 14, maxHeight: "60vh",
         }}
       >
         <table style={{ width: "100%", minWidth: 720, borderCollapse: "collapse", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, tableLayout: "fixed" }}>
@@ -20318,7 +20312,7 @@ function TablaProtocolosGenerica({ filas, ordenTabla, cambiarOrden, tituloVacio 
                         <span
                           key={obj.id}
                           style={{
-                            fontFamily: FONT_MONO, fontSize: 9.5, padding: "1px 6px", borderRadius: 3, display: "inline-block",
+                            fontFamily: FONT_MONO, fontSize: 9.5, padding: "1px 6px", borderRadius: 6, display: "inline-block",
                             color: obj.color ? "#fff" : COLORS.inkSoft,
                             background: obj.color || "transparent",
                             border: obj.color ? "none" : `1px dashed ${COLORS.line}`,
@@ -20392,7 +20386,7 @@ function ComparadorProtocolos({ filas }) {
             style={{ ...CAMPO_STYLE, fontFamily: "'Lora', Georgia, serif", fontSize: 13 }}
           />
           {buscar.trim().length >= 2 && (
-            <div style={{ position: "absolute", zIndex: 5, top: "100%", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, maxHeight: 220, overflowY: "auto" }}>
+            <div style={{ position: "absolute", zIndex: 5, top: "100%", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, maxHeight: 220, overflowY: "auto" }}>
               {disponibles.slice(0, 8).map((f) => {
                 const idxReal = filas.indexOf(f);
                 return (
@@ -20420,7 +20414,7 @@ function ComparadorProtocolos({ filas }) {
             const f = filas[idx];
             const color = f.tipo === "protocolo" ? COLORS.garnet : COLORS.clay;
             return (
-              <div key={idx} style={{ borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 8, padding: 14, background: COLORS.cardBg }}>
+              <div key={idx} style={{ borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 14, padding: 14, background: COLORS.cardBg }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
                   <div>
                     <div style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: PERSPECTIVA_COLOR[f.perspectiva] }}>{f.escuela}</div>
@@ -20432,7 +20426,7 @@ function ComparadorProtocolos({ filas }) {
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 4, margin: "6px 0 10px" }}>
                   {f.objetivos.map((o) => (
-                    <span key={o.id} style={{ fontFamily: FONT_MONO, fontSize: 9, padding: "1px 6px", borderRadius: 3, color: o.color ? "#fff" : COLORS.inkSoft, background: o.color || "transparent", border: o.color ? "none" : `1px dashed ${COLORS.line}` }}>
+                    <span key={o.id} style={{ fontFamily: FONT_MONO, fontSize: 9, padding: "1px 6px", borderRadius: 6, color: o.color ? "#fff" : COLORS.inkSoft, background: o.color || "transparent", border: o.color ? "none" : `1px dashed ${COLORS.line}` }}>
                       {o.label}
                     </span>
                   ))}
@@ -20492,7 +20486,7 @@ function TablaProtocolos({ filas, ordenTabla, cambiarOrden }) {
       {(filtroTipo === "ambas" || filtroTipo === "protocolos") && (
         <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 10, padding: 14, maxWidth: "100%", boxSizing: "border-box" }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 10 }}>
-            <span style={{ width: 10, height: 10, borderRadius: 3, background: COLORS.garnet, display: "inline-block" }} />
+            <span style={{ width: 10, height: 10, borderRadius: 6, background: COLORS.garnet, display: "inline-block" }} />
             <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 14.5, color: COLORS.ink }}>Protocolos</span>
             <span style={{ fontFamily: FONT_MONO, fontSize: 10, color: COLORS.inkSoft }}>
               ({soloProtocolos.length}) — estructuran el curso completo del tratamiento, con técnicas propias en cada momento terapéutico
@@ -20504,7 +20498,7 @@ function TablaProtocolos({ filas, ordenTabla, cambiarOrden }) {
       {(filtroTipo === "ambas" || filtroTipo === "tecnicas") && (
         <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 10, padding: 14, maxWidth: "100%", boxSizing: "border-box" }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 10 }}>
-            <span style={{ width: 10, height: 10, borderRadius: 3, background: COLORS.clay, display: "inline-block" }} />
+            <span style={{ width: 10, height: 10, borderRadius: 6, background: COLORS.clay, display: "inline-block" }} />
             <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 14.5, color: COLORS.ink }}>Técnicas con procedimiento documentado</span>
             <span style={{ fontFamily: FONT_MONO, fontSize: 10, color: COLORS.inkSoft }}>({soloTecnicas.length}) — intervención puntual, aunque tenga varios pasos</span>
           </div>
@@ -20647,7 +20641,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
           al módulo — antes esta diferencia solo se insinuaba con un matiz
           de color de borde entre desplegables, sin ninguna definición
           explícita en ningún lugar del módulo. */}
-      <div style={{ display: "flex", gap: 16, flexWrap: "wrap", background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: "12px 16px", margin: "14px 0" }}>
+      <div style={{ display: "flex", gap: 16, flexWrap: "wrap", background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 14, padding: "12px 16px", margin: "14px 0" }}>
         <div style={{ display: "flex", alignItems: "flex-start", gap: 8, flex: 1, minWidth: 220 }}>
           <ClipboardList size={16} color={COLORS.sage} style={{ marginTop: 2, flexShrink: 0 }} />
           <div>
@@ -20722,7 +20716,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
           style={{
             position: "sticky", top: 4, zIndex: 5, marginBottom: 10,
             display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
-            background: COLORS.paperDark, border: `1px solid ${COLORS.gold}`, borderRadius: 6, padding: "6px 10px",
+            background: COLORS.paperDark, border: `1px solid ${COLORS.gold}`, borderRadius: 12, padding: "6px 10px",
           }}
         >
           <span style={{ fontFamily: FONT_MONO, fontSize: 10, color: COLORS.gold, fontWeight: 700 }}>◆ modo estudio</span>
@@ -20778,7 +20772,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
                   const nEscuelaTec = PROCEDIMIENTOS_CLINICOS[e.id]?.filter(esTecnicaProc).length || 0;
                   const esFoco = foco && foco.escuelaId === e.id;
                   return (
-                    <div key={e.id} id={"protocolo-" + e.id} style={esFoco ? { outline: `2px solid ${cPersp}`, borderRadius: 6, transition: "outline 0.3s" } : undefined}>
+                    <div key={e.id} id={"protocolo-" + e.id} style={esFoco ? { outline: `2px solid ${cPersp}`, borderRadius: 12, transition: "outline 0.3s" } : undefined}>
                     <Desplegable titulo={e.nombre} subtitulo={`${nEscuela} protocolo${nEscuela !== 1 ? "s" : ""}${nEscuelaTec > 0 ? ` · ${nEscuelaTec} técnica${nEscuelaTec !== 1 ? "s" : ""}` : ""}`} color={cPersp} defaultAbierto={!!qNorm || modoEstudio}>
                       {(() => {
                         const protocolosEscuela = [
@@ -20806,11 +20800,11 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
                                 </div>
                                 {protocolosEscuela.map((p, i) => (
                                   <Desplegable key={i} titulo={p.nombre} subtitulo="protocolo" color={COLORS.sage} defaultAbierto={false}>
-                                    <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{p.fuente}</div>
+                                    <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{p.fuente}</div>
                                     <PasosInteractivos pasos={p.fases} colorAcento={COLORS.sage} />
                                     {p.porQueFunciona && (
-                                      <div style={{ background: COLORS.paperDark, borderRadius: 4, padding: 10, marginTop: 6, borderLeft: `3px solid ${COLORS.garnet}` }}>
-                                        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>Por qué / para qué funciona</div>
+                                      <div style={{ background: COLORS.paperDark, borderRadius: 8, padding: 10, marginTop: 6, borderLeft: `3px solid ${COLORS.garnet}` }}>
+                                        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>Por qué / para qué funciona</div>
                                         <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}>{p.porQueFunciona}</p>
                                       </div>
                                     )}
@@ -20841,11 +20835,11 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
                                 </div>
                                 {tecnicasEscuela.map((proc, i) => (
                                   <Desplegable key={i} titulo={proc.nombre} subtitulo="técnica" color={COLORS.clay} defaultAbierto={false}>
-                                    <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
+                                    <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
                                     <PasosInteractivos pasos={proc.fases} colorAcento={COLORS.clay} />
                                     {proc.porQueFunciona && (
-                                      <div style={{ background: COLORS.cardBg, borderRadius: 4, padding: 10, marginBottom: 6, borderLeft: `3px solid ${COLORS.clay}` }}>
-                                        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.clay, marginBottom: 3 }}>Por qué / para qué funciona</div>
+                                      <div style={{ background: COLORS.cardBg, borderRadius: 8, padding: 10, marginBottom: 6, borderLeft: `3px solid ${COLORS.clay}` }}>
+                                        <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, textTransform: "uppercase", color: COLORS.clay, marginBottom: 3 }}>Por qué / para qué funciona</div>
                                         <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}>{proc.porQueFunciona}</p>
                                       </div>
                                     )}
@@ -20923,11 +20917,11 @@ function TraductorEnVivo({ escuelas, enlaces, tipo, onSeleccionar }) {
           value={q}
           onChange={(ev) => setQ(ev.target.value)}
           placeholder={`Traductor en vivo: escribe un ${tipo === "técnica" ? "técnica" : "concepto"} de cualquier escuela…`}
-          style={{ width: "100%", padding: "9px 12px 9px 32px", borderRadius: 6, border: `1.5px solid ${COLORS.primary}`, fontFamily: FONT_MONO, fontSize: 12.5 }}
+          style={{ width: "100%", padding: "9px 12px 9px 32px", borderRadius: 12, border: `1.5px solid ${COLORS.primary}`, fontFamily: FONT_MONO, fontSize: 12.5 }}
         />
       </div>
       {resultados.length > 0 && (
-        <div style={{ position: "absolute", zIndex: 5, top: "calc(100% + 4px)", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, boxShadow: "0 6px 18px rgba(30,42,40,0.12)", maxHeight: 340, overflowY: "auto" }}>
+        <div style={{ position: "absolute", zIndex: 5, top: "calc(100% + 4px)", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, boxShadow: "0 6px 18px rgba(30,42,40,0.12)", maxHeight: 340, overflowY: "auto" }}>
           {resultados.map(({ g, escuela, eq }, i) => {
             const c = PERSPECTIVA_COLOR[escuela.perspectiva];
             const mejor = eq.reduce(
@@ -20970,7 +20964,7 @@ function TraductorEnVivo({ escuelas, enlaces, tipo, onSeleccionar }) {
           const sugerencias = sugerirTerminos(q, GLOSARIO.filter((g) => g.tipo === tipo).map((g) => g.termino), 4);
           if (sugerencias.length === 0) return null;
           return (
-            <div style={{ position: "absolute", zIndex: 5, top: "calc(100% + 4px)", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: "8px 12px", display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+            <div style={{ position: "absolute", zIndex: 5, top: "calc(100% + 4px)", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: "8px 12px", display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
               <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic" }}>¿Quisiste decir…?</span>
               {sugerencias.map((s) => (
                 <button
@@ -21057,7 +21051,7 @@ function VistaEnlacesPorEscuela({ escuelas, enlaces, onIrAEscuela }) {
                 const otro = esA ? l.conceptoB : l.conceptoA;
                 const otraEscuela = escuelas.find((e) => e.id === otro?.escuela);
                 return (
-                  <div key={l.id} style={{ borderLeft: `3px solid ${info.color}`, paddingLeft: 12, background: COLORS.paperDark, borderRadius: 4, padding: "8px 12px" }}>
+                  <div key={l.id} style={{ borderLeft: `3px solid ${info.color}`, paddingLeft: 12, background: COLORS.paperDark, borderRadius: 8, padding: "8px 12px" }}>
                     <div style={{ fontFamily: "Georgia,serif", fontSize: 13, marginBottom: 3 }}>
                       <strong>{propio?.nombre}</strong> ↔ <strong>{otro?.nombre}</strong>{" "}
                       <span
@@ -21171,7 +21165,7 @@ function GrafoTraslacional({ escuelas, enlaces, filtro, onIrAEscuela }) {
   }
 
   return (
-    <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 14 }}>
+    <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 14 }}>
       <p style={{ fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", color: COLORS.inkSoft, fontStyle: "italic", marginTop: 0, marginBottom: 10 }}>
         Cada nodo es una escuela con al menos un enlace traslacional (color = perspectiva, tamaño = número de enlaces). Cada línea es un enlace, coloreada por tipo de relación y con opacidad según la fidelidad declarada. Pasa el mouse sobre un nodo para resaltar su vecindario; clic en un nodo abre su ficha; clic en una línea muestra la nota de distorsión completa.
       </p>
@@ -21264,7 +21258,7 @@ function GrafoTraslacional({ escuelas, enlaces, filtro, onIrAEscuela }) {
         })}
       </svg>
       {enlaceActivo && (
-        <div style={{ marginTop: 10, padding: 10, background: COLORS.paperDark, borderRadius: 6, border: `1px solid ${COLORS.line}` }}>
+        <div style={{ marginTop: 10, padding: 10, background: COLORS.paperDark, borderRadius: 12, border: `1px solid ${COLORS.line}` }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
             <span style={{ width: 10, height: 10, borderRadius: "50%", background: (RELACION_INFO[enlaceActivo.relacion] || {}).color, display: "inline-block" }} />
             <span style={{ fontFamily: FONT_MONO, fontSize: 10.5, fontWeight: 700, textTransform: "uppercase", color: COLORS.ink }}>
@@ -21454,12 +21448,12 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
           onClick={() => setFilosofiaCienciaAbierta((v) => !v)}
           style={{
             display: "flex", alignItems: "center", gap: 8, cursor: "pointer",
-            background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: "10px 14px",
+            background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: "10px 14px",
           }}
         >
           {filosofiaCienciaAbierta ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
           <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 13.5, fontWeight: 700 }}>¿Qué es la inconmensurabilidad? Posiciones en filosofía de la ciencia</span>
-          <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft }}>(Kuhn, Popper, Feyerabend, Lakatos — por qué este diccionario no fuerza equivalencias)</span>
+          <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft }}>(Kuhn, Popper, Feyerabend, Lakatos — por qué este diccionario no fuerza equivalencias)</span>
         </div>
         {filosofiaCienciaAbierta && (
           <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: "14px 18px", display: "grid", gap: 12 }}>
@@ -21504,7 +21498,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
             cursor: "pointer",
             background: COLORS.paperDark,
             border: `1px solid ${COLORS.line}`,
-            borderRadius: 6,
+            borderRadius: 12,
             padding: "10px 14px",
           }}
         >
@@ -21512,7 +21506,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
           <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 13.5, fontWeight: 700 }}>
             Conceptos que atraviesan las 7 perspectivas
           </span>
-          <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft }}>
+          <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft }}>
             ({CONCEPTOS_TRANSVERSALES.length} nudos temáticos — introducción de referencia antes de navegar escuela por escuela)
           </span>
         </div>
@@ -21523,7 +21517,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "14px 0" }}>
         {Object.entries(RELACION_INFO).map(([k, v]) => (
-          <span key={k} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: v.color }}>
+          <span key={k} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, fontFamily: "'Quicksand', system-ui, sans-serif", color: v.color }}>
             <span style={{ width: 10, height: 10, borderRadius: "50%", background: v.color, display: "inline-block" }} />
             {k}
           </span>
@@ -21572,7 +21566,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
                 <div
                   style={{
                     display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 10,
-                    background: COLORS.paperDark, border: `1px solid ${COLORS.gold}`, borderRadius: 6, padding: "6px 10px",
+                    background: COLORS.paperDark, border: `1px solid ${COLORS.gold}`, borderRadius: 12, padding: "6px 10px",
                   }}
                 >
                   <span style={{ fontFamily: FONT_MONO, fontSize: 10, color: COLORS.gold, fontWeight: 700 }}>◆ modo estudio</span>
@@ -21655,36 +21649,36 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
       {vista === "psicopatologias" && <ComparadorPsicopatologias escuelas={escuelas} filtro={filtro} />}
 
       {formAbierto && vista === "glosario" && (
-        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 16, marginTop: 16 }}>
+        <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 16, marginTop: 16 }}>
           <div className="psq-2col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
             <div>
-              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Concepto A</div>
-              <select value={nuevoA.escuela} onChange={(e) => setNuevoA({ ...nuevoA, escuela: e.target.value })} style={{ width: "100%", marginBottom: 6, padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }}>
+              <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Concepto A</div>
+              <select value={nuevoA.escuela} onChange={(e) => setNuevoA({ ...nuevoA, escuela: e.target.value })} style={{ width: "100%", marginBottom: 6, padding: 6, borderRadius: 8, border: `1px solid ${COLORS.line}` }}>
                 {escuelas.map((e) => (
                   <option key={e.id} value={e.id}>
                     {e.nombre}
                   </option>
                 ))}
               </select>
-              <input placeholder="nombre del concepto" value={nuevoA.nombre} onChange={(e) => setNuevoA({ ...nuevoA, nombre: e.target.value })} style={{ width: "100%", padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }} />
+              <input placeholder="nombre del concepto" value={nuevoA.nombre} onChange={(e) => setNuevoA({ ...nuevoA, nombre: e.target.value })} style={{ width: "100%", padding: 6, borderRadius: 8, border: `1px solid ${COLORS.line}` }} />
             </div>
             <div>
-              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Concepto B</div>
-              <select value={nuevoB.escuela} onChange={(e) => setNuevoB({ ...nuevoB, escuela: e.target.value })} style={{ width: "100%", marginBottom: 6, padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }}>
+              <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Concepto B</div>
+              <select value={nuevoB.escuela} onChange={(e) => setNuevoB({ ...nuevoB, escuela: e.target.value })} style={{ width: "100%", marginBottom: 6, padding: 6, borderRadius: 8, border: `1px solid ${COLORS.line}` }}>
                 {escuelas.map((e) => (
                   <option key={e.id} value={e.id}>
                     {e.nombre}
                   </option>
                 ))}
               </select>
-              <input placeholder="nombre del concepto" value={nuevoB.nombre} onChange={(e) => setNuevoB({ ...nuevoB, nombre: e.target.value })} style={{ width: "100%", padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }} />
+              <input placeholder="nombre del concepto" value={nuevoB.nombre} onChange={(e) => setNuevoB({ ...nuevoB, nombre: e.target.value })} style={{ width: "100%", padding: 6, borderRadius: 8, border: `1px solid ${COLORS.line}` }} />
             </div>
           </div>
 
           <div className="psq-2col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginTop: 12 }}>
             <label>
-              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Tipo de relación</div>
-              <select value={relacion} onChange={(e) => setRelacion(e.target.value)} style={{ width: "100%", padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }}>
+              <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Tipo de relación</div>
+              <select value={relacion} onChange={(e) => setRelacion(e.target.value)} style={{ width: "100%", padding: 6, borderRadius: 8, border: `1px solid ${COLORS.line}` }}>
                 {Object.keys(RELACION_INFO).map((r) => (
                   <option key={r} value={r}>
                     {r}
@@ -21693,8 +21687,8 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
               </select>
             </label>
             <label>
-              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Grado de fidelidad</div>
-              <select value={fidelidad} onChange={(e) => setFidelidad(e.target.value)} style={{ width: "100%", padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }}>
+              <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Grado de fidelidad</div>
+              <select value={fidelidad} onChange={(e) => setFidelidad(e.target.value)} style={{ width: "100%", padding: 6, borderRadius: 8, border: `1px solid ${COLORS.line}` }}>
                 <option value="alta">alta</option>
                 <option value="media">media</option>
                 <option value="baja">baja</option>
@@ -21748,12 +21742,12 @@ function PanelEstadisticasDiccionario({ enlaces, escuelas }) {
         onClick={() => setAbierto(!abierto)}
         style={{
           display: "flex", alignItems: "center", gap: 8, cursor: "pointer",
-          background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: "10px 14px",
+          background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: "10px 14px",
         }}
       >
         {abierto ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
         <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 13.5, fontWeight: 700 }}>Estadísticas del diccionario</span>
-        <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft }}>
+        <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft }}>
           ({stats.total} enlaces · {stats.sinEnlaces.length} escuela{stats.sinEnlaces.length !== 1 ? "s" : ""} todavía sin ninguno)
         </span>
       </div>
@@ -21768,7 +21762,7 @@ function PanelEstadisticasDiccionario({ enlaces, escuelas }) {
                 return (
                   <div key={nombre} style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <span style={{ width: 150, fontFamily: FONT_MONO, fontSize: 10.5, color: info.color, flexShrink: 0 }}>{info.abrev} {nombre}</span>
-                    <div style={{ flex: 1, background: COLORS.paperDark, borderRadius: 3, height: 10, overflow: "hidden" }}>
+                    <div style={{ flex: 1, background: COLORS.paperDark, borderRadius: 6, height: 10, overflow: "hidden" }}>
                       <div style={{ width: `${pct}%`, background: info.color, height: "100%" }} />
                     </div>
                     <span style={{ fontFamily: FONT_MONO, fontSize: 10, color: COLORS.inkSoft, width: 42, textAlign: "right", flexShrink: 0 }}>{n} ({pct}%)</span>
@@ -21845,10 +21839,10 @@ function IntroConceptosTransversales() {
             key={c.id}
             onClick={() => setAbierto(c.id)}
             style={{
-              fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+              fontFamily: "'Quicksand', system-ui, sans-serif",
               fontSize: 10.5,
               padding: "4px 9px",
-              borderRadius: 4,
+              borderRadius: 8,
               cursor: "pointer",
               border: `1px solid ${abierto === c.id ? COLORS.primaryDark : COLORS.line}`,
               background: abierto === c.id ? COLORS.paperDark : "#fff",
@@ -21868,7 +21862,7 @@ function IntroConceptosTransversales() {
               return (
                 <div key={i} style={{ borderLeft: `4px solid ${color}`, paddingLeft: 12 }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap", marginBottom: 3 }}>
-                    <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color, textTransform: "uppercase" }}>{p.perspectiva}</span>
+                    <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color, textTransform: "uppercase" }}>{p.perspectiva}</span>
                     <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>{p.termino}</span>
                   </div>
                   <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.5 }}>{p.definicion}</p>
@@ -21905,7 +21899,7 @@ function ComparadorCampo({ escuelas, campo, filtro, colorEtiqueta }) {
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))", gap: 14, marginBottom: 6 }}>
               {escuelasVisibles.map((e) => (
-                <div key={e.id} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 6, padding: 14 }}>
+                <div key={e.id} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 12, padding: 14 }}>
                   <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: 14, marginBottom: 8 }}>{e.nombre}</div>
                   <div>
                     {(e[campo] || []).map((t, i) => (
@@ -21933,7 +21927,7 @@ function ComparadorPsicopatologias({ escuelas, filtro }) {
 
   return (
     <div style={{ display: "grid", gap: 20 }}>
-      <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 6, padding: 12, marginBottom: 4 }}>
+      <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 12, padding: 12, marginBottom: 4 }}>
         <AlertTriangle size={15} color={COLORS.gold} style={{ flexShrink: 0, marginTop: 2 }} />
         <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.ink, lineHeight: 1.5 }}>
           Esta comparación pone una al lado de otra las concepciones de psicopatología <em>en los propios términos de cada escuela</em>. No implica que describan el mismo fenómeno: comparar no es igualar. Para la traducción explícita entre conceptos —con su tipo de relación y su nota de distorsión— usa el glosario.
@@ -21954,7 +21948,7 @@ function ComparadorPsicopatologias({ escuelas, filtro }) {
             </div>
             <div style={{ display: "grid", gap: 10 }}>
               {escuelasVisibles.map((e) => (
-                <div key={e.id} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 6, padding: 14 }}>
+                <div key={e.id} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 12, padding: 14 }}>
                   <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: 14, marginBottom: 6 }}>{e.nombre}</div>
                   <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.55, color: COLORS.ink }}>{e.psicopatologia}</p>
                 </div>
@@ -22080,7 +22074,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
           if (escuelasP.length === 0) return null;
           return (
             <div key={persp} style={{ marginBottom: 10 }}>
-              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: pColor, textTransform: "uppercase", marginBottom: 4 }}>{persp}</div>
+              <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: pColor, textTransform: "uppercase", marginBottom: 4 }}>{persp}</div>
               {escuelasP.map((e) => (
                 <div
                   key={e.id}
@@ -22088,7 +22082,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                   style={{
                     padding: "6px 10px",
                     marginBottom: 3,
-                    borderRadius: 4,
+                    borderRadius: 8,
                     cursor: "pointer",
                     fontFamily: "'Fraunces', Georgia, serif",
                     fontSize: 12.5,
@@ -22106,7 +22100,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
 
       <div>
         {escuelaActual && (
-          <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 18, marginBottom: 16 }}>
+          <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 18, marginBottom: 16 }}>
             <Sello color={color}>{escuelaActual.perspectiva}</Sello>
             <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 19, margin: "8px 0 14px" }}>{escuelaActual.nombre}</h3>
 
@@ -22116,10 +22110,10 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                   key={i}
                   onClick={() => setConceptoGlosario(c.termino)}
                   style={{
-                    fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                    fontFamily: "'Quicksand', system-ui, sans-serif",
                     fontSize: 11,
                     padding: "4px 9px",
-                    borderRadius: 4,
+                    borderRadius: 8,
                     cursor: "pointer",
                     border: `1px solid ${normalizarTermino(conceptoGlosario) === normalizarTermino(c.termino) ? color : COLORS.line}`,
                     background: normalizarTermino(conceptoGlosario) === normalizarTermino(c.termino) ? color : "#fff",
@@ -22133,13 +22127,13 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
 
             {conceptoActual ? (
               <div style={{ borderTop: `1px dashed ${COLORS.line}`, paddingTop: 14 }}>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 6 }}>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 6 }}>
                   {escuelaActual.nombre} → {conceptoActual.termino}
                 </div>
                 <p style={{ margin: "0 0 8px", fontFamily: "'Lora', Georgia, serif", fontSize: 14.5, lineHeight: 1.6, color: COLORS.ink }}>
                   {conceptoActual.definicion}
                 </p>
-                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 16 }}>— {conceptoActual.fuente}</div>
+                <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 16 }}>— {conceptoActual.fuente}</div>
 
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8, flexWrap: "wrap", gap: 8 }}>
                   <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet }}>
@@ -22177,7 +22171,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 4 }}>
                         <span
                           style={{
-                            fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                            fontFamily: "'Quicksand', system-ui, sans-serif",
                             fontSize: 10.5,
                             fontWeight: 700,
                             color: info.color,
@@ -22189,7 +22183,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                           {info.abrev} · {l.relacion}
                         </span>
                         <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>{otro.nombre}</span>
-                        <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: otroColor }}>({otraEscuela?.nombre || "escuela eliminada"})</span>
+                        <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: otroColor }}>({otraEscuela?.nombre || "escuela eliminada"})</span>
                         <span style={{ marginLeft: "auto" }}><BarraFidelidad nivel={l.fidelidad} color={info.color} /></span>
                       </div>
                       <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.5, color: COLORS.ink }}>
@@ -22916,7 +22910,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
           cifras y controles avanzados ocultos detrás de desplegables para
           no competir visualmente con el contenido. */}
       <div style={{ background: COLORS.primaryDark, padding: "14px clamp(14px, 4vw, 24px)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", rowGap: 10 }}>
-        <FileText color="rgba(255,255,255,0.85)" size={18} strokeWidth={1.75} style={{ flexShrink: 0 }} />
+        <Sparkles className="psq-flotar" color="rgba(255,255,255,0.9)" size={19} strokeWidth={1.75} style={{ flexShrink: 0 }} />
         <button
           onClick={() => setStatsAbiertas((v) => !v)}
           aria-expanded={statsAbiertas}
@@ -22946,7 +22940,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
               textOverflow: "ellipsis",
             }}
           >
-            Expediente comparado de las psicoterapias
+            Psicoterapias, comparadas
           </span>
           <ChevronDown
             size={13}
@@ -22990,7 +22984,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             />
             {coincidenciasPagina.soportado && filtro.trim().length >= 2 && (
               <div style={{ position: "absolute", right: 6, top: "50%", transform: "translateY(-50%)", display: "flex", alignItems: "center", gap: 1 }}>
-                <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: "rgba(255,255,255,0.65)", marginRight: 2, whiteSpace: "nowrap" }}>
+                <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: "rgba(255,255,255,0.65)", marginRight: 2, whiteSpace: "nowrap" }}>
                   {coincidenciasPagina.total ? `${coincidenciasPagina.indice + 1}/${coincidenciasPagina.total}` : "0"}
                 </span>
                 <button
@@ -23019,7 +23013,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
               onClick={() => { setTerminoBuscadorGlobal(filtro.trim()); setTab("buscador"); }}
               className="psq-fade-in"
               style={{
-                fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                fontFamily: "'Quicksand', system-ui, sans-serif",
                 fontSize: 10,
                 color: "#fff",
                 background: "rgba(255,255,255,0.14)",
@@ -23133,7 +23127,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
                     tono={COLORS.garnet}
                     onClick={() => { restablecerDeFabrica(); setMasOpcionesAbierto(false); }}
                   />
-                  <div style={{ padding: "6px 10px 2px", fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft }}>
+                  <div style={{ padding: "6px 10px 2px", fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, color: COLORS.inkSoft }}>
                     {guardando ? "guardando…" : mensaje || "todos los cambios se guardan automáticamente"}
                   </div>
                 </div>
@@ -23154,7 +23148,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             gap: "8px 20px",
             flexWrap: "wrap",
             color: "rgba(255,255,255,0.75)",
-            fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+            fontFamily: "'Quicksand', system-ui, sans-serif",
             fontSize: 11,
           }}
         >
@@ -23202,7 +23196,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
                 display: "flex",
                 alignItems: "center",
                 gap: 6,
-                fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                fontFamily: "'Quicksand', system-ui, sans-serif",
                 fontSize: 12.5,
                 borderRadius: "6px 6px 0 0",
                 marginTop: activo ? 0 : 4,
@@ -23245,7 +23239,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13 }}>
               Salud de los datos
             </span>
-            <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft }}>
+            <span style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 10, color: COLORS.inkSoft }}>
               recalculado en vivo tras cada cambio · {escuelas.length} escuelas · {enlaces.length + enlacesTecnicas.length} enlaces
             </span>
             <button
@@ -23259,7 +23253,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
 
           {integridad.problemas.length > 0 && (
             <div style={{ marginBottom: 8 }}>
-              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, fontWeight: 700, color: STATUS_COLORS.error, textTransform: "uppercase", marginBottom: 4 }}>
+              <div style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, fontWeight: 700, color: STATUS_COLORS.error, textTransform: "uppercase", marginBottom: 4 }}>
                 ✗ {integridad.problemas.length} problema(s) — referencias rotas, requieren corrección
               </div>
               {integridad.problemas.map((p, i) => (
@@ -23283,7 +23277,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             <div>
               <div
                 onClick={() => setMostrarAdvertenciasIntegridad(!mostrarAdvertenciasIntegridad)}
-                style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, fontWeight: 700, color: STATUS_COLORS.advertencia, textTransform: "uppercase", marginBottom: 4, cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}
+                style={{ fontFamily: "'Quicksand', system-ui, sans-serif", fontSize: 9.5, fontWeight: 700, color: STATUS_COLORS.advertencia, textTransform: "uppercase", marginBottom: 4, cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}
               >
                 {mostrarAdvertenciasIntegridad ? <ChevronDown size={11} /> : <ChevronRight size={11} />}
                 ⚠ {integridad.advertencias.length} advertencia(s) — contenido opcional aún no sembrado (no son errores)
