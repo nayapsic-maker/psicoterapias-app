@@ -17960,13 +17960,18 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
 
   return (
     <div
+      key={perspectivaId}
+      className="psq-fade-in"
       style={{
-        // Textura de fondo sutil, propia de cada perspectiva: un patrón de
-        // puntos tenue teñido con su color, para que perspectivas
-        // distintas "se sientan" distintas al entrar, no solo por el
-        // color de los chips de arriba.
-        backgroundImage: `radial-gradient(${(PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre] || COLORS.primary)}14 1px, transparent 1.5px)`,
-        backgroundSize: "22px 22px",
+        // Identidad visual por perspectiva: una mancha de color difuminada
+        // detrás del encabezado, tejida con el patrón de puntos existente,
+        // para que cada una de las 7 perspectivas "se sienta" distinta al
+        // entrar — no solo por el color de los chips, sino por el propio
+        // fondo de la pantalla. Cambia con transición suave de color.
+        position: "relative",
+        backgroundImage: `radial-gradient(${(PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre] || COLORS.primary)}14 1px, transparent 1.5px), radial-gradient(560px 320px at 6% 0%, ${(PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre] || COLORS.primary)}22, transparent 65%), radial-gradient(420px 280px at 96% 6%, ${(PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre] || COLORS.primary)}14, transparent 60%)`,
+        backgroundSize: "22px 22px, auto, auto",
+        transition: "background-image 0.4s ease",
         margin: "-8px",
         padding: 8,
       }}
@@ -17991,12 +17996,18 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
                 fontSize: 11.5,
                 fontWeight: activo ? 700 : 400,
                 padding: "7px 12px",
-                borderRadius: 5,
+                borderRadius: 20,
                 cursor: "pointer",
                 color: activo ? "#fff" : c,
                 background: activo ? c : "#fff",
                 border: `1.5px solid ${c}`,
+                transform: activo ? "scale(1.045)" : "scale(1)",
+                boxShadow: activo ? `0 4px 14px ${c}55` : "none",
+                transition: "transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease",
+                display: "inline-block",
               }}
+              onMouseEnter={(ev) => { if (!activo) ev.currentTarget.style.transform = "scale(1.03)"; }}
+              onMouseLeave={(ev) => { if (!activo) ev.currentTarget.style.transform = "scale(1)"; }}
             >
               {p.nombre} <span style={{ opacity: 0.75 }}>({n})</span>
             </span>
