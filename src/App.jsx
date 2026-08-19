@@ -121,8 +121,8 @@ const RELACION_INFO = {
    inline original para no arriesgar regresiones en 10.000 líneas
    ya probadas)
    ============================================================ */
-const FONT_MONO = "ui-monospace, monospace";
-const FONT_SERIF = "Georgia, serif";
+const FONT_MONO = "'JetBrains Mono', ui-monospace, monospace";
+const FONT_SERIF = "'Fraunces', Georgia, serif";
 // Estilo tipográfico ÚNICO para cualquier referencia bibliográfica plana
 // (una entrada de CITAS_AMPLIADAS en formato string o de e.referencias),
 // usado consistentemente en toda la app para que las 74 fichas de escuela
@@ -136,7 +136,7 @@ const FONT_SERIF = "Georgia, serif";
 function estiloReferenciaBibliografica() {
   return {
     margin: "0 0 8px",
-    fontFamily: "ui-serif, Georgia, serif",
+    fontFamily: "'Lora', Georgia, serif",
     fontSize: 12,
     lineHeight: 1.55,
     color: COLORS.ink,
@@ -144,7 +144,7 @@ function estiloReferenciaBibliografica() {
     paddingLeft: 18,
   };
 }
-const FONT_TEXTO = "ui-serif, Georgia, serif";
+const FONT_TEXTO = "'Lora', Georgia, serif";
 const CAMPO_STYLE = { width: "100%", padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` };
 
 /* Clasificación aproximada del criterio de verdad declarado en cada
@@ -14845,7 +14845,7 @@ function Sello({ children, color }) {
         display: "inline-flex",
         alignItems: "center",
         gap: 4,
-        fontFamily: "Georgia, serif",
+        fontFamily: "'Fraunces', Georgia, serif",
         fontStyle: "italic",
         fontSize: 11,
         letterSpacing: "0.03em",
@@ -14945,7 +14945,7 @@ function Etiqueta({ children }) {
   return (
     <span
       style={{
-        fontFamily: "ui-monospace, monospace",
+        fontFamily: "'JetBrains Mono', ui-monospace, monospace",
         fontSize: 10.5,
         color: COLORS.inkSoft,
         background: COLORS.paperDark,
@@ -14968,7 +14968,7 @@ function EtiquetaDefinible({ termino, escuelaId, tipo, onAbrir, color, icono, co
       onClick={() => onAbrir(escuelaId, termino, tipo)}
       title={icono === "→" ? "Ver en el diccionario traslacional" : "Ver definición"}
       style={{
-        fontFamily: "ui-monospace, monospace",
+        fontFamily: "'JetBrains Mono', ui-monospace, monospace",
         fontSize: 10.5,
         color: color || COLORS.primaryDark,
         background: COLORS.cardBg,
@@ -15037,8 +15037,8 @@ function PanelHistorial({ historial, onCerrar }) {
         >
           <X size={17} />
         </button>
-        <h3 style={{ fontFamily: "Georgia, serif", fontSize: 19, margin: "0 0 4px" }}>Historial de ediciones</h3>
-        <p style={{ fontSize: 12, color: COLORS.inkSoft, margin: "0 0 14px", fontFamily: "ui-serif, Georgia, serif" }}>
+        <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 19, margin: "0 0 4px" }}>Historial de ediciones</h3>
+        <p style={{ fontSize: 12, color: COLORS.inkSoft, margin: "0 0 14px", fontFamily: "'Lora', Georgia, serif" }}>
           Registro automático de creaciones, ediciones y eliminaciones en esta sesión de la aplicación, detectado por comparación de cada guardado con el anterior.
         </p>
 
@@ -15057,15 +15057,15 @@ function PanelHistorial({ historial, onCerrar }) {
             {visibles.map((h, i) => (
               <div key={i} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `3px solid ${colorAccion[h.accion] || COLORS.primary}`, borderRadius: 4, padding: "8px 12px" }}>
                 <div style={{ display: "flex", gap: 8, alignItems: "baseline", flexWrap: "wrap" }}>
-                  <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, textTransform: "uppercase", color: colorAccion[h.accion] || COLORS.primary, fontWeight: 700 }}>
+                  <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: colorAccion[h.accion] || COLORS.primary, fontWeight: 700 }}>
                     {h.accion}
                   </span>
-                  <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.inkSoft }}>{h.tipo}</span>
-                  <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.inkSoft, marginLeft: "auto" }}>
+                  <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft }}>{h.tipo}</span>
+                  <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, marginLeft: "auto" }}>
                     {new Date(h.ts).toLocaleString("es-ES", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })}
                   </span>
                 </div>
-                <div style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 13, color: COLORS.ink, marginTop: 2 }}>{h.nombre}</div>
+                <div style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 13, color: COLORS.ink, marginTop: 2 }}>{h.nombre}</div>
               </div>
             ))}
           </div>
@@ -15139,26 +15139,26 @@ function ModalDefinicion({ dato, onCerrar, onIrAProtocolo, onIrAEscuela }) {
           <X size={17} />
         </button>
         <Sello color={tipo === "técnica" ? COLORS.clay : COLORS.primary}>{tipo || "término"}</Sello>
-        <h3 style={{ fontFamily: "Georgia, serif", fontSize: 19, margin: "10px 0 14px" }}>{termino}</h3>
+        <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 19, margin: "10px 0 14px" }}>{termino}</h3>
         {encontrado ? (
           <>
             <div style={{ marginBottom: 12 }}>
-              <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, textTransform: "uppercase", color: COLORS.primary, marginBottom: 3 }}>Definición</div>
-              <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 14.5, lineHeight: 1.6, color: COLORS.ink, margin: 0 }}>{dato.definicion}</p>
+              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, textTransform: "uppercase", color: COLORS.primary, marginBottom: 3 }}>Definición</div>
+              <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 14.5, lineHeight: 1.6, color: COLORS.ink, margin: 0 }}>{dato.definicion}</p>
             </div>
             {dato.funcion && (
               <div style={{ marginBottom: 12 }}>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, textTransform: "uppercase", color: COLORS.sage, marginBottom: 3 }}>Función</div>
-                <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 14, lineHeight: 1.6, color: COLORS.ink, margin: 0 }}>{dato.funcion}</p>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, textTransform: "uppercase", color: COLORS.sage, marginBottom: 3 }}>Función</div>
+                <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 14, lineHeight: 1.6, color: COLORS.ink, margin: 0 }}>{dato.funcion}</p>
               </div>
             )}
             {dato.contextos && (
               <div style={{ marginBottom: 12 }}>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>Contextos / dificultades</div>
-                <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 14, lineHeight: 1.6, color: COLORS.ink, margin: 0 }}>{dato.contextos}</p>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>Contextos / dificultades</div>
+                <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 14, lineHeight: 1.6, color: COLORS.ink, margin: 0 }}>{dato.contextos}</p>
               </div>
             )}
-            <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 11, color: COLORS.inkSoft, borderTop: `1px dashed ${COLORS.line}`, paddingTop: 10 }}>
+            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 11, color: COLORS.inkSoft, borderTop: `1px dashed ${COLORS.line}`, paddingTop: 10 }}>
               — {dato.fuente}
             </div>
             {escuelaId && (
@@ -15179,7 +15179,7 @@ function ModalDefinicion({ dato, onCerrar, onIrAProtocolo, onIrAEscuela }) {
         ) : (
           <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 6, padding: 12 }}>
             <AlertTriangle size={16} color={COLORS.gold} style={{ flexShrink: 0, marginTop: 2 }} />
-            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 13.5, lineHeight: 1.5, color: COLORS.ink }}>{dato.mensajePendiente}</p>
+            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.5, color: COLORS.ink }}>{dato.mensajePendiente}</p>
           </div>
         )}
       </div>
@@ -15246,7 +15246,7 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
           <X size={17} />
         </button>
           <Sello color={COLORS.inkSoft}>{autor.esTambienEscuelaPropia ? "teoría fundante · autor híbrido" : "teoría fundante"}</Sello>
-          <h3 style={{ fontFamily: "Georgia, serif", fontSize: 19, margin: "10px 0 2px" }}>{autor.nombre}</h3>
+          <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 19, margin: "10px 0 2px" }}>{autor.nombre}</h3>
           <p style={{ fontFamily: FONT_MONO, fontSize: 11, color: COLORS.inkSoft, margin: "0 0 8px" }}>{autor.autoresPrincipales} · {autor.disciplina}</p>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 14 }}>
@@ -15273,7 +15273,7 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
 
           {esHibridoDePerspectivas && (
             <div style={{ display: "flex", alignItems: "center", gap: 8, background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: "8px 12px", marginBottom: 14 }}>
-              <span style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, color: COLORS.ink, fontStyle: "italic" }}>
+              <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.ink, fontStyle: "italic" }}>
                 Autor de doble filiación: fundamenta escuelas en {persps.length} perspectivas distintas ({persps.join(" y ")}). No es un solapamiento accidental — cada perspectiva abajo agrupa las escuelas concretas que lo citan en ese terreno.
               </span>
             </div>
@@ -15281,7 +15281,7 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
 
           {autor.esTambienEscuelaPropia && (
             <div style={{ display: "flex", alignItems: "center", gap: 8, background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: "8px 12px", marginBottom: 14 }}>
-              <span style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, color: COLORS.ink, fontStyle: "italic" }}>
+              <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.ink, fontStyle: "italic" }}>
                 Este autor administra también su propia escuela clínica en la app.
               </span>
               <Boton small onClick={() => { onIrAEscuela(autor.esTambienEscuelaPropia); onCerrar(); }}>
@@ -15303,13 +15303,13 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
               {autor.ontologia && (
                 <div>
                   <div style={{ fontFamily: FONT_MONO, fontSize: 10, textTransform: "uppercase", color: COLORS.sage, marginBottom: 3 }}>Ontología</div>
-                  <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 13, lineHeight: 1.5, color: COLORS.ink, margin: 0 }}>{autor.ontologia}</p>
+                  <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.5, color: COLORS.ink, margin: 0 }}>{autor.ontologia}</p>
                 </div>
               )}
               {autor.epistemologia && (
                 <div>
                   <div style={{ fontFamily: FONT_MONO, fontSize: 10, textTransform: "uppercase", color: COLORS.sage, marginBottom: 3 }}>Epistemología</div>
-                  <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 13, lineHeight: 1.5, color: COLORS.ink, margin: 0 }}>{autor.epistemologia}</p>
+                  <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.5, color: COLORS.ink, margin: 0 }}>{autor.epistemologia}</p>
                 </div>
               )}
             </div>
@@ -15374,9 +15374,38 @@ function activarConTeclado(fn) {
   };
 }
 
+function MenuOpcion({ icon, label, detalle, onClick, activo, tono }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        width: "100%",
+        border: "none",
+        background: activo ? COLORS.paperDark : "transparent",
+        borderRadius: 6,
+        padding: "8px 10px",
+        cursor: onClick ? "pointer" : "default",
+        textAlign: "left",
+        color: tono || COLORS.ink,
+      }}
+      onMouseEnter={onClick ? (ev) => { if (!activo) ev.currentTarget.style.background = COLORS.paperDark; } : undefined}
+      onMouseLeave={onClick ? (ev) => { if (!activo) ev.currentTarget.style.background = "transparent"; } : undefined}
+    >
+      <span style={{ width: 16, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: tono || COLORS.inkSoft }}>{icon}</span>
+      <span style={{ display: "grid" }}>
+        <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 13, fontWeight: 500 }}>{label}</span>
+        {detalle && <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft }}>{detalle}</span>}
+      </span>
+    </button>
+  );
+}
+
 function Boton({ children, onClick, variant = "default", small, title, style, disabled, "aria-label": ariaLabel }) {
   const base = {
-    fontFamily: "ui-monospace, monospace",
+    fontFamily: "'JetBrains Mono', ui-monospace, monospace",
     fontSize: small ? 11 : 12.5,
     padding: small ? "4px 8px" : "7px 14px",
     borderRadius: 4,
@@ -15404,7 +15433,7 @@ function CampoTexto({ label, value, onChange, area }) {
   const Comp = area ? "textarea" : "input";
   return (
     <label style={{ display: "block", marginBottom: 10 }}>
-      <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.05em" }}>
         {label}
       </div>
       <Comp
@@ -15413,7 +15442,7 @@ function CampoTexto({ label, value, onChange, area }) {
         rows={area ? 3 : undefined}
         style={{
           width: "100%",
-          fontFamily: "ui-serif, Georgia, serif",
+          fontFamily: "'Lora', Georgia, serif",
           fontSize: 13.5,
           padding: "6px 8px",
           border: `1px solid ${COLORS.line}`,
@@ -15432,7 +15461,7 @@ function ListaEditable({ label, items, onChange }) {
   const [nuevo, setNuevo] = useState("");
   return (
     <div style={{ marginBottom: 10 }}>
-      <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.05em" }}>
         {label}
       </div>
       <div style={{ marginBottom: 6 }}>
@@ -15727,7 +15756,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
             width: "100%",
             padding: "12px 16px",
             fontSize: 15,
-            fontFamily: "ui-serif, Georgia, serif",
+            fontFamily: "'Lora', Georgia, serif",
             border: `1.5px solid ${COLORS.primary}`,
             borderRadius: 6,
             outline: "none",
@@ -15848,7 +15877,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
               if (sugerencias.length === 0) return null;
               return (
                 <div style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                  <span style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 13, color: COLORS.inkSoft, fontStyle: "italic" }}>¿Quisiste decir…?</span>
+                  <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 13, color: COLORS.inkSoft, fontStyle: "italic" }}>¿Quisiste decir…?</span>
                   {sugerencias.map((s) => (
                     <button
                       key={s}
@@ -15869,7 +15898,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
 
       {resultados && total > 0 && (
         <div style={{ display: "grid", gap: 24 }}>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 11, color: COLORS.inkSoft }}>{total} resultados encontrados, ordenados por relevancia dentro de cada bloque</div>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 11, color: COLORS.inkSoft }}>{total} resultados encontrados, ordenados por relevancia dentro de cada bloque</div>
 
           {resultados.perspectivasR.length > 0 && (
             <BloqueResultados titulo="Perspectivas y su contexto" color={COLORS.primary}>
@@ -16088,7 +16117,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
 function BloqueResultados({ titulo, color, children }) {
   return (
     <div>
-      <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.04em", color, marginBottom: 10, borderBottom: `1px solid ${color}`, paddingBottom: 6 }}>
+      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.04em", color, marginBottom: 10, borderBottom: `1px solid ${color}`, paddingBottom: 6 }}>
         {titulo}
       </div>
       <div style={{ display: "grid", gap: 8 }}>{children}</div>
@@ -16206,7 +16235,7 @@ function ResultadoItem({ color, etiqueta, titulo, texto, onClick, query, modoEst
       style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 6, padding: "10px 14px", cursor: "pointer" }}
     >
       <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap", marginBottom: 3 }}>
-        <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color, textTransform: "uppercase" }}>{etiqueta}</span>
+        <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color, textTransform: "uppercase" }}>{etiqueta}</span>
         <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 14 }}>
           <TextoResaltado texto={titulo} query={query} />
         </span>
@@ -16214,7 +16243,7 @@ function ResultadoItem({ color, etiqueta, titulo, texto, onClick, query, modoEst
       {texto && (
         <p
           style={{
-            margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.ink,
+            margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.ink,
             overflow: modoEstudio ? "visible" : "hidden", textOverflow: modoEstudio ? "clip" : "ellipsis",
             display: modoEstudio ? "block" : "-webkit-box", WebkitLineClamp: modoEstudio ? "unset" : 2, WebkitBoxOrient: "vertical",
           }}
@@ -16754,7 +16783,7 @@ function MapaConceptualEscuelas({ escuelas, onIrAEscuela }) {
           value={buscarEscuela}
           onChange={(ev) => setBuscarEscuela(ev.target.value)}
           placeholder="Ir directo a una escuela…"
-          style={{ ...CAMPO_STYLE, fontSize: 12.5, fontFamily: "ui-serif, Georgia, serif", padding: "6px 10px" }}
+          style={{ ...CAMPO_STYLE, fontSize: 12.5, fontFamily: "'Lora', Georgia, serif", padding: "6px 10px" }}
         />
         {coincidenciasBusqueda.length > 0 && (
           <div style={{ position: "absolute", zIndex: 6, top: "100%", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, marginTop: 3 }}>
@@ -16888,13 +16917,13 @@ function MapaConceptualEscuelas({ escuelas, onIrAEscuela }) {
             {nodoSeleccion.aniosAutor && <span>· {nodoSeleccion.aniosAutor}</span>}
             {ANIO_ORIGEN[nodoSeleccion.e.id] && <span>· escuela fundada ≈ {ANIO_ORIGEN[nodoSeleccion.e.id].anio}</span>}
           </div>
-          <p style={{ margin: "6px 0 0", fontFamily: "ui-serif, Georgia, serif", fontSize: 12, color: COLORS.ink, lineHeight: 1.5, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+          <p style={{ margin: "6px 0 0", fontFamily: "'Lora', Georgia, serif", fontSize: 12, color: COLORS.ink, lineHeight: 1.5, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
             {truncarConSentido(nodoSeleccion.e.fundamentacion, 150, 70)}
           </p>
         </div>
       )}
       {!nodoSeleccion && (
-        <p style={{ margin: "8px 2px 0", fontFamily: "ui-serif, Georgia, serif", fontSize: 11.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
+        <p style={{ margin: "8px 2px 0", fontFamily: "'Lora', Georgia, serif", fontSize: 11.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
           Cada punto muestra el nombre de su subfamilia. Clic en una perspectiva para acercarte a su territorio; clic en un punto para abrir su recuadro (autor, años, fundación y definición) fijo aquí abajo; clic en el nombre del recuadro para abrir la ficha completa.
         </p>
       )}
@@ -16911,6 +16940,56 @@ const ESCUELA_REPRESENTATIVA_POR_PERSPECTIVA = {
   "Transpersonal": { id: "t1", motivo: "la psicología humanista-transpersonal de Maslow, puente hacia lo transpersonal" },
   "Integradora": { id: "i2", motivo: "el Eclecticismo Técnico de Lazarus, pionero explícito del movimiento de integración" },
 };
+
+function DetalleCobertura({ escuelas, enlaces, glosario, protocolos, nudos }) {
+  const [abierto, setAbierto] = useState(false);
+  const stats = [
+    { n: 7, label: "perspectivas", color: COLORS.primaryDark },
+    { n: escuelas.length, label: "escuelas", color: COLORS.garnet },
+    { n: enlaces.length, label: "enlaces traslacionales", color: COLORS.clay },
+    { n: glosario.length, label: "términos de glosario", color: COLORS.sage },
+    { n: protocolos, label: "protocolos y técnicas", color: COLORS.gold },
+    { n: nudos, label: "nudos temáticos", color: COLORS.primaryDark },
+  ];
+  return (
+    <div style={{ marginBottom: 22 }}>
+      <button
+        onClick={() => setAbierto((v) => !v)}
+        aria-expanded={abierto}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          padding: "4px 0",
+          color: COLORS.inkSoft,
+          fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+          fontSize: 11,
+        }}
+      >
+        <span>
+          {escuelas.length} escuelas · {glosario.length} términos · {protocolos} protocolos y técnicas — alcance completo del contenido
+        </span>
+        <ChevronDown size={12} style={{ transform: abierto ? "rotate(180deg)" : "none", transition: "transform 0.2s ease", flexShrink: 0 }} />
+      </button>
+      {abierto && (
+        <div
+          className="psq-fade-in"
+          style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(120px, 100%), 1fr))", gap: 10, marginTop: 10 }}
+        >
+          {stats.map((s) => (
+            <div key={s.label} style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `3px solid ${s.color}`, borderRadius: 6, padding: "12px 10px", textAlign: "center" }}>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: 22, color: s.color }}>{s.n}</div>
+              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, marginTop: 2 }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAEscuela }) {
   const perspectivas = FUNDAMENTOS_PERSPECTIVAS;
@@ -16929,31 +17008,21 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
       />
 
       <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20, marginTop: 16, marginBottom: 20 }}>
-        <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 14.5, lineHeight: 1.65, color: COLORS.ink, margin: 0 }}>
+        <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 14.5, lineHeight: 1.65, color: COLORS.ink, margin: 0 }}>
           Cada escuela de psicoterapia responde, con su propio vocabulario, a las mismas preguntas de fondo: ¿qué es el sufrimiento psíquico?, ¿cuál es el rol del terapeuta?, ¿qué produce el cambio? Esta aplicación organiza esas respuestas en ocho módulos: una introducción general (este), siete módulos dedicados a cada gran perspectiva —con su contexto histórico, sus fundamentos filosóficos, sus escuelas internas, técnicas y protocolos— y un módulo final de comparación explícita. El objetivo no es demostrar que todas las escuelas dicen lo mismo con otras palabras, sino exactamente lo contrario: mostrar con precisión dónde convergen y dónde divergen, y por qué.
         </p>
       </div>
 
-      {/* Resumen visual de cobertura: da una idea de tamaño y profundidad
-          de la app de un vistazo, antes de sumergirse en cualquier
-          módulo. Los números vienen de las constantes semilla, no del
-          estado editable en vivo — si el usuario ha editado su copia,
-          esto refleja el contenido base con el que arrancó. */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(120px, 100%), 1fr))", gap: 10, marginBottom: 20 }}>
-        {[
-          { n: 7, label: "perspectivas", color: COLORS.primaryDark },
-          { n: escuelas.length, label: "escuelas", color: COLORS.garnet },
-          { n: ENLACES_SEED.length, label: "enlaces traslacionales", color: COLORS.clay },
-          { n: GLOSARIO.length, label: "términos de glosario", color: COLORS.sage },
-          { n: Object.keys(PROTOCOLOS_SEED).length + Object.values(PROCEDIMIENTOS_CLINICOS).reduce((a, v) => a + v.length, 0), label: "protocolos y técnicas", color: COLORS.gold },
-          { n: CONCEPTOS_TRANSVERSALES.length, label: "nudos temáticos", color: COLORS.primaryDark },
-        ].map((s) => (
-          <div key={s.label} style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `3px solid ${s.color}`, borderRadius: 6, padding: "12px 10px", textAlign: "center" }}>
-            <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 24, color: s.color }}>{s.n}</div>
-            <div style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: COLORS.inkSoft, marginTop: 2 }}>{s.label}</div>
-          </div>
-        ))}
-      </div>
+      {/* Resumen de cobertura: discreto por defecto (una línea elegante),
+          con el desglose completo disponible al desplegar — evita que la
+          app abra con una pared de cifras compitiendo con el contenido. */}
+      <DetalleCobertura
+        escuelas={escuelas}
+        enlaces={ENLACES_SEED}
+        glosario={GLOSARIO}
+        protocolos={Object.keys(PROTOCOLOS_SEED).length + Object.values(PROCEDIMIENTOS_CLINICOS).reduce((a, v) => a + v.length, 0)}
+        nudos={CONCEPTOS_TRANSVERSALES.length}
+      />
 
       {setModoEstudio && (
         <div
@@ -16998,24 +17067,24 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
               <Sello color={color}>{p.nombre}</Sello>
               {modoEstudio ? (
                 <>
-                  <p style={{ margin: "10px 0 6px", fontFamily: "ui-serif, Georgia, serif", fontSize: 13, lineHeight: 1.6, color: COLORS.ink }}>
+                  <p style={{ margin: "10px 0 6px", fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.6, color: COLORS.ink }}>
                     {p.contexto?.definicion || p.origenHistorico}
                   </p>
                   {p.contexto?.historia && (
                     <>
                       <div style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: COLORS.inkSoft, textTransform: "uppercase", marginTop: 8 }}>Historia y surgimiento</div>
-                      <p style={{ margin: "3px 0 6px", fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.55, color: COLORS.inkSoft }}>{p.contexto.historia}</p>
+                      <p style={{ margin: "3px 0 6px", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.55, color: COLORS.inkSoft }}>{p.contexto.historia}</p>
                     </>
                   )}
                   {p.contexto?.dilemas && (
                     <>
                       <div style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: COLORS.inkSoft, textTransform: "uppercase", marginTop: 8 }}>Evolución y dilemas</div>
-                      <p style={{ margin: "3px 0 0", fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.55, color: COLORS.inkSoft }}>{p.contexto.dilemas}</p>
+                      <p style={{ margin: "3px 0 0", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.55, color: COLORS.inkSoft }}>{p.contexto.dilemas}</p>
                     </>
                   )}
                 </>
               ) : (
-                <p style={{ margin: "10px 0 0", fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.ink }}>
+                <p style={{ margin: "10px 0 0", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.ink }}>
                   {(p.contexto?.definicion?.slice(0, 200) || p.origenHistorico.slice(0, 200))}…
                 </p>
               )}
@@ -17266,7 +17335,7 @@ function SelectorEscuelasComparador({ escuelas, seleccionadas, setSeleccionadas,
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={`Buscar escuela para añadir (${seleccionadas.length}/${maxSeleccion})…`}
-            style={{ width: "100%", padding: "7px 10px", fontSize: 12.5, fontFamily: "ui-serif, Georgia, serif", border: `1px solid ${COLORS.line}`, borderRadius: 4 }}
+            style={{ width: "100%", padding: "7px 10px", fontSize: 12.5, fontFamily: "'Lora', Georgia, serif", border: `1px solid ${COLORS.line}`, borderRadius: 4 }}
           />
           {disponibles.length > 0 && (
             <div style={{ position: "absolute", zIndex: 5, top: "100%", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 4, marginTop: 2, boxShadow: "0 4px 12px rgba(0,0,0,0.12)" }}>
@@ -17453,7 +17522,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
             return (
               <div key={p.id} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderLeft: `5px solid ${color}`, borderRadius: 6, padding: 16 }}>
                 <Sello color={color}>{p.nombre}</Sello>
-                <p style={{ margin: "8px 0 0", fontFamily: "ui-serif, Georgia, serif", fontSize: 13.5, lineHeight: 1.6, color: COLORS.ink }}>{texto}</p>
+                <p style={{ margin: "8px 0 0", fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.6, color: COLORS.ink }}>{texto}</p>
               </div>
             );
           })}
@@ -17492,7 +17561,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
                   <Sello color={color}>{e.perspectiva}</Sello>
                   <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 14, margin: "4px 0 6px" }}>{e.nombre}</div>
                   {texto ? (
-                    <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 13.5, lineHeight: 1.6, color: COLORS.ink, whiteSpace: "pre-line" }}>{texto}</p>
+                    <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.6, color: COLORS.ink, whiteSpace: "pre-line" }}>{texto}</p>
                   ) : (
                     <TextoVacio texto="Sin registrar para esta escuela." />
                   )}
@@ -17521,7 +17590,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
       )}
 
       <div style={{ marginTop: 24, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 16 }}>
-        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 10 }}>
+        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 10 }}>
           Número de escuelas modeladas por perspectiva
         </div>
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -17531,7 +17600,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
             return (
               <div key={p.id} style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <span style={{ width: 10, height: 10, borderRadius: "50%", background: color, display: "inline-block" }} />
-                <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 11, color: COLORS.ink }}>
+                <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 11, color: COLORS.ink }}>
                   {p.nombre}: {n}
                 </span>
               </div>
@@ -17540,7 +17609,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
         </div>
       </div>
 
-      <p style={{ marginTop: 20, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic" }}>
+      <p style={{ marginTop: 20, fontFamily: "'Lora', Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic" }}>
         Para comparar conceptos específicos entre escuelas (no solo fichas completas) con su tipo de relación popperiano exacto, usa el Diccionario traslacional.
       </p>
     </div>
@@ -17742,7 +17811,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
               key={p.id}
               onClick={() => irAPerspectiva(p.id)}
               style={{
-                fontFamily: "ui-monospace,monospace",
+                fontFamily: "'JetBrains Mono', ui-monospace, monospace",
                 fontSize: 11.5,
                 fontWeight: activo ? 700 : 400,
                 padding: "7px 12px",
@@ -17783,7 +17852,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
 
       {vistaAutores && (
         <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 8, padding: 16, marginBottom: 20 }}>
-          <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, color: COLORS.inkSoft, marginTop: 0, marginBottom: 14, fontStyle: "italic" }}>
+          <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.inkSoft, marginTop: 0, marginBottom: 14, fontStyle: "italic" }}>
             Teorías de base (a menudo de psicología experimental, biología o filosofía) que fundamentan varias escuelas clínicas, separadas deliberadamente de las escuelas mismas: sus autores no administran una psicoterapia propia.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(260px, 100%), 1fr))", gap: 10 }}>
@@ -17823,7 +17892,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
                       )}
                     </div>
                     {esHibridoDePerspectivas && (
-                      <div style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 10, color: COLORS.inkSoft, fontStyle: "italic", marginBottom: 6 }}>
+                      <div style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 10, color: COLORS.inkSoft, fontStyle: "italic", marginBottom: 6 }}>
                         fundamenta escuelas en {persps.length} perspectivas distintas
                       </div>
                     )}
@@ -17850,7 +17919,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
 
       {resultadosFiltro ? (
         <div>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 10 }}>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 10 }}>
             {resultadosFiltro.length} resultado{resultadosFiltro.length !== 1 ? "s" : ""} para «{filtro}» en todas las perspectivas
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 10 }}>
@@ -17870,7 +17939,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
                   }}
                   style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${c}`, borderRadius: 6, padding: 12, cursor: "pointer" }}
                 >
-                  <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: c }}>{e.perspectiva}</div>
+                  <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: c }}>{e.perspectiva}</div>
                   <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>{e.nombre}</div>
                 </div>
               );
@@ -17951,7 +18020,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
             <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, color: vistaLinea ? "#fff" : COLORS.ink }}>
               🕓 Línea de tiempo de {persp.nombre}
             </span>
-            <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: vistaLinea ? "#fff" : color, fontWeight: 700 }}>
+            <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: vistaLinea ? "#fff" : color, fontWeight: 700 }}>
               {vistaLinea ? "ocultar ▲" : "ver ▼"}
             </span>
           </div>
@@ -17989,7 +18058,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
             <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, color: vistaPanorama ? "#fff" : COLORS.ink }}>
               📊 Panorama de protocolos, técnicas y procedimientos de {persp.nombre}
             </span>
-            <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: vistaPanorama ? "#fff" : PERSPECTIVA_COLOR[persp.nombre], fontWeight: 700 }}>
+            <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: vistaPanorama ? "#fff" : PERSPECTIVA_COLOR[persp.nombre], fontWeight: 700 }}>
               {vistaPanorama ? "ocultar ▲" : "ver ▼"}
             </span>
           </div>
@@ -18021,11 +18090,11 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
             padding: "12px 16px",
             boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
             maxWidth: 300,
-            fontFamily: "ui-serif, Georgia, serif",
+            fontFamily: "'Lora', Georgia, serif",
           }}
         >
           <div style={{ fontWeight: 700, fontSize: 12.5, marginBottom: 6 }}>✓ Guardado: {toastGuardado.nombre}</div>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, lineHeight: 1.7, color: "#D8DEDA" }}>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, lineHeight: 1.7, color: "#D8DEDA" }}>
             <div>✓ {toastGuardado.conceptos} concepto(s) · {toastGuardado.tecnicas} técnica(s)</div>
             <div>{toastGuardado.tieneProtocolo ? "✓" : "⚠"} protocolo {toastGuardado.tieneProtocolo ? "asociado" : "no sembrado aún"}</div>
             <div>{toastGuardado.tieneCitas ? "✓" : "⚠"} citas ampliadas {toastGuardado.tieneCitas ? "presentes" : "no sembradas aún"}</div>
@@ -18042,35 +18111,35 @@ function SeccionClasificacionFilosoficaInterna({ clasif, color }) {
     <div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 12, marginBottom: 12 }}>
         <div>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Eje 1 — Independencia y cantidad</div>
-          <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.ejeIndependenciaCantidad}</p>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Eje 1 — Independencia y cantidad</div>
+          <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.ejeIndependenciaCantidad}</p>
         </div>
         <div>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Eje 2 — Naturaleza de la sustancia</div>
-          <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.ejeNaturalezaSustancia}</p>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Eje 2 — Naturaleza de la sustancia</div>
+          <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.ejeNaturalezaSustancia}</p>
         </div>
         <div>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Meta-eje</div>
-          <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.metaEje}</p>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase", marginBottom: 3 }}>Meta-eje</div>
+          <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.metaEje}</p>
         </div>
       </div>
       <div style={{ borderTop: `1px dashed ${COLORS.gold}`, paddingTop: 10, marginBottom: 10 }}>
-        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Los grandes «ismos»</div>
-        <p style={{ margin: "0 0 8px", fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.ismos}</p>
-        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Hessen (incluye criterio de verdad)</div>
-        <p style={{ margin: "0 0 8px", fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.hessen}</p>
-        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Wolff</div>
-        <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.wolff}</p>
+        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Los grandes «ismos»</div>
+        <p style={{ margin: "0 0 8px", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.ismos}</p>
+        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Hessen (incluye criterio de verdad)</div>
+        <p style={{ margin: "0 0 8px", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.hessen}</p>
+        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Wolff</div>
+        <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{clasif.wolff}</p>
       </div>
       {clasif.crotty && (
         <div style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: 10 }}>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase", marginBottom: 4 }}>Esquema de Crotty</div>
-          {clasif.crotty.epistemologia && <p style={{ margin: "0 0 4px", fontFamily: "ui-serif, Georgia, serif", fontSize: 12 }}><strong>Epistemología: </strong>{clasif.crotty.epistemologia}</p>}
-          {clasif.crotty.perspectiva && <p style={{ margin: "0 0 4px", fontFamily: "ui-serif, Georgia, serif", fontSize: 12 }}><strong>Perspectiva teórica: </strong>{clasif.crotty.perspectiva}</p>}
-          {(clasif.crotty.metodos || clasif.crotty.metodologia) && <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12 }}><strong>Metodología / métodos: </strong>{clasif.crotty.metodos || clasif.crotty.metodologia}</p>}
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase", marginBottom: 4 }}>Esquema de Crotty</div>
+          {clasif.crotty.epistemologia && <p style={{ margin: "0 0 4px", fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Epistemología: </strong>{clasif.crotty.epistemologia}</p>}
+          {clasif.crotty.perspectiva && <p style={{ margin: "0 0 4px", fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Perspectiva teórica: </strong>{clasif.crotty.perspectiva}</p>}
+          {(clasif.crotty.metodos || clasif.crotty.metodologia) && <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Metodología / métodos: </strong>{clasif.crotty.metodos || clasif.crotty.metodologia}</p>}
         </div>
       )}
-      <p style={{ marginTop: 10, marginBottom: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 10.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
+      <p style={{ marginTop: 10, marginBottom: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 10.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
         Fuente: Clasificación filosófica de las perspectivas psicoterapéuticas.docx y los PDF «Fundamentos filosóficos de la psicoterapia [perspectiva]».
       </p>
     </div>
@@ -18082,22 +18151,22 @@ function SeccionClasificacionFilosoficaEscuelaInterna({ filo }) {
   return (
     <div>
       <div style={{ marginBottom: 10 }}>
-        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Mapa decisional de la ontología</div>
-        <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{filo.mapaDecisional}</p>
+        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Mapa decisional de la ontología</div>
+        <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{filo.mapaDecisional}</p>
       </div>
       <div style={{ marginBottom: 10 }}>
-        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Clasificaciones históricas (Ismos / Hessen / Wolff)</div>
-        <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{filo.clasificacionesHistoricas}</p>
+        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Clasificaciones históricas (Ismos / Hessen / Wolff)</div>
+        <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{filo.clasificacionesHistoricas}</p>
       </div>
       {filo.crotty && (
         <div style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: 10 }}>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase", marginBottom: 4 }}>Esquema de Crotty</div>
-          {filo.crotty.epistemologia && filo.crotty.epistemologia !== "—" && <p style={{ margin: "0 0 4px", fontFamily: "ui-serif, Georgia, serif", fontSize: 12 }}><strong>Epistemología: </strong>{filo.crotty.epistemologia}</p>}
-          {filo.crotty.perspectiva && filo.crotty.perspectiva !== "—" && <p style={{ margin: "0 0 4px", fontFamily: "ui-serif, Georgia, serif", fontSize: 12 }}><strong>Perspectiva teórica: </strong>{filo.crotty.perspectiva}</p>}
-          {filo.crotty.metodologia && filo.crotty.metodologia !== "—" && <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12 }}><strong>Metodología / métodos: </strong>{filo.crotty.metodologia}</p>}
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase", marginBottom: 4 }}>Esquema de Crotty</div>
+          {filo.crotty.epistemologia && filo.crotty.epistemologia !== "—" && <p style={{ margin: "0 0 4px", fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Epistemología: </strong>{filo.crotty.epistemologia}</p>}
+          {filo.crotty.perspectiva && filo.crotty.perspectiva !== "—" && <p style={{ margin: "0 0 4px", fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Perspectiva teórica: </strong>{filo.crotty.perspectiva}</p>}
+          {filo.crotty.metodologia && filo.crotty.metodologia !== "—" && <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12 }}><strong>Metodología / métodos: </strong>{filo.crotty.metodologia}</p>}
         </div>
       )}
-      <p style={{ marginTop: 10, marginBottom: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 10.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
+      <p style={{ marginTop: 10, marginBottom: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 10.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
         Fuente: PDF «Fundamentos filosóficos de la psicoterapia [perspectiva]».
       </p>
     </div>
@@ -18106,7 +18175,7 @@ function SeccionClasificacionFilosoficaEscuelaInterna({ filo }) {
 
 function TextoVacio({ texto }) {
   return (
-    <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
+    <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
       {texto}
     </p>
   );
@@ -18127,8 +18196,8 @@ function SeccionContextoInterna({ contexto, color }) {
       {campos.map((c, i) =>
         contexto[c.key] ? (
           <div key={i} style={{ borderLeft: `3px solid ${color}`, paddingLeft: 10 }}>
-            <div style={{ fontFamily: "Georgia, serif", fontWeight: 700, fontSize: 13, marginBottom: 3 }}>{c.label}</div>
-            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 13, lineHeight: 1.55, color: COLORS.ink }}>{contexto[c.key]}</p>
+            <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: 13, marginBottom: 3 }}>{c.label}</div>
+            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.55, color: COLORS.ink }}>{contexto[c.key]}</p>
           </div>
         ) : null
       )}
@@ -18158,10 +18227,10 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
       {comparando.length > 0 && (
         <div style={{ marginBottom: 14, background: COLORS.cardBg, border: `1.5px solid ${color}`, borderRadius: 6, padding: 12 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-            <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", color, fontWeight: 700 }}>
+            <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color, fontWeight: 700 }}>
               Comparador rápido ({comparando.length}/3 seleccionadas)
             </span>
-            <span onClick={() => setComparando([])} style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: COLORS.inkSoft, cursor: "pointer", textDecoration: "underline" }}>
+            <span onClick={() => setComparando([])} style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, cursor: "pointer", textDecoration: "underline" }}>
               limpiar selección
             </span>
           </div>
@@ -18169,12 +18238,12 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
             {escuelasComparadas.map((e) => (
               <div key={e.id} style={{ background: COLORS.paperDark, borderRadius: 4, padding: 10, minWidth: 200 }}>
                 <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13, marginBottom: 6 }}>{e.nombre}</div>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9, textTransform: "uppercase", color: COLORS.primary, marginBottom: 2 }}>Conceptos clave</div>
-                <ul style={{ margin: "0 0 8px", paddingLeft: 16, fontSize: 11.5, fontFamily: "ui-serif, Georgia, serif", lineHeight: 1.4 }}>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9, textTransform: "uppercase", color: COLORS.primary, marginBottom: 2 }}>Conceptos clave</div>
+                <ul style={{ margin: "0 0 8px", paddingLeft: 16, fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", lineHeight: 1.4 }}>
                   {(e.conceptos || []).slice(0, 3).map((c, i) => <li key={i}>{c}</li>)}
                 </ul>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9, textTransform: "uppercase", color: COLORS.clay, marginBottom: 2 }}>Técnicas</div>
-                <ul style={{ margin: 0, paddingLeft: 16, fontSize: 11.5, fontFamily: "ui-serif, Georgia, serif", lineHeight: 1.4 }}>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9, textTransform: "uppercase", color: COLORS.clay, marginBottom: 2 }}>Técnicas</div>
+                <ul style={{ margin: 0, paddingLeft: 16, fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", lineHeight: 1.4 }}>
                   {(e.tecnicas || []).slice(0, 3).map((c, i) => <li key={i}>{c}</li>)}
                 </ul>
                 <span
@@ -18182,7 +18251,7 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
                   tabIndex={0}
                   onClick={() => onIrAEscuela && onIrAEscuela(e.id)}
                   onKeyDown={activarConTeclado(() => onIrAEscuela && onIrAEscuela(e.id))}
-                  style={{ display: "inline-block", marginTop: 8, fontFamily: "ui-monospace,monospace", fontSize: 10, color, cursor: "pointer", textDecoration: "underline" }}
+                  style={{ display: "inline-block", marginTop: 8, fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color, cursor: "pointer", textDecoration: "underline" }}
                 >
                   → ficha completa
                 </span>
@@ -18202,7 +18271,7 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
               {mostrarHeader && (
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: i === 0 ? 0 : 6 }}>
                   <span style={{ width: 8, height: 8, borderRadius: "50%", background: color, flexShrink: 0 }} />
-                  <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, letterSpacing: 0.5, textTransform: "uppercase", color: color, fontWeight: 700 }}>
+                  <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, letterSpacing: 0.5, textTransform: "uppercase", color: color, fontWeight: 700 }}>
                     {sp.subfamilia}
                   </span>
                   <span style={{ flex: 1, height: 1, background: COLORS.line }} />
@@ -18220,20 +18289,20 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
                 )}
                 <div style={{ flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
-                    <span style={{ fontFamily: "Georgia, serif", fontWeight: 700, fontSize: 13.5 }}>{sp.nombre}</span>
+                    <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: 13.5 }}>{sp.nombre}</span>
                     {sp.escuela && enlaces && <BadgeEnlaces escuelaId={sp.escuela} enlaces={enlaces} small />}
                     {!sp.escuela && (
-                      <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 9, color: COLORS.garnet, border: `1px solid ${COLORS.garnet}`, borderRadius: 3, padding: "0 5px" }}>
+                      <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9, color: COLORS.garnet, border: `1px solid ${COLORS.garnet}`, borderRadius: 3, padding: "0 5px" }}>
                         no modelada como escuela aparte
                       </span>
                     )}
                     {enConstruccion && (
-                      <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 9, color: "#fff", background: COLORS.clay, borderRadius: 3, padding: "1px 6px", letterSpacing: 0.3 }}>
+                      <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9, color: "#fff", background: COLORS.clay, borderRadius: 3, padding: "1px 6px", letterSpacing: 0.3 }}>
                         ⚠ en construcción — falta fuente primaria
                       </span>
                     )}
                   </div>
-                  <p style={{ margin: "2px 0 6px", fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.ink }}>{sp.definicion}</p>
+                  <p style={{ margin: "2px 0 6px", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.ink }}>{sp.definicion}</p>
                   {sp.escuela && onIrAEscuela && (
                     <span
                       role="link"
@@ -18241,7 +18310,7 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
                       onClick={() => onIrAEscuela(sp.escuela)}
                       onKeyDown={activarConTeclado(() => onIrAEscuela(sp.escuela))}
                       style={{
-                        fontFamily: "ui-monospace,monospace",
+                        fontFamily: "'JetBrains Mono', ui-monospace, monospace",
                         fontSize: 10.5,
                         color: color,
                         cursor: "pointer",
@@ -18260,7 +18329,7 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
         })}
       </div>
 
-      <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 8 }}>
+      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 8 }}>
         Convergencias y divergencias entre estas sub-perspectivas
       </div>
       <div style={{ display: "grid", gap: 10 }}>
@@ -18269,12 +18338,12 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
             <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13, marginBottom: 6 }}>{fila.aspecto}</div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 10 }}>
               <div>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.sage, marginBottom: 2 }}>CONVERGE</div>
-                <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{fila.convergencia}</p>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.sage, marginBottom: 2 }}>CONVERGE</div>
+                <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{fila.convergencia}</p>
               </div>
               <div>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.garnet, marginBottom: 2 }}>DIVERGE</div>
-                <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{fila.divergencia}</p>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, marginBottom: 2 }}>DIVERGE</div>
+                <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{fila.divergencia}</p>
               </div>
             </div>
           </div>
@@ -18457,7 +18526,7 @@ function FichaFundamento({ p, onIrAEscuela, escuelas, enlaces }) {
   const debates = DEBATES_PERSPECTIVAS[p.id] || [];
   return (
     <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20, position: "relative" }}>
-      <h3 style={{ fontFamily: "Georgia, serif", fontSize: 20, color: COLORS.ink, marginTop: 0, marginBottom: 14, borderBottom: `2px solid ${color}`, paddingBottom: 8, maxWidth: "70%" }}>
+      <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 20, color: COLORS.ink, marginTop: 0, marginBottom: 14, borderBottom: `2px solid ${color}`, paddingBottom: 8, maxWidth: "70%" }}>
         {p.nombre}
       </h3>
 
@@ -18495,12 +18564,12 @@ function FichaFundamento({ p, onIrAEscuela, escuelas, enlaces }) {
         ) : (
           debates.map((d, i) => (
             <div key={i} style={{ marginBottom: 14, background: COLORS.paperDark, borderRadius: 6, padding: 12 }}>
-              <div style={{ fontFamily: "Georgia, serif", fontSize: 14.5, fontWeight: 700, marginBottom: 8, color: COLORS.ink }}>{d.pregunta}</div>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 14.5, fontWeight: 700, marginBottom: 8, color: COLORS.ink }}>{d.pregunta}</div>
               {d.posturas.map((pos, j) => (
                 <div key={j} style={{ marginBottom: 10 }}>
                   <span
                     style={{
-                      fontFamily: "ui-monospace,monospace",
+                      fontFamily: "'JetBrains Mono', ui-monospace, monospace",
                       fontSize: 10,
                       color: "#fff",
                       background: j === 0 ? color : COLORS.inkSoft,
@@ -18512,7 +18581,7 @@ function FichaFundamento({ p, onIrAEscuela, escuelas, enlaces }) {
                   >
                     {pos.nombre}
                   </span>
-                  <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 13.5, lineHeight: 1.55, color: COLORS.ink }}>{pos.texto}</p>
+                  <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.55, color: COLORS.ink }}>{pos.texto}</p>
                 </div>
               ))}
             </div>
@@ -18536,7 +18605,7 @@ function TextoConCitas({ texto, tamano = 14, color: colorTexto = COLORS.ink, col
   const partes = textoMostrado.split(/(«[^»]*»)/g);
   return (
     <div>
-      <p style={{ margin: 0, maxWidth: "70ch", fontFamily: "ui-serif, Georgia, serif", fontSize: tamano, lineHeight: 1.55, color: colorTexto }}>
+      <p style={{ margin: 0, maxWidth: "70ch", fontFamily: "'Lora', Georgia, serif", fontSize: tamano, lineHeight: 1.55, color: colorTexto }}>
         {partes.map((parte, i) =>
           parte.startsWith("«") && parte.endsWith("»") ? (
             <span
@@ -18597,10 +18666,10 @@ function Desplegable({ titulo, subtitulo, color, defaultAbierto = false, childre
   if (vacio) {
     return (
       <div style={{ marginBottom: 10, border: `1px dashed ${COLORS.line}`, borderRadius: 6, padding: "10px 14px" }}>
-        <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.inkSoft }}>
+        <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.05em", color: COLORS.inkSoft }}>
           {titulo}
         </span>
-        <span style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic", marginLeft: 8 }}>
+        <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic", marginLeft: 8 }}>
           — {vacioTexto || "sin registrar todavía"}
         </span>
       </div>
@@ -18622,7 +18691,7 @@ function Desplegable({ titulo, subtitulo, color, defaultAbierto = false, childre
           const m = (titulo || "").match(/^(\d+[a-z]?)\s*·\s*(.*)$/);
           if (!m) {
             return (
-              <span style={{ fontFamily: "Georgia, serif", fontSize: 13, fontWeight: 700, color: color || COLORS.primary }}>{titulo}</span>
+              <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 13, fontWeight: 700, color: color || COLORS.primary }}>{titulo}</span>
             );
           }
           return (
@@ -18636,12 +18705,12 @@ function Desplegable({ titulo, subtitulo, color, defaultAbierto = false, childre
               >
                 {m[1]}
               </span>
-              <span style={{ fontFamily: "Georgia, serif", fontSize: 13, fontWeight: 700, color: color || COLORS.primary }}>{m[2]}</span>
+              <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 13, fontWeight: 700, color: color || COLORS.primary }}>{m[2]}</span>
             </span>
           );
         })()}
         {subtitulo && (
-          <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.inkSoft, textTransform: "none" }}>{subtitulo}</span>
+          <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, textTransform: "none" }}>{subtitulo}</span>
         )}
       </div>
       {abierta && <div style={{ padding: "14px", background: COLORS.cardBg }}>{children}</div>}
@@ -18674,7 +18743,7 @@ function BadgeCobertura({ escuelaId, integridad }) {
   );
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 14, fontFamily: "ui-monospace,monospace", fontSize: 10.5 }}>
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 14, fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5 }}>
       <Item label="Glosario" valor={enGlosario} ok={enGlosario > 0} />
       <Item label="Protocolo" valor={tieneProtocolo ? "✓" : "✗"} ok={tieneProtocolo} />
       <Item label="Citas" valor={tieneCitas ? "✓" : "✗"} ok={tieneCitas} />
@@ -18706,7 +18775,7 @@ function ChipsCoordenadas({ ontologia, epistemologia, metodologia, criterioVerda
             alignItems: "baseline",
             gap: 4,
             maxWidth: 260,
-            fontFamily: "ui-serif, Georgia, serif",
+            fontFamily: "'Lora', Georgia, serif",
             fontSize: 11.5,
             color: COLORS.inkSoft,
             background: c.destacado ? "rgba(156,107,74,0.08)" : COLORS.paperDark,
@@ -18727,10 +18796,10 @@ function ChipsCoordenadas({ ontologia, epistemologia, metodologia, criterioVerda
 function BloqueFundamento({ titulo, texto, destacado, truncar }) {
   return (
     <div style={{ marginBottom: 14 }}>
-      <div style={{ fontFamily: "ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.06em", color: destacado ? COLORS.clay : COLORS.primary, marginBottom: 3 }}>
+      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", letterSpacing: "0.06em", color: destacado ? COLORS.clay : COLORS.primary, marginBottom: 3 }}>
         {titulo}
       </div>
-      {texto ? <TextoConCitas texto={texto} truncar={truncar} /> : <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 14, color: COLORS.inkSoft, fontStyle: "italic" }}>—</p>}
+      {texto ? <TextoConCitas texto={texto} truncar={truncar} /> : <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 14, color: COLORS.inkSoft, fontStyle: "italic" }}>—</p>}
     </div>
   );
 }
@@ -18740,7 +18809,7 @@ function Cabecera({ icono, titulo, subtitulo }) {
     <div style={{ borderBottom: `1px solid ${COLORS.line}`, paddingBottom: 12 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, color: COLORS.primaryDark }}>
         {icono}
-        <h2 style={{ fontFamily: "Georgia, serif", fontSize: 21, margin: 0 }}>{titulo}</h2>
+        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 21, margin: 0 }}>{titulo}</h2>
       </div>
       {subtitulo && <p style={{ fontSize: 12.5, color: COLORS.inkSoft, marginTop: 6, maxWidth: 760, lineHeight: 1.5 }}>{subtitulo}</p>}
     </div>
@@ -18769,13 +18838,13 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
             <Stamp size={12} /> panorama de perspectiva
           </Sello>
         </div>
-        <h3 style={{ fontFamily: "Georgia, serif", fontSize: 21, marginTop: 6, marginBottom: 14, borderBottom: `2px solid ${color}`, paddingBottom: 8 }}>{nombrePerspectiva}</h3>
+        <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 21, marginTop: 6, marginBottom: 14, borderBottom: `2px solid ${color}`, paddingBottom: 8 }}>{nombrePerspectiva}</h3>
         {fund && (
           <>
             <BloqueFundamento titulo="Origen histórico" texto={fund.origenHistorico} />
             <BloqueFundamento titulo="Unidad de análisis" texto={fund.unidadAnalisis} />
             <BloqueFundamento titulo="Relación mente-cuerpo" texto={fund.relacionMenteCuerpo} />
-            <div style={{ fontSize: 11.5, fontFamily: "ui-monospace,monospace", color: COLORS.primary, marginTop: 6 }}>
+            <div style={{ fontSize: 11.5, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: COLORS.primary, marginTop: 6 }}>
               Ver ontología, epistemología, metodología, criterio de verdad y debates abiertos completos en el Módulo 0 · Fundamentos.
             </div>
           </>
@@ -18784,7 +18853,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
 
       {conceptosGlosario.length > 0 && (
         <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 8 }}>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 8 }}>
             Conceptos centrales de la perspectiva ({conceptosGlosario.length}) — definiciones del Glosario traslacional
           </div>
           <div>
@@ -18802,7 +18871,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
               </Etiqueta>
             ))}
           </div>
-          <p style={{ marginTop: 10, fontFamily: "ui-serif, Georgia, serif", fontSize: 11.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
+          <p style={{ marginTop: 10, fontFamily: "'Lora', Georgia, serif", fontSize: 11.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
             Haz clic en cualquier concepto para ver su definición completa, cita y equivalentes en el Diccionario traslacional.
           </p>
         </div>
@@ -18810,7 +18879,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
 
       {tecnicasGlosario.length > 0 && (
         <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 8 }}>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 8 }}>
             Técnicas de la perspectiva ({tecnicasGlosario.length}) — definiciones del Glosario traslacional
           </div>
           <div>
@@ -18828,18 +18897,18 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
               </Etiqueta>
             ))}
           </div>
-          <p style={{ marginTop: 10, fontFamily: "ui-serif, Georgia, serif", fontSize: 11.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
+          <p style={{ marginTop: 10, fontFamily: "'Lora', Georgia, serif", fontSize: 11.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
             Haz clic en cualquier técnica para ver su Definición, Función y Contextos completos en el Diccionario traslacional.
           </p>
         </div>
       )}
 
       <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.sage, marginBottom: 10 }}>
+        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.sage, marginBottom: 10 }}>
           Protocolos disponibles en esta perspectiva ({protocolosP.length} de {escuelasP.length} escuelas)
         </div>
         {protocolosP.length === 0 && (
-          <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 13, color: COLORS.inkSoft }}>
+          <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 13, color: COLORS.inkSoft }}>
             Ninguna escuela de esta perspectiva cuenta, en el material de referencia, con manual estandarizado publicado.
           </p>
         )}
@@ -18848,8 +18917,8 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
             <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>
               {escuela.nombre} — {protocolo.nombre}
             </div>
-            <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 3 }}>{protocolo.fuente}</div>
-            <div style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5 }}>
+            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 3 }}>{protocolo.fuente}</div>
+            <div style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5 }}>
               <strong>Población: </strong>
               {protocolo.poblacion}
             </div>
@@ -18857,7 +18926,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
         ))}
         {sinProtocolo.length > 0 && (
           <div style={{ marginTop: 10, paddingTop: 10, borderTop: `1px dashed ${COLORS.line}` }}>
-            <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>
+            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>
               Sin manual estandarizado (usan la plantilla general adaptable del Módulo 2):
             </div>
             {sinProtocolo.map((e) => (
@@ -18869,7 +18938,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
 
       {escuelasP.some((e) => PROCEDIMIENTOS_CLINICOS[e.id]) && (
         <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 10 }}>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 10 }}>
             Procedimientos clínicos sistematizados (momentos terapéuticos, no validados por ensayo clínico)
           </div>
           {escuelasP
@@ -18887,7 +18956,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
 
       {SUBVARIANTES_ESCUELA && escuelasP.some((e) => SUBVARIANTES_ESCUELA[e.id]) && (
         <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 20 }}>
-          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", color: color, marginBottom: 10 }}>
+          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: color, marginBottom: 10 }}>
             Escuelas con sub-variantes internas documentadas
           </div>
           {escuelasP
@@ -18895,7 +18964,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
             .map((e) => (
               <div key={e.id} style={{ marginBottom: 10 }}>
                 <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, marginBottom: 4 }}>
-                  {e.nombre} <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: COLORS.inkSoft }}>({SUBVARIANTES_ESCUELA[e.id].length})</span>
+                  {e.nombre} <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft }}>({SUBVARIANTES_ESCUELA[e.id].length})</span>
                 </div>
                 {SUBVARIANTES_ESCUELA[e.id].map((sv, i) => (
                   <Etiqueta key={i}>{sv.nombre}</Etiqueta>
@@ -18923,7 +18992,7 @@ function VacioAviso({ texto, icono }) {
       <div style={{ marginBottom: 10, opacity: 0.55 }}>
         {icono || <Search size={26} strokeWidth={1.3} color={COLORS.inkSoft} />}
       </div>
-      <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 13.5, lineHeight: 1.5, margin: 0, maxWidth: 380, marginLeft: "auto", marginRight: "auto" }}>
+      <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.5, margin: 0, maxWidth: 380, marginLeft: "auto", marginRight: "auto" }}>
         {texto}
       </p>
     </div>
@@ -19129,7 +19198,7 @@ function PasoIndividual({ numero, texto, completado, onToggle, color, quitarPref
         <p
           onClick={esLargo ? () => setExpandido((v) => !v) : undefined}
           style={{
-            margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.55, display: "inline",
+            margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.55, display: "inline",
             color: completado ? COLORS.inkSoft : COLORS.ink, textDecoration: completado ? "line-through" : "none",
             cursor: esLargo ? "pointer" : "default",
           }}
@@ -19158,7 +19227,7 @@ function DetalleCondiciones({ texto }) {
       <span
         onClick={() => setAbierto(!abierto)}
         style={{
-          fontFamily: "ui-monospace,monospace",
+          fontFamily: "'JetBrains Mono', ui-monospace, monospace",
           fontSize: 10.5,
           color: COLORS.garnet,
           cursor: "pointer",
@@ -19169,7 +19238,7 @@ function DetalleCondiciones({ texto }) {
         {abierto ? "▾ ocultar condiciones y delimitaciones" : "▸ ver condiciones y delimitaciones (enlace)"}
       </span>
       {abierto && (
-        <p style={{ margin: "6px 0 0", fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.ink, background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 4, padding: 10 }}>
+        <p style={{ margin: "6px 0 0", fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.ink, background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 4, padding: 10 }}>
           {texto}
         </p>
       )}
@@ -19215,7 +19284,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
         expediente · {e.perspectiva}
       </div>
       <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `3px solid ${color}`, borderRadius: "0 6px 6px 6px", padding: 20 }}>
-      <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 10, display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
+      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 10, display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
         <span style={{ color }}>{e.perspectiva}</span>
         {e.subfamilia && (
           <>
@@ -19236,12 +19305,12 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                 style={{ fontFamily: "Georgia,serif", fontSize: 20, fontWeight: 700, border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: "4px 8px", width: "100%" }}
               />
               <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 6 }}>
-                <label style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.inkSoft }}>id:</label>
+                <label style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft }}>id:</label>
                 <input
                   value={e.id}
                   onChange={(ev) => onCambiar("id", ev.target.value)}
                   title="Cambiar el id rompe cualquier referencia guardada como texto en otros módulos hasta que se corrija"
-                  style={{ fontFamily: "ui-monospace,monospace", fontSize: 11, border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: "3px 6px", width: 140 }}
+                  style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 11, border: `1px solid ${COLORS.line}`, borderRadius: 4, padding: "3px 6px", width: 140 }}
                 />
                 <span style={{ fontFamily: "ui-serif,Georgia,serif", fontStyle: "italic", fontSize: 10.5, color: STATUS_COLORS.advertencia }}>
                   ⚠ afecta enlaces, planes y glosario existentes
@@ -19249,14 +19318,14 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
               </div>
             </>
           ) : (
-            <h3 style={{ fontFamily: "Georgia, serif", fontSize: 20, margin: 0, color: COLORS.ink }}>{e.nombre}</h3>
+            <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 20, margin: 0, color: COLORS.ink }}>{e.nombre}</h3>
           )}
           <div style={{ marginTop: 4, display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" }}>
             <Sello color={color}>{e.perspectiva}</Sello>
             <SelloCriterio texto={e.criterioVerdad} />
             <BadgeEnlaces escuelaId={e.id} enlaces={enlaces} onIrADiccionario={onIrADiccionario} />
             {e._editado && (
-              <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.inkSoft, marginLeft: 8 }}>
+              <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, marginLeft: 8 }}>
                 ✎ editado {new Date(e._editado).toLocaleString("es-ES", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" })}
               </span>
             )}
@@ -19335,7 +19404,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
         if (otras.length === 0) return null;
         return (
           <div style={{ display: "flex", flexWrap: "wrap", gap: 7, alignItems: "center", marginBottom: 14, padding: "8px 10px", background: "#F0EDE4", borderRadius: 6, border: `1px dashed ${COLORS.ink}` }}>
-            <span style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12, fontStyle: "italic", color: COLORS.ink }}>
+            <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12, fontStyle: "italic", color: COLORS.ink }}>
               Esta escuela es, además, teoría fundante de:
             </span>
             {otras.map((o) => (
@@ -19359,7 +19428,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
       {editando ? (
         <CampoTexto label="Autores" value={e.autores} onChange={(v) => onCambiar("autores", v)} />
       ) : (
-        <p style={{ fontFamily: "ui-monospace,monospace", fontSize: 12, color: COLORS.inkSoft, marginTop: -4, marginBottom: 14 }}>{e.autores}</p>
+        <p style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 12, color: COLORS.inkSoft, marginTop: -4, marginBottom: 14 }}>{e.autores}</p>
       )}
 
       {editando ? (
@@ -19439,7 +19508,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
               </svg>
               <div style={{ flex: 1, minWidth: 200, display: "grid", gap: 6 }}>
                 <div style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: color, fontWeight: 700, textTransform: "uppercase" }}>◆ Modo estudio — síntesis rápida antes del detalle</div>
-                <div style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12, color: COLORS.inkSoft, lineHeight: 1.5 }}>
+                <div style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12, color: COLORS.inkSoft, lineHeight: 1.5 }}>
                   <strong style={{ color: COLORS.ink }}>{e.autores}</strong> · {e.perspectiva}{e.subfamilia ? ` · ${e.subfamilia}` : ""}
                   {ANIO_ORIGEN[e.id] && <> · origen ≈ {ANIO_ORIGEN[e.id].anio}</>}
                 </div>
@@ -19450,7 +19519,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           <Desplegable titulo="1 · Fundamentación" color={color} defaultAbierto={modoEstudio}>
             <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 3 }}>
               {/«.*»/.test(e.fundamentacion) && (
-                <span style={{ fontSize: 9.5, fontFamily: "ui-monospace,monospace", color: COLORS.clay, border: `1px solid ${COLORS.clay}`, borderRadius: 3, padding: "0 5px" }}>
+                <span style={{ fontSize: 9.5, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: COLORS.clay, border: `1px solid ${COLORS.clay}`, borderRadius: 3, padding: "0 5px" }}>
                   cita textual verificable
                 </span>
               )}
@@ -19460,7 +19529,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
 
           {e.biografiaAutor && !vistaCompacta && (
             <Desplegable titulo="1b · Biografía y trayectoria del autor" color={color} defaultAbierto={modoEstudio}>
-              <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 13.5, lineHeight: 1.6, color: COLORS.ink }}>
+              <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.6, color: COLORS.ink }}>
                 {e.biografiaAutor}
               </p>
             </Desplegable>
@@ -19550,10 +19619,10 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
             {e.evidencia ? <TextoConCitas texto={e.evidencia} truncar={vistaCompacta ? 320 : undefined} /> : <TextoVacio texto="Sin evidencia registrada." />}
             {e.notasClinicas && (
               <div style={{ background: COLORS.paperDark, borderRadius: 4, padding: 10, marginBottom: 10, borderLeft: `3px solid ${COLORS.garnet}` }}>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>
                   Notas clínicas · técnicas contraindicadas
                 </div>
-                <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.ink }}>{e.notasClinicas}</p>
+                <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5, color: COLORS.ink }}>{e.notasClinicas}</p>
               </div>
             )}
           </Desplegable>
@@ -19574,7 +19643,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           >
             {(e.contraindicaciones || []).length > 0 && (
               <>
-                <ul style={{ margin: 0, paddingLeft: 18, fontSize: 12.5, fontFamily: "ui-serif, Georgia, serif", lineHeight: 1.55, color: COLORS.ink }}>
+                <ul style={{ margin: 0, paddingLeft: 18, fontSize: 12.5, fontFamily: "'Lora', Georgia, serif", lineHeight: 1.55, color: COLORS.ink }}>
                   {(vistaCompacta ? (e.contraindicaciones || []).slice(0, 3) : e.contraindicaciones || []).map((c, i) => (
                     <li key={i} style={{ marginBottom: 6 }}>{c}</li>
                   ))}
@@ -19606,45 +19675,45 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           <Desplegable titulo="8 · Sub-variantes de esta escuela" color={color} defaultAbierto={modoEstudio} vacio={!subvariantes} vacioTexto="no aplica: esta escuela no se subdivide en corrientes o variantes internas documentadas por separado">
             {subvariantes && (
               <>
-                <p style={{ fontSize: 11.5, fontFamily: "ui-serif, Georgia, serif", color: COLORS.inkSoft, fontStyle: "italic", marginTop: 0, marginBottom: 12 }}>
+                <p style={{ fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", color: COLORS.inkSoft, fontStyle: "italic", marginTop: 0, marginBottom: 12 }}>
                   Esta escuela agrupa, en rigor, varias corrientes internas con ontología, epistemología, conceptos y manual propios.
                 </p>
                 {subvariantes.map((sv, i) => (
                   <div key={i} style={{ background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 6, padding: 14, marginBottom: 12 }}>
                     <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 14.5, marginBottom: 2 }}>{sv.nombre}</div>
-                    <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 8 }}>{sv.autores}</div>
+                    <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 8 }}>{sv.autores}</div>
 
                     <div style={{ marginBottom: 8 }}>
-                      <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 13, lineHeight: 1.55, fontStyle: "italic", color: COLORS.ink }}>
+                      <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.55, fontStyle: "italic", color: COLORS.ink }}>
                         «{sv.definicionTextual}»
                       </p>
-                      <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.inkSoft, marginTop: 2 }}>— {sv.fuenteDefinicion}</div>
+                      <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft, marginTop: 2 }}>— {sv.fuenteDefinicion}</div>
                     </div>
 
                     {(sv.ontologia || sv.epistemologia || sv.metodologia || sv.criterioVerdad) && (
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 10, marginBottom: 8 }}>
                         {sv.ontologia && (
                           <div>
-                            <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Ontología</div>
-                            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.ontologia}</p>
+                            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Ontología</div>
+                            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.ontologia}</p>
                           </div>
                         )}
                         {sv.epistemologia && (
                           <div>
-                            <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Epistemología</div>
-                            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.epistemologia}</p>
+                            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Epistemología</div>
+                            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.epistemologia}</p>
                           </div>
                         )}
                         {sv.metodologia && (
                           <div>
-                            <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Metodología</div>
-                            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.metodologia}</p>
+                            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.primary, textTransform: "uppercase" }}>Metodología</div>
+                            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.metodologia}</p>
                           </div>
                         )}
                         {sv.criterioVerdad && (
                           <div>
-                            <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase" }}>Criterio de verdad</div>
-                            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.criterioVerdad}</p>
+                            <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.clay, textTransform: "uppercase" }}>Criterio de verdad</div>
+                            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.5 }}>{sv.criterioVerdad}</p>
                           </div>
                         )}
                       </div>
@@ -19652,7 +19721,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
 
                     {sv.conceptosClave && (
                       <div style={{ marginBottom: 6 }}>
-                        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Conceptos clave</div>
+                        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Conceptos clave</div>
                         {sv.conceptosClave.map((c, j) => (
                           <Etiqueta key={j}>{c}</Etiqueta>
                         ))}
@@ -19660,7 +19729,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                     )}
 
                     {sv.manual && (
-                      <div style={{ fontSize: 11.5, fontFamily: "ui-serif, Georgia, serif", color: COLORS.inkSoft, borderTop: `1px dashed ${COLORS.line}`, paddingTop: 6, marginTop: 6 }}>
+                      <div style={{ fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", color: COLORS.inkSoft, borderTop: `1px dashed ${COLORS.line}`, paddingTop: 6, marginTop: 6 }}>
                         <strong>Manual/texto de referencia: </strong>
                         {sv.manual}
                       </div>
@@ -19683,16 +19752,16 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           >
             <div style={{ borderBottom: procedimientos ? `1px dashed ${COLORS.line}` : "none", paddingBottom: procedimientos ? 12 : 0, marginBottom: procedimientos ? 12 : 0 }}>
               {PROTOCOLOS_SEED[e.id] ? (
-                <span style={{ fontSize: 11.5, fontFamily: "ui-monospace,monospace", color: COLORS.sage }}>
+                <span style={{ fontSize: 11.5, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: COLORS.sage }}>
                   ✓ Protocolo estandarizado disponible («{PROTOCOLOS_SEED[e.id].nombre}») — ver Módulo 2 · Planificador.
                 </span>
               ) : (
                 <div>
-                  <span style={{ fontSize: 11.5, fontFamily: "ui-monospace,monospace", color: COLORS.inkSoft }}>
+                  <span style={{ fontSize: 11.5, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: COLORS.inkSoft }}>
                     Sin manual estandarizado propio — el Módulo 2 ofrece una plantilla general adaptable para esta escuela.
                   </span>
                   {TEXTOS_FUNDAMENTALES[e.id] && (
-                    <ul style={{ margin: "6px 0 0", paddingLeft: 18, fontSize: 12, fontFamily: "ui-serif, Georgia, serif", color: COLORS.ink }}>
+                    <ul style={{ margin: "6px 0 0", paddingLeft: 18, fontSize: 12, fontFamily: "'Lora', Georgia, serif", color: COLORS.ink }}>
                       {TEXTOS_FUNDAMENTALES[e.id].map((t, i) => (
                         <li key={i}>{t}</li>
                       ))}
@@ -19703,18 +19772,18 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
             </div>
             {procedimientos && (
               <>
-                <p style={{ fontSize: 11.5, fontFamily: "ui-serif, Georgia, serif", color: COLORS.inkSoft, fontStyle: "italic", marginTop: 0, marginBottom: 12 }}>
+                <p style={{ fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", color: COLORS.inkSoft, fontStyle: "italic", marginTop: 0, marginBottom: 12 }}>
                   Secuencias de «momentos» terapéuticos documentadas en manuales y capítulos clínicos, distintas de un protocolo validado por ensayo clínico aleatorizado. En esta perspectiva, no manualizar la técnica es a menudo una posición epistemológica, no una laguna (cf. Módulo 0).
                 </p>
                 {procedimientos.map((proc, i) => (
                   <div key={i} style={{ borderLeft: `3px solid ${COLORS.sage}`, paddingLeft: 12, marginBottom: 14 }}>
                     <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, marginBottom: 2 }}>{proc.nombre}</div>
-                    <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
+                    <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
                     <PasosInteractivos pasos={proc.fases} colorAcento={COLORS.sage} />
                     {proc.porQueFunciona && (
                       <div style={{ background: COLORS.paperDark, borderRadius: 4, padding: 10, marginTop: 6, marginBottom: 6, borderLeft: `3px solid ${COLORS.clay}` }}>
-                        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.clay, marginBottom: 3 }}>Por qué / para qué funciona</div>
-                        <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}>{proc.porQueFunciona}</p>
+                        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.clay, marginBottom: 3 }}>Por qué / para qué funciona</div>
+                        <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}>{proc.porQueFunciona}</p>
                       </div>
                     )}
                     {proc.condiciones && <DetalleCondiciones texto={proc.condiciones} />}
@@ -19742,7 +19811,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           <Desplegable titulo="11 · Referencias" color={COLORS.garnet} defaultAbierto={modoEstudio} vacio={!citas && (e.referencias || []).length === 0}>
             {(citas?.length > 0 || (e.referencias || []).length > 0) && (
               <div style={{ borderRadius: 4, padding: 10, border: `1px solid ${COLORS.line}` }}>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.inkSoft, marginBottom: 8 }}>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.inkSoft, marginBottom: 8 }}>
                   Referencias bibliográficas ({(citas?.length || 0) + (e.referencias || []).length})
                 </div>
                 {/* Estilo tipográfico ÚNICO para toda referencia bibliográfica plana
@@ -19764,8 +19833,8 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                       <div key={`cita-${i}`} style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "flex-start" }}>
                         <span style={{ fontFamily: "Georgia,serif", fontSize: 22, color: color, lineHeight: 1, flexShrink: 0 }}>\u201c</span>
                         <div>
-                          <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontStyle: "italic", fontSize: 13.5, lineHeight: 1.55, color: COLORS.ink }}>{c.idea}</p>
-                          <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginTop: 3 }}>\u2014 {c.fuente}</div>
+                          <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontStyle: "italic", fontSize: 13.5, lineHeight: 1.55, color: COLORS.ink }}>{c.idea}</p>
+                          <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginTop: 3 }}>\u2014 {c.fuente}</div>
                         </div>
                       </div>
                     )
@@ -19948,7 +20017,7 @@ function TablaProtocolosGenerica({ filas, ordenTabla, cambiarOrden, tituloVacio 
           border: `1px solid ${COLORS.line}`, borderRadius: 8, maxHeight: "60vh",
         }}
       >
-        <table style={{ width: "100%", minWidth: 720, borderCollapse: "collapse", fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, tableLayout: "fixed" }}>
+        <table style={{ width: "100%", minWidth: 720, borderCollapse: "collapse", fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, tableLayout: "fixed" }}>
           <colgroup>
             {columnas.map((c) => (
               <col key={c.key} style={{ width: c.ancho }} />
@@ -20074,7 +20143,7 @@ function ComparadorProtocolos({ filas }) {
             value={buscar}
             onChange={(ev) => setBuscar(ev.target.value)}
             placeholder={`Añadir protocolo o técnica a comparar (${seleccion.length}/3)…`}
-            style={{ ...CAMPO_STYLE, fontFamily: "ui-serif, Georgia, serif", fontSize: 13 }}
+            style={{ ...CAMPO_STYLE, fontFamily: "'Lora', Georgia, serif", fontSize: 13 }}
           />
           {buscar.trim().length >= 2 && (
             <div style={{ position: "absolute", zIndex: 5, top: "100%", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, maxHeight: 220, overflowY: "auto" }}>
@@ -20337,7 +20406,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
           <ClipboardList size={16} color={COLORS.sage} style={{ marginTop: 2, flexShrink: 0 }} />
           <div>
             <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13, color: COLORS.sage }}>Protocolo</div>
-            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.45, color: COLORS.ink }}>
+            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.45, color: COLORS.ink }}>
               Estructura el curso <strong>completo</strong> del tratamiento en varias fases o sesiones. Suele combinar distintas técnicas dentro de sí (p. ej. la DBT combina mindfulness, tolerancia al malestar y regulación emocional).
             </p>
           </div>
@@ -20346,7 +20415,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
           <Stamp size={16} color={COLORS.clay} style={{ marginTop: 2, flexShrink: 0 }} />
           <div>
             <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13, color: COLORS.clay }}>Técnica</div>
-            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.45, color: COLORS.ink }}>
+            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.45, color: COLORS.ink }}>
               Una intervención <strong>puntual</strong> dentro de una sesión, aunque tenga varios pasos internos (p. ej. el diálogo socrático o la silla vacía). No organiza por sí sola el curso completo del tratamiento.
             </p>
           </div>
@@ -20358,7 +20427,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
           value={q}
           onChange={(ev) => setQ(ev.target.value)}
           placeholder="Buscar protocolo, técnica o escuela (p. ej. «exposición», «DBT», «Gestalt»)…"
-          style={{ ...CAMPO_STYLE, maxWidth: 420, fontFamily: "ui-serif, Georgia, serif", fontSize: 13 }}
+          style={{ ...CAMPO_STYLE, maxWidth: 420, fontFamily: "'Lora', Georgia, serif", fontSize: 13 }}
         />
         <div style={{ display: "flex", gap: 4, background: COLORS.paperDark, borderRadius: 20, padding: 3 }}>
           <button
@@ -20491,12 +20560,12 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
                                 </div>
                                 {protocolosEscuela.map((p, i) => (
                                   <Desplegable key={i} titulo={p.nombre} subtitulo="protocolo" color={COLORS.sage} defaultAbierto={false}>
-                                    <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{p.fuente}</div>
+                                    <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{p.fuente}</div>
                                     <PasosInteractivos pasos={p.fases} colorAcento={COLORS.sage} />
                                     {p.porQueFunciona && (
                                       <div style={{ background: COLORS.paperDark, borderRadius: 4, padding: 10, marginTop: 6, borderLeft: `3px solid ${COLORS.garnet}` }}>
-                                        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>Por qué / para qué funciona</div>
-                                        <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}>{p.porQueFunciona}</p>
+                                        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.garnet, marginBottom: 3 }}>Por qué / para qué funciona</div>
+                                        <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}>{p.porQueFunciona}</p>
                                       </div>
                                     )}
                                     {p.condiciones && <DetalleCondiciones texto={p.condiciones} />}
@@ -20526,12 +20595,12 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
                                 </div>
                                 {tecnicasEscuela.map((proc, i) => (
                                   <Desplegable key={i} titulo={proc.nombre} subtitulo="técnica" color={COLORS.clay} defaultAbierto={false}>
-                                    <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
+                                    <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
                                     <PasosInteractivos pasos={proc.fases} colorAcento={COLORS.clay} />
                                     {proc.porQueFunciona && (
                                       <div style={{ background: COLORS.cardBg, borderRadius: 4, padding: 10, marginBottom: 6, borderLeft: `3px solid ${COLORS.clay}` }}>
-                                        <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.clay, marginBottom: 3 }}>Por qué / para qué funciona</div>
-                                        <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}>{proc.porQueFunciona}</p>
+                                        <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, textTransform: "uppercase", color: COLORS.clay, marginBottom: 3 }}>Por qué / para qué funciona</div>
+                                        <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}>{proc.porQueFunciona}</p>
                                       </div>
                                     )}
                                     {proc.condiciones && <DetalleCondiciones texto={proc.condiciones} />}
@@ -20553,13 +20622,13 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
                     color={COLORS.inkSoft}
                     defaultAbierto={false}
                   >
-                    <p style={{ fontSize: 11.5, fontFamily: "ui-serif, Georgia, serif", color: COLORS.inkSoft, fontStyle: "italic", marginTop: 0, marginBottom: 10 }}>
+                    <p style={{ fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", color: COLORS.inkSoft, fontStyle: "italic", marginTop: 0, marginBottom: 10 }}>
                       {NOTA_SIN_PROTOCOLO}
                     </p>
                     {escuelasSinProtocolo.map((e) => (
                       <div key={e.id} id={"protocolo-" + e.id} style={{ marginBottom: 10 }}>
                         <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13, marginBottom: 4, color: COLORS.ink }}>{e.nombre}</div>
-                        <ol style={{ margin: 0, paddingLeft: 18, fontSize: 12, fontFamily: "ui-serif, Georgia, serif", lineHeight: 1.5, color: COLORS.inkSoft }}>
+                        <ol style={{ margin: 0, paddingLeft: 18, fontSize: 12, fontFamily: "'Lora', Georgia, serif", lineHeight: 1.5, color: COLORS.inkSoft }}>
                           {PLANTILLA_GENERAL.map((paso, i) => (
                             <li key={i}>{paso}</li>
                           ))}
@@ -20656,7 +20725,7 @@ function TraductorEnVivo({ escuelas, enlaces, tipo, onSeleccionar }) {
           if (sugerencias.length === 0) return null;
           return (
             <div style={{ position: "absolute", zIndex: 5, top: "calc(100% + 4px)", left: 0, right: 0, background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: "8px 12px", display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-              <span style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic" }}>¿Quisiste decir…?</span>
+              <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic" }}>¿Quisiste decir…?</span>
               {sugerencias.map((s) => (
                 <button
                   key={s}
@@ -20711,7 +20780,7 @@ function VistaEnlacesPorEscuela({ escuelas, enlaces, onIrAEscuela }) {
       <select
         value={escuelaId || ""}
         onChange={(ev) => setEscuelaId(ev.target.value)}
-        style={{ ...CAMPO_STYLE, maxWidth: 420, fontFamily: "ui-serif, Georgia, serif", fontSize: 13, marginBottom: 12 }}
+        style={{ ...CAMPO_STYLE, maxWidth: 420, fontFamily: "'Lora', Georgia, serif", fontSize: 13, marginBottom: 12 }}
       >
         {[...escuelas].sort((a, b) => a.perspectiva.localeCompare(b.perspectiva) || a.nombre.localeCompare(b.nombre)).map((e) => (
           <option key={e.id} value={e.id}>
@@ -20752,7 +20821,7 @@ function VistaEnlacesPorEscuela({ escuelas, enlaces, onIrAEscuela }) {
                         ({otraEscuela?.nombre || "escuela eliminada"})
                       </span>
                     </div>
-                    <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.inkSoft }}>{l.nota}</p>
+                    <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.inkSoft }}>{l.nota}</p>
                   </div>
                 );
               })}
@@ -20857,7 +20926,7 @@ function GrafoTraslacional({ escuelas, enlaces, filtro, onIrAEscuela }) {
 
   return (
     <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 14 }}>
-      <p style={{ fontSize: 11.5, fontFamily: "ui-serif, Georgia, serif", color: COLORS.inkSoft, fontStyle: "italic", marginTop: 0, marginBottom: 10 }}>
+      <p style={{ fontSize: 11.5, fontFamily: "'Lora', Georgia, serif", color: COLORS.inkSoft, fontStyle: "italic", marginTop: 0, marginBottom: 10 }}>
         Cada nodo es una escuela con al menos un enlace traslacional (color = perspectiva, tamaño = número de enlaces). Cada línea es un enlace, coloreada por tipo de relación y con opacidad según la fidelidad declarada. Pasa el mouse sobre un nodo para resaltar su vecindario; clic en un nodo abre su ficha; clic en una línea muestra la nota de distorsión completa.
       </p>
       <PanelFiltrosGrafo
@@ -20967,7 +21036,7 @@ function GrafoTraslacional({ escuelas, enlaces, filtro, onIrAEscuela }) {
             {enlaceActivo.conceptoA?.nombre} ↔ {enlaceActivo.conceptoB?.nombre}
           </div>
           {enlaceActivo.nota && (
-            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.inkSoft }}>
+            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.5, color: COLORS.inkSoft }}>
               <NotaConMenciones
                 texto={enlaceActivo.nota}
                 escuelaActualId={enlaceActivo.conceptoA?.escuela}
@@ -21143,35 +21212,35 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
           }}
         >
           {filosofiaCienciaAbierta ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-          <span style={{ fontFamily: "Georgia, serif", fontSize: 13.5, fontWeight: 700 }}>¿Qué es la inconmensurabilidad? Posiciones en filosofía de la ciencia</span>
-          <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft }}>(Kuhn, Popper, Feyerabend, Lakatos — por qué este diccionario no fuerza equivalencias)</span>
+          <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 13.5, fontWeight: 700 }}>¿Qué es la inconmensurabilidad? Posiciones en filosofía de la ciencia</span>
+          <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft }}>(Kuhn, Popper, Feyerabend, Lakatos — por qué este diccionario no fuerza equivalencias)</span>
         </div>
         {filosofiaCienciaAbierta && (
           <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: "14px 18px", display: "grid", gap: 12 }}>
-            <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, lineHeight: 1.6, color: COLORS.ink }}>
+            <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, lineHeight: 1.6, color: COLORS.ink }}>
               La <strong>inconmensurabilidad</strong> es la tesis de que dos marcos teóricos pueden carecer de un criterio común bajo el cual comparar o traducir sin pérdida sus enunciados centrales — no es simplemente que estén en desacuerdo (el desacuerdo presupone un terreno común donde contradecirse), sino que ni siquiera comparten por completo el vocabulario observacional ni los criterios de qué cuenta como evidencia relevante.
             </p>
             <div>
               <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Thomas Kuhn (1962) — el origen del término</div>
-              <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
+              <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
                 Acuñó «inconmensurabilidad» para describir la relación entre paradigmas científicos sucesivos: no solo cambian las teorías, cambian los propios términos observacionales (un «átomo» newtoniano y uno cuántico no denotan lo mismo), de modo que los partidarios de paradigmas rivales literalmente «viven en mundos distintos» y no pueden zanjar su disputa apelando a datos neutrales compartidos por ambos.
               </p>
             </div>
             <div>
               <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Karl Popper — inconmensurabilidad moderada y falsable</div>
-              <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
+              <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
                 Popper, y su alumno Lakatos después, aceptaron que los marcos teóricos difieren en supuestos de fondo, pero rechazaron la versión fuerte kuhniana de mundos incomunicables: para ellos, el desacuerdo racional entre programas de investigación rivales sigue siendo posible porque ambos pueden, en principio, formular predicciones contrastables y ser sometidos a crítica —la inconmensurabilidad es un obstáculo real pero superable mediante el esfuerzo deliberado de traducción crítica, no una barrera absoluta—. Esta app adopta una versión próxima a esta posición moderada: cada enlace del diccionario es precisamente ese esfuerzo de traducción crítica, con su «nota de distorsión» documentando lo que se pierde en el intento.
               </p>
             </div>
             <div>
               <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Paul Feyerabend — inconmensurabilidad radical</div>
-              <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
+              <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
                 Llevó la tesis más lejos que el propio Kuhn: si los marcos son radicalmente inconmensurables, ningún criterio metodológico universal puede arbitrar entre ellos («todo vale», anarquismo epistemológico), y la elección entre paradigmas rivales se parece más a una conversión que a una inferencia racional. Es la posición que hace más plausible la existencia de pares genuinamente «inconmensurables» en este diccionario (marcados así, no como «falsos amigos» ni «análogos débiles»): a veces no hay, ni en principio, un vocabulario compartido para arbitrar la comparación.
               </p>
             </div>
             <div>
               <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Cómo se usa esto en el diccionario de la app</div>
-              <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
+              <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
                 La mayoría de los enlaces de este diccionario asumen la postura popperiano-lakatosiana moderada: la traducción entre escuelas es posible pero tiene un costo, documentado explícitamente en cada «nota de distorsión». Los enlaces marcados como <strong>inconmensurable</strong> son los casos, más cercanos a Kuhn o Feyerabend, en que ni siquiera ese puente con pérdidas parece sostenerse honestamente — dos escuelas que no comparten un criterio de verdad común bajo el cual sus enunciados centrales puedan siquiera contradecirse.
               </p>
             </div>
@@ -21194,10 +21263,10 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
           }}
         >
           {introAbierta ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-          <span style={{ fontFamily: "Georgia, serif", fontSize: 13.5, fontWeight: 700 }}>
+          <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 13.5, fontWeight: 700 }}>
             Conceptos que atraviesan las 7 perspectivas
           </span>
-          <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft }}>
+          <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft }}>
             ({CONCEPTOS_TRANSVERSALES.length} nudos temáticos — introducción de referencia antes de navegar escuela por escuela)
           </span>
         </div>
@@ -21208,7 +21277,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "14px 0" }}>
         {Object.entries(RELACION_INFO).map(([k, v]) => (
-          <span key={k} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, fontFamily: "ui-monospace,monospace", color: v.color }}>
+          <span key={k} style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11, fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: v.color }}>
             <span style={{ width: 10, height: 10, borderRadius: "50%", background: v.color, display: "inline-block" }} />
             {k}
           </span>
@@ -21343,7 +21412,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
         <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 16, marginTop: 16 }}>
           <div className="psq-2col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
             <div>
-              <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Concepto A</div>
+              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Concepto A</div>
               <select value={nuevoA.escuela} onChange={(e) => setNuevoA({ ...nuevoA, escuela: e.target.value })} style={{ width: "100%", marginBottom: 6, padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }}>
                 {escuelas.map((e) => (
                   <option key={e.id} value={e.id}>
@@ -21354,7 +21423,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
               <input placeholder="nombre del concepto" value={nuevoA.nombre} onChange={(e) => setNuevoA({ ...nuevoA, nombre: e.target.value })} style={{ width: "100%", padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }} />
             </div>
             <div>
-              <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Concepto B</div>
+              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Concepto B</div>
               <select value={nuevoB.escuela} onChange={(e) => setNuevoB({ ...nuevoB, escuela: e.target.value })} style={{ width: "100%", marginBottom: 6, padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }}>
                 {escuelas.map((e) => (
                   <option key={e.id} value={e.id}>
@@ -21368,7 +21437,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
 
           <div className="psq-2col-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginTop: 12 }}>
             <label>
-              <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Tipo de relación</div>
+              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Tipo de relación</div>
               <select value={relacion} onChange={(e) => setRelacion(e.target.value)} style={{ width: "100%", padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }}>
                 {Object.keys(RELACION_INFO).map((r) => (
                   <option key={r} value={r}>
@@ -21378,7 +21447,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
               </select>
             </label>
             <label>
-              <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Grado de fidelidad</div>
+              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 4, textTransform: "uppercase" }}>Grado de fidelidad</div>
               <select value={fidelidad} onChange={(e) => setFidelidad(e.target.value)} style={{ width: "100%", padding: 6, borderRadius: 4, border: `1px solid ${COLORS.line}` }}>
                 <option value="alta">alta</option>
                 <option value="media">media</option>
@@ -21437,8 +21506,8 @@ function PanelEstadisticasDiccionario({ enlaces, escuelas }) {
         }}
       >
         {abierto ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-        <span style={{ fontFamily: "Georgia, serif", fontSize: 13.5, fontWeight: 700 }}>Estadísticas del diccionario</span>
-        <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft }}>
+        <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 13.5, fontWeight: 700 }}>Estadísticas del diccionario</span>
+        <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft }}>
           ({stats.total} enlaces · {stats.sinEnlaces.length} escuela{stats.sinEnlaces.length !== 1 ? "s" : ""} todavía sin ninguno)
         </span>
       </div>
@@ -21521,7 +21590,7 @@ function IntroConceptosTransversales() {
   const actual = CONCEPTOS_TRANSVERSALES.find((c) => c.id === abierto);
   return (
     <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: 16, marginBottom: 6 }}>
-      <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, color: COLORS.inkSoft, marginTop: 0 }}>
+      <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.inkSoft, marginTop: 0 }}>
         Antes de navegar escuela por escuela, esta es una referencia rápida: dieciocho nudos conceptuales (el síntoma, la ansiedad, el self, el inconsciente, la resistencia, la relación terapéutica, el mecanismo de cambio, el criterio de cura, el rol del terapeuta, la temporalidad, el lenguaje, el cuerpo, la motivación, la manualización, la culpa, el apego temprano, la muerte y la finitud, y la libertad y el determinismo) con el término y la definición propios de cada una de las siete perspectivas, lado a lado (donde aplica).
       </p>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
@@ -21530,7 +21599,7 @@ function IntroConceptosTransversales() {
             key={c.id}
             onClick={() => setAbierto(c.id)}
             style={{
-              fontFamily: "ui-monospace,monospace",
+              fontFamily: "'JetBrains Mono', ui-monospace, monospace",
               fontSize: 10.5,
               padding: "4px 9px",
               borderRadius: 4,
@@ -21546,17 +21615,17 @@ function IntroConceptosTransversales() {
       </div>
       {actual && (
         <div>
-          <p style={{ fontSize: 12, color: COLORS.inkSoft, fontFamily: "ui-serif, Georgia, serif", marginTop: 0 }}>{actual.descripcion}</p>
+          <p style={{ fontSize: 12, color: COLORS.inkSoft, fontFamily: "'Lora', Georgia, serif", marginTop: 0 }}>{actual.descripcion}</p>
           <div style={{ display: "grid", gap: 10 }}>
             {actual.porPerspectiva.map((p, i) => {
               const color = PERSPECTIVA_COLOR[p.perspectiva];
               return (
                 <div key={i} style={{ borderLeft: `4px solid ${color}`, paddingLeft: 12 }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap", marginBottom: 3 }}>
-                    <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color, textTransform: "uppercase" }}>{p.perspectiva}</span>
+                    <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color, textTransform: "uppercase" }}>{p.perspectiva}</span>
                     <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>{p.termino}</span>
                   </div>
-                  <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 13, lineHeight: 1.5 }}>{p.definicion}</p>
+                  <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.5 }}>{p.definicion}</p>
                 </div>
               );
             })}
@@ -21586,12 +21655,12 @@ function ComparadorCampo({ escuelas, campo, filtro, colorEtiqueta }) {
           <div key={persp}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
               <span style={{ width: 12, height: 12, borderRadius: "50%", background: color, display: "inline-block" }} />
-              <h3 style={{ fontFamily: "Georgia, serif", fontSize: 16, margin: 0, color: COLORS.ink }}>{persp}</h3>
+              <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 16, margin: 0, color: COLORS.ink }}>{persp}</h3>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))", gap: 14, marginBottom: 6 }}>
               {escuelasVisibles.map((e) => (
                 <div key={e.id} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 6, padding: 14 }}>
-                  <div style={{ fontFamily: "Georgia, serif", fontWeight: 700, fontSize: 14, marginBottom: 8 }}>{e.nombre}</div>
+                  <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: 14, marginBottom: 8 }}>{e.nombre}</div>
                   <div>
                     {(e[campo] || []).map((t, i) => (
                       <Etiqueta key={i}>
@@ -21599,7 +21668,7 @@ function ComparadorCampo({ escuelas, campo, filtro, colorEtiqueta }) {
                       </Etiqueta>
                     ))}
                     {(e[campo] || []).length === 0 && (
-                      <span style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic" }}>Sin registrar todavía.</span>
+                      <span style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic" }}>Sin registrar todavía.</span>
                     )}
                   </div>
                 </div>
@@ -21620,7 +21689,7 @@ function ComparadorPsicopatologias({ escuelas, filtro }) {
     <div style={{ display: "grid", gap: 20 }}>
       <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 6, padding: 12, marginBottom: 4 }}>
         <AlertTriangle size={15} color={COLORS.gold} style={{ flexShrink: 0, marginTop: 2 }} />
-        <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, color: COLORS.ink, lineHeight: 1.5 }}>
+        <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.ink, lineHeight: 1.5 }}>
           Esta comparación pone una al lado de otra las concepciones de psicopatología <em>en los propios términos de cada escuela</em>. No implica que describan el mismo fenómeno: comparar no es igualar. Para la traducción explícita entre conceptos —con su tipo de relación y su nota de distorsión— usa el glosario.
         </p>
       </div>
@@ -21635,13 +21704,13 @@ function ComparadorPsicopatologias({ escuelas, filtro }) {
           <div key={persp}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
               <span style={{ width: 12, height: 12, borderRadius: "50%", background: color, display: "inline-block" }} />
-              <h3 style={{ fontFamily: "Georgia, serif", fontSize: 16, margin: 0, color: COLORS.ink }}>{persp}</h3>
+              <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 16, margin: 0, color: COLORS.ink }}>{persp}</h3>
             </div>
             <div style={{ display: "grid", gap: 10 }}>
               {escuelasVisibles.map((e) => (
                 <div key={e.id} style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderLeft: `4px solid ${color}`, borderRadius: 6, padding: 14 }}>
-                  <div style={{ fontFamily: "Georgia, serif", fontWeight: 700, fontSize: 14, marginBottom: 6 }}>{e.nombre}</div>
-                  <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 13.5, lineHeight: 1.55, color: COLORS.ink }}>{e.psicopatologia}</p>
+                  <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: 14, marginBottom: 6 }}>{e.nombre}</div>
+                  <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13.5, lineHeight: 1.55, color: COLORS.ink }}>{e.psicopatologia}</p>
                 </div>
               ))}
             </div>
@@ -21765,7 +21834,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
           if (escuelasP.length === 0) return null;
           return (
             <div key={persp} style={{ marginBottom: 10 }}>
-              <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: pColor, textTransform: "uppercase", marginBottom: 4 }}>{persp}</div>
+              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: pColor, textTransform: "uppercase", marginBottom: 4 }}>{persp}</div>
               {escuelasP.map((e) => (
                 <div
                   key={e.id}
@@ -21775,7 +21844,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                     marginBottom: 3,
                     borderRadius: 4,
                     cursor: "pointer",
-                    fontFamily: "Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontSize: 12.5,
                     border: `1px solid ${escuelaGlosario === e.id ? pColor : COLORS.line}`,
                     background: escuelaGlosario === e.id ? COLORS.paperDark : "#fff",
@@ -21793,7 +21862,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
         {escuelaActual && (
           <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 6, padding: 18, marginBottom: 16 }}>
             <Sello color={color}>{escuelaActual.perspectiva}</Sello>
-            <h3 style={{ fontFamily: "Georgia, serif", fontSize: 19, margin: "8px 0 14px" }}>{escuelaActual.nombre}</h3>
+            <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: 19, margin: "8px 0 14px" }}>{escuelaActual.nombre}</h3>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
               {conceptosEscuela.map((c, i) => (
@@ -21801,7 +21870,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                   key={i}
                   onClick={() => setConceptoGlosario(c.termino)}
                   style={{
-                    fontFamily: "ui-monospace,monospace",
+                    fontFamily: "'JetBrains Mono', ui-monospace, monospace",
                     fontSize: 11,
                     padding: "4px 9px",
                     borderRadius: 4,
@@ -21818,13 +21887,13 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
 
             {conceptoActual ? (
               <div style={{ borderTop: `1px dashed ${COLORS.line}`, paddingTop: 14 }}>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 6 }}>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, textTransform: "uppercase", color: COLORS.primary, marginBottom: 6 }}>
                   {escuelaActual.nombre} → {conceptoActual.termino}
                 </div>
-                <p style={{ margin: "0 0 8px", fontFamily: "ui-serif, Georgia, serif", fontSize: 14.5, lineHeight: 1.6, color: COLORS.ink }}>
+                <p style={{ margin: "0 0 8px", fontFamily: "'Lora', Georgia, serif", fontSize: 14.5, lineHeight: 1.6, color: COLORS.ink }}>
                   {conceptoActual.definicion}
                 </p>
-                <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 16 }}>— {conceptoActual.fuente}</div>
+                <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 16 }}>— {conceptoActual.fuente}</div>
 
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8, flexWrap: "wrap", gap: 8 }}>
                   <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet }}>
@@ -21842,7 +21911,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                   )}
                 </div>
                 {nodos.length === 0 ? (
-                  <p style={{ fontFamily: "ui-serif, Georgia, serif", fontSize: 12.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
+                  <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 12.5, color: COLORS.inkSoft, fontStyle: "italic" }}>
                     Aún no se ha registrado un enlace traslacional para este concepto. Recuerda que, según la inconmensurabilidad popperiana, la ausencia de un equivalente registrado no implica que no pueda haberlo — solo que todavía no se ha trazado el puente con su nota de distorsión correspondiente.
                   </p>
                 ) : vistaEquivalentes === "grafo" ? (
@@ -21862,7 +21931,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 4 }}>
                         <span
                           style={{
-                            fontFamily: "ui-monospace,monospace",
+                            fontFamily: "'JetBrains Mono', ui-monospace, monospace",
                             fontSize: 10.5,
                             fontWeight: 700,
                             color: info.color,
@@ -21874,10 +21943,10 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                           {info.abrev} · {l.relacion}
                         </span>
                         <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>{otro.nombre}</span>
-                        <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: otroColor }}>({otraEscuela?.nombre || "escuela eliminada"})</span>
+                        <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: otroColor }}>({otraEscuela?.nombre || "escuela eliminada"})</span>
                         <span style={{ marginLeft: "auto" }}><BarraFidelidad nivel={l.fidelidad} color={info.color} /></span>
                       </div>
-                      <p style={{ margin: 0, fontFamily: "ui-serif, Georgia, serif", fontSize: 13, lineHeight: 1.5, color: COLORS.ink }}>
+                      <p style={{ margin: 0, fontFamily: "'Lora', Georgia, serif", fontSize: 13, lineHeight: 1.5, color: COLORS.ink }}>
                         <NotaConMenciones
                           texto={l.nota}
                           escuelaActualId={escuelaGlosario}
@@ -22138,6 +22207,8 @@ export default function App() {
   const [historial, setHistorial] = useState([]);
   const [historialAbierto, setHistorialAbierto] = useState(false);
   const [panelIntegridadAbierto, setPanelIntegridadAbierto] = useState(false);
+  const [statsAbiertas, setStatsAbiertas] = useState(false);
+  const [masOpcionesAbierto, setMasOpcionesAbierto] = useState(false);
   const [mostrarAdvertenciasIntegridad, setMostrarAdvertenciasIntegridad] = useState(false);
   // Modo estudio: interruptor global (no por módulo) para poder recorrer
   // secuencialmente con ← → el contenido del módulo activo sin perderlo al
@@ -22434,7 +22505,8 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
   return (
     <div
       style={{
-        background: COLORS.paper, minHeight: "100%", width: "100%", maxWidth: "100vw", boxSizing: "border-box",
+        background: `radial-gradient(1100px 620px at 12% -8%, ${COLORS.primary}14, transparent 60%), radial-gradient(900px 700px at 108% 12%, ${COLORS.clay}0f, transparent 55%), ${COLORS.paper}`,
+        minHeight: "100%", width: "100%", maxWidth: "100vw", boxSizing: "border-box",
         fontFamily: "ui-sans-serif, system-ui", color: COLORS.ink, textAlign: "left",
         transition: "background-color 0.25s ease, color 0.25s ease",
       }}
@@ -22514,148 +22586,215 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
           .psq-fade * { transition: none !important; }
         }
       `}</style>
-      {/* Cabecera tipo carpeta clínica */}
-      <div style={{ background: COLORS.primaryDark, padding: "14px 20px", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-        <FileText color="#fff" size={20} />
-        <div>
-          <div style={{ color: "#fff", fontFamily: "Georgia, serif", fontSize: 16, fontWeight: 700 }}>
-            Expediente comparado de las psicoterapias
-          </div>
-          <div style={{ color: "#D8DEDA", fontSize: 11, display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-            <span>
-              7 perspectivas · {escuelas.length} escuelas · {GLOSARIO.filter((g) => g.tipo === "concepto").length} conceptos definidos · {enlaces.length} enlaces conceptuales · {enlacesTecnicas.length} enlaces de técnicas · {Object.keys(PROTOCOLOS_SEED).length} protocolos
-            </span>
-            {ultimaEdicion && (
-              <span
-                onClick={() => setHistorialAbierto(true)}
-                title="Ver historial completo de ediciones"
-                style={{
-                  fontFamily: "ui-monospace,monospace",
-                  fontSize: 10,
-                  color: "#fff",
-                  background: "rgba(255,255,255,0.15)",
-                  border: "1px solid rgba(255,255,255,0.35)",
-                  borderRadius: 3,
-                  padding: "1px 6px",
-                  cursor: "pointer",
-                  textDecoration: "underline",
-                }}
-              >
-                ✎ editado {formatearFecha(ultimaEdicion)} · ver historial ({historial.length})
-              </span>
-            )}
-          </div>
-        </div>
-        <div style={{ marginLeft: "auto", display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-          <button
-            onClick={() => setPanelIntegridadAbierto(!panelIntegridadAbierto)}
-            title={integridad.ok ? "Integridad de datos: sin problemas" : `${integridad.problemas.length} problema(s) de referencias rotas`}
+      {/* Cabecera — versión sobria: identidad + búsqueda + tema en una fila,
+          cifras y controles avanzados ocultos detrás de desplegables para
+          no competir visualmente con el contenido. */}
+      <div style={{ background: COLORS.primaryDark, padding: "14px clamp(14px, 4vw, 24px)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", rowGap: 10 }}>
+        <FileText color="rgba(255,255,255,0.85)" size={18} strokeWidth={1.75} style={{ flexShrink: 0 }} />
+        <button
+          onClick={() => setStatsAbiertas((v) => !v)}
+          aria-expanded={statsAbiertas}
+          title="Mostrar u ocultar el detalle del contenido de esta aplicación"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+            textAlign: "left",
+            minWidth: 0,
+            flex: "1 1 auto",
+          }}
+        >
+          <span
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 5,
-              padding: "5px 9px",
-              borderRadius: 20,
-              border: `1px solid ${integridad.ok ? "rgba(255,255,255,0.35)" : STATUS_COLORS.error}`,
-              background: integridad.ok ? "transparent" : "rgba(184,67,61,0.18)",
-              cursor: "pointer",
-              fontFamily: "ui-monospace,monospace",
-              fontSize: 10.5,
-              fontWeight: 700,
-              color: integridad.ok ? "#D8DEDA" : "#F2C9C6",
-              transition: "background 0.15s ease, border-color 0.15s ease",
+              color: "#fff",
+              fontFamily: "'Fraunces', Georgia, serif",
+              fontSize: "clamp(14.5px, 3.6vw, 17px)",
+              fontWeight: 600,
+              letterSpacing: "-0.01em",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
-            aria-label={integridad.ok ? "Integridad de datos: sin problemas" : `Integridad de datos: ${integridad.problemas.length} problemas encontrados`}
           >
-            <span
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: "50%",
-                background: integridad.ok ? STATUS_COLORS.ok : STATUS_COLORS.error,
-                display: "inline-block",
-                flexShrink: 0,
-                transition: "background 0.15s ease",
-              }}
-            />
-            {integridad.ok ? "íntegro" : `${integridad.problemas.length} problema${integridad.problemas.length !== 1 ? "s" : ""}`}
-          </button>
+            Expediente comparado de las psicoterapias
+          </span>
+          <ChevronDown
+            size={13}
+            style={{
+              color: "rgba(255,255,255,0.45)",
+              transform: statsAbiertas ? "rotate(180deg)" : "none",
+              transition: "transform 0.2s ease",
+              flexShrink: 0,
+            }}
+          />
+        </button>
+
+        <div style={{ marginLeft: "auto", display: "flex", gap: 10, alignItems: "center", flexShrink: 0 }}>
           <div style={{ position: "relative" }}>
-            <Search size={14} style={{ position: "absolute", left: 8, top: 8, color: COLORS.inkSoft }} />
+            <Search size={13} style={{ position: "absolute", left: 10, top: "50%", transform: "translateY(-50%)", color: "rgba(255,255,255,0.55)", pointerEvents: "none" }} />
             <input
               ref={inputBuscadorRef}
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
-              placeholder="Buscar escuela, autor, concepto… ( / )"
+              placeholder="Buscar…  ( / )"
               aria-label="Buscar escuela, autor o concepto. Atajo: tecla oblicua"
-              style={{ padding: "6px 10px 6px 28px", borderRadius: 4, border: "none", fontSize: 12.5, width: "min(220px, 48vw)" }}
+              style={{
+                padding: "7px 12px 7px 30px",
+                borderRadius: 20,
+                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(255,255,255,0.08)",
+                color: "#fff",
+                fontFamily: "'Lora', Georgia, serif",
+                fontSize: 13,
+                width: "min(200px, 38vw)",
+                outline: "none",
+              }}
+              onFocus={(ev) => { ev.currentTarget.style.background = "rgba(255,255,255,0.14)"; ev.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; }}
+              onBlur={(ev) => { ev.currentTarget.style.background = "rgba(255,255,255,0.08)"; ev.currentTarget.style.borderColor = "rgba(255,255,255,0.18)"; }}
             />
           </div>
+
           <button
             onClick={() => cambiarTema(tema === "claro" ? "oscuro" : tema === "oscuro" ? "alto-contraste" : "claro")}
-            title={`Tema actual: ${tema}. Clic para cambiar a ${tema === "claro" ? "oscuro" : tema === "oscuro" ? "alto contraste" : "claro"}.`}
+            title={`Tema: ${tema}. Clic para cambiar a ${tema === "claro" ? "oscuro" : tema === "oscuro" ? "alto contraste" : "claro"}.`}
             aria-label="Cambiar tema visual (claro / oscuro / alto contraste)"
             style={{
-              display: "inline-flex", alignItems: "center", gap: 5,
-              padding: "6px 9px", border: "1px solid #fff", borderRadius: 4,
-              color: "#fff", background: "transparent", cursor: "pointer",
-              fontFamily: "ui-monospace,monospace", fontSize: 10.5,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              width: 30, height: 30, border: "none", borderRadius: "50%",
+              color: "rgba(255,255,255,0.8)", background: "transparent", cursor: "pointer",
             }}
+            onMouseEnter={(ev) => { ev.currentTarget.style.background = "rgba(255,255,255,0.12)"; }}
+            onMouseLeave={(ev) => { ev.currentTarget.style.background = "transparent"; }}
           >
-            {tema === "claro" ? "☀︎ claro" : tema === "oscuro" ? "☾ oscuro" : "◐ alto contraste"}
+            {tema === "claro" ? <span style={{ fontSize: 14 }}>☀︎</span> : tema === "oscuro" ? <span style={{ fontSize: 14 }}>☾</span> : <span style={{ fontSize: 14 }}>◐</span>}
           </button>
-          <button
-            onClick={() => setModoEstudio((v) => !v)}
-            title="Modo estudio: recorre con ← → el contenido secuencial del módulo activo (escuelas de una perspectiva, protocolos, entradas de glosario). Se mantiene activo aunque cambies de módulo."
-            aria-label="Alternar modo estudio, activo en toda la aplicación"
-            aria-pressed={modoEstudio}
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 5,
-              padding: "6px 9px", border: `1px solid ${modoEstudio ? COLORS.gold : "#fff"}`, borderRadius: 4,
-              color: modoEstudio ? COLORS.gold : "#fff", background: modoEstudio ? "rgba(255,255,255,0.12)" : "transparent", cursor: "pointer",
-              fontFamily: "ui-monospace,monospace", fontSize: 10.5, fontWeight: modoEstudio ? 700 : 400,
-            }}
-          >
-            {modoEstudio ? "◆ modo estudio" : "◇ modo estudio"}
-          </button>
-          <Boton small variant="ghost" onClick={exportarJSON} title="Exportar datos" aria-label="Exportar datos a JSON">
-            <Download size={13} color="#fff" />
-          </Boton>
-          <Boton
-            small
-            variant="ghost"
-            onClick={restablecerDeFabrica}
-            title="Restablecer de fábrica: borra el storage local y recarga el contenido más reciente del código (usar si no ves cambios nuevos tras actualizar el archivo)"
-            aria-label="Restablecer todos los datos a la versión de fábrica del código"
-          >
-            <RotateCcw size={13} color="#fff" />
-          </Boton>
-          <label style={{ cursor: "pointer" }} title="Importar datos">
-            <input
-              type="file"
-              accept="application/json"
-              onChange={importarJSON}
-              aria-label="Importar datos desde un archivo JSON"
-              style={{ position: "absolute", width: 1, height: 1, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap", border: 0 }}
-            />
-            <span
+
+          <div style={{ position: "relative" }}>
+            <button
+              onClick={() => setMasOpcionesAbierto((v) => !v)}
+              aria-label="Más opciones"
+              aria-expanded={masOpcionesAbierto}
+              title="Más opciones"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                padding: "6px 8px",
-                border: `1px solid #fff`,
-                borderRadius: 4,
-                color: "#fff",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                width: 30, height: 30, border: "none", borderRadius: "50%",
+                color: "rgba(255,255,255,0.8)", background: masOpcionesAbierto ? "rgba(255,255,255,0.16)" : "transparent", cursor: "pointer",
               }}
+              onMouseEnter={(ev) => { if (!masOpcionesAbierto) ev.currentTarget.style.background = "rgba(255,255,255,0.12)"; }}
+              onMouseLeave={(ev) => { if (!masOpcionesAbierto) ev.currentTarget.style.background = "transparent"; }}
             >
-              <Upload size={13} />
-            </span>
-          </label>
-          <span style={{ fontSize: 10.5, color: "#D8DEDA", width: 54, fontFamily: "ui-monospace,monospace" }}>
-            {guardando ? "guardando…" : mensaje}
-          </span>
+              <span style={{ fontSize: 16, lineHeight: 1 }}>⋯</span>
+            </button>
+            {masOpcionesAbierto && (
+              <>
+                <div style={{ position: "fixed", inset: 0, zIndex: 1200 }} onClick={() => setMasOpcionesAbierto(false)} />
+                <div
+                  className="psq-fade-in"
+                  style={{
+                    position: "absolute",
+                    top: "calc(100% + 8px)",
+                    right: 0,
+                    zIndex: 1201,
+                    background: COLORS.cardBg,
+                    border: `1px solid ${COLORS.line}`,
+                    borderRadius: 10,
+                    boxShadow: "0 14px 34px rgba(0,0,0,0.28)",
+                    minWidth: 240,
+                    padding: 6,
+                    display: "grid",
+                    gap: 2,
+                  }}
+                >
+                  <MenuOpcion
+                    icon={modoEstudio ? <Sello color={COLORS.gold}>on</Sello> : null}
+                    label="Modo estudio"
+                    detalle="Recorre el contenido con las flechas ← →"
+                    onClick={() => { setModoEstudio((v) => !v); setMasOpcionesAbierto(false); }}
+                    activo={modoEstudio}
+                  />
+                  <MenuOpcion
+                    icon={<span style={{ width: 7, height: 7, borderRadius: "50%", background: integridad.ok ? STATUS_COLORS.ok : STATUS_COLORS.error, display: "inline-block" }} />}
+                    label="Salud de los datos"
+                    detalle={integridad.ok ? "Sin problemas detectados" : `${integridad.problemas.length} problema(s) de referencias`}
+                    onClick={() => { setPanelIntegridadAbierto(true); setMasOpcionesAbierto(false); }}
+                  />
+                  <div style={{ height: 1, background: COLORS.line, margin: "4px 2px" }} />
+                  <MenuOpcion
+                    icon={<Download size={14} />}
+                    label="Exportar datos a JSON"
+                    onClick={() => { exportarJSON(); setMasOpcionesAbierto(false); }}
+                  />
+                  <label style={{ cursor: "pointer" }}>
+                    <input
+                      type="file"
+                      accept="application/json"
+                      onChange={(e) => { importarJSON(e); setMasOpcionesAbierto(false); }}
+                      aria-label="Importar datos desde un archivo JSON"
+                      style={{ position: "absolute", width: 1, height: 1, padding: 0, margin: -1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap", border: 0 }}
+                    />
+                    <span style={{ display: "block" }}>
+                      <MenuOpcion icon={<Upload size={14} />} label="Importar datos desde JSON" as="span" />
+                    </span>
+                  </label>
+                  {ultimaEdicion && (
+                    <MenuOpcion
+                      icon={<span style={{ fontSize: 13 }}>✎</span>}
+                      label="Historial de ediciones"
+                      detalle={`editado ${formatearFecha(ultimaEdicion)} · ${historial.length} cambio(s)`}
+                      onClick={() => { setHistorialAbierto(true); setMasOpcionesAbierto(false); }}
+                    />
+                  )}
+                  <div style={{ height: 1, background: COLORS.line, margin: "4px 2px" }} />
+                  <MenuOpcion
+                    icon={<RotateCcw size={14} color={COLORS.garnet} />}
+                    label="Restablecer de fábrica"
+                    detalle="Borra tus ediciones guardadas en este navegador"
+                    tono={COLORS.garnet}
+                    onClick={() => { restablecerDeFabrica(); setMasOpcionesAbierto(false); }}
+                  />
+                  <div style={{ padding: "6px 10px 2px", fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, color: COLORS.inkSoft }}>
+                    {guardando ? "guardando…" : mensaje || "todos los cambios se guardan automáticamente"}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
+
+      {statsAbiertas && (
+        <div
+          className="psq-fade-in"
+          style={{
+            background: COLORS.primaryDark,
+            borderTop: "1px solid rgba(255,255,255,0.12)",
+            padding: "10px 24px 14px",
+            display: "flex",
+            gap: "8px 20px",
+            flexWrap: "wrap",
+            color: "rgba(255,255,255,0.75)",
+            fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+            fontSize: 11,
+          }}
+        >
+          {[
+            ["perspectivas", 7],
+            ["escuelas", escuelas.length],
+            ["conceptos definidos", GLOSARIO.filter((g) => g.tipo === "concepto").length],
+            ["enlaces conceptuales", enlaces.length],
+            ["enlaces de técnicas", enlacesTecnicas.length],
+            ["protocolos", Object.keys(PROTOCOLOS_SEED).length],
+          ].map(([label, valor]) => (
+            <span key={label}>
+              <strong style={{ color: "#fff", fontWeight: 600 }}>{valor}</strong> {label}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* Pestañas de carpeta */}
       <div style={{ position: "relative" }}>
@@ -22686,7 +22825,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
                 display: "flex",
                 alignItems: "center",
                 gap: 6,
-                fontFamily: "ui-monospace, monospace",
+                fontFamily: "'JetBrains Mono', ui-monospace, monospace",
                 fontSize: 12.5,
                 borderRadius: "6px 6px 0 0",
                 marginTop: activo ? 0 : 4,
@@ -22729,7 +22868,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13 }}>
               Salud de los datos
             </span>
-            <span style={{ fontFamily: "ui-monospace,monospace", fontSize: 10, color: COLORS.inkSoft }}>
+            <span style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 10, color: COLORS.inkSoft }}>
               recalculado en vivo tras cada cambio · {escuelas.length} escuelas · {enlaces.length + enlacesTecnicas.length} enlaces
             </span>
             <button
@@ -22743,7 +22882,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
 
           {integridad.problemas.length > 0 && (
             <div style={{ marginBottom: 8 }}>
-              <div style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, fontWeight: 700, color: STATUS_COLORS.error, textTransform: "uppercase", marginBottom: 4 }}>
+              <div style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, fontWeight: 700, color: STATUS_COLORS.error, textTransform: "uppercase", marginBottom: 4 }}>
                 ✗ {integridad.problemas.length} problema(s) — referencias rotas, requieren corrección
               </div>
               {integridad.problemas.map((p, i) => (
@@ -22767,7 +22906,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             <div>
               <div
                 onClick={() => setMostrarAdvertenciasIntegridad(!mostrarAdvertenciasIntegridad)}
-                style={{ fontFamily: "ui-monospace,monospace", fontSize: 9.5, fontWeight: 700, color: STATUS_COLORS.advertencia, textTransform: "uppercase", marginBottom: 4, cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}
+                style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: 9.5, fontWeight: 700, color: STATUS_COLORS.advertencia, textTransform: "uppercase", marginBottom: 4, cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}
               >
                 {mostrarAdvertenciasIntegridad ? <ChevronDown size={11} /> : <ChevronRight size={11} />}
                 ⚠ {integridad.advertencias.length} advertencia(s) — contenido opcional aún no sembrado (no son errores)
@@ -22850,7 +22989,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
                   >
                     {tDef?.label || h.id}
                     {h.detalle && (
-                      <span style={{ fontFamily: "ui-serif, Georgia, serif", fontStyle: "italic", fontSize: 9.5, maxWidth: 110, overflow: "hidden", textOverflow: "ellipsis" }}>
+                      <span style={{ fontFamily: "'Lora', Georgia, serif", fontStyle: "italic", fontSize: 9.5, maxWidth: 110, overflow: "hidden", textOverflow: "ellipsis" }}>
                         · {h.detalle}
                       </span>
                     )}
