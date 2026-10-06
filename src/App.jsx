@@ -7852,7 +7852,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Método de la analítica existencial en 3 fases (Ludwig Binswanger)",
       tipo: "técnica",
-      fuente: "Binswanger, L. (1965); Martínez Ortiz, E. (Comp.), Las psicoterapias existenciales. El Manual Moderno.",
+      fuente: "Binswanger, citado en Martínez Ortiz, E. (Comp.). (2011). Las psicoterapias existenciales. Manual Moderno, pp. 148 y 159 (los tres objetivos de la analítica existencial).",
       fases: [
         "Análisis de la génesis de sentido: investigar la biografía del paciente para localizar el punto en que su proyecto de mundo se distorsionó o quedó anclado.",
         "Análisis de las estructuras básicas: mapear cómo se sostiene hoy ese bloqueo, sin dejarse «encantar por los síntomas», buscando el sentido intencional oculto tras ellos.",
@@ -7866,7 +7866,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de injerto estructural en dos tiempos (Pablo Rispo)",
       tipo: "técnica",
-      fuente: "Rispo, P. (2002), citado en Signorelli, S., en Martínez Ortiz, E. (Comp.), Las psicoterapias existenciales.",
+      fuente: "Rispo (2002, pp. 253–254), citado en Martínez Ortiz, E. (Comp.). (2011). Las psicoterapias existenciales. Manual Moderno, pp. 170–171.",
       fases: [
         "Tiempo de develamiento: ayudar al paciente a comprender el sentido oculto de sus síntomas relacionales, identificando qué función cumplen en su mundo actual, antes de intentar eliminarlos.",
         "Tiempo de transplante: usar la propia relación terapéutica como «injerto» de una estructura relacional sana que el paciente interioriza y lleva a su vida exterior.",
@@ -7878,12 +7878,11 @@ const PROCEDIMIENTOS_CLINICOS = {
         "Funciona porque asume que una estructura patológica no puede simplemente eliminarse sin dejar a la persona en el vacío: la relación terapéutica actúa como prótesis relacional sana que, una vez interiorizada («prende»), sostiene una nueva forma de vincularse.",
     },
     {
-      nombre: "Técnica de exploración de coordenadas existenciales (tiempo y lenguaje)",
+      nombre: "Técnica de exploración de las coordenadas existenciales (tiempo)",
       tipo: "técnica",
-      fuente: "Binswanger, L. (1973); Croquevielle, M., Traverso, G. (2009), en Martínez Ortiz, E. (Comp.), Las psicoterapias existenciales.",
+      fuente: "Binswanger, citado en Martínez Ortiz, E. (Comp.). (2011). Las psicoterapias existenciales. Manual Moderno, p. 142 (éxtasis temporales y anclajes).",
       fases: [
         "Mapeo temporal fenomenológico: identificar en qué «éxtasis temporal» está anclado el paciente —pasado (depresivos), presente puro (psicopáticos) o futuro (ansiosos)—, sacrificando las otras dos dimensiones.",
-        "Intervención desde el lenguaje: usar el contenido de las expresiones y metáforas del propio discurso del paciente para revelar el plano de mundo en que vive, en vez de buscar asociaciones libres.",
         "Re-orientación hacia la futurización: reabrir las posibilidades del paciente reorientándolo hacia su «poder-ser», dado que «el tiempo fundamental del existente es el futuro hacia el cual nos dirigimos y creamos».",
       ],
       condiciones:
@@ -7894,7 +7893,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de oniro-fenomenología (análisis daseinsanalítico de los sueños)",
       tipo: "técnica",
-      fuente: "Binswanger, L. (1930/1957); Boss, M. (1953/1957), citados en el documento fuente.",
+      fuente: "Boss (1977), citado en Holzhey-Kunz, A. (2014). Daseinsanalysis (S. Leighton, Trad.). Free Association Books, p. 22 (el sueño como modo onírico de ser interpelado por el mundo; las dos preguntas); Boss, M. (1979). Existential foundations of medicine and psychology, introducción, sobre la crítica a Freud.",
       fases: [
         "Paso 1 — Relato en tiempo presente y primera persona: se solicita al consultante que narre el sueño como si estuviera ocurriendo en el aquí y ahora ('estoy en una habitación sin ventanas...'), no como un recuerdo pasado.",
         "Paso 2 — Suspensión de la interpretación simbólica: el terapeuta no busca significados latentes ni traduce los objetos oníricos a símbolos.",
@@ -7909,7 +7908,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Ejercicio de solicitud anticipativa-liberadora (Fürsorge / Lösung)",
       tipo: "técnica",
-      fuente: "Boss, M. (1979), citado en el documento fuente; Heidegger, M. (1927/1953).",
+      fuente: "Craig, E. (1988). Daseinsanalysis: A quest for essentials. Journal of Humanistic Psychology, p. 11 (la «solicitud anticipativa» de Heidegger como relación ideal entre terapeuta y paciente según Boss, 1979b, p. 8).",
       fases: [
         "Paso 1 — Detección de la demanda de dependencia: el paciente pide consejos, recetas de vida o exige que el terapeuta le diga qué decisión tomar.",
         "Paso 2 — Frustración de la solicitud sustitutiva: el terapeuta se niega sistemáticamente a tomar la decisión o a asumir el control del destino del paciente.",
