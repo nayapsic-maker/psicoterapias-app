@@ -7095,13 +7095,13 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de manejo no coercitivo ante ideación suicida (obligación de cuidado)",
       tipo: "técnica",
-      fuente: "Burstow, B. (1992). Radical feminist therapy. Sage; Brown (2010), apartado sobre personas con ideación suicida (la terapeuta feminista no renuncia al empoderamiento de la clienta).",
+      fuente: "Burstow, B. (1992). Radical feminist therapy. Sage, pp. 269 y 275–276 (apartado «Clients considering ending their lives»; frases citadas: traducción propia).",
       fases: [
         "Articular institucionalmente una «obligación de cuidado feminista» que prohíbe explícitamente la interferencia coercitiva (Burstow, 1992).",
         "Validar el deseo de la cliente sin intentar detenerla por la fuerza: «asegurar a la cliente que respeto su derecho a matarse y que, por mucho que desee algo distinto para ella, honraré ese derecho» (Burstow, 1992).",
       ],
       condiciones:
-        "Rechaza definir la ideación suicida como producto de una mente «unsound»: «a lo largo de la historia, los filósofos han considerado el suicidio una elección humana fundamental» (Burstow, 1992). Protocolo deliberadamente contrario a la hospitalización psiquiátrica forzada; su lógica es que retirar la coerción reduce la necesidad de defenderse, abriendo espacio a reconsiderar.",
+        "Rechaza definir la ideación suicida como producto de una mente «unsound»: «a lo largo de la historia, los filósofos han considerado el suicidio una elección humana fundamental» (Burstow, 1992). Protocolo deliberadamente contrario a la hospitalización psiquiátrica forzada; su lógica es que retirar la coerción reduce la necesidad de defenderse, abriendo espacio a reconsiderar. Burstow señala como excepción el caso de una decisión cuidadosamente razonada fuera de crisis, donde ofrece ayuda para clarificar, resolver problemas o despedirse (p. 276). Advertencia: es la posición propia del feminismo radical de Burstow y es controvertida; no sustituye a la práctica clínica y legal habitual, que exige evaluar el riesgo suicida y proteger ante riesgo inminente.",
       porQueFunciona:
         "Este protocolo anti-coercitivo funciona porque, al despojar al suicidio del estigma y del terror a ser encerrada en un psiquiátrico, la paciente recupera el control y frecuentemente elige vivir: «el conocimiento de que respetamos y aceptamos es liberador [...] si es 'de acuerdo matarse a uno mismo', 'no matarse a uno mismo' es concebible» (Burstow, 1992).",
     },
