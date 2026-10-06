@@ -7184,7 +7184,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Protocolo general dirigido por marcadores — Terapia Enfocada en las Emociones (EFT)",
       tipo: "protocolo",
-      fuente: "Greenberg, L. (1993). Facilitating Emotional Change. Guilford Press.",
+      fuente: "Greenberg, L. S. (2015). Emotion-focused therapy: Coaching clients to work through their feelings (2.ª ed.). American Psychological Association, pp. 4, 7 y 93 (las frases entre comillas son traducción propia); Greenberg, Rice y Elliott (1993), p. 15.",
       fases: [
         "Sintonización empática inicial: «el terapeuta comienza el tratamiento entrando en el marco de referencia interno del cliente y escuchándolo [...] sin imponer» (Greenberg, 1993).",
         "Guía suave hacia la experiencia interna: «una guía suave y consistente de la atención hacia la experiencia interna, en lugar de buscar patrones o desafiar pensamientos» (documento EFT, s.f.).",
@@ -7198,7 +7198,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Despliegue evocativo sistemático (Systematic Evocative Unfolding) — EFT",
       tipo: "técnica",
-      fuente: "Greenberg, L. (1993). Facilitating Emotional Change. Guilford Press.",
+      fuente: "Greenberg, Rice y Elliott (1993). Facilitating emotional change. Guilford Press, cap. 8, pp. 141–164; Greenberg (2015), p. 222 (cambiar emoción con emoción; traducción propia de las frases citadas).",
       fases: [
         "Etapa I — Posicionamiento para la exploración: identificar el marcador relevante, verificar el aspecto problemático, sugerir explorar la reacción.",
         "Etapa II — Experiencia reevocada: estimular la re-experimentación vívida de la escena original y facilitar la búsqueda de lo saliente.",
@@ -7212,7 +7212,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Diálogos de sillas: dos sillas y silla vacía — EFT",
       tipo: "técnica",
-      fuente: "Greenberg, L. (1993). Facilitating Emotional Change. Guilford Press.",
+      fuente: "Greenberg, Rice y Elliott (1993). Facilitating emotional change. Guilford Press, caps. 10–12 (dos sillas, autointerrupción y silla vacía); Greenberg y Watson (2006), p. 269 (traducción propia de las frases citadas).",
       fases: [
         "Diálogo de dos sillas: para escisiones auto-evaluativas (autocrítica, desgarro interno), buscando el estado final de autoaceptación e integración.",
         "Trabajo de silla vacía: para asuntos inconclusos con malos sentimientos persistentes hacia una figura específica, buscando perdonar al otro o responsabilizarlo, y afirmar/separar al self.",
