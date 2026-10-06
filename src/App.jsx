@@ -1588,6 +1588,7 @@ const ESCUELAS_SEED = [
       "Beltrán Ortega, M. et al. (2020). Introducción al modelo de la psicología humanista. Fundació per a la Universitat Oberta de Catalunya (UOC), PID_00270384.",
       "Frick, W. B. (1971). Psicologia humanista: Entrevistas com Maslow, Murphy e Rogers (E. D'Almeida, Trad.). Zahar (entrevista con Carl Rogers, La Jolla, 24 de enero de 1971).",
       "Lambert, M. J., Fidalgo, L. G. y Greaves, M. R. (2016). Effective humanistic psychotherapy processes and their outcomes. En D. J. Cain, K. Keenan y S. Rubin (Eds.), Humanistic psychotherapies: Handbook of research and practice (2.ª ed., pp. 49–80). American Psychological Association.",
+      "Rodríguez Morejón, A. (2012). Manual de psicoterapias: Teoría y técnicas. Herder.",
     ],
   },
   {
@@ -2251,7 +2252,7 @@ const ESCUELAS_SEED = [
     metodologia: "Terapia analítica ortodoxa mediante el uso del diván, con alta frecuencia semanal (4-5 sesiones), asociación libre e interpretación de los sueños. La sesión carece de agenda preestablecida: se abre con la regla fundamental («Diga, pues, todo cuanto se le pase por la mente», Freud, 1913, «Sobre la iniciación del tratamiento», OC 12, p. 136), el analista mantiene atención flotante y silencio relativo, y la interpretación se restringe a un timing estricto (solo cuando el paciente está a un paso de la solución por sí mismo).",
     criterioVerdad: "Coherencia interpretativa con pretensión de correspondencia con una realidad psíquica inconsciente.",
     conceptos: ["Inconsciente dinámico", "Complejo de Edipo", "Transferencia", "Resistencia", "Ello", "Pulsión (Trieb)", "Yo (Ego)", "Superyó (Superego)", "Dualismo pulsional (Eros/Tánatos)", "Principio de placer y principio de realidad", "Proceso primario y proceso secundario", "Series complementarias", "Fórmula etiológica de la neurosis", "Regla fundamental (asociación libre)", "Atención flotante", "Neurosis de transferencia", "Reelaboración (Durcharbeiten)", "Método catártico (Breuer, pre-psicoanalítico)", "Interpretación de sueños", "Neurosis de angustia", "Formación de compromiso", "Neutralidad / abstinencia analítica", "Reconstrucción del pasado", "Regresión al servicio del yo", "Trabajo de duelo (Duelo y melancolía)", "Interpretación (método causal-reductivo freudiano)", "Catarsis / abreacción", "Ganancia primaria y secundaria", "Represión", "Etiología basada en conflicto y objeto materno patógeno («madre nevera», extensión clínica del marco psicoanalítico por Bettelheim)", "Mecanismos de defensa", "Proceso primario y contenido inconsciente", "Gratificación pulsional (principio de placer)", "Yo/ego (instancia a fortalecer)", "Verdad histórica reprimida a develar", "Trauma preverbal temprano", "Angustia señal", "Formación reactiva", "Estructura de carácter (obsesivo vs. histérico)"],
-    psicopatologia: "Neurosis como conflicto entre el yo y el ello, mediado por mecanismos de defensa (Rodríguez Morejón, 2019, p. 145). El modelo etiológico se rige por las series complementarias (disposición infantil/fijaciones de la libido + vivencias accidentales) y sigue la fórmula «trauma temprano - defensa - latencia - estallido de la neurosis - retorno parcial de lo reprimido» (Freud, 1939, p. 77). El síntoma es una formación de compromiso: «subrogación sustitutiva que se impone al yo por la vía del compromiso» (Freud, 1924, «Neurosis y psicosis», OC 19, p. 156), mantenido por ganancia primaria/secundaria y, en casos graves, por la «necesidad de estar enfermo» que dicta un Superyó cruel (Freud, 1940). El desarrollo psicosexual (oral, anal-sádica, fálica/Edipo, latencia, genital) determina los puntos de fijación a los que regresa la libido.",
+    psicopatologia: "Neurosis como conflicto entre el yo y el ello, mediado por mecanismos de defensa (Rodríguez Morejón, 2012, pp. 69 y 73). El modelo etiológico se rige por las series complementarias (disposición infantil/fijaciones de la libido + vivencias accidentales) y sigue la fórmula «trauma temprano - defensa - latencia - estallido de la neurosis - retorno parcial de lo reprimido» (Freud, 1939, p. 77). El síntoma es una formación de compromiso: «subrogación sustitutiva que se impone al yo por la vía del compromiso» (Freud, 1924, «Neurosis y psicosis», OC 19, p. 156), mantenido por ganancia primaria/secundaria y, en casos graves, por la «necesidad de estar enfermo» que dicta un Superyó cruel (Freud, 1940). El desarrollo psicosexual (oral, anal-sádica, fálica/Edipo, latencia, genital) determina los puntos de fijación a los que regresa la libido.",
     tecnicas: ["Asociación libre", "Interpretación", "Análisis de sueños", "Análisis de la resistencia", "Elaboración", "Atención flotante (postura del analista)", "Construcción (reconstrucción histórico-genética)", "Interpretación y manejo de la transferencia", "Análisis de actos fallidos y casuales", "Técnica activa (excepción conductual para fobias, co-desarrollada con Ferenczi)"],
     evidencia: "Clínica; eficacia a largo plazo reportada en literatura psicodinámica reciente (Charles, 2017). Metaanálisis contemporáneos (Shedler, 2010; Leichsenring y Rabung, 2008; Abbass et al., 2014; De Maat et al., 2009) reportan tamaños de efecto grandes (0.8-2.45 según trastorno y duración), incluyendo un «efecto de incubación» tras el cierre del tratamiento. Limitaciones metodológicas señaladas: falta de grupos control estrictos, heterogeneidad clínica, dificultad intrínseca de manualizar la actitud analítica no directiva, y asimetría de las medidas de resultado (Beck y Bhar, 2009; Cushman y Gilford, 2000).",
     presentaciones: ["Neurosis de angustia", "Neurosis obsesiva", "Neurosis histérica", "Conflicto yo-ello con defensas rígidas", "Melancolía (fijación oral)", "Histeria de angustia (fobia)"],
@@ -2282,6 +2283,7 @@ const ESCUELAS_SEED = [
       "Leichsenring, F., Rabung, S. (2008). Effectiveness of long-term psychodynamic psychotherapy: a meta-analysis. JAMA, 300(13), 1551-1565.",
       "Gay, P. (1988). Freud: A Life for Our Time. W. W. Norton.",
       "Safran, J. D., Hunter, J. (2020). Psychoanalysis and Psychoanalytic Therapies (2ª ed.). APA.",
+      "Rodríguez Morejón, A. (2012). Manual de psicoterapias: Teoría y técnicas. Herder.",
     ],
   },
   {
@@ -2512,7 +2514,7 @@ const ESCUELAS_SEED = [
     metodologia: "Análisis del estilo de vida y actuación «como si».",
     criterioVerdad: "Coherencia teleológica: inteligibilidad de la meta ficticia que organiza la conducta.",
     conceptos: ["Sentimiento comunitario (Adler)", "Sentimiento de inferioridad y afán de superioridad", "Estilo de vida (ley de movimiento)", "Interés social / Sentimiento de comunidad", "Meta final ficticia (finalismo ficticio, Vaihinger)", "Complejo de inferioridad y complejo de superioridad", "Aseguramiento neurótico (safeguarding) y creación de distancia", "Protesta masculina", "Constelación familiar y orden de nacimiento", "Interés social (Gemeinschaftsgefühl)", "Lucha por la superioridad / interés social", "Compensación"],
-    psicopatologia: "«La neurosis no es una regresión, sino un acto creador» (Adler, 1935, p. 80): el paciente crea activamente el síntoma para mantener a salvo su autoestima ante una de las tres tareas de la vida (trabajo, sociedad, amor) que exige un interés social superior al desarrollado en su estilo de vida. El mecanismo del 'Sí... pero' (aseguramiento) crea distancia frente al fracaso temido, típicamente forjado en la infancia por inferioridad de órgano, mimo/sobreprotección o negligencia (Adler, 1935; Rodríguez Morejón, 2019, p. 92).",
+    psicopatologia: "«La neurosis no es una regresión, sino un acto creador» (Adler, 1935, p. 80): el paciente crea activamente el síntoma para mantener a salvo su autoestima ante una de las tres tareas de la vida (trabajo, sociedad, amor) que exige un interés social superior al desarrollado en su estilo de vida. El mecanismo del 'Sí... pero' (aseguramiento) crea distancia frente al fracaso temido, típicamente forjado en la infancia por inferioridad de órgano, mimo/sobreprotección o negligencia (Adler, 1935; Rodríguez Morejón, 2012, p. 96).",
     tecnicas: ["Análisis del estilo de vida y la constelación familiar", "«La Pregunta» (diferenciación orgánico/funcional y revelación teleológica del síntoma)", "Actuar «como si» (role-playing basado en el ficcionalismo de Vaihinger)", "Técnica del botón de empuje (push-button)", "Escupir en la sopa (intención paradójica)", "Técnica del Rey Midas (exageración)", "Reencuadre y fomento del aliento (encouragement)"],
     evidencia: "ECA de Ferrero et al. (2007) en Trastorno de Ansiedad Generalizada: eficacia equivalente a la farmacoterapia a corto plazo y superior en prevención de recaídas a 12 meses. Psicoterapia psicodinámica adleriana breve y secuencial (SB-APP) aplicada a Trastorno Límite de la Personalidad (Ferrero, 2012). Validación del constructo de interés social como predictor de resiliencia en abuso de sustancias (Mozdzierz, Greenblatt y Murphy, 2007) y de reincidencia en poblaciones forenses (Daugherty, Murphy y Paugh, 2001). Desarrollo reciente de la Psicoterapia Centrada en el Patrón (Sperry, 2016) como manualización orientada a ECA.",
     presentaciones: ["Estilo de vida erróneo con bajo interés social ('lado inútil de la vida')", "Complejo de inferioridad paralizante enmascarado por complejo de superioridad", "Aseguramiento neurótico (síntoma como excusa/distancia ante una tarea vital)"],
@@ -2525,6 +2527,7 @@ const ESCUELAS_SEED = [
       "Carlson, J. D., Watts, R. E., Maniacci, M. (2006). Adlerian Psychotherapy. American Psychological Association.",
       "Vaihinger, H. (1924). The Philosophy of 'As If'. Routledge & Kegan Paul.",
       "Ferrero, A. et al. (2007). A 12-month comparison of brief psychodynamic psychotherapy and pharmacotherapy in GAD. European Psychiatry, 22(8), 530-539.",
+      "Rodríguez Morejón, A. (2012). Manual de psicoterapias: Teoría y técnicas. Herder.",
     ],
   },
   {
@@ -4968,6 +4971,7 @@ const CITAS_AMPLIADAS = {
     "Beltrán Ortega, M. et al. (2020). Introducción al modelo de la psicología humanista. Fundació per a la Universitat Oberta de Catalunya (UOC), PID_00270384.",
     "Frick, W. B. (1971). Psicologia humanista: Entrevistas com Maslow, Murphy e Rogers (E. D'Almeida, Trad.). Zahar (entrevista con Carl Rogers, La Jolla, 24 de enero de 1971).",
     "Lambert, M. J., Fidalgo, L. G. y Greaves, M. R. (2016). Effective humanistic psychotherapy processes and their outcomes. En D. J. Cain, K. Keenan y S. Rubin (Eds.), Humanistic psychotherapies: Handbook of research and practice (2.ª ed., pp. 49–80). American Psychological Association.",
+    "Rodríguez Morejón, A. (2012). Manual de psicoterapias: Teoría y técnicas. Herder.",
   ],
   h2: [
     "American Psychiatric Association (1994), citado en Seligman, M. E. P. (2011).",
@@ -5282,6 +5286,7 @@ const CITAS_AMPLIADAS = {
     "Freud, S. (1940). Esquema del psicoanálisis (dualismo pulsional Eros/Tánatos).",
     "Breuer, J., Freud, S. (1895). Estudios sobre la histeria.",
     "Gay, P. (1988). Freud: A Life for Our Time. W. W. Norton.",
+    "Rodríguez Morejón, A. (2012). Manual de psicoterapias: Teoría y técnicas. Herder.",
   ],
   p2: [
     "Auchincloss, E. L. (2015). The Psychoanalytic Model of the Mind. APA Publishing.",
@@ -5347,6 +5352,7 @@ const CITAS_AMPLIADAS = {
     "Adler, A. (1935). El sentido de la vida.",
     "Adler, A. — inspirado en Vaihinger, H. (1911). La filosofía del como si.",
     "Ansbacher, H. L., Ansbacher, R. R. (1956). The Individual Psychology of Alfred Adler.",
+    "Rodríguez Morejón, A. (2012). Manual de psicoterapias: Teoría y técnicas. Herder.",
   ],
   p8: [
     "Jung, C. G. (1916/1958). The Transcendent Function.",
@@ -5661,7 +5667,7 @@ const DEBATES_PERSPECTIVAS = {
         {
           nombre: "No-directividad como condición técnica",
           texto:
-            "Rogers confía en que el cliente accede a sus propios recursos de autocomprensión si el terapeuta ofrece «un clima de actitudes facilitadoras», sin dirigir el contenido (Rodríguez Morejón, 2019, p. 167).",
+            "Rogers confía en que el cliente accede a sus propios recursos de autocomprensión si el terapeuta ofrece «un clima de actitudes facilitadoras», sin dirigir el contenido (Rodríguez Morejón, 2012, p. 167).",
         },
         {
           nombre: "Objeción de la directividad encubierta",
@@ -5708,7 +5714,7 @@ const DEBATES_PERSPECTIVAS = {
         {
           nombre: "Determinismo psíquico lineal (clásico)",
           texto:
-            "El inconsciente dinámico es una realidad psíquica que antecede a la cura y que la interpretación descubre progresivamente (Rodríguez Morejón, 2019, p. 73).",
+            "El inconsciente dinámico es una realidad psíquica que antecede a la cura y que la interpretación descubre progresivamente (Rodríguez Morejón, 2012, pp. 68–69).",
         },
         {
           nombre: "Constructivismo dialéctico (relacional)",
@@ -8417,8 +8423,8 @@ const CONCEPTOS_TRANSVERSALES = [
     nombre: "El síntoma y su función",
     descripcion: "Qué es un síntoma y qué papel cumple, en el vocabulario propio de cada perspectiva.",
     porPerspectiva: [
-      { perspectiva: "Humanista-existencial", escuela: "h1", termino: "Incongruencia self-experiencia", definicion: "El síntoma expresa una brecha entre lo que la persona vive y lo que su self admite a la conciencia (Rodríguez Morejón, 2019, p. 170)." },
-      { perspectiva: "Psicodinámica", escuela: "p1", termino: "Formación de compromiso", definicion: "El síntoma es una solución de compromiso entre un deseo inconsciente y la defensa que se le opone (Rodríguez Morejón, 2019, p. 145)." },
+      { perspectiva: "Humanista-existencial", escuela: "h1", termino: "Incongruencia self-experiencia", definicion: "El síntoma expresa una brecha entre lo que la persona vive y lo que su self admite a la conciencia (Rodríguez Morejón, 2012, p. 170)." },
+      { perspectiva: "Psicodinámica", escuela: "p1", termino: "Formación de compromiso", definicion: "El síntoma es una solución de compromiso entre un deseo inconsciente y la defensa que se le opone (Rodríguez Morejón, 2012, pp. 69 y 73)." },
       { perspectiva: "Sistémica", escuela: "s4", termino: "Función homeostática del síntoma", definicion: "El síntoma es una solución lógica dentro de un contexto ilógico que preserva la coherencia del sistema (Moreno, 2014, p. 398)." },
       { perspectiva: "Conductual", escuela: "c1", termino: "Conducta/cognición aprendida desadaptativa", definicion: "El síntoma se rige por las mismas leyes del aprendizaje que la conducta normal (Labrador, 2008, p. 40)." },
       { perspectiva: "Integradora", escuela: "i1", termino: "Desmoralización", definicion: "Más que un síntoma específico, un estado transversal de indefensión, desesperanza y aislamiento (Frank, en Norcross y Goldfried, 2005, p. 26)." },
@@ -8444,7 +8450,7 @@ const CONCEPTOS_TRANSVERSALES = [
     nombre: "El self / la identidad",
     descripcion: "Qué es el self y de qué depende su constitución.",
     porPerspectiva: [
-      { perspectiva: "Humanista-existencial", escuela: "h1", termino: "Self y tendencia actualizante", definicion: "Estructura fenoménica que se organiza en torno a una tendencia innata al crecimiento (Rodríguez Morejón, 2019, p. 167)." },
+      { perspectiva: "Humanista-existencial", escuela: "h1", termino: "Self y tendencia actualizante", definicion: "Estructura fenoménica que se organiza en torno a una tendencia innata al crecimiento (Rodríguez Morejón, 2012, p. 167)." },
       { perspectiva: "Psicodinámica", escuela: "p4", termino: "Self relacional", definicion: "Se constituye en la díada; no es un dato previo a la relación, sino un producto de la intersubjetividad (Gabbard, 2002, pp. 54–55)." },
       { perspectiva: "Sistémica", escuela: "s6", termino: "Identidad narrativa", definicion: "La identidad es un efecto de los relatos que la persona y su cultura cuentan sobre ella (Moreno, 2014, pp. 484-485)." },
       { perspectiva: "Conductual", escuela: "c4", termino: "Yo-como-contexto", definicion: "El self no es un contenido sino la perspectiva estable desde la que se observan los propios pensamientos y emociones (Hayes y Hofmann, 2018, p. 205)." },
@@ -8457,7 +8463,7 @@ const CONCEPTOS_TRANSVERSALES = [
     nombre: "El inconsciente / lo no-consciente",
     descripcion: "Si existe algo no plenamente consciente que determine la conducta, y de qué naturaleza es.",
     porPerspectiva: [
-      { perspectiva: "Humanista-existencial", escuela: "h1", termino: "Vivencias negadas a la conciencia", definicion: "No hay un inconsciente dinámico freudiano, pero sí experiencias organísmicas que el self no admite a la conciencia (Rodríguez Morejón, 2019, p. 170)." },
+      { perspectiva: "Humanista-existencial", escuela: "h1", termino: "Vivencias negadas a la conciencia", definicion: "No hay un inconsciente dinámico freudiano, pero sí experiencias organísmicas que el self no admite a la conciencia (Rodríguez Morejón, 2012, p. 170)." },
       { perspectiva: "Psicodinámica", escuela: "p1", termino: "Inconsciente dinámico", definicion: "Sistema psíquico regido por sus propias leyes, motivado por deseos reprimidos en conflicto activo con la conciencia; Freud llegó al concepto al abandonar la hipnosis (Auchincloss, 2015, p. 30)." },
       { perspectiva: "Sistémica", escuela: "s4", termino: "Reglas implícitas del juego familiar", definicion: "No hay inconsciente individual; hay reglas relacionales que los miembros no perciben conscientemente (Moreno, 2014, p. 398)." },
       { perspectiva: "Cognitivo-Conductual", escuela: "c3", termino: "Esquemas cognitivos no plenamente accesibles", definicion: "Estructuras de procesamiento que operan sin plena conciencia, pero sin compromiso motivacional pulsional (Beck, 2006, p. 19)." },
@@ -8470,7 +8476,7 @@ const CONCEPTOS_TRANSVERSALES = [
     nombre: "La resistencia al cambio",
     descripcion: "Cómo se explica que el paciente se oponga, activa o pasivamente, al proceso terapéutico.",
     porPerspectiva: [
-      { perspectiva: "Psicodinámica", escuela: "p1", termino: "Resistencia", definicion: "Defensa inconsciente contra el retorno a la conciencia de contenido reprimido (Rodríguez Morejón, 2019, p. 73)." },
+      { perspectiva: "Psicodinámica", escuela: "p1", termino: "Resistencia", definicion: "Defensa inconsciente contra el retorno a la conciencia de contenido reprimido (Rodríguez Morejón, 2012, pp. 68–69)." },
       { perspectiva: "Humanista-existencial", escuela: "h7", termino: "Ambivalencia", definicion: "Conflicto motivacional consciente o preconsciente entre razones a favor y en contra del cambio (Miller y Rollnick, 1991, p. 10)." },
       { perspectiva: "Sistémica", escuela: "s3", termino: "Soluciones intentadas", definicion: "El circuito de mantenimiento se sostiene por las mismas soluciones que la familia ensaya para resolverlo (Moreno, 2014, p. 328)." },
       { perspectiva: "Conductual", escuela: "c4", termino: "Evitación experiencial", definicion: "Intento sistemático de evitar o controlar eventos privados desagradables, que paradójicamente amplifica el malestar (Hayes y Hofmann, 2018, p. 205)." },
@@ -8483,7 +8489,7 @@ const CONCEPTOS_TRANSVERSALES = [
     nombre: "La relación terapéutica",
     descripcion: "Qué papel cumple el vínculo entre terapeuta y paciente en cada perspectiva.",
     porPerspectiva: [
-      { perspectiva: "Humanista-existencial", escuela: "h1", termino: "Relación Yo-Tú", definicion: "Las condiciones facilitadoras del terapeuta —empatía, aceptación, congruencia— son en sí mismas terapéuticas (Rodríguez Morejón, 2019, pp. 173-175)." },
+      { perspectiva: "Humanista-existencial", escuela: "h1", termino: "Relación Yo-Tú", definicion: "Las condiciones facilitadoras del terapeuta —empatía, aceptación, congruencia— son en sí mismas terapéuticas (Rodríguez Morejón, 2012, pp. 173-175)." },
       { perspectiva: "Psicodinámica", escuela: "p4", termino: "Coparticipación (giro relacional)", definicion: "El analista es un participante ineludible del campo intersubjetivo, no un observador neutral (Gabbard, 2002, pp. 54–55)." },
       { perspectiva: "Sistémica", escuela: "s2", termino: "Joining", definicion: "Acomodación deliberada del terapeuta al estilo de la familia como condición para poder reestructurarla (Moreno, 2014, pp. 251-253)." },
       { perspectiva: "Cognitivo-Conductual", escuela: "c3", termino: "Empirismo colaborativo", definicion: "Terapeuta y paciente contrastan juntos, como coinvestigadores, la validez de los pensamientos automáticos (Beck, 2006, p. 19)." },
@@ -8576,7 +8582,7 @@ const CONCEPTOS_TRANSVERSALES = [
     descripcion: "Qué fuerza última explica por qué las personas actúan como lo hacen.",
     porPerspectiva: [
       { perspectiva: "Humanista-existencial", escuela: "h6", termino: "Voluntad de sentido", definicion: "La motivación primaria no es el placer sino la búsqueda de sentido (Frankl, citado en Martínez, Y., 2008, p. 45)." },
-      { perspectiva: "Psicodinámica", escuela: "p7", termino: "Lucha por la superioridad / interés social", definicion: "Adler sustituye la pulsión freudiana por una motivación teleológica social (Rodríguez Morejón, 2019, pp. 89-90)." },
+      { perspectiva: "Psicodinámica", escuela: "p7", termino: "Lucha por la superioridad / interés social", definicion: "Adler sustituye la pulsión freudiana por una motivación teleológica social (Rodríguez Morejón, 2012, pp. 94–96)." },
       { perspectiva: "Sistémica", escuela: "s1", termino: "Equilibrio entre individualidad y unión", definicion: "La conducta se explica por la tensión entre dos fuerzas del sistema emocional familiar, no por una motivación individual aislada (Bowen, 1978, p. 3)." },
       { perspectiva: "Conductual", escuela: "c15", termino: "Contingencias de refuerzo", definicion: "La conducta se explica por sus consecuencias ambientales, sin necesidad de postular una motivación interna (Labrador, 2008, p. 40)." },
       { perspectiva: "Integradora", escuela: "i3", termino: "Balance decisional", definicion: "La motivación al cambio resulta del balance entre pros y contras percibidos en cada etapa (Prochaska y Norcross, 1999)." },
