@@ -8012,11 +8012,11 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Escenificación (enactment) en tres pasos",
       tipo: "técnica",
-      fuente: "Minuchin, S., Fishman, H. C. (1981). Family Therapy Techniques. Harvard University Press.",
+      fuente: "Minuchin, S., & Fishman, H. C. (1981/1984). Técnicas de terapia familiar, p. 92 (la escenificación como «danza en tres movimientos»); Martínez Díaz (2014), en Moreno Fernández (Ed.), p. 226.",
       fases: [
-        "Instrucción e inicio: el terapeuta pide explícitamente a los familiares que discutan o representen el conflicto directamente entre ellos en la sala, en vez de relatárselo a él.",
-        "Retiro del terapeuta: se da un paso atrás y observa sin intervenir la secuencia interaccional real, los límites, las alianzas y las coaliciones tal como se despliegan espontáneamente.",
-        "Intervención reestructurante y cierre: el terapeuta interrumpe la pauta observada en el momento de mayor valor diagnóstico para introducir una modificación activa (fijar un límite, desequilibrar una alianza, redirigir la comunicación) y cierra con una lectura relacional del episodio.",
+        "Primer movimiento: el terapeuta observa las interacciones espontáneas de la familia y decide cuáles son los campos disfuncionales que conviene iluminar (Minuchin y Fishman, 1981/1984, p. 92).",
+        "Segundo movimiento: el terapeuta organiza secuencias escénicas en las que los miembros de la familia «bailan su danza disfuncional» en su presencia, dirigiéndolos para que hablen o interactúen entre sí (p. 92; Moreno Fernández, Ed., 2014, p. 226).",
+        "Tercer movimiento: el terapeuta propone modalidades diferentes de interacción, lo que puede proporcionar información predictiva e infundir esperanza a la familia (p. 92).",
       ],
       condiciones: "Requiere que la familia esté físicamente presente en sesión y que el terapeuta haya logrado un joining suficiente para sostener la autoridad de redirigir la interacción; contraindicado si el terapeuta no puede garantizar seguridad ante escaladas de violencia intrafamiliar.",
       porQueFunciona: "Observar el patrón en tiempo real, en vez de escuchar su relato verbal, permite al terapeuta diagnosticar la estructura real (no la referida) e intervenir directamente sobre la secuencia mientras ocurre, en lugar de sobre una reconstrucción narrativa filtrada por el paciente identificado.",
@@ -8040,13 +8040,13 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Primera entrevista estructurada en cinco etapas (Haley)",
       tipo: "protocolo",
-      fuente: "Haley, J. (1987). Problem-Solving Therapy (2.ª ed.). Jossey-Bass.",
+      fuente: "Haley, J. (1987). Problem-Solving Therapy (2.ª ed.), según la síntesis de Styczynski y Greenberg (2014), en Moreno Fernández (Ed.), pp. 305–307.",
       fases: [
-        "Etapa social: el terapeuta saluda a cada miembro por su nombre, conversa brevemente sobre temas no problemáticos y observa sin interpretar la organización espacial y el estado de ánimo. Prohibido hablar del síntoma en esta fase.",
-        "Etapa del problema: pregunta abierta sobre el motivo de consulta, dirigida primero al progenitor con mayor autoridad o al miembro menos involucrado, nunca al paciente identificado; se prohíben interrupciones, consejos e interpretaciones.",
-        "Etapa de interacción: el terapeuta se retira de la conversación y pide a la familia discutir sus discrepancias directamente entre sí, sacando a la luz los patrones cibernéticos habituales.",
-        "Etapa de definición de objetivos: se co-construyen metas concretas, observables y medibles (no vagas), garantizando la brevedad y el foco del tratamiento.",
-        "Etapa de asignación de tareas: se diseña e imparte una directiva (directa o paradójica) adaptada al sistema, asegurando que cada miembro conozca su responsabilidad, y se fija la siguiente cita.",
+        "Etapa social: el terapeuta saluda a cada miembro por su nombre y habla brevemente con cada uno, cuidando de no dejar que se empiece a discutir el problema; busca que se sientan cómodos y empieza a establecer su liderazgo (p. 306).",
+        "Etapa del problema: se pide a cada miembro que diga brevemente cómo ve el problema; Haley recomienda hablar primero con el padre menos implicado, sin descuidar a quien tiene mayor poder en la familia, y buscar descripciones del problema en términos de comportamiento (Moreno Fernández, Ed., 2014, p. 306).",
+        "Etapa de interacción: el terapeuta crea interacciones entre los miembros (pueden discutir algo entre ellos o representar el problema) para traerlo a la sala y observar patrones que la familia no puede describir (p. 306).",
+        "Etapa de definición de cambios deseados: se define un problema resoluble, generalmente en términos comportamentales, que será el foco de las directivas (p. 307).",
+        "Etapa final: el terapeuta imparte una directiva (sencilla si se necesita más tiempo para formular el problema), negocia quién asistirá a la siguiente sesión y da la cita (p. 307).",
       ],
       condiciones: "Protocolo pensado para la primera sesión familiar; requiere que el terapeuta mantenga estricta disciplina en el orden de las etapas, ya que invertir el orden (p. ej. pedir tareas antes de definir objetivos medibles) diluye la brevedad y el foco característicos del modelo.",
       porQueFunciona: "Secuenciar rígidamente la entrevista impide que la familia imponga desde el inicio su propia narrativa lineal y acusatoria sobre el paciente identificado, y fuerza al terapeuta a recolectar la información estructural y relacional necesaria antes de diseñar cualquier directiva.",
@@ -8070,7 +8070,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Prescripción Invariable y protocolo de salidas secretas",
       tipo: "técnica",
-      fuente: "Selvini Palazzoli, M. et al. (1988). Los juegos psicóticos en la familia; Armijo Núñez, Gómez Macías y Suárez Rodríguez, 2014.",
+      fuente: "Selvini Palazzoli, M. et al. (1988). Los juegos psicóticos en la familia; Armijo Núñez, Gómez Macías y Suárez Rodríguez (2014), en Moreno Fernández (Ed.), p. 285.",
       fases: [
         "Se cita a los padres a solas, excluyendo a los hijos, y se les propone actuar como coterapeutas del proceso.",
         "Se les prescribe realizar salidas juntos de forma regular sin previo aviso a los hijos, sin dar explicaciones ni dejar notas al volver, aunque los hijos pregunten o protesten.",
@@ -8085,15 +8085,15 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Administración completa de la Pregunta del Milagro",
       tipo: "técnica",
-      fuente: "de Shazer, S. (1988). Clues; Beyebach, M. (2014); De Jong, P., Berg, I. K. (2012). Interviewing for Solutions.",
+      fuente: "de Shazer, S. (1988). Clues; Beyebach, M. (2014), en Moreno Fernández (Ed.), pp. 360–361; De Jong, P., Berg, I. K. (2012). Interviewing for Solutions, cap. 5.",
       fases: [
         "Introducción del encuadre: se pide permiso para plantear una pregunta inusual que requiere imaginación.",
-        "Administración textual: «Imagine que esta noche, mientras duerme, ocurre un milagro y el problema por el que está aquí se resuelve de golpe. Como está durmiendo, no se da cuenta de que el milagro ha sucedido. ¿Cuál será la primera pequeña señal, mañana por la mañana, de que el milagro ha ocurrido?».",
+        "Administración (formulación habitual, de traducción propia): «Imagine que esta noche, mientras duerme, ocurre un milagro y el problema por el que está aquí se resuelve de golpe. Como está durmiendo, no se da cuenta de que el milagro ha sucedido. ¿Cuál será la primera pequeña señal, mañana por la mañana, de que el milagro ha ocurrido?».",
         "Construcción de detalles en positivo: se guía al cliente a describir presencia de conductas nuevas, evitando definiciones en negativo (mera ausencia del problema).",
         "Exploración de la secuencia interaccional: se pregunta qué notarán otras personas significativas del cambio y cómo responderán, ampliando el «futuro preferido» a la red relacional.",
         "Anclaje posterior mediante preguntas de escala, para situar el presente respecto de ese futuro preferido y diseñar el siguiente paso pequeño.",
       ],
-      condiciones: "Fase inicial y central de la primera sesión; requiere adaptación cultural cuidadosa —la aplicación mecánica sin ajuste al contexto puede generar desacople clínico (Estrada y Beyebach, 2007; Lloyd y Dallos, 2008).",
+      condiciones: "Fase inicial y central de la primera sesión; requiere adaptación cultural cuidadosa —Beyebach advierte que no basta con aplicar mecánicamente técnicas como la pregunta del milagro o las preguntas de escala; requiere una actitud y una forma de conversar (Moreno Fernández, Ed., 2014, p. 361).",
       porQueFunciona: "Al desplazar la conversación del problema al futuro preferido, la pregunta define colaborativamente la meta del tratamiento en el propio lenguaje del cliente, sin requerir un diagnóstico ni un análisis previo del problema (de Shazer, 1988).",
     },
   ],
@@ -8101,7 +8101,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Conversación de externalización con mapa de declaración de posición",
       tipo: "técnica",
-      fuente: "White, M. (2007). Maps of Narrative Practice; Moreno Fernández, A. (2014).",
+      fuente: "White, M. (2007). Maps of Narrative Practice (Statement of Position Map), según la descripción de Moreno Fernández (2014), en Moreno Fernández (Ed.), pp. 396–397.",
       fases: [
         "Negociación de una descripción experiencial y cercana del problema, en el propio lenguaje del consultante, evitando etiquetas diagnósticas (p. ej. «la Rabia» en vez de «trastorno de conducta»).",
         "Mapeo de los efectos del problema en distintas áreas de la vida de la persona y de sus relaciones significativas.",
@@ -8162,7 +8162,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Construcción y uso clínico del genograma multigeneracional",
       tipo: "técnica",
-      fuente: "Bowen, M. (1978). Family Therapy in Clinical Practice. Jason Aronson; McGoldrick, M., Gerson, R. (1985). Genograms in Family Assessment. Norton.",
+      fuente: "Kerr, M. E., & Bowen, M. (1988). Family Evaluation, pp. 398 y 412 (Bowen llamó «diagrama familiar» a lo que otros designaron genograma); McGoldrick, M., & Gerson, R. (1985). Genograms in Family Assessment. Norton.",
       fases: [
         "Recolección estructurada de al menos tres generaciones de la familia: composición, fechas de nacimiento/muerte/matrimonio/divorcio, ocupaciones, enfermedades relevantes y ubicación geográfica de cada miembro.",
         "Trazado gráfico estandarizado de las relaciones (fusión, conflicto, corte emocional, triangulación) mediante la simbología convencional del genograma.",
@@ -8170,21 +8170,20 @@ const PROCEDIMIENTOS_CLINICOS = {
         "Uso del genograma como herramienta de «coaching»: el paciente (a menudo trabajando individualmente con el terapeuta) revisa el mapa para identificar su propio nivel de fusión/diferenciación y planificar contactos deliberados con la familia de origen que reduzcan la reactividad emocional automática.",
       ],
       condiciones: "Aplicable desde la primera entrevista y revisable a lo largo de todo el tratamiento; no requiere la presencia física de toda la familia, coherente con el trabajo de coaching individual característico de Bowen.",
-      porQueFunciona: "Visualizar gráficamente el patrón multigeneracional externaliza la fusión emocional y permite al paciente adoptar la posición de observador («desde el balcón») de su propio sistema, condición previa que Bowen consideraba indispensable para iniciar el proceso deliberado de diferenciación del self (Bowen, 1978).",
+      porQueFunciona: "Visualizar gráficamente el patrón multigeneracional externaliza la fusión emocional y permite al paciente adoptar una posición más observadora respecto de su propio sistema, paso que la teoría de Bowen vincula con el aumento de la diferenciación del self (inferencia de esta ficha; véase Kerr y Bowen, 1988, cap. 10).",
     },
   ],
   s7: [
     {
       nombre: "Escultura familiar (family sculpting)",
       tipo: "técnica",
-      fuente: "Satir, V. (1972). Peoplemaking. Science and Behavior Books.",
+      fuente: "Veldorale-Griffin, A. (2025), cap. 11, a partir de Satir, V. (1972). Peoplemaking. Science and Behavior Books.",
       fases: [
-        "Se invita a un miembro de la familia (el «escultor») a organizar físicamente en el espacio a los demás miembros, incluido el terapeuta si corresponde, según cómo percibe las distancias, jerarquías y posturas emocionales de las relaciones familiares.",
-        "El escultor ajusta la postura corporal, la orientación y la distancia física de cada miembro para representar analógicamente la dinámica relacional percibida (cercanía, distancia, sumisión, dominio).",
-        "Los miembros esculpidos permanecen en la postura asignada el tiempo suficiente para registrar la experiencia corporal y emocional de ocupar ese lugar en el sistema, sin hablar durante la escultura.",
-        "Se procesa verbalmente la experiencia de cada miembro tras la escultura, y opcionalmente se construye una «escultura del futuro deseado» que representa la configuración relacional a la que la familia aspira.",
+        "Tras una evaluación inicial, el terapeuta explica a la familia que van a hacer una actividad algo distinta (Veldorale-Griffin, 2025, cap. 11).",
+        "Por turnos, cada miembro «esculpe» a los demás como si fueran arcilla, colocándolos en un cuadro vivo y en acción según cómo ve el sistema familiar y su lugar en él (Veldorale-Griffin, 2025, cap. 11, a partir de Satir, 1988; Satir et al., 1991).",
+        "Se procesa la experiencia de cada miembro y la técnica puede usarse también para reescenificar momentos importantes del pasado (Veldorale-Griffin, 2025, cap. 11).",
       ],
-      condiciones: "Requiere la presencia de varios miembros de la familia en sesión; el terapeuta usa activamente su calidez y «uso de sí mismo» para crear un clima de seguridad que permita la exposición corporal sin defensividad excesiva (Veldorale-Griffin, en Watters y Adamson, 2015).",
+      condiciones: "Requiere la presencia de varios miembros de la familia en sesión; el terapeuta usa activamente su calidez y «uso de sí mismo» para crear un clima de seguridad que permita la exposición corporal sin defensividad excesiva (Veldorale-Griffin, en Watters y Adamson, 2025, cap. 11).",
       porQueFunciona: "Al traducir la dinámica relacional a una representación espacial y corporal no verbal, la escultura sortea las defensas discursivas habituales y genera una experiencia emocional directa y vívida —coherente con el énfasis experiencial de la escuela— que suele producir un impacto más profundo que la sola descripción verbal del conflicto.",
     },
   ],
@@ -14591,7 +14590,7 @@ const GLOSARIO = [
   { escuela: "s3", termino: "Paradoja terapéutica", tipo: "concepto", definicion: "Intervención que prescribe deliberadamente la persistencia del síntoma, generando una contradicción lógica que desestabiliza el circuito de mantenimiento.", fuente: "Watzlawick, P., Weakland, J., Fisch, R. (1974). Change. Norton; véase Watzlawick, Beavin y Jackson, 1967, cap. 7, §§7.3–7.5; Moreno Fernández (Ed.), 2014, pp. 343–344." },
   { escuela: "s4", termino: "Juego psicótico familiar", tipo: "concepto", definicion: "Secuencia de movimientos relacionales encubiertos, identificada por Selvini Palazzoli en familias con un miembro psicótico o con anorexia.", fuente: "Selvini Palazzoli, M. et al. (1989). Los juegos psicóticos en la familia; véase Moreno Fernández (Ed.), 2014, pp. 272–275." },
   { escuela: "s5", termino: "Orientación al futuro", tipo: "concepto", definicion: "Foco deliberado en el futuro deseado del cliente en vez de en el pasado o el análisis causal del problema.", fuente: "De Shazer, S. (1988). Clues: Investigating Solutions in Brief Therapy. Norton; véase Moreno Fernández (Ed.), 2014, p. 360." },
-  { escuela: "s6", termino: "Saberes locales", tipo: "concepto", definicion: "Conocimientos y habilidades propios de la persona o comunidad, opacados por los discursos expertos dominantes, que la terapia narrativa busca recuperar y legitimar.", fuente: "White, M., Epston, D. (1990). Narrative Means to Therapeutic Ends. Norton." },
+  { escuela: "s6", termino: "Saberes locales", tipo: "concepto", definicion: "Conocimientos y habilidades propios de la persona o comunidad, opacados por los discursos expertos dominantes, que la terapia narrativa busca recuperar y legitimar.", fuente: "White, M., Epston, D. (1990). Narrative Means to Therapeutic Ends. Norton; véase Moreno Fernández (Ed.), 2014, p. 396 (insider knowledge)." },
   { escuela: "c15", termino: "Generalización del estímulo", tipo: "concepto", definicion: "Tendencia de una respuesta condicionada a un estímulo a extenderse a otros estímulos similares no directamente entrenados.", fuente: "Skinner, B. F. (1953). Science and Human Behavior. Macmillan." },
   { escuela: "c2", termino: "Aceptación incondicional (de sí, de otros, de la vida)", tipo: "concepto", definicion: "Tres formas de aceptación radical —autoaceptación, aceptación del otro y aceptación de la vida— que Ellis considera el antídoto filosófico de fondo frente al debeísmo.", fuente: "Ellis, A. (1994). Reason and Emotion in Psychotherapy (ed. rev.). Birch Lane Press." },
   { escuela: "c2", termino: "Creencias racionales", tipo: "concepto", definicion: "Las racionales son cogniciones evaluativas preferenciales, flexibles, expresadas como deseo o preferencia; las irracionales son absolutistas y dogmáticas, expresadas como «debería» o «tengo que», y generan emociones negativas perturbadoras que interfieren con las metas.", fuente: "Ellis (1994; 1995), citado en Díaz, Ruiz y Villalobos (2012)." },
