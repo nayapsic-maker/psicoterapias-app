@@ -7069,7 +7069,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de consentimiento empoderado e informado",
       tipo: "técnica",
-      fuente: "Brown, L. S. (1994, 2018). Subversive Dialogues / Feminist Therapy. Basic Books / APA.",
+      fuente: "Brown, L. S. (2010). Feminist therapy. American Psychological Association (edición digital sin paginación; las frases citadas son traducción propia); Brown (1994), pp. 180–183.",
       fases: [
         "Entrega de un documento extenso (cinco páginas) que detalla el marco de la práctica feminista, la naturaleza relacional de la terapia, los derechos del cliente y las responsabilidades del terapeuta antes de iniciar (Brown, 2018).",
         "Revelación anticipada de toda la información sobre el manejo de los datos: «compartir información adecuada para que un cliente pueda tomar decisiones sobre la terapia con tanto conocimiento como esté disponible para el terapeuta» (Brown, 1994).",
@@ -7082,7 +7082,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de pensamiento diagnóstico afirmativo y lengua materna",
       tipo: "técnica",
-      fuente: "Brown, L. S. (1994). Subversive Dialogues: Theory in Feminist Therapy. Basic Books.",
+      fuente: "Brown, L. S. (2010). Feminist therapy. American Psychological Association (edición digital sin paginación; las frases citadas son traducción propia); Brown (1994), pp. 154–155.",
       fases: [
         "Exploración biopsicosocial secuencial: comenzar por el cuerpo (dotación biológica), luego la experiencia («¿quién aprendió qué sobre la vida, y de quién?»), luego el entorno social, político y cultural.",
         "Construcción conjunta de una historia alternativa: en vez de una etiqueta diagnóstica, «buscar la manera de contar la historia de quién era esta persona al comienzo del viaje [...] de un modo que conduzca a una visión liberadora, empoderadora y sanadora» (Brown, 1994).",
@@ -7095,7 +7095,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de manejo no coercitivo ante ideación suicida (obligación de cuidado)",
       tipo: "técnica",
-      fuente: "Burstow, B. (1992). Radical Feminist Therapy. Sage.",
+      fuente: "Burstow, B. (1992). Radical feminist therapy. Sage; Brown (2010), apartado sobre personas con ideación suicida (la terapeuta feminista no renuncia al empoderamiento de la clienta).",
       fases: [
         "Articular institucionalmente una «obligación de cuidado feminista» que prohíbe explícitamente la interferencia coercitiva (Burstow, 1992).",
         "Validar el deseo de la cliente sin intentar detenerla por la fuerza: «asegurar a la cliente que respeto su derecho a matarse y que, por mucho que desee algo distinto para ella, honraré ese derecho» (Burstow, 1992).",
@@ -15068,7 +15068,7 @@ const GLOSARIO = [
   { escuela: "h10", termino: "Lo personal es político", tipo: "concepto", definicion: "«A core of the standpoint of feminist therapy theory is that the personal is political. This means that individual experience is consciously deprivatized and holds potentially universal meaning» (Brown, 1994).", fuente: "Brown, L. S. (1994). Subversive dialogues: Theory in feminist therapy. Basic Books, pp. 8–9 (introducción)." },
   { escuela: "h10", termino: "Patriarcado y hegemonía masculina", tipo: "concepto", definicion: "«Civilization as we know it is based on the violation and domination of subordinates by elites [...] Civilization is based as well on male hegemony, that is, on viewing, understanding, and naming the world from a rigidly male elite point of view» (Burstow, 1992).", fuente: "Burstow, B. (1992). Radical Feminist Therapy. Sage." },
   { escuela: "h10", termino: "Feminismo radical en terapia", tipo: "concepto", definicion: "«Radical feminism sees oppression against women as connecting with but not reducible to all other systemic oppressions and places special emphasis on the physical violation of Woman as Body» (Burstow, 1992).", fuente: "Burstow, B. (1992). Radical Feminist Therapy. Sage." },
-  { escuela: "h10", termino: "Malestar frente a psicopatología", tipo: "concepto", definicion: "«Feminist therapy refers not to psychopathology but to distress, the subjective experience of ill-being or misplaced well-being [...] Pathology is assigned to the larger cultural context of patriarchy» (Brown, 1994).", fuente: "Brown, L. S. (1994). Subversive Dialogues: Theory in Feminist Therapy. Basic Books." },
+  { escuela: "h10", termino: "Malestar frente a psicopatología", tipo: "concepto", definicion: "«Feminist therapy refers not to psychopathology but to distress, the subjective experience of ill-being or misplaced well-being [...] Pathology is assigned to the larger cultural context of patriarchy» (Brown, 1994).", fuente: "Brown, L. S. (2010). Feminist therapy. American Psychological Association (edición digital sin paginación; las frases citadas son traducción propia), apartado sobre diagnóstico y malestar." },
   { escuela: "h10", termino: "Conceptualización de caso afirmativa", tipo: "concepto", definicion: "«The feminist therapist does not come up with the diagnostic label and proceed from the assumption that it tells the story of who the client is. Rather, she looks for a way of telling the story [...] in a manner that leads to a liberating, empowering, and healing vision» (Brown, 1994).", fuente: "Brown, L. S. (1994). Subversive dialogues: Theory in feminist therapy. Basic Books, pp. 154–155 (cap. 6, «To speak the mother tongue»)." },
   { escuela: "h10", termino: "Universo temático y temas de opresión", tipo: "concepto", definicion: "«By oppression theme I mean the woman's hopes and aspirations, together with what concretely blocks those hopes and aspirations [...] Thematic universe refers to all of the themes as they open up into each other» (Burstow, 1992).", fuente: "Burstow, B. (1992). Radical Feminist Therapy. Sage." },
   { escuela: "h10", termino: "Modelo biopsicosocial feminista", tipo: "concepto", definicion: "«Emphasizes the necessity of understanding the multiple roots of people's styles of being in the world [...] this same emphasis on the contributions of culture to experience directs attention to the biological, as well, framed in a particularly feminist manner» (Brown, 1994).", fuente: "Brown, L. S. (1994). Subversive dialogues: Theory in feminist therapy. Basic Books, pp. 144–148 (cap. 5, «A feminist biopsychosocial model»)." },
