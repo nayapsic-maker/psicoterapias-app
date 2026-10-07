@@ -3137,16 +3137,16 @@ const ESCUELAS_SEED = [
       "Maultsby, M. C., Ellis, A. (1974). Techniques for Using Rational-Emotive Imagery.",
       "Ellis, A., Harper, R. A. (1961). A Guide to Rational Living.",
       "Ellis, A. (1994). Reason and Emotion in Psychotherapy (ed. rev.). Birch Lane Press.",
-      "Ellis (1994; 1995), citado en Díaz, Ruiz y Villalobos (2012).",
-      "Ellis (2004), citado en Díaz, Ruiz y Villalobos (2012).",
-      "Ellis (1989), citado en Díaz, Ruiz y Villalobos (2012).",
+      "Ellis (1994; 1995), citado en Ruiz, Díaz y Villalobos (2012).",
+      "Ellis (2004), citado en Ruiz, Díaz y Villalobos (2012).",
+      "Ellis (1989), citado en Ruiz, Díaz y Villalobos (2012).",
       "Ellis, A. (1989).",
-      "Ellis, Lega y Caballo (2002), citado en Díaz, Ruiz y Villalobos (2012).",
+      "Ellis, Lega y Caballo (2002), citado en Ruiz, Díaz y Villalobos (2012).",
       "Ellis, A. (1977). Fun theory and practice of rational-emotive therapy.",
-      "Ellis (1989); Díaz, Ruiz y Villalobos (2012), Manual de técnicas de intervención cognitivo conductuales.",
-      "Díaz, Ruiz y Villalobos (2012), Tabla 4, a partir de Ellis, Caballo y Lega (2002).",
-      "Díaz, Ruiz y Villalobos (2012), Tabla 4.",
-      "Díaz, Ruiz y Villalobos (2012), Tabla 5.",
+      "Ellis (1989); Ruiz, Díaz y Villalobos (2012), Manual de técnicas de intervención cognitivo conductuales.",
+      "Ruiz, Díaz y Villalobos (2012), Tabla 4, a partir de Ellis, Caballo y Lega (2002).",
+      "Ruiz, Díaz y Villalobos (2012), Tabla 4.",
+      "Ruiz, Díaz y Villalobos (2012), Tabla 5.",
     ],
   },
   {
@@ -3199,8 +3199,8 @@ const ESCUELAS_SEED = [
       "Beck, J. S. (1995/2011). Cognitive Behavior Therapy: Basics and Beyond. Guilford Press.",
       "Burns, D. D. (1980). Feeling Good. William Morrow.",
       "Beck, A. T. (2005).",
-      "Beck (1995); Blackburn y Davidson (2010), citados en Díaz, Ruiz y Villalobos (2012).",
-      "Díaz, Ruiz y Villalobos (2012); Beck (2005).",
+      "Beck (1995); Blackburn y Davidson (2010), citados en Ruiz, Díaz y Villalobos (2012).",
+      "Ruiz, Díaz y Villalobos (2012); Beck (2005).",
     ],
   },
   {
@@ -3650,7 +3650,7 @@ const ESCUELAS_SEED = [
     fundamentacion:
       "Textos fundacionales: la tesis e investigación seminal de Meichenbaum sobre el trastorno del pensamiento esquizofrénico, The effects of instructions and reinforcement on thinking and language behavior of schizophrenics (Meichenbaum, 1969); el artículo clásico con Joseph Goodman, Training impulsive children to talk to themselves: A means of developing self-control (Meichenbaum y Goodman, 1971), que formalizó el modelo en población infantil; su extensión a población adulta psicótica junto a Roy Cameron, Training schizophrenics to talk to themselves: A means of developing attentional controls (Meichenbaum y Cameron, 1973); y los manuales de sistematización Therapist manual for cognitive behavior modification (1974) y Cognitive-behavior modification: An integrative approach (1977). Meichenbaum, psicólogo clínico canadiense-estadounidense formado en el Hospital de la Administración de Veteranos afiliado a la Universidad de Illinois (tesis doctoral sobre el pensamiento esquizofrénico) y luego profesor en la Universidad de Waterloo, desarrolló el modelo a partir de dos insatisfacciones clínicas concretas: (1) el hallazgo de que pacientes esquizofrénicos entrenados a emitir «habla sana» solo mantenían el progreso cuando se daban a sí mismos autoinstrucciones explícitas («sé coherente», «sé relevante»), evidenciando que la conducta manifiesta está controlada por el diálogo interno; y (2) la observación de que los niños impulsivos e hiperactivos presentan «déficits mediacionales» —actúan con latencias de respuesta extremadamente breves por no haber interiorizado el habla privada como herramienta de planificación y autorregulación—. De ahí nace el objetivo explícito de crear una «prótesis cognitiva»: una intervención que instale o modifique el diálogo interno cuando este interfiere en la ejecución de una tarea.",
     ontologia:
-      "El ser humano es un organismo lingüísticamente mediado y autorregulado que «mantiene su mundo con su conversación interna» (Meichenbaum, 1974, citado en Mahoney, 1974): no responde reflejamente a los estímulos, sino a las instrucciones verbales que se da a sí mismo sobre ellos. Las cogniciones se conciben como «coverantes» (operantes encubiertos, Homme, 1965): conductas verbales encubiertas sujetas a las mismas leyes de contingencia, frecuencia y refuerzo que la conducta motora manifiesta, no como constructos filosóficos inmodificables.",
+      "El ser humano es un organismo lingüísticamente mediado y autorregulado que que, en palabras de Carlos Castañeda citadas por Mahoney (1974, p. 210), «mantenemos nuestro mundo con nuestra conversación interna» (Castañeda, 1972, citado en Mahoney, 1974, p. 210): no responde reflejamente a los estímulos, sino a las instrucciones verbales que se da a sí mismo sobre ellos. Las cogniciones se conciben como «coverantes» (operantes encubiertos, Homme, 1965): conductas verbales encubiertas sujetas a las mismas leyes de contingencia, frecuencia y refuerzo que la conducta motora manifiesta, no como constructos filosóficos inmodificables.",
     epistemologia:
       "Conductual-cognitiva con anclaje en la teoría del procesamiento de la información (Neisser, 1967): la mente se concibe como un canal de capacidad limitada que no puede atender eficientemente a dos estímulos competitivos a la vez, por lo que las autoinstrucciones son válidas en la medida en que ocupan y dirigen ese canal atencional, bloqueando la interferencia de pensamientos automáticos o distractores.",
     metodologia:
@@ -3687,14 +3687,14 @@ const ESCUELAS_SEED = [
       "Meichenbaum, D., Goodman, J. (1971). Training impulsive children to talk to themselves. Journal of Abnormal Psychology, 77(2).",
       "Meichenbaum, D. (1977). Cognitive-Behavior Modification: An Integrative Approach. Plenum Press.",
       "Homme, L. E. (1965), citado en Mahoney (1974).",
-      "Meichenbaum, D. (1977); Díaz, Ruiz y Villalobos (2012).",
+      "Meichenbaum, D. (1977); Ruiz, Díaz y Villalobos (2012).",
       "Meichenbaum, D., Goodman, J. (1971); Luria (1961); Vygotsky (1962).",
       "Meichenbaum, D. (1977); Bandura, A. (1977).",
       "Mahoney, M. J. (1974).",
       "Meichenbaum, D., & Goodman, J. (1971); Mahoney, M. J. (1974); Díaz, Ruiz, & Villalobos (2012); Beck, A. T. et al. (1979).",
-      "Meichenbaum (1977); Díaz, Ruiz y Villalobos (2012).",
+      "Meichenbaum (1977); Ruiz, Díaz y Villalobos (2012).",
       "Meichenbaum y Goodman (1971); Luria (1961); Vygotsky (1962).",
-      "Mahoney (1974); Díaz, Ruiz y Villalobos (2012).",
+      "Mahoney (1974); Ruiz, Díaz y Villalobos (2012).",
     ],
   },
   {
@@ -3744,9 +3744,9 @@ const ESCUELAS_SEED = [
     referencias: [
       "Meichenbaum, D. (1985). Stress Inoculation Training. Pergamon Press.",
       "Lazarus, R. S., Folkman, S. (1984). Stress, Appraisal, and Coping. Springer.",
-      "Meichenbaum, D. (1985); Díaz, Ruiz y Villalobos (2012).",
+      "Meichenbaum, D. (1985); Ruiz, Díaz y Villalobos (2012).",
       "Meichenbaum, D. (1985); Díaz, Ruiz, & Villalobos (2012); Beck, A. T. et al. (1979).",
-      "Meichenbaum (1985); Díaz, Ruiz y Villalobos (2012).",
+      "Meichenbaum (1985); Ruiz, Díaz y Villalobos (2012).",
       "Meichenbaum (1985).",
       "Meichenbaum (1985); Beck, Rush, Shaw y Emery (1979).",
     ],
@@ -3903,7 +3903,7 @@ const ESCUELAS_SEED = [
     id: "c10", perspectiva: "Cognitivo-Conductual", subfamilia: "Teoría del aprendizaje social (transición 1.ª a 2.ª generación)", fundamentosTeoricos: ["pavlov-watson", "thorndikeskinner"], nombre: "Teoría del Aprendizaje Social",
     autores: "Albert Bandura (1925-2021)",
     fundamentacion:
-      "Constituye el puente transicional definitivo entre la primera generación de la Terapia de Conducta (condicionamiento clásico y operante estricto, centrado exclusivamente en la conducta observable) y la segunda generación cognitivo-conductual (Díaz, Ruiz y Villalobos, 2012). Bandura, profesor emérito de la Universidad de Stanford —situado por la APA en 2002 como el psicólogo vivo más influyente, solo precedido históricamente por Skinner, Freud y Piaget—, formuló la teoría a partir de una insatisfacción con los modelos «no mediacionales»: el aprendizaje por ensayo y error resultaba demasiado restrictivo y peligroso para explicar la adquisición de conductas humanas complejas (lenguaje, habilidades sociales), y omitía los procesos mediacionales cognitivos (atención, expectativas, previsión). Textos fundacionales: Social learning and personality development (Bandura y Walters, 1963); Vicarious learning: A case of no-trial learning (Bandura, 1965); Principles of behavior modification (Bandura, 1969); Social learning theory (Bandura, 1971/1977); Self-efficacy: Toward a unifying theory of behavioral change (Bandura, 1977); Social foundations of thought and action: A social cognitive theory (Bandura, 1986).",
+      "Constituye el puente transicional definitivo entre la primera generación de la Terapia de Conducta (condicionamiento clásico y operante estricto, centrado exclusivamente en la conducta observable) y la segunda generación cognitivo-conductual (Ruiz, Díaz y Villalobos, 2012). Bandura, profesor emérito de la Universidad de Stanford —situado por la APA en 2002 como el psicólogo vivo más influyente, solo precedido históricamente por Skinner, Freud y Piaget—, formuló la teoría a partir de una insatisfacción con los modelos «no mediacionales»: el aprendizaje por ensayo y error resultaba demasiado restrictivo y peligroso para explicar la adquisición de conductas humanas complejas (lenguaje, habilidades sociales), y omitía los procesos mediacionales cognitivos (atención, expectativas, previsión). Textos fundacionales: Social learning and personality development (Bandura y Walters, 1963); Vicarious learning: A case of no-trial learning (Bandura, 1965); Principles of behavior modification (Bandura, 1969); Social learning theory (Bandura, 1971/1977); Self-efficacy: Toward a unifying theory of behavioral change (Bandura, 1977); Social foundations of thought and action: A social cognitive theory (Bandura, 1986).",
     ontologia:
       "Determinismo recíproco triádico: el funcionamiento psicológico es el producto de una interacción continua, dinámica y bidireccional entre los determinantes personales (procesos cognitivos, afectivos y biológicos), la conducta y el ambiente (Bandura, 1977). El ser humano es un agente activo y proactivo —no un receptor pasivo de contingencias ni un sujeto gobernado por conflictos inconscientes— dotado de capacidad simbolizadora, capacidad vicaria (aprendizaje observacional) y capacidad de previsión (expectativas).",
     epistemologia:
@@ -3951,7 +3951,7 @@ const ESCUELAS_SEED = [
       "Meichenbaum, D. (1971), citado en Caballo (1997).",
       "Bandura (1977, 1997), citado en Labrador, Cruzado y Muñoz (1993).",
       "Caballo (1997), Manual de evaluación y entrenamiento de las habilidades sociales.",
-      "Caballo, Andrés y Bas (1997); Díaz, Ruiz y Villalobos (2012).",
+      "Caballo, Andrés y Bas (1997); Ruiz, Díaz y Villalobos (2012).",
     ],
   },
   {
@@ -4707,7 +4707,7 @@ const CITAS_AMPLIADAS = {
     "Christensen, A., Jacobson, N. S., & Babcock, J. C. (1995). Integrative behavioral couple therapy. En N. S. Jacobson & A. S. Gurman (Eds.), Clinical Handbook of Couple Therapy (pp. 31-64). Guilford Press.",
   ],
   c2: [
-    "Díaz, M. I., Ruiz, M. A., & Villalobos, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
+    "Ruiz Fernández, M. Á., Díaz García, M. I., & Villalobos Crespo, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
     "Ellis, A. (1962). Reason and emotion in psychotherapy. Lyle Stuart.",
     "Ellis, A. (1985). Overcoming resistance: Rational-emotive therapy with difficult clients. Springer.",
     "Ellis, A. (2000). Usted puede ser feliz: Terapia racional emotiva conductual para superar la ansiedad y la depresión (Y. Gómez Ramírez, Trad.). Ediciones Paidós Ibérica.",
@@ -4732,7 +4732,7 @@ const CITAS_AMPLIADAS = {
     "Beck, J. S. (2007). Terapia cognitiva para la superación de retos (G. Ubaldini, Trad.). Editorial Gedisa. (Trabajo original publicado en 2005).",
     "Beck, J. S. (2011). Cognitive behavior therapy: Basics and beyond (2ª ed.). Guilford Press.",
     "Clark, D. A., & Beck, A. T. (2012). Terapia cognitiva para trastornos de ansiedad: Ciencia y práctica (J. Aldekoa, Trad.). Desclée De Brouwer. (Trabajo original publicado en 2010).",
-    "Díaz, M. I., Ruiz, M. A., & Villalobos, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
+    "Ruiz Fernández, M. Á., Díaz García, M. I., & Villalobos Crespo, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
     "Freeman, A., Felgoise, S. H., Nezu, C. M., Nezu, A. M., & Reinecke, M. A. (Eds.). (2004). Encyclopedia of cognitive behavior therapy. Springer.",
     "Wenzel, A. (Ed.). (2021). Handbook of cognitive behavioral therapy: Vol. 1. Overview and approaches. American Psychological Association.",
   ],
@@ -4773,7 +4773,7 @@ const CITAS_AMPLIADAS = {
     "Caballo, V. E. (1997). Manual de evaluación y entrenamiento de las habilidades sociales (4ª ed.). Siglo XXI.",
     "Caballo, V. E., Andrés, V., & Bas, F. (1997). Fobia social. En V. E. Caballo (Dir.), Manual para el tratamiento cognitivo-conductual de los trastornos psicológicos (Vol. 1, pp. 25-87). Siglo XXI.",
     "Castro Camacho, L. (2002). Modelo integrador en psicopatología: un enfoque transdiagnóstico. En V. E. Caballo (Dir.), Manual de psicopatología y trastornos psicológicos (pp. 45-79). Pirámide. (Trabajo original publicado en 1995).",
-    "Díaz, M. I., Ruiz, M. A., & Villalobos, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
+    "Ruiz Fernández, M. Á., Díaz García, M. I., & Villalobos Crespo, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
     "Kazdin, A. E. (1977). Assessing the clinical or applied importance of behavior change through social validation. Behavior Modification, 1, 427-452.",
     "Lega, L. I., Caballo, V. E., & Ellis, A. (1997). Teoría y práctica de la terapia racional emotivo-conductual. Siglo XXI.",
     "Mahoney, M. J. (1974). Cognición y modificación de la conducta. Ballinger.",
@@ -4792,7 +4792,7 @@ const CITAS_AMPLIADAS = {
   ],
   c17: [
     "Beck, A. T., Rush, A. J., Shaw, B. F., & Emery, G. (1979). Cognitive therapy of depression. Guilford Press.",
-    "Díaz, M. I., Ruiz, M. A., & Villalobos, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
+    "Ruiz Fernández, M. Á., Díaz García, M. I., & Villalobos Crespo, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
     "D'Zurilla, T. J., Wilson, G. T., & Nelson, R. O. (1973). A preliminary study of the effectiveness of a rational-cognitive approach to the treatment of public speaking anxiety. Manuscrito no publicado. (Citado en Mahoney, 1974).",
     "Ellis, A. (1962). Reason and emotion in psychotherapy. Lyle Stuart.",
     "Ellis, A. (1985). Overcoming resistance: Rational-emotive therapy with difficult clients. Springer.",
@@ -4850,7 +4850,7 @@ const CITAS_AMPLIADAS = {
     "Beck, A. T., Rush, A. J., Shaw, B. F., & Emery, G. (1979). Cognitive therapy of depression. Guilford Press.",
     "Caballo, V. E. (1993). Manual de evaluación y entrenamiento de las habilidades sociales. Siglo XXI.",
     "Carmody, T. P. (1978). Rational-emotive, self-instructional, and behavioral assertion training: Facilitating maintenance. Cognitive Therapy and Research, 2(3), 241-253.",
-    "Díaz, M. I., Ruiz, M. A., & Villalobos, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
+    "Ruiz Fernández, M. Á., Díaz García, M. I., & Villalobos Crespo, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
     "Dunkel, L. D., & Glaros, A. G. (1978). Comparison of self-instructional and stimulus control treatments for obesity. Cognitive Therapy and Research, 2, 75-78.",
     "Ellis, A. (1962). Reason and emotion in psychotherapy. Lyle Stuart.",
     "Emmelkamp, P. M. G., Brilman, E., Kuiper, H., & Mersch, P. P. (1988). The treatment of agoraphobia: A comparison of self-instructional training, rational emotive therapy, and exposure in vivo. Behavior Modification, 10, 37-53.",
@@ -4877,7 +4877,7 @@ const CITAS_AMPLIADAS = {
     "Beck, A. T., Rush, A. J., Shaw, B. F., & Emery, G. (1979). Cognitive therapy of depression. Guilford Press.",
     "Cahill, S. P., Rothbaum, B. O., Resick, P. A., & Follette, V. M. (2009). Cognitive-behavioral therapy for adults. En E. B. Foa, T. M. Keane, M. J. Friedman, & J. A. Cohen (Eds.), Effective treatments for PTSD (2ª ed.). Guilford Press.",
     "Deffenbacher, J. L., McNamara, K., Stark, R. S., & Sabadell, P. M. (1991). A comparison of cognitive-behavioral and process-oriented group counseling for general anger reduction. Journal of Counseling & Development, 69(2), 167-172.",
-    "Díaz, M. I., Ruiz, M. A., & Villalobos, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
+    "Ruiz Fernández, M. Á., Díaz García, M. I., & Villalobos Crespo, A. (2012). Manual de técnicas de intervención cognitivo conductuales. Desclée De Brouwer.",
     "Foa, E. B., Dancu, C. V., Hembree, E. A., Jaycox, L. H., Meadows, E. A., & Street, G. P. (1999). A comparison of exposure therapy, stress inoculation training, and their combination for reducing PTSD in female assault victims. Journal of Consulting and Clinical Psychology, 67(2), 194-200.",
     "Foa, E. B., Rothbaum, B. O., Riggs, D. S., & Murdock, T. B. (1991). Treatment of posttraumatic stress disorder in rape victims: A comparison between cognitive-behavioral procedures and counseling. Journal of Consulting and Clinical Psychology, 59(5), 715-723.",
     "Forman, S. G. (1982). Stress management for teachers: A cognitive-behavioral program. Journal of School Psychology, 30, 180-187.",
@@ -5906,7 +5906,7 @@ const PROTOCOLOS_SEED = {
   },
   c2: {
     nombre: "Proceso de intervención en TREC (5 fases)",
-    fuente: "Ellis (1989); Díaz, Ruiz y Villalobos (2012), Manual de técnicas de intervención cognitivo conductuales.",
+    fuente: "Ellis (1989); Ruiz, Díaz y Villalobos (2012), Manual de técnicas de intervención cognitivo conductuales.",
     poblacion: "Perturbación emocional por creencias irracionales absolutistas.",
     fases: [
       "1. Evaluación psicopatológica: exploración diagnóstica completa (p. ej. criterios DSM) y análisis de factores psicológicos y/o biológicos mediante entrevistas clínicas, cuestionarios y medidas de autoinforme, como en la mayoría de TCC.",
@@ -5920,7 +5920,7 @@ const PROTOCOLOS_SEED = {
   },
   c3: {
     nombre: "Estructura del proceso terapéutico en Terapia Cognitiva",
-    fuente: "Beck (1995); Blackburn y Davidson (2010), citados en Díaz, Ruiz y Villalobos (2012).",
+    fuente: "Beck (1995); Blackburn y Davidson (2010), citados en Ruiz, Díaz y Villalobos (2012).",
     poblacion: "Depresión; adaptable a ansiedad, trastornos de personalidad y otros cuadros con perfil cognitivo específico.",
     fases: [
       "Primera sesión — diagnóstico psicopatológico: entrevista abierta para construir rapport, seguida de diagnóstico diferencial y formulación del diagnóstico.",
@@ -6770,7 +6770,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnicas cognitivas de la TREC (en sesión)",
       tipo: "técnica",
-      fuente: "Díaz, Ruiz y Villalobos (2012), Tabla 4, a partir de Ellis, Caballo y Lega (2002).",
+      fuente: "Ruiz, Díaz y Villalobos (2012), Tabla 4, pp. 341–346, a partir de Ellis, Caballo y Lega (2002).",
       fases: [
         "Discusión y debate de creencias — análisis y evaluación lógica: enseñar al cliente a analizar la validez lógica de sus premisas y la incongruencia entre sus creencias y su conducta.",
         "Discusión y debate de creencias — reducción al absurdo: llevar la creencia irracional hasta el extremo para que el cliente perciba sus consecuencias absurdas.",
@@ -6780,13 +6780,13 @@ const PROCEDIMIENTOS_CLINICOS = {
         "Entrenamiento en auto-instrucciones: generar y enseñar autoinstrucciones racionales para repetir ante acontecimientos activadores; útil cuando el debate socrático resulta demasiado intelectual.",
         "Distracción cognitiva e imaginación: uso temporal de relajación progresiva o imaginación para distraer al paciente en momentos de muy alta intensidad emocional y facilitar un afrontamiento inicial.",
       ],
-      condiciones: "Son las técnicas por excelencia de la TREC; el debate de creencias es «el procedimiento más genuino de la terapia» (Díaz, Ruiz y Villalobos, 2012).",
+      condiciones: "Son las técnicas por excelencia de la TREC; el debate de creencias es «el procedimiento más genuino de la terapia» (Ruiz, Díaz y Villalobos, 2012).",
       porQueFunciona: "Cada estrategia de debate ataca un flanco distinto de la creencia irracional (su lógica interna, su base empírica, su coherencia con otros valores, sus consecuencias prácticas), de modo que el cliente no depende de un único tipo de argumento para desestabilizar una creencia absolutista muy arraigada.",
     },
     {
       nombre: "Técnicas conductuales y emotivas de la TREC (en sesión)",
       tipo: "técnica",
-      fuente: "Díaz, Ruiz y Villalobos (2012), Tabla 4.",
+      fuente: "Ruiz, Díaz y Villalobos (2012), Tabla 4, pp. 344–346.",
       fases: [
         "Ensayo de conducta: mediante role-playing, terapeuta y paciente analizan, debaten y ensayan creencias racionales adecuadas para situaciones específicas en las que el paciente suele perturbarse.",
         "Inversión del rol racional: el paciente adopta el rol de terapeuta y debe discutir y rebatir las creencias irracionales que el terapeuta (asumiendo el rol del paciente) verbaliza.",
@@ -6802,7 +6802,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnicas para el trabajo entre sesiones",
       tipo: "técnica",
-      fuente: "Díaz, Ruiz y Villalobos (2012), Tabla 5.",
+      fuente: "Ruiz, Díaz y Villalobos (2012), Tabla 5, pp. 348–350.",
       fases: [
         "Autorregistros: uso continuo de plantillas (formulario de Auto-ayuda RET) para detectar la relación A-B-C, añadiendo progresivamente el cuestionamiento de la creencia irracional y la formulación de una creencia racional alternativa.",
         "Proselitismo racional: pedir al paciente que intente enseñar los fundamentos de la TREC a personas de su entorno, afianzando su propia filosofía racional al intentar convencer a otros.",
@@ -6824,7 +6824,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnicas conductuales de la Terapia Cognitiva",
       tipo: "técnica",
-      fuente: "Díaz, Ruiz y Villalobos (2012).",
+      fuente: "Ruiz, Díaz y Villalobos (2012), pp. 384–386.",
       fases: [
         "Programación de actividades: tareas diarias jerarquizadas según dificultad, evaluando grado de dominio y agrado, para poner a prueba la creencia de que «no puede hacer nada».",
         "Role-playing: ensayo de conducta o modelado con el terapeuta para comprobar o refutar hipótesis del paciente frente a una interacción determinada.",
@@ -6839,7 +6839,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnicas emotivas de la Terapia Cognitiva",
       tipo: "técnica",
-      fuente: "Díaz, Ruiz y Villalobos (2012).",
+      fuente: "Ruiz, Díaz y Villalobos (2012), pp. 386–387.",
       fases: [
         "Inducción de autocompasión: uso excepcional en personas que no pueden llorar y necesitan hacerlo, mediante la descripción detallada de sentimientos negativos.",
         "Inducción de cólera (controlada): señalar aspectos de la situación que puedan provocar cierto enfado, útil para reducir emociones de profunda tristeza.",
@@ -6853,7 +6853,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnicas cognitivas de la Terapia Cognitiva",
       tipo: "técnica",
-      fuente: "Díaz, Ruiz y Villalobos (2012); Beck (2005).",
+      fuente: "Ruiz, Díaz y Villalobos (2012), pp. 388–398; Beck (2005).",
       fases: [
         "Autorregistro: planillas (registro diario de pensamientos distorsionados) para recoger estado emocional, situaciones desencadenantes y pensamientos automáticos.",
         "Descubrimiento guiado: el terapeuta guía al paciente mediante cuestionamiento socrático para alcanzar nuevas perspectivas que desafíen sus creencias disfuncionales.",
@@ -6907,7 +6907,7 @@ const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Estructura típica de sesión de EHS y fases del tratamiento",
       tipo: "protocolo",
-      fuente: "Caballo, Andrés y Bas (1997); Díaz, Ruiz y Villalobos (2012).",
+      fuente: "Caballo, Andrés y Bas (1997); Ruiz, Díaz y Villalobos (2012).",
       fases: [
         "Fase 1 — Evaluación, conceptualización y psicoeducación: entrevista funcional, autorregistros, formulación de metas jerarquizadas, instrucción en la Teoría del Aprendizaje Social.",
         "Fase 2 — Intervención activa: instrucciones, modelado, ensayo conductual, retroalimentación y reestructuración cognitiva paralela.",
@@ -7004,12 +7004,12 @@ const PROCEDIMIENTOS_CLINICOS = {
     },
   ],
   c19: [
-    { nombre: "Protocolo de Entrenamiento en Autoinstrucciones — Fase 1 (Evaluación y diseño del guion)", tipo: "técnica", fuente: "Meichenbaum (1977); Díaz, Ruiz y Villalobos (2012).", fases: ["Paso 1 — Evaluación y línea base: autoobservación sistemática del diálogo interno del paciente ante la tarea o el estresor problemático.", "Paso 2 — Psicoeducación: se enseña que las cogniciones son «coverantes» que controlan la conducta motora y fisiológica.", "Paso 3 — Diseño del guion autoinstruccional para cinco funciones: definición del problema, aproximación, focalización de la atención, verbalizaciones ante errores, autorrefuerzo."], condiciones: "Precede a la fase de adquisición de habilidades; sin este diseño colaborativo, el desvanecimiento posterior carece de contenido verbal específico que interiorizar.", porQueFunciona: "Diseñar el guion antes de entrenar su desvanecimiento asegura que lo que se interioriza sea idiosincrásico y clínicamente relevante para el paciente, no una fórmula genérica." },
+    { nombre: "Protocolo de Entrenamiento en Autoinstrucciones — Fase 1 (Evaluación y diseño del guion)", tipo: "técnica", fuente: "Meichenbaum (1977); Ruiz, Díaz y Villalobos (2012).", fases: ["Paso 1 — Evaluación y línea base: autoobservación sistemática del diálogo interno del paciente ante la tarea o el estresor problemático.", "Paso 2 — Psicoeducación: se enseña que las cogniciones son «coverantes» que controlan la conducta motora y fisiológica.", "Paso 3 — Diseño del guion autoinstruccional para cinco funciones: definición del problema, aproximación, focalización de la atención, verbalizaciones ante errores, autorrefuerzo."], condiciones: "Precede a la fase de adquisición de habilidades; sin este diseño colaborativo, el desvanecimiento posterior carece de contenido verbal específico que interiorizar.", porQueFunciona: "Diseñar el guion antes de entrenar su desvanecimiento asegura que lo que se interioriza sea idiosincrásico y clínicamente relevante para el paciente, no una fórmula genérica." },
     { nombre: "Protocolo de Entrenamiento en Autoinstrucciones — Fase 2 (5 pasos de internalización)", tipo: "técnica", fuente: "Meichenbaum y Goodman (1971); Luria (1961); Vygotsky (1962).", fases: ["1. Modelado cognitivo: el terapeuta ejecuta la tarea verbalizando en voz alta todo el guion (definición, guía, corrección y autorrefuerzo).", "2. Guía externa manifiesta (modelado cognitivo participante): el paciente ejecuta la tarea mientras el terapeuta verbaliza en voz alta las instrucciones.", "3. Autoinstrucciones en voz alta (autoguía manifiesta): el paciente ejecuta la tarea verbalizando él mismo las instrucciones.", "4. Desvanecimiento de las autoinstrucciones en voz alta: el paciente susurra o mueve los labios.", "5. Autoinstrucciones encubiertas: el paciente ejecuta la tarea guiándose por lenguaje interno silencioso."], condiciones: "Se aplica rígidamente en esta secuencia; es una copia clínica deliberada del modelo evolutivo de Luria y Vygotsky sobre la internalización del habla reguladora.", porQueFunciona: "Cada paso retira progresivamente el andamiaje externo mientras mantiene la misma estructura verbal de autorregulación, replicando la secuencia evolutiva natural por la que el habla externa se interioriza en pensamiento regulador silencioso." },
-    { nombre: "Protocolo de Entrenamiento en Autoinstrucciones — Fase 3 (Generalización)", tipo: "técnica", fuente: "Mahoney (1974); Díaz, Ruiz y Villalobos (2012).", fases: ["Práctica graduada in vivo con tareas para casa progresivamente más exigentes.", "Transferencia deliberada del guion autoinstruccional a contextos y tareas no entrenados directamente en sesión.", "Prevención de recaídas: reencuadre de cualquier fallo como oportunidad para reiniciar el protocolo, no como evidencia de incompetencia."], condiciones: "Fase final tras consolidar la autoinstrucción encubierta; determina si el entrenamiento se mantiene y generaliza más allá del consultorio.", porQueFunciona: "Sin transferencia deliberada al entorno natural, la habilidad entrenada en sesión corre el riesgo de quedar ligada al contexto clínico y no generalizarse." },
+    { nombre: "Protocolo de Entrenamiento en Autoinstrucciones — Fase 3 (Generalización)", tipo: "técnica", fuente: "Mahoney (1974); Ruiz, Díaz y Villalobos (2012).", fases: ["Práctica graduada in vivo con tareas para casa progresivamente más exigentes.", "Transferencia deliberada del guion autoinstruccional a contextos y tareas no entrenados directamente en sesión.", "Prevención de recaídas: reencuadre de cualquier fallo como oportunidad para reiniciar el protocolo, no como evidencia de incompetencia."], condiciones: "Fase final tras consolidar la autoinstrucción encubierta; determina si el entrenamiento se mantiene y generaliza más allá del consultorio.", porQueFunciona: "Sin transferencia deliberada al entorno natural, la habilidad entrenada en sesión corre el riesgo de quedar ligada al contexto clínico y no generalizarse." },
   ],
   c20: [
-    { nombre: "Protocolo de Inoculación de Estrés — Fase 1 (Conceptualización)", tipo: "técnica", fuente: "Meichenbaum (1985); Díaz, Ruiz y Villalobos (2012).", fases: ["Paso 1 — Evaluación clínica y autorregistro: el paciente asume el rol de «científico personal», identificando señales prodrómicas de baja intensidad del estrés.", "Paso 2 — Reconceptualización del problema: mediante diálogo socrático, el estrés global se fragmenta en cuatro fases temporales (preparación, confrontación, momento crítico, reflexión/autorrefuerzo).", "Paso 3 — Anticipación de la resistencia: se inocula proactivamente contra el abandono del tratamiento, asumiendo de antemano que el cambio será exigente."], condiciones: "Objetivo: transformar la sensación de amenaza incontrolable en una serie de problemas específicos y abordables.", porQueFunciona: "Fragmentar el estrés global en cuatro fases temporales manejables reduce la sensación de abrumamiento y convierte un problema difuso en un conjunto de blancos de intervención concretos." },
+    { nombre: "Protocolo de Inoculación de Estrés — Fase 1 (Conceptualización)", tipo: "técnica", fuente: "Meichenbaum (1985); Ruiz, Díaz y Villalobos (2012).", fases: ["Paso 1 — Evaluación clínica y autorregistro: el paciente asume el rol de «científico personal», identificando señales prodrómicas de baja intensidad del estrés.", "Paso 2 — Reconceptualización del problema: mediante diálogo socrático, el estrés global se fragmenta en cuatro fases temporales (preparación, confrontación, momento crítico, reflexión/autorrefuerzo).", "Paso 3 — Anticipación de la resistencia: se inocula proactivamente contra el abandono del tratamiento, asumiendo de antemano que el cambio será exigente."], condiciones: "Objetivo: transformar la sensación de amenaza incontrolable en una serie de problemas específicos y abordables.", porQueFunciona: "Fragmentar el estrés global en cuatro fases temporales manejables reduce la sensación de abrumamiento y convierte un problema difuso en un conjunto de blancos de intervención concretos." },
     { nombre: "Protocolo de Inoculación de Estrés — Fase 2 (Adquisición de habilidades)", tipo: "técnica", fuente: "Meichenbaum (1985).", fases: ["Paso 1 — Entrenamiento en relajación física y mental (respiración diafragmática, relajación muscular progresiva) como respuesta activa, no de evitación.", "Paso 2 — Reestructuración cognitiva y solución de problemas para el estresor modificable.", "Paso 3 — Diseño del guion de afrontamiento mediante autoinstrucciones para cada una de las cuatro fases temporales."], condiciones: "Se revisa el «menú» de estrategias y se seleccionan las que contrarresten específicamente los déficits detectados en la Fase 1.", porQueFunciona: "Dotar al paciente de un repertorio multicomponente (fisiológico, cognitivo, verbal) evita que el afrontamiento dependa de una sola técnica que pueda fallar ante estresores distintos." },
     { nombre: "Protocolo de Inoculación de Estrés — Fase 3 (Aplicación y consolidación)", tipo: "técnica", fuente: "Meichenbaum (1985).", fases: ["Paso 1 — Ensayo imaginado y modelado de afrontamiento: el paciente visualiza el estresor y aplica encubiertamente su guion; el terapeuta modela su propia duda y superación, no la perfección.", "Paso 2 — Ensayo conductual (role-playing) y exposición in vivo graduada a estresores reales.", "Paso 3 — Prevención de recaídas: cualquier desliz se reencuadra como señal discriminativa para reactivar el protocolo, no como fracaso."], condiciones: "Objetivo final: la «inmunización», transfiriendo el control desde el consultorio hacia el ambiente real del paciente.", porQueFunciona: "La exposición graduada con el repertorio ya ensayado y disponible genera experiencias de dominio verificables que combaten la valoración catastrofista del estresor." },
     { nombre: "Estructura de sesión típica del EIE (6 pasos, 50-60 min)", tipo: "técnica", fuente: "Meichenbaum (1985); Beck, Rush, Shaw y Emery (1979).", fases: ["1. Control del estado de ánimo y nexo entre sesiones (5-7 min).", "2. Revisión exhaustiva de tareas para casa, con análisis de autoatribución estilo «Inspector Colombo» ante los éxitos (10 min).", "3. Establecimiento colaborativo de la agenda (3-5 min).", "4. Intervención central: ensayo imaginado o role-playing con feedback in situ (20-25 min).", "5. Asignación de nuevas tareas graduadas, concretas y medibles (5 min).", "6. Resumen delegado al paciente y feedback de cierre (3-5 min)."], condiciones: "Estructura fija a partir de las primeras sesiones de evaluación.", porQueFunciona: "La estructura predecible sostiene el empirismo colaborador y garantiza puntos de verificación constantes del progreso en cada encuentro." },
@@ -14596,11 +14596,11 @@ const GLOSARIO = [
   { escuela: "s6", termino: "Saberes locales", tipo: "concepto", definicion: "Conocimientos y habilidades propios de la persona o comunidad, opacados por los discursos expertos dominantes, que la terapia narrativa busca recuperar y legitimar.", fuente: "White, M., Epston, D. (1990). Narrative Means to Therapeutic Ends. Norton; véase Moreno Fernández (Ed.), 2014, p. 396 (insider knowledge)." },
   { escuela: "c15", termino: "Generalización del estímulo", tipo: "concepto", definicion: "Tendencia de una respuesta condicionada a un estímulo a extenderse a otros estímulos similares no directamente entrenados.", fuente: "Skinner, B. F. (1953). Science and Human Behavior. Macmillan." },
   { escuela: "c2", termino: "Aceptación incondicional (de sí, de otros, de la vida)", tipo: "concepto", definicion: "Tres formas de aceptación radical —autoaceptación, aceptación del otro y aceptación de la vida— que Ellis considera el antídoto filosófico de fondo frente al debeísmo.", fuente: "Ellis, A. (1994). Reason and Emotion in Psychotherapy (ed. rev.). Birch Lane Press." },
-  { escuela: "c2", termino: "Creencias racionales", tipo: "concepto", definicion: "Las racionales son cogniciones evaluativas preferenciales, flexibles, expresadas como deseo o preferencia; las irracionales son absolutistas y dogmáticas, expresadas como «debería» o «tengo que», y generan emociones negativas perturbadoras que interfieren con las metas.", fuente: "Ellis (1994; 1995), citado en Díaz, Ruiz y Villalobos (2012)." },
-  { escuela: "c2", termino: "Tres demandas nucleares", tipo: "concepto", definicion: "Las más de 200 creencias irracionales identificadas por Ellis se agrupan en tres exigencias absolutistas: sobre sí mismo (debo actuar bien y ganar aprobación), sobre los demás (deben tratarme con justicia) y sobre el mundo (las condiciones deben ser fáciles y agradables), formulación sintética de Díaz, Ruiz y Villalobos (2012), cada una con consecuencias emocionales características.", fuente: "Ellis (2004), citado en Díaz, Ruiz y Villalobos (2012)." },
-  { escuela: "c2", termino: "Ansiedad del yo vs. ansiedad perturbadora", tipo: "concepto", definicion: "La ansiedad del yo surge cuando la persona siente amenazada su valía personal por no cumplir sus propias exigencias; la ansiedad perturbadora surge cuando considera intolerable no obtener lo que «debe» o «tiene que» conseguir. Ambas comparten la base de creencias absolutistas, pero difieren en su objeto (el self vs. las condiciones de vida).", fuente: "Ellis (1989), citado en Díaz, Ruiz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Creencias racionales", tipo: "concepto", definicion: "Las racionales son cogniciones evaluativas preferenciales, flexibles, expresadas como deseo o preferencia; las irracionales son absolutistas y dogmáticas, expresadas como «debería» o «tengo que», y generan emociones negativas perturbadoras que interfieren con las metas.", fuente: "Ellis (1994; 1995), citado en Ruiz, Díaz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Tres demandas nucleares", tipo: "concepto", definicion: "Las más de 200 creencias irracionales identificadas por Ellis se agrupan en tres exigencias absolutistas: sobre sí mismo (debo actuar bien y ganar aprobación), sobre los demás (deben tratarme con justicia) y sobre el mundo (las condiciones deben ser fáciles y agradables), formulación sintética de Ruiz, Díaz y Villalobos (2012), cada una con consecuencias emocionales características.", fuente: "Ellis (2004), citado en Ruiz, Díaz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Ansiedad del yo vs. ansiedad perturbadora", tipo: "concepto", definicion: "La ansiedad del yo surge cuando la persona siente amenazada su valía personal por no cumplir sus propias exigencias; la ansiedad perturbadora surge cuando considera intolerable no obtener lo que «debe» o «tiene que» conseguir. Ambas comparten la base de creencias absolutistas, pero difieren en su objeto (el self vs. las condiciones de vida).", fuente: "Ellis (1989), citado en Ruiz, Díaz y Villalobos (2012)." },
   { escuela: "c2", termino: "Tres insights terapéuticos", tipo: "concepto", definicion: "Condiciones necesarias para el cambio según Ellis: (1) las creencias irracionales, no los eventos, causan la perturbación; (2) esta se mantiene porque la persona se «re-adoctrina» en el presente con esas creencias; (3) solo el trabajo constante y activo de debatirlas —no el mero insight— logra modificarlas.", fuente: "Ellis, A. (1989)." },
-  { escuela: "c2", termino: "Niveles de conciencia cognitiva", tipo: "concepto", definicion: "Tres estratos de profundidad de la cognición: pensamientos o fragmentos de pensamiento (los más accesibles), inferencias y atribuciones (cogniciones evaluativas de la realidad), y creencias nucleares (reglas de vida o filosofías básicas de las que la persona no es consciente hasta que un estresor las activa).", fuente: "Ellis, Lega y Caballo (2002), citado en Díaz, Ruiz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Niveles de conciencia cognitiva", tipo: "concepto", definicion: "Tres estratos de profundidad de la cognición: pensamientos o fragmentos de pensamiento (los más accesibles), inferencias y atribuciones (cogniciones evaluativas de la realidad), y creencias nucleares (reglas de vida o filosofías básicas de las que la persona no es consciente hasta que un estresor las activa).", fuente: "Ellis, Lega y Caballo (2002), citado en Ruiz, Díaz y Villalobos (2012)." },
   { escuela: "c3", termino: "Creencias nucleares (core beliefs)", tipo: "concepto", definicion: "Ideas absolutas y globales sobre uno mismo, los otros o el mundo, más profundas y rígidas que los pensamientos automáticos, formadas tempranamente.", fuente: "Beck, J. S. (1995/2011). Cognitive Behavior Therapy: Basics and Beyond. Guilford Press." },
   { escuela: "c4", termino: "Workability (utilidad funcional)", tipo: "concepto", definicion: "Criterio contextualista funcional según el cual el valor de una acción o de un pensamiento se juzga por su utilidad para avanzar hacia los valores elegidos, no por su verdad literal.", fuente: "Hayes, S. C., Strosahl, K. D., Wilson, K. G. (1999/2012). Acceptance and Commitment Therapy. Guilford Press." },
   { escuela: "c5", termino: "Dialéctica", tipo: "concepto", definicion: "Principio filosófico central de DBT: toda tesis genera una antítesis, y el avance terapéutico consiste en sintetizar polos aparentemente opuestos (aceptación y cambio) en vez de elegir uno.", fuente: "Linehan, M. M. (1993). Cognitive-Behavioral Treatment of Borderline Personality Disorder. Guilford Press." },
@@ -15260,23 +15260,23 @@ const GLOSARIO = [
   { escuela: "c18", termino: "Bucle A-B-C interconectado", tipo: "concepto", definicion: "La reacción emocional (C) ante un problema puede convertirse en un nuevo acontecimiento activador (A₂) que genera nuevas creencias (B₂) —«un problema emocional sobre un problema emocional»—, por ejemplo, sentirse ansioso por estar ansioso.", fuente: "Grieger, R. M. (1985). De un modelo lineal a uno contextual de los ABC de la RET. Journal of Rational-Emotive Therapy, 3(2)." },
 
   /* ---------- TÉCNICAS FALTANTES: TREC (c2) ---------- */
-  { escuela: "c2", termino: "Discusión y debate de creencias", tipo: "técnica", definicion: "Procedimiento más genuino de la TREC: refutar la creencia irracional mediante análisis lógico, reducción al absurdo, análisis empírico, contradicción con el valor apreciado y apelación a consecuencias negativas o positivas.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
-  { escuela: "c2", termino: "Entrenamiento en auto-instrucciones racionales", tipo: "técnica", definicion: "Generar y enseñar una serie de autoinstrucciones racionales para repetir ante acontecimientos activadores; especialmente útil cuando el debate socrático resulta demasiado intelectual para el paciente.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
-  { escuela: "c2", termino: "Distracción cognitiva temporal", tipo: "técnica", definicion: "Uso transitorio de relajación o imaginación para reducir la intensidad emocional en momentos de muy alta activación, facilitando un afrontamiento inicial antes de retomar el debate racional.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
-  { escuela: "c2", termino: "Ensayo de conducta e inversión del rol racional", tipo: "técnica", definicion: "El paciente ensaya, mediante role-playing, creencias racionales adecuadas para situaciones específicas; en la inversión de rol, adopta el papel de terapeuta y debe rebatir las creencias irracionales que el terapeuta verbaliza en el rol de paciente.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
-  { escuela: "c2", termino: "Entrenamiento en habilidades sociales y en solución de problemas", tipo: "técnica", definicion: "Se aplica una vez interiorizadas creencias racionales que permiten perder el miedo al ridículo, para ensayar estrategias de afrontamiento ante problemas prácticos concretos.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Discusión y debate de creencias", tipo: "técnica", definicion: "Procedimiento más genuino de la TREC: refutar la creencia irracional mediante análisis lógico, reducción al absurdo, análisis empírico, contradicción con el valor apreciado y apelación a consecuencias negativas o positivas.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Entrenamiento en auto-instrucciones racionales", tipo: "técnica", definicion: "Generar y enseñar una serie de autoinstrucciones racionales para repetir ante acontecimientos activadores; especialmente útil cuando el debate socrático resulta demasiado intelectual para el paciente.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Distracción cognitiva temporal", tipo: "técnica", definicion: "Uso transitorio de relajación o imaginación para reducir la intensidad emocional en momentos de muy alta activación, facilitando un afrontamiento inicial antes de retomar el debate racional.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Ensayo de conducta e inversión del rol racional", tipo: "técnica", definicion: "El paciente ensaya, mediante role-playing, creencias racionales adecuadas para situaciones específicas; en la inversión de rol, adopta el papel de terapeuta y debe rebatir las creencias irracionales que el terapeuta verbaliza en el rol de paciente.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Entrenamiento en habilidades sociales y en solución de problemas", tipo: "técnica", definicion: "Se aplica una vez interiorizadas creencias racionales que permiten perder el miedo al ridículo, para ensayar estrategias de afrontamiento ante problemas prácticos concretos.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
   { escuela: "c2", termino: "Imaginación Racional-Emotiva (IRE)", tipo: "técnica", definicion: "El paciente imagina una situación intensamente perturbadora y, modificando sus creencias en la imaginación, transforma esa emoción en una más apropiada o moderada.", fuente: "Maultsby, M. C., Ellis, A. (1974). Techniques for using rational-emotive imagery." },
-  { escuela: "c2", termino: "Técnicas humorísticas", tipo: "técnica", definicion: "Uso de chistes, parábolas, lemas o canciones para ayudar al paciente a no tomarse a sí mismo ni a sus problemas con excesivo dramatismo, facilitando el distanciamiento emocional.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Técnicas humorísticas", tipo: "técnica", definicion: "Uso de chistes, parábolas, lemas o canciones para ayudar al paciente a no tomarse a sí mismo ni a sus problemas con excesivo dramatismo, facilitando el distanciamiento emocional.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
   { escuela: "c2", termino: "Ejercicios de ataque de vergüenza", tipo: "técnica", definicion: "Realizar en público actos considerados «vergonzosos» para debatir en vivo la creencia de que es horrible y espantoso hacer el ridículo.", fuente: "Ellis, A. (1994). Reason and Emotion in Psychotherapy (ed. rev.)." },
-  { escuela: "c2", termino: "Tareas de toma de riesgos e inundación in vivo", tipo: "técnica", definicion: "Exponerse a estímulos de alto malestar y permanecer en la situación hasta reducir la ansiedad mediante el debate racional; la TREC prefiere la exposición vigorosa e in vivo sobre la exposición gradual.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
-  { escuela: "c2", termino: "Autorregistros", tipo: "técnica", definicion: "Formulario de autoayuda RET para detectar entre sesiones la relación A-B-C, añadiendo progresivamente el cuestionamiento de la creencia irracional y la formulación de una alternativa racional; se complementa con proselitismo racional (enseñar la TREC a otros) y biblioterapia.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Tareas de toma de riesgos e inundación in vivo", tipo: "técnica", definicion: "Exponerse a estímulos de alto malestar y permanecer en la situación hasta reducir la ansiedad mediante el debate racional; la TREC prefiere la exposición vigorosa e in vivo sobre la exposición gradual.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
+  { escuela: "c2", termino: "Autorregistros", tipo: "técnica", definicion: "Formulario de autoayuda RET para detectar entre sesiones la relación A-B-C, añadiendo progresivamente el cuestionamiento de la creencia irracional y la formulación de una alternativa racional; se complementa con proselitismo racional (enseñar la TREC a otros) y biblioterapia.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
 
   /* ---------- TÉCNICAS FALTANTES: TERAPIA COGNITIVA (c3) ---------- */
   { escuela: "c3", termino: "Descubrimiento guiado y cuestionamiento socrático", tipo: "técnica", definicion: "El terapeuta guía al paciente mediante preguntas para que este alcance por sí mismo nuevas perspectivas que desafíen sus creencias disfuncionales, en vez de imponerle una interpretación.", fuente: "Beck, J. S. (1995/2011). Cognitive Behavior Therapy: Basics and Beyond." },
   { escuela: "c3", termino: "Técnicas de reatribución", tipo: "técnica", definicion: "Encaminadas a que el paciente deje de hacer atribuciones internas, estables y globales de sus errores: revisión de los hechos, demostración de distintos criterios de responsabilidad, y cuestionamiento de la responsabilidad total.", fuente: "Beck, A. T. (2005)." },
-  { escuela: "c3", termino: "Técnicas basadas en la imaginación", tipo: "técnica", definicion: "Uso de imágenes visuales para detectar y modificar pensamientos y emociones: parada de imágenes, proyección temporal, imaginación como estrategia de coping, entre otras.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
-  { escuela: "c3", termino: "Programación de actividades y role-playing", tipo: "técnica", definicion: "Tareas diarias jerarquizadas por dificultad para poner a prueba creencias de incapacidad; el role-playing permite ensayar y refutar hipótesis del paciente sobre una interacción determinada.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
-  { escuela: "c3", termino: "Técnicas de control de estímulos", tipo: "técnica", definicion: "Reducción de estímulos interferentes e incremento de conductas adaptativas mediante relajación, exposición graduada, control de la respiración y entrenamiento asertivo.", fuente: "Díaz, Ruiz y Villalobos (2012)." },
+  { escuela: "c3", termino: "Técnicas basadas en la imaginación", tipo: "técnica", definicion: "Uso de imágenes visuales para detectar y modificar pensamientos y emociones: parada de imágenes, proyección temporal, imaginación como estrategia de coping, entre otras.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
+  { escuela: "c3", termino: "Programación de actividades y role-playing", tipo: "técnica", definicion: "Tareas diarias jerarquizadas por dificultad para poner a prueba creencias de incapacidad; el role-playing permite ensayar y refutar hipótesis del paciente sobre una interacción determinada.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
+  { escuela: "c3", termino: "Técnicas de control de estímulos", tipo: "técnica", definicion: "Reducción de estímulos interferentes e incremento de conductas adaptativas mediante relajación, exposición graduada, control de la respiración y entrenamiento asertivo.", fuente: "Ruiz, Díaz y Villalobos (2012)." },
 
   /* ---------- TÉCNICAS FALTANTES: APRENDIZAJE SOCIAL (c10) ---------- */
   { escuela: "c10", termino: "Modelado de dominio vs. modelado de afrontamiento", tipo: "técnica", definicion: "El modelo de afrontamiento —que muestra dificultad inicial y su superación— resulta más eficaz clínicamente que el modelo de dominio (perfección desde el inicio) para fobias y ansiedad, por facilitar la identificación del observador.", fuente: "Meichenbaum, D. (1971), citado en Caballo (1997)." },
@@ -15369,7 +15369,7 @@ const GLOSARIO = [
   { escuela: "c19", termino: "Cogniciones como «coverantes»", tipo: "concepto", definicion: "Los pensamientos son conductas encubiertas (operantes encubiertos) sujetas a las mismas leyes de contingencia, frecuencia y refuerzo que la conducta motora manifiesta.", fuente: "Homme, L. E. (1965), citado en Mahoney (1974)." },
   { escuela: "c19", termino: "Hipótesis de la interferencia atencional", tipo: "concepto", definicion: "El sistema cognitivo tiene un canal de procesamiento de capacidad limitada; las autoinstrucciones funcionan como una «prótesis cognitiva» que ocupa ese canal, bloqueando la interferencia de pensamientos automáticos o distractores.", fuente: "Meichenbaum, D. (1977)." },
   { escuela: "c19", termino: "Déficit mediacional", tipo: "concepto", definicion: "Ausencia del habla privada reguladora: el individuo nunca internalizó el lenguaje como herramienta de autorregulación, propio de la impulsividad infantil, el TDAH y ciertos cuadros psicóticos.", fuente: "Meichenbaum, D., Goodman, J. (1971)." },
-  { escuela: "c19", termino: "Cuatro fases temporales del guion autoinstruccional", tipo: "concepto", definicion: "Preparación para el estresor, afrontamiento o confrontación, manejo de la crisis o la emoción, y autorrefuerzo: la estructura cronológica que organiza las autoinstrucciones de afrontamiento.", fuente: "Meichenbaum, D. (1977); Díaz, Ruiz y Villalobos (2012)." },
+  { escuela: "c19", termino: "Cuatro fases temporales del guion autoinstruccional", tipo: "concepto", definicion: "Preparación para el estresor, afrontamiento o confrontación, manejo de la crisis o la emoción, y autorrefuerzo: la estructura cronológica que organiza las autoinstrucciones de afrontamiento.", fuente: "Meichenbaum, D. (1977); Ruiz, Díaz y Villalobos (2012)." },
   { escuela: "c19", termino: "Protocolo de internalización en cinco etapas", tipo: "concepto", definicion: "Modelado cognitivo, guía externa manifiesta, autoguía manifiesta, autoguía manifiesta desvanecida y autoinstrucción encubierta: copia clínica deliberada del modelo evolutivo de Luria y Vygotsky.", fuente: "Meichenbaum, D., Goodman, J. (1971); Luria (1961); Vygotsky (1962)." },
   { escuela: "c19", termino: "Modelado de afrontamiento", tipo: "concepto", definicion: "El terapeuta debe modelar a un individuo falible que se autorregula (afrontamiento), no a un experto infalible (dominio), para generar expectativas de autoeficacia realistas.", fuente: "Meichenbaum, D. (1977); Bandura, A. (1977)." },
   { escuela: "c19", termino: "Diseño colaborativo del guion autoinstruccional", tipo: "técnica", definicion: "Terapeuta y paciente redactan frases específicas para las cuatro funciones temporales del guion (preparación, afrontamiento, manejo de la crisis, autorrefuerzo).", fuente: "Meichenbaum, D. (1977)." },
@@ -15388,7 +15388,7 @@ const GLOSARIO = [
   { escuela: "c20", termino: "Reconceptualización del problema mediante diálogo socrático", tipo: "técnica", definicion: "El estrés global se fragmenta en las cuatro fases temporales mediante descubrimiento guiado, transformando la amenaza incontrolable en problemas concretos y abordables.", fuente: "Meichenbaum, D. (1985)." },
   { escuela: "c20", termino: "Anticipación activa de la resistencia terapéutica", tipo: "técnica", definicion: "El terapeuta inocula proactivamente contra el abandono del tratamiento, asumiendo de antemano que el cambio de patrones cronificados de estrés será exigente.", fuente: "Meichenbaum, D. (1985)." },
   { escuela: "c20", termino: "Entrenamiento en relajación física y mental", tipo: "técnica", definicion: "Respiración diafragmática y relajación muscular progresiva entrenadas como respuesta activa de afrontamiento, no como evitación.", fuente: "Meichenbaum, D. (1985)." },
-  { escuela: "c20", termino: "Reestructuración cognitiva y solución de problemas para el estresor modificable", tipo: "técnica", definicion: "Identificación de pensamientos automáticos generadores de estrés y entrenamiento en resolución sistemática para alterar instrumentalmente el entorno cuando el estresor es modificable.", fuente: "Meichenbaum, D. (1985); Díaz, Ruiz y Villalobos (2012)." },
+  { escuela: "c20", termino: "Reestructuración cognitiva y solución de problemas para el estresor modificable", tipo: "técnica", definicion: "Identificación de pensamientos automáticos generadores de estrés y entrenamiento en resolución sistemática para alterar instrumentalmente el entorno cuando el estresor es modificable.", fuente: "Meichenbaum, D. (1985); Ruiz, Díaz y Villalobos (2012)." },
   { escuela: "c20", termino: "Diseño colaborativo del guion de afrontamiento (EIE)", tipo: "técnica", definicion: "Redacción de frases de afrontamiento específicas para cada una de las cuatro fases temporales del estrés reconceptualizadas en la Fase 1.", fuente: "Meichenbaum, D. (1985)." },
   { escuela: "c20", termino: "Ensayo imaginado y modelado de afrontamiento", tipo: "técnica", definicion: "El paciente visualiza el estresor y aplica encubiertamente su guion autoinstruccional; el terapeuta modela sus propias dudas y su superación antes de tener éxito.", fuente: "Meichenbaum, D. (1985)." },
   { escuela: "c20", termino: "Ensayo conductual mediante role-playing y exposición in vivo graduada", tipo: "técnica", definicion: "Simulación de la transacción estresante mediante role-playing, seguida de tareas graduadas de exposición real que ponen a prueba la nueva prótesis cognitiva.", fuente: "Meichenbaum, D. (1985)." },
