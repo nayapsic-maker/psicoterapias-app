@@ -599,7 +599,7 @@ const ANIO_ORIGEN = {
   c8: { anio: 2002, fuente: "Segal, Williams y Teasdale, Mindfulness-Based Cognitive Therapy for Depression." },
   c10: { anio: 1963, fuente: "Bandura y Walters, Social Learning and Personality Development." },
   c11: { anio: 1924, fuente: "Kantor, Principles of Psychology (bases del interconductismo)." },
-  c17: { anio: 1977, fuente: "Goldfried, Decenteceo y Weinberg, artículo fundacional de la reestructuración racional sistemática." },
+  c17: { anio: 1974, fuente: "Goldfried, Decenteceo y Weinberg (1974), artículo fundacional de la reestructuración racional sistemática." },
   c18: { anio: 1971, fuente: "Maultsby, primeros escritos sobre terapia de conducta racional." },
   c19: { anio: 1971, fuente: "Meichenbaum y Goodman, entrenamiento en autoinstrucciones." },
   c20: { anio: 1974, fuente: "Meichenbaum, primeros desarrollos del entrenamiento en inoculación de estrés." },
@@ -1034,7 +1034,7 @@ const AUTORES_TEORICOS = [
   {
     id: "grof",
     nombre: "Cartografía de la psique perinatal y transpersonal (Matrices Perinatales Básicas, Sistemas COEX)",
-    autoresPrincipales: "Stanislav Grof (1931-2023); Christina Grof (1941-2014)",
+    autoresPrincipales: "Stanislav Grof (n. 1931); Christina Grof (1941-2014)",
     esTambienEscuelaPropia: "t4",
     disciplina: "Psiquiatría transpersonal",
     obraNuclear: "Grof, S. (1985). Beyond the Brain. State University of New York Press.",
