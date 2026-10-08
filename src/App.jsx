@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, EscenaSesion, EscenaGrupo, EscenaLectura, EscenaBalanza, EscenaPuente, EscenaDivan, EscenaMeditacion, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato } from "./Figuras.jsx";
+import { LineaTiempoGlobal, MapaRed, CasoSieteMiradas, TraductorClinico, DebateSimulado, QuizEscuela, RetoRetratos } from "./Funciones.jsx";
+import { HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, Escena, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato } from "./Figuras.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy, Sparkles } from "lucide-react";
 
 /* ============================================================
@@ -16660,7 +16661,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
     <div>
       <Cabecera
         icono={<Search size={18} />}
-        titulo="Buscador global" autores={["freud","rogers","skinner","beck"]} tituloAutores="Voces que encontrarás" escena="lectura"
+        titulo="Buscador global" autores={["freud","rogers","skinner","beck"]} tituloAutores="Voces que encontrarás"
         subtitulo="Búsqueda unificada sobre escuelas, autores, conceptos, protocolos y enlaces traslacionales, con sugerencias ortográficas cuando el término no se encuentra."
       />
 
@@ -17916,7 +17917,7 @@ function DetalleCobertura({ escuelas, enlaces, glosario, protocolos, nudos }) {
   );
 }
 
-function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAEscuela }) {
+function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAEscuela, enlaces }) {
   const perspectivas = FUNDAMENTOS_PERSPECTIVAS;
   const camposTablaIntro = [
     { key: "definicion", label: "Definición", get: (p) => p.contexto?.definicion },
@@ -17936,6 +17937,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
       />
       <CintaEscuelas items={escuelas.map((e) => ({ nombre: e.nombre, color: PERSPECTIVA_COLOR[e.perspectiva] }))} />
       <CreditosFotos />
+      {modoEstudio && <RetoRetratos />}
 
       <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20, marginTop: 16, marginBottom: 20 }}>
         <TextoConCitas
@@ -18053,7 +18055,13 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
       <div style={{ marginTop: 28, marginBottom: 8, fontFamily: FONT_MONO, fontSize: 11, color: COLORS.inkSoft, textTransform: "uppercase" }}>
         Línea de tiempo global — escuelas y teorías fundantes de las 7 perspectivas
       </div>
-      <LineaDeTiempoGlobal escuelas={escuelas} modoEstudio={modoEstudio} onIrAEscuela={onIrAEscuela} />
+      <LineaTiempoGlobal
+        escuelas={escuelas}
+        anioDe={(e) => (ANIO_ORIGEN[e.id] ? ANIO_ORIGEN[e.id].anio : extraerAnio(e.fundamentacion || e.origenHistorico))}
+        colorDe={(p) => PERSPECTIVA_COLOR[p]}
+        perspectivas={nombresPerspectivas(escuelas)}
+        onIrAEscuela={onIrAEscuela}
+      />
 
       {/* Mapa conceptual: árbol perspectiva → subfamilia → escuela,
           coloreado por perspectiva, con la definición de cada escuela
@@ -18062,7 +18070,14 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
       <div style={{ marginTop: 28, marginBottom: 8, fontFamily: FONT_MONO, fontSize: 11, color: COLORS.inkSoft, textTransform: "uppercase" }}>
         Mapa conceptual — las {escuelas.length} escuelas y sus divisiones internas
       </div>
-      <MapaConceptualEscuelas escuelas={escuelas} onIrAEscuela={onIrAEscuela} />
+      <MapaRed
+        escuelas={escuelas}
+        enlaces={enlaces || ENLACES_SEED}
+        colorDe={(p) => PERSPECTIVA_COLOR[p]}
+        perspectivas={nombresPerspectivas(escuelas)}
+        nombreCorto={(p) => NOMBRE_CORTO_PERSPECTIVA[PERSPECTIVA_ID_POR_NOMBRE[p]] || p}
+        onIrAEscuela={onIrAEscuela}
+      />
 
       <div style={{ display: "flex", gap: 10, marginTop: 24, flexWrap: "wrap" }}>
         <Boton onClick={() => irA("fundamentos")}>
@@ -18300,7 +18315,7 @@ function SelectorEscuelasComparador({ escuelas, seleccionadas, setSeleccionadas,
   );
 }
 
-function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
+function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
   const perspectivas = FUNDAMENTOS_PERSPECTIVAS;
   const [campo, setCampo] = useState("definicion");
   // Antes este módulo solo exponía los 6 campos narrativos guardados bajo
@@ -18363,6 +18378,10 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
         titulo="Comparar, perspectiva por perspectiva" autores={["freud","skinner","rogers","satir","beck"]} tituloAutores="Escuelas en diálogo" escena="balanza"
         subtitulo="Comparación campo por campo entre perspectivas completas o escuelas seleccionadas, conservando en cada columna el vocabulario propio de su marco teórico."
       />
+      <details className="psn-detalles">
+        <summary>Debate simulado <small>— dos escuelas frente a frente</small></summary>
+        <DebateSimulado escuelas={escuelas} enlaces={enlaces || ENLACES_SEED} colorDe={(p) => PERSPECTIVA_COLOR[p]} />
+      </details>
 
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center", margin: "16px 0" }}>
         <div style={{ display: "flex", gap: 4, background: COLORS.paperDark, borderRadius: 20, padding: 3 }}>
@@ -19783,8 +19802,12 @@ function SelloPerspectiva({ color }) {
   );
 }
 
-const ESCENAS = { sesion: () => <EscenaSesion />, grupo: () => <EscenaGrupo />, lectura: () => <EscenaLectura />, balanza: () => <EscenaBalanza />, puente: () => <EscenaPuente />, divan: () => <EscenaDivan />, meditacion: () => <EscenaMeditacion /> };
+const ESCENAS = Object.fromEntries(["sesion", "grupo", "balanza", "puente", "divan", "meditacion", "debate"].map((n) => [n, () => <Escena nombre={n} />]));
 const ESCENA_POR_PERSPECTIVA = { psicodinamica: "divan", humanista: "meditacion", sistemica: "grupo" };
+function nombresPerspectivas(escuelas) {
+  const orden = FUNDAMENTOS_PERSPECTIVAS.map((p) => p.id);
+  return [...new Set(escuelas.map((e) => e.perspectiva))].sort((x, y) => orden.indexOf(PERSPECTIVA_ID_POR_NOMBRE[x]) - orden.indexOf(PERSPECTIVA_ID_POR_NOMBRE[y]));
+}
 function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutores, escena }) {
   // El filete bajo el título: un solo color cuando la pantalla pertenece a
   // una perspectiva concreta (colorAcento), o un degradado con las 7
@@ -19800,8 +19823,12 @@ function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutore
       </div>
       {subtitulo && <p style={{ fontSize: 13, color: COLORS.inkSoft, marginTop: 7, maxWidth: 760, lineHeight: 1.55, fontFamily: "var(--f-text)" }}>{subtitulo}</p>}
       <div style={{ height: 3, borderRadius: 2, marginTop: 14, background: colorAcento || gradienteSiete, opacity: colorAcento ? 0.85 : 0.55, transition: "background 0.4s ease" }} />
-      {autores && <GaleriaAutores slugs={autores} color={colorAcento} titulo={tituloAutores} />}
-      {escena && ESCENAS[escena] && <div className="psn-escena-lateral" style={{ marginTop: 14 }}>{ESCENAS[escena]()}</div>}
+      {(autores || (escena && ESCENAS[escena])) && (
+        <div className="psn-cab-fila">
+          {autores && <GaleriaAutores slugs={autores} color={colorAcento} titulo={tituloAutores} />}
+          {escena && ESCENAS[escena] && <div className="psn-escena-lateral">{ESCENAS[escena]()}</div>}
+        </div>
+      )}
     </div>
   );
 }
@@ -20321,6 +20348,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
             )}
           </div>
           {!editando && <RetratosEscuela autores={e.autores} color={color} />}
+          {modoEstudio && !editando && <QuizEscuela e={e} escuelas={escuelas} />}
         </div>
         <div style={{ display: "flex", gap: 6 }}>
           {!editando && (
@@ -21260,7 +21288,7 @@ function TablaProtocolos({ filas, ordenTabla, cambiarOrden }) {
   );
 }
 
-function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
+function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrAEscuela }) {
   const [q, setQ] = useState("");
   const [vista, setVista] = useState("tarjetas"); // "tarjetas" | "tabla"
   const [ordenTabla, setOrdenTabla] = useState({ col: "perspectiva", asc: true });
@@ -21387,6 +21415,10 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
         titulo="Protocolos y Técnicas" autores={["milton","ellis","perls"]} tituloAutores="Creadores de técnicas" escena="sesion"
         subtitulo="Protocolos completos y técnicas puntuales, con pasos interactivos, objetivo clínico clasificado y comparación de hasta tres a la vez."
       />
+      <details className="psn-detalles">
+        <summary>Caso clínico en 7 miradas <small>— un mismo caso, leído desde cada perspectiva</small></summary>
+        <CasoSieteMiradas idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} escuelas={escuelas} perspectivas={FUNDAMENTOS_PERSPECTIVAS} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
+      </details>
 
       {/* Banda fija con la distinción operativa, siempre visible al entrar
           al módulo — antes esta diferencia solo se insinuaba con un matiz
@@ -22193,6 +22225,10 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
         titulo="Diccionario metateórico y traslacional" escena="puente"
         subtitulo="Equivalencias, analogías, falsos amigos e inconmensurabilidades entre escuelas: cada enlace documenta un puente conceptual con pérdidas, nunca una identidad."
       />
+      <details className="psn-detalles">
+        <summary>Traductor de lenguaje clínico <small>— un término, siete vocabularios</small></summary>
+        <TraductorClinico escuelas={escuelas} glosario={GLOSARIO} enlaces={enlaces} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} perspectivas={nombresPerspectivas(escuelas)} />
+      </details>
 
       <div style={{ marginTop: 12, marginBottom: 4 }}>
         <div
@@ -24130,7 +24166,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
       })()}
 
       <div ref={contenidoRef} key={tab} className="psq-fade psq-hoja" style={{ padding: "26px clamp(14px, 4vw, 34px) 48px", maxWidth: 1180, margin: "0 auto", width: "100%", boxSizing: "border-box" }}>
-        {tab === "intro" && <ModuloIntroduccion irA={setTab} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} escuelas={escuelas} onIrAEscuela={irAEscuela} />}
+        {tab === "intro" && <ModuloIntroduccion irA={setTab} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} escuelas={escuelas} onIrAEscuela={irAEscuela} enlaces={enlaces} />}
         {tab === "buscador" && (
           <ModuloBuscador
             escuelas={escuelas}
@@ -24163,7 +24199,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
           />
         )}
         {tab === "planificador" && (
-          <ModuloPlanificador escuelas={escuelas} foco={focoPlanificador} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} />
+          <ModuloPlanificador escuelas={escuelas} foco={focoPlanificador} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} onIrAEscuela={irAEscuela} />
         )}
         {tab === "diccionario" && (
           <ModuloDiccionario
@@ -24179,7 +24215,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             setModoEstudio={setModoEstudio}
           />
         )}
-        {tab === "comparacion" && <ModuloComparacion escuelas={escuelas} onIrAEscuela={irAEscuela} modoEstudio={modoEstudio} />}
+        {tab === "comparacion" && <ModuloComparacion escuelas={escuelas} onIrAEscuela={irAEscuela} modoEstudio={modoEstudio} enlaces={enlaces} />}
       </div>
 
       <ModalDefinicion dato={definicionModal} onCerrar={() => setDefinicionModal(null)} onIrAProtocolo={irAProtocolo} onIrAEscuela={irAEscuela} />
