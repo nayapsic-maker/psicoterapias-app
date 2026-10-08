@@ -245,7 +245,7 @@ h2 { font-weight: 800; }
 ::highlight(psq-buscar-actual) { background-color: #e9a100; color: #15183c; }
 
 /* ---------- Personas animadas ---------- */
-.psn-cabina { background: #F3E9D2; aspect-ratio: 480 / 280; }
+.psn-cabina { background: #F3E9D2; aspect-ratio: 480 / 320; }
 .psn-cabina .psn-escena { width: 100%; height: 100%; display: block; }
 .psn-escena { width: 100%; height: auto; display: block; }
 .psn-resp { animation: psn-respira 4s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
@@ -298,3 +298,38 @@ h2 { font-weight: 800; }
 
 .psn-cabina { max-height: 380px; }
 .psn-cabina .psn-escena { object-fit: contain; }
+
+.psn-lupa { animation: psn-barre 5s ease-in-out infinite; }
+@keyframes psn-barre { 0%,100% { transform: translate(0,0); } 50% { transform: translate(150px, 70px); } }
+.psn-brazo-lupa { animation: psn-barre-b 5s ease-in-out infinite; }
+@keyframes psn-barre-b { 0%,100% { transform: translate(0,0) rotate(0); } 50% { transform: translate(40px,-8px) rotate(0deg); } }
+.psn-libro-sale { animation: psn-sale 4s ease-in-out infinite; }
+@keyframes psn-sale { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+.psn-viga { animation: psn-oscila 6s ease-in-out infinite; }
+@keyframes psn-oscila { 0%,100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
+.psn-plato-a { animation: psn-contra 6s ease-in-out infinite; }
+.psn-plato-b { animation: psn-contra 6s ease-in-out infinite; }
+@keyframes psn-contra { 0%,100% { transform: rotate(7deg); } 50% { transform: rotate(-7deg); } }
+.psn-tablon { animation: psn-pone 5s ease-in-out infinite; transform-box: view-box; }
+@keyframes psn-pone { 0%,8% { opacity: 0; transform: translateY(-26px) rotate(-20deg); } 22%,82% { opacity: 1; transform: translateY(0) rotate(0); } 94%,100% { opacity: 0; } }
+.psn-sube { animation: psn-sube 3.2s ease-in infinite; }
+@keyframes psn-sube { 0% { opacity: 0; transform: translateY(14px); } 30%,70% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+.psn-pluma { animation: psn-escribe 1.4s ease-in-out infinite; transform-box: fill-box; transform-origin: 0 100%; }
+@keyframes psn-escribe { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-3deg) translateY(-1px); } }
+.psn-aura { animation: psn-late 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes psn-late { 0%,100% { transform: scale(0.92); opacity: 0.16; } 50% { transform: scale(1.06); opacity: 0.3; } }
+.psn-deriva { animation: psn-deriva 6s ease-in-out infinite; transform-box: fill-box; }
+@keyframes psn-deriva { 0%,100% { transform: translate(0,0) rotate(0); } 50% { transform: translate(10px,-16px) rotate(25deg); } }
+.psn-escena-lateral { max-width: 340px; }
+
+.psn-retrato-flota { float: left; border-radius: 50%; border: 3px solid var(--c-ink); object-fit: cover; object-position: center 20%; margin: 2px 12px 4px 0; box-shadow: 3px 3px 0 var(--c-gold); background: var(--c-paperDark); }
+.psn-retrato-flota + .psn-retrato-flota { margin-left: -4px; }
+.psn-retratos-escuela { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 2px; }
+.psn-retratos-escuela figure { margin: 0; display: flex; gap: 10px; align-items: flex-start; flex: 1 1 280px; max-width: 440px; padding: 8px 10px; border: 2px solid var(--c-ink); border-radius: 14px; background: var(--c-paper); box-shadow: 3px 3px 0 var(--pc, var(--c-gold)); }
+.psn-retratos-escuela img { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--c-ink); object-fit: cover; object-position: center 20%; flex: none; }
+.psn-retratos-escuela figcaption { font: 500 12px/1.4 var(--f-text); color: var(--c-ink); }
+.psn-retratos-escuela strong { font: 800 12.5px var(--f-text); }
+.psn-retratos-escuela em { font: 500 10.5px var(--f-mono); font-style: normal; color: var(--c-inkSoft); }
+.psn-retratos-escuela blockquote { margin: 3px 0 0; font: italic 500 12.5px/1.4 var(--f-display); letter-spacing: -0.01em; }
+.psn-retratos-escuela cite { display: block; font: 500 10px var(--f-mono); font-style: normal; color: var(--c-inkSoft); margin-top: 2px; }
+.psn-retratos-escuela p { margin: 3px 0 0; color: var(--c-inkSoft); font-size: 12px; }

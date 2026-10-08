@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, EscenaSesion, EscenaGrupo, CreditosFotos, AUTORES_POR_PERSPECTIVA } from "./Figuras.jsx";
+import { HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, EscenaSesion, EscenaGrupo, EscenaLectura, EscenaBalanza, EscenaPuente, EscenaDivan, EscenaMeditacion, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato } from "./Figuras.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy, Sparkles } from "lucide-react";
 
 /* ============================================================
@@ -16660,7 +16660,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
     <div>
       <Cabecera
         icono={<Search size={18} />}
-        titulo="Buscador global" autores={["freud","rogers","skinner","beck"]} tituloAutores="Voces que encontrarás"
+        titulo="Buscador global" autores={["freud","rogers","skinner","beck"]} tituloAutores="Voces que encontrarás" escena="lectura"
         subtitulo="Búsqueda unificada sobre escuelas, autores, conceptos, protocolos y enlaces traslacionales, con sugerencias ortográficas cuando el término no se encuentra."
       />
 
@@ -18360,7 +18360,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
     <div style={{ minHeight: "60vh" }}>
       <Cabecera
         icono={<Scale size={18} />}
-        titulo="Comparar, perspectiva por perspectiva" autores={["freud","skinner","rogers","satir","beck"]} tituloAutores="Escuelas en diálogo"
+        titulo="Comparar, perspectiva por perspectiva" autores={["freud","skinner","rogers","satir","beck"]} tituloAutores="Escuelas en diálogo" escena="balanza"
         subtitulo="Comparación campo por campo entre perspectivas completas o escuelas seleccionadas, conservando en cada columna el vocabulario propio de su marco teórico."
       />
 
@@ -18742,6 +18742,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
         colorAcento={PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre]}
         autores={AUTORES_POR_PERSPECTIVA[perspectivaId]}
         tituloAutores="Voces de esta perspectiva"
+        escena={ESCENA_POR_PERSPECTIVA[perspectivaId]}
       />
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "16px 0 20px" }}>
@@ -19782,6 +19783,8 @@ function SelloPerspectiva({ color }) {
   );
 }
 
+const ESCENAS = { sesion: () => <EscenaSesion />, grupo: () => <EscenaGrupo />, lectura: () => <EscenaLectura />, balanza: () => <EscenaBalanza />, puente: () => <EscenaPuente />, divan: () => <EscenaDivan />, meditacion: () => <EscenaMeditacion /> };
+const ESCENA_POR_PERSPECTIVA = { psicodinamica: "divan", humanista: "meditacion", sistemica: "grupo" };
 function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutores, escena }) {
   // El filete bajo el título: un solo color cuando la pantalla pertenece a
   // una perspectiva concreta (colorAcento), o un degradado con las 7
@@ -19798,8 +19801,7 @@ function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutore
       {subtitulo && <p style={{ fontSize: 13, color: COLORS.inkSoft, marginTop: 7, maxWidth: 760, lineHeight: 1.55, fontFamily: "var(--f-text)" }}>{subtitulo}</p>}
       <div style={{ height: 3, borderRadius: 2, marginTop: 14, background: colorAcento || gradienteSiete, opacity: colorAcento ? 0.85 : 0.55, transition: "background 0.4s ease" }} />
       {autores && <GaleriaAutores slugs={autores} color={colorAcento} titulo={tituloAutores} />}
-      {escena === "sesion" && <div className="psn-escena-lateral" style={{ marginTop: 14 }}><EscenaSesion /></div>}
-      {escena === "grupo" && <div className="psn-escena-lateral" style={{ marginTop: 14 }}><EscenaGrupo /></div>}
+      {escena && ESCENAS[escena] && <div className="psn-escena-lateral" style={{ marginTop: 14 }}>{ESCENAS[escena]()}</div>}
     </div>
   );
 }
@@ -20318,6 +20320,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
               </span>
             )}
           </div>
+          {!editando && <RetratosEscuela autores={e.autores} color={color} />}
         </div>
         <div style={{ display: "flex", gap: 6 }}>
           {!editando && (
@@ -22187,7 +22190,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
     <div>
       <Cabecera
         icono={<Languages size={18} />}
-        titulo="Diccionario metateórico y traslacional" autores={["wundt","james","bertalanffy"]} tituloAutores="Quienes fijaron el vocabulario" escena="grupo"
+        titulo="Diccionario metateórico y traslacional" escena="puente"
         subtitulo="Equivalencias, analogías, falsos amigos e inconmensurabilidades entre escuelas: cada enlace documenta un puente conceptual con pérdidas, nunca una identidad."
       />
 
@@ -22210,18 +22213,21 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
             </p>
             <div>
               <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Thomas Kuhn (1962) — el origen del término</div>
+<Retrato slug="thomaskuhn" tam={76} />
               <p style={{ margin: 0, fontFamily: "var(--f-text)", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
                 Acuñó «inconmensurabilidad» para describir la relación entre paradigmas científicos sucesivos: no solo cambian las teorías, cambian los propios términos observacionales (un «átomo» newtoniano y uno cuántico no denotan lo mismo), de modo que los partidarios de paradigmas rivales literalmente «viven en mundos distintos» y no pueden zanjar su disputa apelando a datos neutrales compartidos por ambos.
               </p>
             </div>
             <div>
               <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Karl Popper — inconmensurabilidad moderada y falsable</div>
+<Retrato slug="karlpopper" tam={76} /><Retrato slug="imrelakatos" tam={76} />
               <p style={{ margin: 0, fontFamily: "var(--f-text)", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
                 Popper, y su alumno Lakatos después, aceptaron que los marcos teóricos difieren en supuestos de fondo, pero rechazaron la versión fuerte kuhniana de mundos incomunicables: para ellos, el desacuerdo racional entre programas de investigación rivales sigue siendo posible porque ambos pueden, en principio, formular predicciones contrastables y ser sometidos a crítica —la inconmensurabilidad es un obstáculo real pero superable mediante el esfuerzo deliberado de traducción crítica, no una barrera absoluta—. Esta app adopta una versión próxima a esta posición moderada: cada enlace del diccionario es precisamente ese esfuerzo de traducción crítica, con su «nota de distorsión» documentando lo que se pierde en el intento.
               </p>
             </div>
             <div>
               <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 3 }}>Paul Feyerabend — inconmensurabilidad radical</div>
+<Retrato slug="paulfeyerabend" tam={76} />
               <p style={{ margin: 0, fontFamily: "var(--f-text)", fontSize: 12, lineHeight: 1.55, color: COLORS.inkSoft }}>
                 Llevó la tesis más lejos que el propio Kuhn: si los marcos son radicalmente inconmensurables, ningún criterio metodológico universal puede arbitrar entre ellos («todo vale», anarquismo epistemológico), y la elección entre paradigmas rivales se parece más a una conversión que a una inferencia racional. Es la posición que hace más plausible la existencia de pares genuinamente «inconmensurables» en este diccionario (marcados así, no como «falsos amigos» ni «análogos débiles»): a veces no hay, ni en principio, un vocabulario compartido para arbitrar la comparación.
               </p>
