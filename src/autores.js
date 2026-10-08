@@ -1,5 +1,5 @@
-// Retratos: Wikimedia Commons (licencias libres). Datos generados; créditos visibles en la app.
-// s = síntesis (redacción propia); q/qf = cita textual verificada en la biblioteca; foto:false = sin retrato libre (se muestra una ilustración representativa genérica).
+// Retratos: Wikimedia Commons (licencias libres) o imágenes halladas por búsqueda web (derechos de sus titulares). Datos generados.
+// s = síntesis (redacción propia); q/qf = cita textual verificada; foto:false = sin retrato (monograma).
 export const AUTORES = {
  "freud": {
   "n": "Sigmund Freud",
@@ -582,71 +582,57 @@ export const AUTORES = {
   "n": "Arnold Lazarus",
   "a": "1932–2013",
   "r": "Terapia multimodal",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "Evalúa siete modalidades (BASIC ID) y elige técnicas de distintas escuelas según lo que funcione para cada persona: eclecticismo técnico.",
-  "foto": false,
-  "g": "m"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "alchetron.com",
+  "s": "Evalúa siete modalidades (BASIC ID) y elige técnicas de distintas escuelas según lo que funcione para cada persona: eclecticismo técnico."
  },
  "prochaska": {
   "n": "James Prochaska",
   "a": "1942–2023",
   "r": "Modelo transteórico del cambio",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "El cambio ocurre por etapas (precontemplación, contemplación, preparación, acción y mantenimiento) y la intervención debe ajustarse a la etapa.",
-  "foto": false,
-  "g": "m"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "pinterest.com",
+  "s": "El cambio ocurre por etapas (precontemplación, contemplación, preparación, acción y mantenimiento) y la intervención debe ajustarse a la etapa."
  },
  "stricker": {
   "n": "George Stricker",
   "a": "",
   "r": "Integración asimilativa",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "Incorpora técnicas de otras escuelas dentro de una teoría anfitriona, adaptándolas a su marco (integración asimilativa).",
-  "foto": false,
-  "g": "m"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "researchgate.net",
+  "s": "Incorpora técnicas de otras escuelas dentro de una teoría anfitriona, adaptándolas a su marco (integración asimilativa)."
  },
  "goldfried": {
   "n": "Marvin Goldfried",
   "a": "",
   "r": "Factores comunes y principios de cambio",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "Busca principios de cambio compartidos entre escuelas, más allá de sus técnicas específicas.",
-  "foto": false,
-  "g": "m"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "researchgate.net",
+  "s": "Busca principios de cambio compartidos entre escuelas, más allá de sus técnicas específicas."
  },
  "jeromefrank": {
   "n": "Jerome Frank",
   "a": "1909–2005",
   "r": "Factores comunes en psicoterapia",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "La desmoralización es el estado común de quienes consultan; toda terapia eficaz ofrece una relación, esperanza y un marco que da sentido.",
-  "foto": false,
-  "g": "m"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "alchetron.com",
+  "s": "La desmoralización es el estado común de quienes consultan; toda terapia eficaz ofrece una relación, esperanza y un marco que da sentido."
  },
  "hayes": {
   "n": "Steven Hayes",
   "a": "",
   "r": "Terapia de aceptación y compromiso (ACT)",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "Busca flexibilidad psicológica —aceptación, defusión, valores y acción comprometida— más que eliminar síntomas.",
-  "foto": false,
-  "g": "m"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "unr.edu",
+  "s": "Busca flexibilidad psicológica —aceptación, defusión, valores y acción comprometida— más que eliminar síntomas."
  },
  "linehan": {
   "n": "Marsha Linehan",
   "a": "",
   "r": "Terapia dialéctico-conductual (DBT)",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "Equilibra aceptación y cambio con habilidades de mindfulness, regulación emocional, tolerancia al malestar y efectividad interpersonal.",
-  "foto": false,
-  "g": "f"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "psychwire.com",
+  "s": "Equilibra aceptación y cambio con habilidades de mindfulness, regulación emocional, tolerancia al malestar y efectividad interpersonal."
  },
  "jeffreyyoung": {
   "n": "Jeffrey Young",
@@ -662,11 +648,9 @@ export const AUTORES = {
   "n": "Murray Bowen",
   "a": "1913–1990",
   "r": "Terapia de sistemas familiares",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "La diferenciación del self y los triángulos en el sistema emocional familiar explican la ansiedad y los síntomas.",
-  "foto": false,
-  "g": "m"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "bowentheoryacademy.org",
+  "s": "La diferenciación del self y los triángulos en el sistema emocional familiar explican la ansiedad y los síntomas."
  },
  "wolpe": {
   "n": "Joseph Wolpe",
@@ -703,6 +687,126 @@ export const AUTORES = {
   "s": "Integra psicología, filosofía y tradiciones contemplativas en un mapa de niveles y líneas de desarrollo de la conciencia.",
   "foto": false,
   "g": "m"
+ },
+ "beutler": {
+  "n": "Larry Beutler",
+  "a": "",
+  "r": "Selección sistemática de tratamiento",
+  "s": "Adapta el tratamiento a las características de la persona (reactancia, nivel de funcionamiento, estilo de afrontamiento) con principios de selección apoyados en la investigación.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "goodreads.com"
+ },
+ "lacan": {
+  "n": "Jacques Lacan",
+  "a": "1901–1981",
+  "r": "Psicoanálisis lacaniano",
+  "s": "El sujeto está dividido por el lenguaje: lo inconsciente se estructura como un lenguaje y la clínica atiende lo simbólico, lo imaginario y lo real.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "gettyimages.com"
+ },
+ "lukas": {
+  "n": "Elisabeth Lukas",
+  "a": "",
+  "r": "Logoterapia aplicada",
+  "s": "Discípula de Frankl: aplica la logoterapia a la psicoterapia y la educación, con técnicas como la derreflexión y la intención paradójica.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "bing.com/images"
+ },
+ "minuchin": {
+  "n": "Salvador Minuchin",
+  "a": "1921–2017",
+  "r": "Terapia familiar estructural",
+  "s": "La estructura de la familia (límites, jerarquías, subsistemas) mantiene los síntomas; el terapeuta se une al sistema y lo reestructura.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "nytimes.com"
+ },
+ "stolorow": {
+  "n": "Robert Stolorow",
+  "a": "n. 1942",
+  "r": "Sistemas intersubjetivos",
+  "s": "La experiencia emocional se forma en contextos intersubjetivos: la terapia es un diálogo entre dos mundos subjetivos, sin analista neutral y objetivo.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "psicoterapiarelacional.es"
+ },
+ "wachtel": {
+  "n": "Paul Wachtel",
+  "a": "n. 1940",
+  "r": "Psicodinámica cíclica (integración teórica)",
+  "s": "Integra psicoanálisis, conductismo y teoría de sistemas: los patrones se mantienen en un ciclo que se rompe actuando sobre varios frentes a la vez.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "ccny.cuny.edu"
+ },
+ "christensen": {
+  "n": "Andrew Christensen",
+  "a": "",
+  "r": "Terapia conductual integrativa de pareja",
+  "s": "Combina cambio y aceptación: además de modificar conductas, ayuda a cada miembro de la pareja a aceptar lo que no cambia en el otro.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "psych.ucla.edu"
+ },
+ "clarkin": {
+  "n": "John Clarkin",
+  "a": "",
+  "r": "Selección de tratamiento y TFP",
+  "s": "Desarrolla y evalúa tratamientos manualizados para trastornos de personalidad (psicoterapia focalizada en la transferencia) y la selección sistemática del tratamiento.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "guilford.com"
+ },
+ "kanfer": {
+  "n": "Frederick Kanfer",
+  "a": "1925–2002",
+  "r": "Modelo de autorregulación",
+  "s": "La conducta se autorregula mediante automonitoreo, autoevaluación y autorreforzamiento.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "prabook.com"
+ },
+ "messer": {
+  "n": "Stanley Messer",
+  "a": "",
+  "r": "Integración asimilativa",
+  "s": "Incorpora técnicas de otras escuelas dentro de una teoría anfitriona, adaptándolas a su marco.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "researchgate.net"
+ },
+ "nagy": {
+  "n": "Iván Boszormenyi-Nagy",
+  "a": "1920–2007",
+  "r": "Terapia familiar contextual",
+  "s": "Las lealtades invisibles y el equilibrio entre dar y recibir a través de las generaciones sostienen la ética de las relaciones familiares.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "uktherapyguild.co.uk"
+ },
+ "ribes": {
+  "n": "Emilio Ribes Iñesta",
+  "a": "",
+  "r": "Análisis contingencial",
+  "s": "Propone una teoría interconductual de la conducta como relación entre el organismo y el entorno, organizada en niveles funcionales de contingencia.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "comunicacioninstitucional.uabc.mx"
+ },
+ "rollnick": {
+  "n": "Stephen Rollnick",
+  "a": "",
+  "r": "Entrevista motivacional",
+  "s": "Cocreó la entrevista motivacional: un estilo colaborativo que evoca la motivación propia de la persona para cambiar.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "psychwire.com"
+ },
+ "strosahl": {
+  "n": "Kirk Strosahl",
+  "a": "",
+  "r": "Terapia de aceptación y compromiso",
+  "s": "Cofundador de la ACT junto a Hayes y Wilson y de modelos breves de atención conductual integrada.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "psychwire.com"
+ },
+ "tsai": {
+  "n": "Mavis Tsai",
+  "a": "",
+  "r": "Psicoterapia analítico-funcional",
+  "s": "Cofundadora de la FAP: la relación terapéutica es el contexto donde ocurren y se refuerzan conductas clínicamente relevantes.",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "researchgate.net"
  }
 };
-export const ALIAS_AUTOR = {"donaldmeichenbaum": "donaldmeichenbaum", "carlgustavjung": "jung", "aarontbeck": "beck", "mihalycsikszentmihalyi": "mihalycsikszentmihalyi", "imrelakatos": "imrelakatos", "wrdfairbairn": "wrdfairbairn", "alfredadler": "adler", "paulwatzlawick": "paulwatzlawick", "edmundhusserl": "edmundhusserl", "paulfeyerabend": "paulfeyerabend", "abrahammaslow": "maslow", "emmyvandeurzen": "emmyvandeurzen", "robertoassagioli": "assagioli", "carlrogers": "rogers", "stanislavgrof": "grof", "martinheidegger": "martinheidegger", "abrahamhmaslow": "maslow", "eugenegendlin": "eugenegendlin", "thomaskuhn": "thomaskuhn", "jmarkgwilliams": "jmarkgwilliams", "davidepston": "davidepston", "rudolphloewenstein": "rudolphloewenstein", "heinzhartmann": "heinzhartmann", "alexanderluria": "alexanderluria", "josephzinker": "josephzinker", "viktorefrankl": "frankl", "martinseligman": "seligman", "ottofkernberg": "ottofkernberg", "rollomay": "may", "jamesbugental": "jamesbugental", "jessicabenjamin": "jessicabenjamin", "karlpopper": "karlpopper", "melanieklein": "melanieklein", "lewisaron": "lewisaron", "albertellis": "ellis", "heinzkohut": "heinzkohut", "annafreud": "anna", "edwardlthorndike": "thorndike", "norbertwiener": "norbertwiener", "albertbandura": "bandura", "humbertomaturana": "humbertomaturana", "ronalddlaing": "ronalddlaing", "peterfonagy": "peterfonagy", "virginiasatir": "satir", "carlwhitaker": "carlwhitaker", "jayhaley": "haley", "irvinyalom": "yalom", "sigmundfreud": "freud", "fritzperls": "perls", "carlgjung": "jung", "erikerikson": "erikson", "viktorfrankl": "frankl", "erichfromm": "fromm", "bfskinner": "skinner", "ivanpavlov": "pavlov", "johnbwatson": "watson", "jeanpiaget": "piaget", "wilhelmwundt": "wundt", "williamjames": "james", "jonkabatzinn": "kabatzinn", "ludwigvonbertalanffy": "bertalanffy", "miltonherickson": "milton", "rdlaing": "ronalddlaing", "freud": "freud", "jung": "jung", "adler": "adler", "erikson": "erikson", "rogers": "rogers", "maslow": "maslow", "frankl": "frankl", "perls": "perls", "may": "may", "fromm": "fromm", "skinner": "skinner", "pavlov": "pavlov", "watson": "watson", "bandura": "bandura", "beck": "beck", "ellis": "ellis", "piaget": "piaget", "satir": "satir", "haley": "haley", "grof": "grof", "assagioli": "assagioli", "wundt": "wundt", "james": "james", "kabatzinn": "kabatzinn", "seligman": "seligman", "yalom": "yalom", "bertalanffy": "bertalanffy", "milton": "milton", "anna": "anna", "alfriedlangle": "alfriedlangle", "maraselvinipalazzoli": "maraselvinipalazzoli", "michaelwhite": "michaelwhite", "paulgoodman": "paulgoodman", "wilfredbion": "wilfredbion", "donaldwinnicott": "donaldwinnicott", "karenhorney": "karenhorney", "wilhelmreich": "wilhelmreich", "sandorferenczi": "sandorferenczi", "ottorank": "ottorank", "ericberne": "ericberne", "ludwigbinswanger": "ludwigbinswanger", "arnoldalazarus": "lazarus", "arnoldlazarus": "lazarus", "jamesoprochaska": "prochaska", "jamesprochaska": "prochaska", "georgestricker": "stricker", "marvinrgoldfried": "goldfried", "marvingoldfried": "goldfried", "jeromedfrank": "jeromefrank", "jeromefrank": "jeromefrank", "stevenchayes": "hayes", "stevenhayes": "hayes", "marshamlinehan": "linehan", "marshalinehan": "linehan", "jeffreyyoung": "jeffreyyoung", "murraybowen": "murraybowen", "josephwolpe": "wolpe", "stevedeshazer": "stevedeshazer", "insookimberg": "stevedeshazer", "stevedeshazereinsookimberg": "stevedeshazer", "edwardthorndike": "thorndike", "kenwilber": "kenwilber"};
+export const ALIAS_AUTOR = {"donaldmeichenbaum": "donaldmeichenbaum", "carlgustavjung": "jung", "aarontbeck": "beck", "mihalycsikszentmihalyi": "mihalycsikszentmihalyi", "imrelakatos": "imrelakatos", "wrdfairbairn": "wrdfairbairn", "alfredadler": "adler", "paulwatzlawick": "paulwatzlawick", "edmundhusserl": "edmundhusserl", "paulfeyerabend": "paulfeyerabend", "abrahammaslow": "maslow", "emmyvandeurzen": "emmyvandeurzen", "robertoassagioli": "assagioli", "carlrogers": "rogers", "stanislavgrof": "grof", "martinheidegger": "martinheidegger", "abrahamhmaslow": "maslow", "eugenegendlin": "eugenegendlin", "thomaskuhn": "thomaskuhn", "jmarkgwilliams": "jmarkgwilliams", "davidepston": "davidepston", "rudolphloewenstein": "rudolphloewenstein", "heinzhartmann": "heinzhartmann", "alexanderluria": "alexanderluria", "josephzinker": "josephzinker", "viktorefrankl": "frankl", "martinseligman": "seligman", "ottofkernberg": "ottofkernberg", "rollomay": "may", "jamesbugental": "jamesbugental", "jessicabenjamin": "jessicabenjamin", "karlpopper": "karlpopper", "melanieklein": "melanieklein", "lewisaron": "lewisaron", "albertellis": "ellis", "heinzkohut": "heinzkohut", "annafreud": "anna", "edwardlthorndike": "thorndike", "norbertwiener": "norbertwiener", "albertbandura": "bandura", "humbertomaturana": "humbertomaturana", "ronalddlaing": "ronalddlaing", "peterfonagy": "peterfonagy", "virginiasatir": "satir", "carlwhitaker": "carlwhitaker", "jayhaley": "haley", "irvinyalom": "yalom", "sigmundfreud": "freud", "fritzperls": "perls", "carlgjung": "jung", "erikerikson": "erikson", "viktorfrankl": "frankl", "erichfromm": "fromm", "bfskinner": "skinner", "ivanpavlov": "pavlov", "johnbwatson": "watson", "jeanpiaget": "piaget", "wilhelmwundt": "wundt", "williamjames": "james", "jonkabatzinn": "kabatzinn", "ludwigvonbertalanffy": "bertalanffy", "miltonherickson": "milton", "rdlaing": "ronalddlaing", "freud": "freud", "jung": "jung", "adler": "adler", "erikson": "erikson", "rogers": "rogers", "maslow": "maslow", "frankl": "frankl", "perls": "perls", "may": "may", "fromm": "fromm", "skinner": "skinner", "pavlov": "pavlov", "watson": "watson", "bandura": "bandura", "beck": "beck", "ellis": "ellis", "piaget": "piaget", "satir": "satir", "haley": "haley", "grof": "grof", "assagioli": "assagioli", "wundt": "wundt", "james": "james", "kabatzinn": "kabatzinn", "seligman": "seligman", "yalom": "yalom", "bertalanffy": "bertalanffy", "milton": "milton", "anna": "anna", "alfriedlangle": "alfriedlangle", "maraselvinipalazzoli": "maraselvinipalazzoli", "michaelwhite": "michaelwhite", "paulgoodman": "paulgoodman", "wilfredbion": "wilfredbion", "donaldwinnicott": "donaldwinnicott", "karenhorney": "karenhorney", "wilhelmreich": "wilhelmreich", "sandorferenczi": "sandorferenczi", "ottorank": "ottorank", "ericberne": "ericberne", "ludwigbinswanger": "ludwigbinswanger", "arnoldalazarus": "lazarus", "arnoldlazarus": "lazarus", "jamesoprochaska": "prochaska", "jamesprochaska": "prochaska", "georgestricker": "stricker", "marvinrgoldfried": "goldfried", "marvingoldfried": "goldfried", "jeromedfrank": "jeromefrank", "jeromefrank": "jeromefrank", "stevenchayes": "hayes", "stevenhayes": "hayes", "marshamlinehan": "linehan", "marshalinehan": "linehan", "jeffreyyoung": "jeffreyyoung", "murraybowen": "murraybowen", "josephwolpe": "wolpe", "stevedeshazer": "stevedeshazer", "insookimberg": "stevedeshazer", "stevedeshazereinsookimberg": "stevedeshazer", "edwardthorndike": "thorndike", "kenwilber": "kenwilber", "larryebeutler": "beutler", "larrybeutler": "beutler", "jacqueslacan": "lacan", "elisabethlukas": "lukas", "salvadorminuchin": "minuchin", "robertdstolorow": "stolorow", "robertstolorow": "stolorow", "paullwachtel": "wachtel", "paulwachtel": "wachtel", "andrewchristensen": "christensen", "johnfclarkin": "clarkin", "johnclarkin": "clarkin", "frederickhkanfer": "kanfer", "frederickkanfer": "kanfer", "stanleybmesser": "messer", "stanleymesser": "messer", "ivanboszormenyinagy": "nagy", "emilioribesinesta": "ribes", "emilioribes": "ribes", "stephenrollnick": "rollnick", "kirkdstrosahl": "strosahl", "kirkstrosahl": "strosahl", "mavistsai": "tsai"};

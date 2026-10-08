@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos, AvataresSub } from "./Funciones.jsx";
-import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado } from "./Funciones2.jsx";
-import { LogoPsiconautas, HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato } from "./Figuras.jsx";
+import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
+import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "lucide-react";
 
 /* ============================================================
@@ -17968,18 +17968,10 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         onIrAComparar={() => irA("comparacion")}
         onModoEstudio={setModoEstudio ? () => setModoEstudio((v) => !v) : undefined}
       />
-      <CintaEscuelas items={escuelas.map((e) => ({ nombre: e.nombre, color: PERSPECTIVA_COLOR[e.perspectiva] }))} />
       <CreditosFotos />
       {modoEstudio && <RetoRetratos />}
       {modoEstudio && <TarjetasRepaso glosario={GLOSARIO} escuelas={escuelas} colorDe={(p) => PERSPECTIVA_COLOR[p]} />}
 
-      <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20, marginTop: 16, marginBottom: 20 }}>
-        <TextoConCitas
-          tamano={14.5}
-          truncar={160}
-          texto="Cada escuela de psicoterapia responde, con su propio vocabulario, a las mismas preguntas de fondo: ¿qué es el sufrimiento psíquico?, ¿cuál es el rol del terapeuta?, ¿qué produce el cambio? Esta aplicación organiza esas respuestas en ocho módulos: una introducción general (este), siete módulos dedicados a cada gran perspectiva —con su contexto histórico, sus fundamentos filosóficos, sus escuelas internas, técnicas y protocolos— y un módulo final de comparación explícita. El objetivo no es demostrar que todas las escuelas dicen lo mismo con otras palabras, sino exactamente lo contrario: mostrar con precisión dónde convergen y dónde divergen, y por qué."
-        />
-      </div>
 
       {/* Resumen de cobertura: discreto por defecto (una línea elegante),
           con el desglose completo disponible al desplegar — evita que la
@@ -18401,7 +18393,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
   // Nivel de comparación: perspectivas completas (7, fijas) o escuelas
   // sueltas elegidas libremente (comparación cruzada entre perspectivas).
   const [nivel, setNivel] = useState("perspectivas"); // "perspectivas" | "escuelas"
-  const [vista, setVista] = useState("rosa"); // "rosa" | "tarjetas" | "tabla"
+  const [vista, setVista] = useState("rosa"); // "rosa" | "torre" | "tarjetas" | "tabla"
   const [escuelasSeleccionadas, setEscuelasSeleccionadas] = useState([]);
   const escuelasComparadas = escuelasSeleccionadas.map((id) => escuelas.find((e) => e.id === id)).filter(Boolean);
 
@@ -18409,7 +18401,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
     <div style={{ minHeight: "60vh" }}>
       <Cabecera
         icono={<Scale size={18} />}
-        titulo="Comparar, perspectiva por perspectiva" autores={["freud","skinner","rogers","satir","beck"]} tituloAutores="Escuelas en diálogo"
+        titulo="Comparar, perspectiva por perspectiva" todasVoces
         subtitulo="Comparación campo por campo entre perspectivas completas o escuelas seleccionadas, conservando en cada columna el vocabulario propio de su marco teórico."
       />
       <details className="psn-detalles">
@@ -18450,6 +18442,16 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
             Rosa de ejes
           </button>
           <button
+            onClick={() => setVista("torre")}
+            title="Los seis supuestos filosóficos apilados; compara dos perspectivas y mira dónde se abre la grieta"
+            style={{
+              fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
+              background: vista === "torre" ? COLORS.garnet : "transparent", color: vista === "torre" ? "#fff" : COLORS.inkSoft,
+            }}
+          >
+            Torre de supuestos
+          </button>
+          <button
             onClick={() => setVista("tarjetas")}
             title="Ver una categoría a la vez, en profundidad"
             style={{
@@ -18474,6 +18476,10 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
 
       {nivel === "escuelas" && (
         <SelectorEscuelasComparador escuelas={escuelas} seleccionadas={escuelasSeleccionadas} setSeleccionadas={setEscuelasSeleccionadas} />
+      )}
+
+      {nivel === "perspectivas" && vista === "torre" && (
+        <TorreSupuestos perspectivas={perspectivas} colorDe={(p) => PERSPECTIVA_COLOR[p.nombre] || COLORS.primary} />
       )}
 
       {nivel === "perspectivas" && vista === "rosa" && (
@@ -19857,7 +19863,7 @@ function nombresPerspectivas(escuelas) {
   const orden = FUNDAMENTOS_PERSPECTIVAS.map((p) => p.id);
   return [...new Set(escuelas.map((e) => e.perspectiva))].sort((x, y) => orden.indexOf(PERSPECTIVA_ID_POR_NOMBRE[x]) - orden.indexOf(PERSPECTIVA_ID_POR_NOMBRE[y]));
 }
-function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutores }) {
+function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutores, todasVoces }) {
   // El filete bajo el título: un solo color cuando la pantalla pertenece a
   // una perspectiva concreta (colorAcento), o un degradado con las 7
   // perspectivas cuando el módulo las mira todas a la vez — un mismo
@@ -19872,6 +19878,9 @@ function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutore
       </div>
       {subtitulo && <p style={{ fontSize: 13, color: COLORS.inkSoft, marginTop: 7, maxWidth: 760, lineHeight: 1.55, fontFamily: "var(--f-text)" }}>{subtitulo}</p>}
       <div style={{ height: 3, borderRadius: 2, marginTop: 14, background: colorAcento || gradienteSiete, opacity: colorAcento ? 0.85 : 0.55, transition: "background 0.4s ease" }} />
+      {todasVoces && (
+        <GaleriaTodasLasVoces nombreDe={(id) => (FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === id) || {}).nombre} colorDe={(id) => PERSPECTIVA_COLOR[(FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === id) || {}).nombre]} />
+      )}
       {autores && (
         <div className="psn-cab-fila">
           <GaleriaAutores slugs={autores} color={colorAcento} titulo={tituloAutores} />
@@ -21338,7 +21347,7 @@ function TablaProtocolos({ filas, ordenTabla, cambiarOrden }) {
 
 function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrAEscuela }) {
   const [q, setQ] = useState("");
-  const [vista, setVista] = useState("rosa"); // "rosa" | "tarjetas" | "tabla"
+  const [vista, setVista] = useState("rosa"); // "rosa" | "torre" | "tarjetas" | "tabla"
   const [ordenTabla, setOrdenTabla] = useState({ col: "perspectiva", asc: true });
   const [indiceEstudio, setIndiceEstudio] = useState(0);
   useEffect(() => {

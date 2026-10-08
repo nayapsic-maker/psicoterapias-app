@@ -712,3 +712,38 @@ html[data-tema="oscuro"] .psn-examen fieldset button.sel { color: #0A1236; }
 
 .psn-glos { margin: 6px 0 0 !important; padding-top: 6px; border-top: 1px dashed var(--c-line); font-size: 12px !important; color: var(--c-inkSoft); }
 .psn-glos b { color: var(--pc); font-weight: 700; }
+
+/* Constelaciones en los márgenes (sustituyen a los medallones) */
+.psn-medallon.constelacion { width: 138px; height: 138px; filter: drop-shadow(0 0 10px #ffe9a844); animation: psn-flota-p 18s ease-in-out infinite; }
+.psn-medallon.constelacion.psi { width: 92px; height: 148px; }
+@media (min-width: 1700px) { .psn-medallon.constelacion { width: 170px; height: 170px; } .psn-medallon.constelacion.psi { width: 112px; height: 178px; } }
+.psn-voces-todas { margin: 14px 0 4px; padding: 12px 16px; border: 2px solid var(--c-ink); border-radius: 18px; background: var(--c-cardBg); box-shadow: 4px 4px 0 var(--c-gold); }
+.psn-voces-todas > div { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px 18px; margin-top: 8px; }
+.psn-voces-todas section { border-left: 6px solid var(--pc); padding-left: 10px; }
+.psn-voces-todas h5 { margin: 0 0 6px; font: 800 12px var(--f-display); color: var(--pc); }
+.psn-voces-todas ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 12px; }
+.psn-voces-todas li { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 66px; text-align: center; font: 600 10px/1.2 var(--f-text); }
+.psn-voces-todas img { border-radius: 50%; border: 2px solid var(--c-ink); object-fit: cover; object-position: center 20%; background: var(--c-paperDark); }
+
+/* Torre de supuestos */
+.psn-torre-sel { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 14px; }
+.psn-torre-sel label { font: 700 11px var(--f-mono); text-transform: uppercase; display: grid; gap: 4px; }
+.psn-torre-sel select { font: 13px var(--f-text); padding: 8px 10px; border: 2px solid var(--c-ink); border-radius: 10px; background: var(--c-paper); color: var(--c-ink); min-width: 220px; }
+.psn-torre-cuerpo { display: grid; grid-template-columns: minmax(0, 560px); gap: 6px; justify-content: center; }
+.psn-torre-cuerpo.dos { grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr); }
+.psn-torre-cuerpo h5 { margin: 0 0 4px; font: 800 15px var(--f-display); color: var(--pc); text-align: center; }
+.psn-ladrillo { text-align: left; display: grid; gap: 3px; padding: 10px 14px; border: 3px solid var(--c-ink); border-left: 12px solid var(--pc); border-radius: 6px; background: var(--c-paper); color: var(--c-ink); cursor: pointer; box-shadow: 3px 3px 0 var(--c-ink); transition: transform .15s; }
+.psn-ladrillo:hover { transform: translateY(-2px); }
+.psn-ladrillo b { font: 800 12px var(--f-mono); text-transform: uppercase; color: var(--pc); }
+.psn-ladrillo span { font: 12.5px/1.5 var(--f-text); }
+.psn-ladrillo.on { background: var(--c-cardBg); box-shadow: 5px 5px 0 var(--pc); }
+.psn-grieta { display: grid; justify-items: center; align-content: center; font: 600 9.5px var(--f-mono); text-align: center; gap: 1px; }
+.psn-grieta svg { width: 60px; height: 32px; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.psn-grieta.ok svg { stroke: #1F8A68; } .psn-grieta.med svg { stroke: #E9A100; } .psn-grieta.mal svg { stroke: #D9402A; }
+.psn-grieta em { font-style: normal; color: var(--c-inkSoft); }
+.psn-grieta.mayor { background: #D9402A22; border-radius: 10px; outline: 2px dashed #D9402A; }
+@media (max-width: 760px) { .psn-torre-cuerpo.dos { grid-template-columns: 1fr; } .psn-grieta { grid-auto-flow: column; justify-content: center; gap: 8px; } }
+
+.psn-galeria-casos img.ancho { width: 110px; height: 64px; border-radius: 14px; }
+.psn-caso-cab img.ancho { border-radius: 14px; width: auto; max-width: 220px; }
+.psn-galeria-casos img, .psn-caso-cab img { object-fit: cover; object-position: center 25%; }

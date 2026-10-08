@@ -187,7 +187,7 @@ export const CASOS = [
     },
   },
   {
-    t: "Familia Rojas", av: "daniel", sub: "Adolescente que dejó el colegio",
+    t: "Familia Rojas", av: "rojas", ancho: true, sub: "Adolescente que dejó el colegio",
     c: {
       motivo: "Los padres traen a Daniel, de 15 años, que dejó de ir al colegio y pasa el día en su habitación, jugando en línea. La madre habla por él y el padre casi no interviene.",
       historia: "Hace un año falleció el abuelo materno, con quien Daniel tenía mucho vínculo. Antes era buen alumno y tocaba la guitarra.",
@@ -241,7 +241,7 @@ export function GaleriaCasos() {
         {CASOS.map((c, i) => (
           <li key={c.t}>
             <button onClick={() => abrir(i)} title={`Abrir el caso: ${c.t}`}>
-              <img src={fotoCaso(c.av)} alt={`Ilustración de ${c.t}`} width="64" height="64" loading="lazy" />
+              <img className={c.ancho ? "ancho" : ""} src={fotoCaso(c.av)} alt={`Retrato de ${c.t}`} width={c.ancho ? 110 : 64} height="64" loading="lazy" />
               <span>
                 <strong>{c.t}</strong>
                 <small>{c.sub}</small>
@@ -300,7 +300,7 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
       <div className="psn-caso-ejemplos">
         {CASOS.map((c, i) => (
           <button key={c.t} className={activo === i ? "on" : ""} onClick={() => { setCampos(c.c); setActivo(i); setAbierto(null); }}>
-            <img src={fotoCaso(c.av)} alt="" width="26" height="26" /> {c.t}
+            <img src={fotoCaso(c.av)} alt="" width="26" height="26" style={{ objectFit: "cover" }} /> {c.t}
           </button>
         ))}
         <button onClick={() => { setCampos(vacio); setAbierto(null); setActivo(null); }}>Limpiar</button>
@@ -322,7 +322,7 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
         <>
           {activo !== null && CASOS[activo] && (
             <div className="psn-caso-cab">
-              <img src={fotoCaso(CASOS[activo].av)} alt={`Ilustración de ${CASOS[activo].t}`} width="84" height="84" />
+              <img className={CASOS[activo].ancho ? "ancho" : ""} src={fotoCaso(CASOS[activo].av)} alt={`Retrato de ${CASOS[activo].t}`} width={CASOS[activo].ancho ? 200 : 84} height={CASOS[activo].ancho ? 100 : 84} />
               <div>
                 <strong>{CASOS[activo].t}</strong>
                 <span>{CASOS[activo].sub}</span>
@@ -988,7 +988,7 @@ export function DebateSimulado({ escuelas, enlaces, colorDe, modoEstudio = false
             <>
               <p className="psn-ronda">Caso en disputa · {caso.t}</p>
               <div className="psn-caso-cab">
-                <img src={fotoCaso(caso.av)} alt={`Ilustración de ${caso.t}`} width="72" height="72" />
+                <img className={caso.ancho ? "ancho" : ""} src={fotoCaso(caso.av)} alt={`Retrato de ${caso.t}`} width={caso.ancho ? 160 : 72} height={caso.ancho ? 80 : 72} />
                 <div><strong>{caso.t}</strong><span>{caso.c.motivo}</span></div>
               </div>
               <div className="psn-contactos">
@@ -1149,6 +1149,87 @@ export function RosaDeEjes({ campos, perspectivas, colorDe, modoEstudio = false 
         )}
         {!ciego && duelo.length < 2 && <p className="psn-nota">Marca dos perspectivas con «cara a cara» para ver sus textos completos lado a lado.</p>}
       </div>
+    </section>
+  );
+}
+
+
+/* ------------------------------------------------------------ */
+/*  TORRE DE SUPUESTOS (coordenadas filosóficas)                */
+/* ------------------------------------------------------------ */
+const CAPAS = [
+  { k: "ontologia", t: "Ontología", q: "¿Qué es lo que hay y qué es el psiquismo?" },
+  { k: "relacionMenteCuerpo", t: "Mente y cuerpo", q: "¿Cómo se relacionan lo psíquico y lo corporal?" },
+  { k: "epistemologia", t: "Epistemología", q: "¿Cómo se conoce lo clínico?" },
+  { k: "metodologia", t: "Metodología", q: "¿Con qué método se investiga y se interviene?" },
+  { k: "criterioVerdad", t: "Criterio de verdad", q: "¿Qué cuenta como verdadero?" },
+  { k: "unidadAnalisis", t: "Unidad de análisis", q: "¿Qué es lo que se mira?" },
+];
+const raices = (t) => new Set(norm(unir(t)).split(" ").filter((w) => w.length > 4).map((w) => w.slice(0, 6)));
+function similitud(a, b) {
+  const A = raices(a), B = raices(b);
+  if (!A.size || !B.size) return 0;
+  let n = 0;
+  A.forEach((x) => B.has(x) && n++);
+  return n / (A.size + B.size - n);
+}
+
+export function TorreSupuestos({ perspectivas, colorDe }) {
+  const [a, setA] = useState(perspectivas[0].id);
+  const [b, setB] = useState("");
+  const [abre, setAbre] = useState(null);
+  const PA = perspectivas.find((p) => p.id === a);
+  const PB = perspectivas.find((p) => p.id === b);
+  const capas = [...CAPAS].reverse(); // la cima arriba, la ontología como cimiento
+  const sims = PB ? Object.fromEntries(CAPAS.map((c) => [c.k, similitud(PA[c.k], PB[c.k])])) : {};
+  const grieta = PB ? CAPAS.reduce((m, c) => (sims[c.k] < sims[m.k] ? c : m), CAPAS[0]) : null;
+  const nivel = (s) => (s < 0.07 ? ["distantes", "mal"] : s < 0.14 ? ["parciales", "med"] : ["cercanas", "ok"]);
+  const Bloque = ({ P, c }) => {
+    const t = unir(P[c.k]);
+    const id = P.id + c.k;
+    const on = abre === id;
+    return (
+      <button className={`psn-ladrillo ${on ? "on" : ""}`} style={{ "--pc": colorDe(P) }} onClick={() => setAbre(on ? null : id)} aria-expanded={on}>
+        <b>{c.t}</b>
+        <span>{on ? t || "Sin información registrada." : oraciones(t, 120) || "—"}</span>
+      </button>
+    );
+  };
+  return (
+    <section className="psn-torre">
+      <p className="psn-intro">Cada perspectiva se apoya en seis supuestos filosóficos apilados: la ontología es el cimiento y la unidad de análisis, la cima. Elige una perspectiva para ver su torre; elige una segunda y la app compara capa por capa para mostrar <b>dónde se abre la grieta</b> entre ambas.</p>
+      <div className="psn-torre-sel">
+        <label>Torre A
+          <select value={a} onChange={(e) => { setA(e.target.value); setAbre(null); }}>
+            {perspectivas.filter((p) => p.id !== b).map((p) => <option key={p.id} value={p.id}>{p.nombre}</option>)}
+          </select>
+        </label>
+        <label>Comparar con
+          <select value={b} onChange={(e) => { setB(e.target.value); setAbre(null); }}>
+            <option value="">— solo una torre —</option>
+            {perspectivas.filter((p) => p.id !== a).map((p) => <option key={p.id} value={p.id}>{p.nombre}</option>)}
+          </select>
+        </label>
+      </div>
+      <div className={`psn-torre-cuerpo ${PB ? "dos" : ""}`}>
+        <h5 style={{ "--pc": colorDe(PA) }}>{PA.nombre}</h5>
+        {PB && <span />}
+        {PB && <h5 style={{ "--pc": colorDe(PB) }}>{PB.nombre}</h5>}
+        {capas.map((c) => (
+          <React.Fragment key={c.k}>
+            <Bloque P={PA} c={c} />
+            {PB && (
+              <div className={`psn-grieta ${nivel(sims[c.k])[1]} ${grieta && grieta.k === c.k ? "mayor" : ""}`} title={`${c.t}: ${nivel(sims[c.k])[0]}`}>
+                <svg viewBox="0 0 60 40"><path d={nivel(sims[c.k])[1] === "ok" ? "M4 20 H56" : nivel(sims[c.k])[1] === "med" ? "M4 20 L20 12 L32 28 L44 14 L56 20" : "M4 20 L14 8 L22 32 L32 6 L42 34 L50 10 L56 20"} /></svg>
+                <small>{c.t}</small>
+                <em>{nivel(sims[c.k])[0]}</em>
+              </div>
+            )}
+            {PB && <Bloque P={PB} c={c} />}
+          </React.Fragment>
+        ))}
+      </div>
+      {PB && grieta && <p className="psn-nota"><b>La grieta más grande está en «{grieta.t}»:</b> {grieta.q} Es la capa donde las dos perspectivas comparten menos vocabulario. (Medida orientativa por solapamiento de términos entre los textos de las fichas.)</p>}
     </section>
   );
 }
