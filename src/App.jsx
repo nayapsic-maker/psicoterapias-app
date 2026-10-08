@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos } from "./Funciones.jsx";
-import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso } from "./Funciones2.jsx";
+import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato } from "./Figuras.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "lucide-react";
 
@@ -21414,9 +21414,10 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrA
     <div>
       <Cabecera
         icono={<ClipboardList size={18} />}
-        titulo="Protocolos y Técnicas" autores={["milton","ellis","perls"]} tituloAutores="Creadores de técnicas"
+        titulo="Protocolos y Técnicas"
         subtitulo="Protocolos completos y técnicas puntuales, con pasos interactivos, objetivo clínico clasificado y comparación de hasta tres a la vez."
       />
+      <GaleriaCasos />
       <details className="psn-detalles">
         <summary>Caso clínico en 7 miradas <small>— un mismo caso, leído desde cada perspectiva</small></summary>
         <CasoSieteMiradas idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} escuelas={escuelas} perspectivas={FUNDAMENTOS_PERSPECTIVAS} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
@@ -23704,7 +23705,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
           cifras y controles avanzados ocultos detrás de desplegables para
           no competir visualmente con el contenido. */}
       <div className="psq-cabecera" style={{ background: COLORS.primaryDark, padding: "14px clamp(14px, 4vw, 24px)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", rowGap: 10 }}>
-        <LogoPsiconautas size={30} className="psq-flotar" />
+        <LogoPsiconautas size={36} />
         <button
           onClick={() => setStatsAbiertas((v) => !v)}
           aria-expanded={statsAbiertas}

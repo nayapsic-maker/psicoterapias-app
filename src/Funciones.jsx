@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { AUTORES, fotoAutor, slugsDeAutores } from "./Figuras.jsx";
+import { AUTORES, Avatar, slugsDeAutores } from "./Figuras.jsx";
 
 /* ============================================================
    PSICONAUTAS — funciones diferenciales
@@ -45,9 +45,9 @@ export const barajar = (arr, rnd = Math.random) => {
   return a;
 };
 
-export function Mini({ slug, tam = 40 }) {
+export function Mini({ slug, tam = 40, color }) {
   if (!AUTORES[slug]) return null;
-  return <img className="psn-mini" src={fotoAutor(slug)} alt={`Retrato de ${AUTORES[slug].n}`} title={AUTORES[slug].n} width={tam} height={tam} loading="lazy" style={{ width: tam, height: tam }} />;
+  return <Avatar slug={slug} tam={tam} className="psn-mini" color={color} />;
 }
 
 
@@ -107,7 +107,7 @@ export function LineaTiempoGlobal({ escuelas, anioDe, colorDe, onIrAEscuela, per
             </h4>
             <ul>
               {porDecada[d].map(({ e, anio }) => {
-                const slugs = slugsDeAutores(e.autores).slice(0, 2);
+                const slugs = slugsDeAutores(e.autores).filter((s) => AUTORES[s].foto !== false).slice(0, 2);
                 lado += 1;
                 return (
                   <li key={e.id} className={`psn-tl-item ${lado % 2 ? "izq" : "der"}`} style={{ "--pc": colorDe(e.perspectiva) }}>
@@ -355,7 +355,7 @@ export function RetoRetratos() {
       <div className="psn-reto-op">
         {opciones.map((s) => (
           <button key={s} disabled={!!elegida} className={elegida ? (s === ok ? "ok" : s === elegida ? "mal" : "") : ""} onClick={() => responde(s)}>
-            <img src={fotoAutor(s)} alt="" width="64" height="64" />
+            <Avatar slug={s} tam={64} />
             <span>{AUTORES[s].n}</span>
           </button>
         ))}

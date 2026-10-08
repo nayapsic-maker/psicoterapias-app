@@ -14,12 +14,12 @@ export const fotoAutor = (slug) => `${BASE}img/autores/${slug}.jpg`;
 
 // Autores representativos por perspectiva (ids de FUNDAMENTOS_PERSPECTIVAS).
 export const AUTORES_POR_PERSPECTIVA = {
-  humanista: ["rogers", "maslow", "frankl"],
+  humanista: ["rogers", "maslow", "frankl", "seligman", "yalom"],
   psicodinamica: ["freud", "jung", "adler"],
   sistemica: ["satir", "haley", "bertalanffy"],
   conductual: ["skinner", "pavlov", "watson"],
-  cognitivo: ["beck", "ellis", "bandura"],
-  integradora: ["kabatzinn", "seligman", "yalom"],
+  cognitivo: ["beck", "ellis", "bandura", "kabatzinn"],
+  integradora: ["lazarus", "prochaska", "stricker", "goldfried", "jeromefrank"],
   transpersonal: ["grof", "assagioli", "jung"],
 };
 
@@ -29,6 +29,21 @@ function textoCredito(slug) {
 }
 
 /* ---------- Retratos ---------- */
+/* Retrato circular o, si no hay foto libre, monograma sobre el color de la perspectiva. */
+export function Avatar({ slug, tam = 48, className = "", color }) {
+  const a = AUTORES[slug];
+  if (!a) return null;
+  if (a.foto === false) {
+    const ini = a.n.split(" ").filter((w) => /^[A-ZÁÉÍÓÚÑ]/.test(w)).map((w) => w[0]).slice(0, 2).join("");
+    return (
+      <span className={`psn-mono ${className}`} title={`${a.n} · sin retrato libre disponible`} style={{ width: tam, height: tam, fontSize: tam * 0.36, background: color || "var(--c-gold)" }}>
+        {ini}
+      </span>
+    );
+  }
+  return <img className={className} src={fotoAutor(slug)} alt={`Retrato de ${a.n}`} title={textoCredito(slug)} width={tam} height={tam} loading="lazy" style={{ width: tam, height: tam }} />;
+}
+
 export function GaleriaAutores({ slugs, color, titulo = "Voces de este módulo" }) {
   const lista = slugs.filter((s) => AUTORES[s]);
   if (!lista.length) return null;
@@ -38,7 +53,7 @@ export function GaleriaAutores({ slugs, color, titulo = "Voces de este módulo" 
       <ul>
         {lista.map((s) => (
           <li key={s} title={textoCredito(s)}>
-            <img src={fotoAutor(s)} alt={`Retrato de ${AUTORES[s].n}`} width="64" height="64" loading="lazy" />
+            <Avatar slug={s} tam={56} color={color} />
             <span>
               <strong>{AUTORES[s].n}</strong>
               <em>{AUTORES[s].a}</em>
@@ -82,7 +97,7 @@ export function RetratosEscuela({ autores, color }) {
         const a = AUTORES[s];
         return (
           <figure key={s} title={textoCredito(s)}>
-            <img src={fotoAutor(s)} alt={`Retrato de ${a.n}`} width="52" height="52" loading="lazy" />
+            <Avatar slug={s} tam={52} color={color} />
             <figcaption>
               <strong>{a.n}</strong>
               {a.a && <em> {a.a}</em>}
@@ -107,14 +122,14 @@ export function RetratosPerspectiva({ id, color }) {
   return (
     <span className="psn-retratos" style={{ "--pc": color }} aria-hidden="true">
       {slugs.map((s) => (
-        <img key={s} src={fotoAutor(s)} alt="" width="64" height="64" loading="lazy" />
+        <Avatar key={s} slug={s} tam={58} color={color} />
       ))}
     </span>
   );
 }
 
 export function CreditosFotos() {
-  const lista = Object.keys(AUTORES);
+  const lista = Object.keys(AUTORES).filter((s) => AUTORES[s].foto !== false);
   return (
     <details className="psn-creditos">
       <summary>Créditos de las fotografías</summary>
@@ -131,144 +146,180 @@ export function CreditosFotos() {
 }
 
 
-/* Logo: la Ψ de la psicología cuyo brazo central es un telescopio que apunta a una estrella. */
+/* Logo: la Ψ de la psicología cuyo astil central es un telescopio que apunta a una estrella. */
 export function LogoPsiconautas({ size = 28, className = "" }) {
+  const id = React.useId().replace(/:/g, "");
   return (
-    <svg className={className} width={size} height={size} viewBox="0 0 48 48" role="img" aria-label="Logo de Psiconautas: una Ψ con un telescopio apuntando a una estrella" style={{ flexShrink: 0 }}>
-      <path d="M8 13 V22 Q8 34 24 34 Q40 34 40 22 V13" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" />
-      <path d="M24 34 V44.5 M17.5 44.5 H30.5" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" />
-      <g transform="rotate(24 24 34)">
-        <path d="M20.6 31 L19 11 H29 L27.4 31 Z" fill="#FFC233" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
-        <rect x="17" y="6.5" width="14" height="5.5" rx="2" fill="#FFC233" stroke="currentColor" strokeWidth="2.2" />
-        <path d="M20.2 21 H27.8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <svg className={className} width={size} height={size} viewBox="0 0 64 64" fill="none" strokeLinecap="round" strokeLinejoin="round" role="img" aria-label="Logo de Psiconautas: una Ψ cuyo astil central es un telescopio apuntando a una estrella" style={{ flexShrink: 0 }}>
+      <defs>
+        <linearGradient id={`oro-${id}`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#FFD76A" />
+          <stop offset=".5" stopColor="#FFF0B8" />
+          <stop offset="1" stopColor="#E8A100" />
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="29.5" stroke="#F3E9D2" strokeOpacity=".3" strokeWidth="1" />
+      <path d="M32 2.5v3M32 58.5v3M2.5 32h3M58.5 32h3" stroke="#F3E9D2" strokeOpacity=".5" strokeWidth="1" />
+      <path d="M17.5 18v10.5a14.5 14.5 0 0 0 29 0V18" stroke="#F3E9D2" strokeWidth="3.2" />
+      <path d="M24 53.5h16M32 43v10.5" stroke="#F3E9D2" strokeWidth="3.2" />
+      <g transform="rotate(14 32 43)">
+        <path d="M30.2 43 L29.4 26 h5.2 L33.8 43z" fill={`url(#oro-${id})`} stroke="#F3E9D2" strokeWidth="1.4" />
+        <path d="M29.2 26 L28.3 14.5 h7.4 L34.8 26z" fill={`url(#oro-${id})`} stroke="#F3E9D2" strokeWidth="1.4" />
+        <path d="M27.4 14.5 L26.6 9.5 h10.8 l-.8 5z" fill="#FFF6D6" stroke="#F3E9D2" strokeWidth="1.4" />
+        <path d="M29.6 19.5h4.8M29.9 32h4.2" stroke="#7A4E00" strokeWidth="1" strokeOpacity=".55" />
       </g>
-      <path d="M41 2.5 C41.4 5.4 42.6 6.6 45.5 7 C42.6 7.4 41.4 8.6 41 11.5 C40.6 8.6 39.4 7.4 36.5 7 C39.4 6.6 40.6 5.4 41 2.5Z" fill="#FFC233" />
+      <path d="M51 6c.5 4 2 5.5 6 6-4 .5-5.5 2-6 6-.5-4-2-5.5-6-6 4-.5 5.5-2 6-6z" fill="#FFE08A" stroke="none" />
+      <circle cx="46" cy="22" r="1" fill="#FFE08A" stroke="none" />
+      <circle cx="57" cy="24" r=".9" fill="#FFE08A" stroke="none" />
     </svg>
   );
 }
 
-
-/* ---------- Cosmos de fondo: estrellas luminosas y planetas-objeto ---------- */
+/* ---------- Cosmos de fondo ----------
+   Capas: cielo degradado → nebulosas → estrellas (con destellos) → constelaciones →
+   órbitas → medallones-objeto en los márgenes laterales (nunca bajo el texto). */
 function rnd(seed) {
   let s = seed;
   return () => ((s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296);
 }
-const COLORES_ESTRELLA = ["#ffffff", "#ffffff", "#cfe0ff", "#ffe39a", "#ffd0a8"];
+const COLORES_ESTRELLA = ["#ffffff", "#ffffff", "#dbe6ff", "#fff0c4", "#ffd9b8"];
+const W = 1600, H = 1000;
 
-const PLANETAS = [
-  { id: "libro", cls: "p1", tam: 118 },
-  { id: "probeta", cls: "p2", tam: 128 },
-  { id: "cerebro", cls: "p3", tam: 104 },
-  { id: "matraz", cls: "p4", tam: 116 },
-  { id: "atomo", cls: "p5", tam: 86 },
-  { id: "psi", cls: "p6", tam: 82 },
+const CONSTELACIONES = [
+  // Ψ: constelación con la forma de la psicología
+  { pts: [[1295, 150], [1295, 232], [1332, 268], [1369, 232], [1369, 150], [1332, 118], [1332, 268], [1332, 338]], lineas: [[0, 1], [1, 2], [2, 3], [3, 4], [5, 6], [6, 7]] },
+  { pts: [[130, 360], [210, 318], [262, 392], [350, 350], [398, 430], [300, 470]], lineas: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 2]] },
+  { pts: [[1180, 760], [1262, 720], [1320, 800], [1410, 770], [1456, 850]], lineas: [[0, 1], [1, 2], [2, 3], [3, 4]] },
 ];
 
-function Esfera({ id, c1, c2 }) {
+function MedallonObjeto({ id }) {
+  const cr = "#F3E9D2";
+  const oro = "#FFD76A";
+  const icono = {
+    libro: (
+      <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
+        <path d="M30 50 Q45 42 60 50 Q75 42 90 50 V78 Q75 70 60 78 Q45 70 30 78Z" fill="#2a2f86" fillOpacity=".6" />
+        <path d="M60 50 V78" />
+        <path d="M36 56 Q45 52 54 56 M36 62 Q45 58 54 62 M66 56 Q75 52 84 56 M66 62 Q75 58 84 62" strokeWidth="1.4" strokeOpacity=".7" />
+        <path d="M44 38 l2.5 5 5.5 .8 -4 3.9 .9 5.5 -4.9 -2.6 -4.9 2.6 .9 -5.5 -4 -3.9 5.5 -.8z" fill={oro} stroke="none" transform="translate(16 -10) scale(.9)" />
+      </g>
+    ),
+    probeta: (
+      <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
+        <g transform="rotate(28 60 60)">
+          <path d="M52 30 V80 a8 8 0 0 0 16 0 V30" fill="#2a2f86" fillOpacity=".5" />
+          <path d="M50 30 H70" />
+          <path d="M52 62 H68 V80 a8 8 0 0 1 -16 0Z" fill={oro} stroke="none" fillOpacity=".9" />
+          <circle cx="58" cy="70" r="1.6" fill="#fff" stroke="none" />
+          <circle cx="63" cy="76" r="1.2" fill="#fff" stroke="none" />
+        </g>
+        <circle cx="86" cy="40" r="2.4" fill={oro} stroke="none" />
+        <circle cx="34" cy="86" r="1.8" fill={oro} stroke="none" />
+      </g>
+    ),
+    matraz: (
+      <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
+        <path d="M52 32 H68 V52 L86 84 Q89 90 82 90 H38 Q31 90 34 84 L52 52Z" fill="#2a2f86" fillOpacity=".5" />
+        <path d="M44 70 H76 L86 84 Q89 90 82 90 H38 Q31 90 34 84Z" fill="#3de0b5" stroke="none" fillOpacity=".85" />
+        <path d="M50 32 H70" />
+        <circle cx="54" cy="80" r="2" fill="#fff" stroke="none" fillOpacity=".8" />
+        <circle cx="66" cy="76" r="1.5" fill="#fff" stroke="none" fillOpacity=".8" />
+      </g>
+    ),
+    cerebro: (
+      <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
+        <path d="M60 36 C48 32 38 40 40 50 C32 54 32 66 40 70 C40 80 52 86 60 80 C68 86 80 80 80 70 C88 66 88 54 80 50 C82 40 72 32 60 36Z" fill="#7a2f6a" fillOpacity=".55" />
+        <path d="M60 36 V80 M46 52 Q52 50 54 58 M74 52 Q68 50 66 58 M48 68 Q54 66 56 72 M72 68 Q66 66 64 72" strokeWidth="1.6" />
+      </g>
+    ),
+    microscopio: (
+      <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
+        <g transform="rotate(-18 60 60)">
+          <rect x="54" y="30" width="12" height="30" rx="3" fill="#2a2f86" fillOpacity=".6" />
+          <path d="M58 60 V68 M62 60 V68" />
+          <path d="M48 70 H72" />
+        </g>
+        <path d="M42 88 H80 M70 56 a16 16 0 0 1 0 28" />
+        <circle cx="52" cy="34" r="2.2" fill={oro} stroke="none" />
+      </g>
+    ),
+    atomo: (
+      <g fill="none" stroke={cr} strokeWidth="1.8">
+        {[0, 60, 120].map((r) => <ellipse key={r} cx="60" cy="60" rx="30" ry="11" transform={`rotate(${r} 60 60)`} />)}
+        <circle cx="60" cy="60" r="4.5" fill={oro} stroke="none" />
+      </g>
+    ),
+  }[id];
+  const col = { libro: ["#6c4fe0", "#241a78"], probeta: ["#1fb5a6", "#0b3b6e"], matraz: ["#2d6bff", "#101b6a"], cerebro: ["#d6477a", "#4a1760"], microscopio: ["#e8941a", "#5a2a6a"], atomo: ["#8b5cf6", "#17205e"] }[id];
   return (
-    <>
+    <svg viewBox="0 0 120 120" overflow="visible">
       <defs>
-        <radialGradient id={`pg-${id}`} cx="35%" cy="30%" r="75%">
-          <stop offset="0%" stopColor={c1} />
-          <stop offset="100%" stopColor={c2} />
+        <radialGradient id={`mg-${id}`} cx="34%" cy="28%" r="80%">
+          <stop offset="0" stopColor={col[0]} />
+          <stop offset="1" stopColor={col[1]} />
         </radialGradient>
       </defs>
-      <circle cx="60" cy="60" r="40" fill={`url(#pg-${id})`} />
-    </>
+      <circle cx="60" cy="60" r="52" fill={`url(#mg-${id})`} />
+      <circle cx="60" cy="60" r="52" fill="none" stroke={cr} strokeOpacity=".5" strokeWidth="1.2" />
+      <circle cx="60" cy="60" r="57" fill="none" stroke={oro} strokeOpacity=".35" strokeWidth=".8" strokeDasharray="1 5" strokeLinecap="round" />
+      <ellipse cx="44" cy="34" rx="22" ry="12" fill="#fff" fillOpacity=".1" transform="rotate(-24 44 34)" />
+      {icono}
+    </svg>
   );
 }
 
-function DibujoPlaneta({ id }) {
-  const ink = "#15183C";
-  switch (id) {
-    case "libro":
-      return (
-        <svg viewBox="0 0 120 120">
-          <Esfera id={id} c1="#9a7bff" c2="#3a2a9a" />
-          <ellipse cx="60" cy="62" rx="56" ry="13" fill="none" stroke="#ffd36b" strokeWidth="3" transform="rotate(-14 60 62)" />
-          <path d="M26 56 Q43 47 60 56 Q77 47 94 56 V80 Q77 71 60 80 Q43 71 26 80Z" fill="#fbf1d8" stroke={ink} strokeWidth="2.5" strokeLinejoin="round" />
-          <path d="M60 56 V80" stroke={ink} strokeWidth="2.5" />
-          <path d="M32 61 Q43 56 54 61 M32 67 Q43 62 54 67 M66 61 Q77 56 88 61 M66 67 Q77 62 88 67" stroke="#b9a77a" strokeWidth="1.6" fill="none" />
-        </svg>
-      );
-    case "probeta":
-      return (
-        <svg viewBox="0 0 120 120">
-          <Esfera id={id} c1="#52e0c4" c2="#0b6b66" />
-          <g transform="rotate(32 60 60)">
-            <rect x="48" y="14" width="24" height="92" rx="12" fill="#e9f6ff" fillOpacity="0.55" stroke={ink} strokeWidth="3" />
-            <path d="M50 62 H70 V94 Q70 104 60 104 Q50 104 50 94Z" fill="#ffc233" />
-            <rect x="44" y="11" width="32" height="7" rx="3.5" fill="#fbf1d8" stroke={ink} strokeWidth="2.5" />
-            <circle cx="56" cy="76" r="3" fill="#fff" fillOpacity="0.8" />
-            <circle cx="64" cy="86" r="2.2" fill="#fff" fillOpacity="0.8" />
-            <circle cx="58" cy="52" r="2.6" fill="#ffc233" />
-          </g>
-        </svg>
-      );
-    case "cerebro":
-      return (
-        <svg viewBox="0 0 120 120">
-          <Esfera id={id} c1="#ff9ec0" c2="#b02a5e" />
-          <path d="M60 28 V92 M36 44 Q48 40 52 52 Q44 58 38 66 M84 44 Q72 40 68 52 Q76 58 82 66 M40 80 Q52 76 56 86 M80 80 Q68 76 64 86 M44 34 Q54 32 58 40 M76 34 Q66 32 62 40" stroke="#fff4e4" strokeWidth="3.2" strokeLinecap="round" fill="none" />
-        </svg>
-      );
-    case "matraz":
-      return (
-        <svg viewBox="0 0 120 120">
-          <defs>
-            <linearGradient id="liq" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#7dffc8" />
-              <stop offset="1" stopColor="#1f8a68" />
-            </linearGradient>
-          </defs>
-          <path d="M48 14 H72 V42 L100 96 Q106 108 92 108 H28 Q14 108 20 96 L48 42Z" fill="#e9f6ff" fillOpacity="0.4" stroke="#fbf1d8" strokeWidth="3.5" strokeLinejoin="round" />
-          <path d="M40 72 L80 72 L97 100 Q100 104 94 104 H26 Q20 104 23 100Z" fill="url(#liq)" />
-          <circle cx="52" cy="90" r="4" fill="#fff" fillOpacity="0.75" />
-          <circle cx="68" cy="84" r="3" fill="#fff" fillOpacity="0.75" />
-          <circle cx="60" cy="96" r="2.4" fill="#fff" fillOpacity="0.75" />
-          <rect x="44" y="10" width="32" height="8" rx="4" fill="#fbf1d8" stroke={ink} strokeWidth="2.5" />
-        </svg>
-      );
-    case "atomo":
-      return (
-        <svg viewBox="0 0 120 120">
-          <Esfera id={id} c1="#ffb066" c2="#c2410c" />
-          {[0, 60, 120].map((r) => (
-            <ellipse key={r} cx="60" cy="60" rx="52" ry="17" fill="none" stroke="#fff4e4" strokeWidth="3" transform={`rotate(${r} 60 60)`} />
-          ))}
-          <circle cx="60" cy="60" r="8" fill="#fff4e4" />
-        </svg>
-      );
-    default:
-      return (
-        <svg viewBox="0 0 120 120">
-          <Esfera id={id} c1="#4c6bff" c2="#101b5c" />
-          <path d="M38 40 V54 Q38 76 60 76 Q82 76 82 54 V40 M60 30 V92" stroke="#ffc233" strokeWidth="6" strokeLinecap="round" fill="none" />
-        </svg>
-      );
-  }
-}
+const MEDALLONES = [
+  { id: "libro", lado: "i", y: 12, d: 0 },
+  { id: "cerebro", lado: "i", y: 42, d: -5 },
+  { id: "microscopio", lado: "i", y: 72, d: -9 },
+  { id: "probeta", lado: "d", y: 20, d: -3 },
+  { id: "matraz", lado: "d", y: 50, d: -7 },
+  { id: "atomo", lado: "d", y: 78, d: -11 },
+];
 
 export function Cosmos() {
-  const estrellas = React.useMemo(() => {
+  const { estrellas, destellos } = React.useMemo(() => {
     const r = rnd(20261008);
-    return Array.from({ length: 190 }, () => {
+    const est = Array.from({ length: 340 }, (_, i) => {
       const g = r();
-      const tam = g > 0.93 ? 3.2 : g > 0.75 ? 2.2 : g > 0.4 ? 1.6 : 1.1;
-      const col = COLORES_ESTRELLA[Math.floor(r() * COLORES_ESTRELLA.length)];
-      return { x: r() * 100, y: r() * 100, tam, col, d: r() * 6, t: 2.4 + r() * 4 };
+      const tam = g > 0.95 ? 2.6 : g > 0.8 ? 1.9 : g > 0.45 ? 1.3 : 0.9;
+      return { x: r() * W, y: r() * H, tam, col: COLORES_ESTRELLA[Math.floor(r() * COLORES_ESTRELLA.length)], d: r() * 8, t: 2.6 + r() * 5, anim: i % 3 === 0 };
     });
+    const des = Array.from({ length: 16 }, () => ({ x: 60 + r() * (W - 120), y: 40 + r() * (H - 80), s: 7 + r() * 9, col: COLORES_ESTRELLA[Math.floor(r() * 4)], d: r() * 6 }));
+    return { estrellas: est, destellos: des };
   }, []);
   return (
     <div className="psn-cosmos" aria-hidden="true">
-      {estrellas.map((e, i) => (
-        <i key={i} style={{ left: `${e.x}%`, top: `${e.y}%`, width: e.tam, height: e.tam, background: e.col, boxShadow: `0 0 ${e.tam * 4}px ${e.tam}px ${e.col}88`, animationDelay: `${e.d}s`, animationDuration: `${e.t}s` }} />
-      ))}
+      <div className="psn-nebulosa n1" />
+      <div className="psn-nebulosa n2" />
+      <div className="psn-nebulosa n3" />
+      <svg className="psn-capa" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice">
+        <g fill="none" stroke="#F3E9D2" strokeOpacity=".07" strokeWidth="1">
+          <ellipse cx="800" cy="1180" rx="1150" ry="520" />
+          <ellipse cx="800" cy="1180" rx="1500" ry="760" />
+          <ellipse cx="-80" cy="-120" rx="620" ry="380" transform="rotate(20 -80 -120)" />
+        </g>
+        {estrellas.map((s, i) => (
+          <circle key={i} className={s.anim ? "psn-tit" : ""} cx={s.x} cy={s.y} r={s.tam} fill={s.col} fillOpacity={s.tam > 1.5 ? 0.95 : 0.7} style={s.anim ? { animationDelay: `${s.d}s`, animationDuration: `${s.t}s` } : undefined} />
+        ))}
+        {destellos.map((s, i) => (
+          <g key={i} className="psn-tit" style={{ animationDelay: `${s.d}s`, animationDuration: "5s" }} transform={`translate(${s.x} ${s.y})`}>
+            <circle r={s.s * 0.9} fill={s.col} fillOpacity=".12" />
+            <path d={`M0 ${-s.s} C1 ${-s.s / 4} ${s.s / 4} -1 ${s.s} 0 C${s.s / 4} 1 1 ${s.s / 4} 0 ${s.s} C-1 ${s.s / 4} ${-s.s / 4} 1 ${-s.s} 0 C${-s.s / 4} -1 -1 ${-s.s / 4} 0 ${-s.s}Z`} fill={s.col} />
+          </g>
+        ))}
+        {CONSTELACIONES.map((c, i) => (
+          <g key={i} stroke="#FFD76A" strokeOpacity=".32" strokeWidth="1.1" fill="#FFE9A8">
+            {c.lineas.map(([a, b], k) => <line key={k} x1={c.pts[a][0]} y1={c.pts[a][1]} x2={c.pts[b][0]} y2={c.pts[b][1]} strokeDasharray="2 5" />)}
+            {c.pts.map(([x, y], k) => <circle key={k} cx={x} cy={y} r="2.8" stroke="none" fillOpacity=".9" />)}
+          </g>
+        ))}
+      </svg>
       <b className="psn-fugaz f1" />
       <b className="psn-fugaz f2" />
-      {PLANETAS.map((p) => (
-        <span key={p.id} className={`psn-planeta-obj ${p.cls}`} style={{ width: p.tam, height: p.tam }}>
-          <DibujoPlaneta id={p.id} />
+      {MEDALLONES.map((m) => (
+        <span key={m.id} className={`psn-medallon ${m.lado}`} style={{ top: `${m.y}%`, animationDelay: `${m.d}s` }}>
+          <MedallonObjeto id={m.id} />
         </span>
       ))}
     </div>
@@ -357,7 +408,7 @@ export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFu
       <ul className="psn-leyenda" aria-label="Perspectivas">
         {perspectivas.map((p) => (
           <li key={p.id} style={{ "--pc": p.color }}>
-            <img src={fotoAutor((AUTORES_POR_PERSPECTIVA[p.id] || ["freud"])[0])} alt="" width="34" height="34" loading="lazy" />
+            <Avatar slug={(AUTORES_POR_PERSPECTIVA[p.id] || ["freud"]).find((s) => AUTORES[s] && AUTORES[s].foto !== false) || "freud"} tam={34} />
             <span>{p.corto}</span>
           </li>
         ))}

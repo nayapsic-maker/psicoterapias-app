@@ -511,24 +511,34 @@ html[data-tema="oscuro"] ::selection { background: #FFC233; }
 .psn-cab-fila .psn-escena-lateral { flex: 0 1 300px; margin: 0 0 0 auto; }
 
 /* ============ Cosmos ============ */
-.psn-cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.psn-cosmos i { position: absolute; border-radius: 50%; opacity: 0.4; animation: psn-brilla 3s ease-in-out infinite; }
-@keyframes psn-brilla { 0%,100% { opacity: 0.25; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.3); } }
-.psn-fugaz { position: absolute; width: 130px; height: 2px; background: linear-gradient(90deg, transparent, #fff); border-radius: 2px; opacity: 0; transform: rotate(28deg); animation: psn-fugaz 11s linear infinite; }
-.psn-fugaz.f1 { left: 62%; top: 8%; }
-.psn-fugaz.f2 { left: 18%; top: 52%; animation-delay: 5.5s; animation-duration: 14s; }
-@keyframes psn-fugaz { 0%,88% { opacity: 0; transform: translate(0,0) rotate(28deg); } 90% { opacity: 1; } 100% { opacity: 0; transform: translate(220px, 120px) rotate(28deg); } }
-.psn-planeta-obj { position: absolute; filter: drop-shadow(0 0 22px #6f8bff66); animation: psn-flota-p 14s ease-in-out infinite; }
-.psn-planeta-obj svg { width: 100%; height: 100%; overflow: visible; }
-.psn-planeta-obj.p1 { left: 1.5%; top: 13%; }
-.psn-planeta-obj.p2 { right: 2%; top: 28%; animation-delay: -3s; animation-duration: 17s; }
-.psn-planeta-obj.p3 { left: 2.5%; top: 60%; animation-delay: -6s; animation-duration: 16s; }
-.psn-planeta-obj.p4 { right: 1.5%; top: 68%; animation-delay: -9s; }
-.psn-planeta-obj.p5 { right: 5%; top: 6%; animation-delay: -2s; animation-duration: 19s; }
-.psn-planeta-obj.p6 { left: 1%; top: 40%; animation-delay: -11s; animation-duration: 20s; }
-@keyframes psn-flota-p { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-22px) rotate(5deg); } }
-@media (max-width: 1100px) { .psn-planeta-obj.p3, .psn-planeta-obj.p4, .psn-planeta-obj.p6 { display: none; } .psn-planeta-obj { opacity: 0.55; } }
-@media (max-width: 720px) { .psn-planeta-obj { display: none; } }
+.psn-cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: linear-gradient(180deg, #0a1038 0%, #101a5a 40%, #1b2475 72%, #2b2a82 100%); }
+html[data-tema="oscuro"] .psn-cosmos { background: linear-gradient(180deg, #03051a 0%, #080f38 45%, #101654 80%, #1a1a5e 100%); }
+html[data-tema="alto-contraste"] .psn-cosmos { background: #000; }
+.psn-capa { position: absolute; inset: 0; width: 100%; height: 100%; }
+.psn-tit { animation: psn-brilla 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes psn-brilla { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
+.psn-nebulosa { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.5; mix-blend-mode: screen; animation: psn-deriva-n 70s ease-in-out infinite alternate; }
+.psn-nebulosa.n1 { width: 55vw; height: 45vh; left: -12vw; top: -8vh; background: radial-gradient(closest-side, #6a3fd0cc, transparent); }
+.psn-nebulosa.n2 { width: 50vw; height: 50vh; right: -10vw; top: 28vh; background: radial-gradient(closest-side, #129f9acc, transparent); animation-delay: -20s; }
+.psn-nebulosa.n3 { width: 60vw; height: 40vh; left: 20vw; bottom: -14vh; background: radial-gradient(closest-side, #d6477a99, transparent); animation-delay: -40s; }
+html[data-tema="oscuro"] .psn-nebulosa { opacity: 0.32; }
+html[data-tema="alto-contraste"] .psn-nebulosa { display: none; }
+@keyframes psn-deriva-n { from { transform: translate(0, 0) scale(1); } to { transform: translate(5vw, 3vh) scale(1.12); } }
+.psn-fugaz { position: absolute; width: 140px; height: 1.5px; background: linear-gradient(90deg, transparent, #fff); border-radius: 2px; opacity: 0; transform: rotate(26deg); animation: psn-fugaz 13s linear infinite; }
+.psn-fugaz.f1 { left: 58%; top: 9%; }
+.psn-fugaz.f2 { left: 14%; top: 54%; animation-delay: 6.5s; animation-duration: 17s; }
+@keyframes psn-fugaz { 0%,90% { opacity: 0; transform: translate(0,0) rotate(26deg); } 92% { opacity: 1; } 100% { opacity: 0; transform: translate(260px, 130px) rotate(26deg); } }
+/* Medallones: solo en los márgenes laterales, centrados en cada margen; ocultos si no caben sin tocar el texto. */
+.psn-medallon { position: absolute; width: 104px; height: 104px; filter: drop-shadow(0 0 18px #7d8dff55); animation: psn-flota-p 15s ease-in-out infinite; display: none; }
+.psn-medallon svg { width: 100%; height: 100%; }
+@keyframes psn-flota-p { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-14px) rotate(3deg); } }
+@media (min-width: 1380px) {
+  .psn-medallon { display: block; }
+  .psn-medallon.i { left: calc((100vw - 1120px) / 4 - 52px); }
+  .psn-medallon.d { right: calc((100vw - 1120px) / 4 - 52px); }
+}
+@media (min-width: 1700px) { .psn-medallon { width: 132px; height: 132px; } .psn-medallon.i { left: calc((100vw - 1120px) / 4 - 66px); } .psn-medallon.d { right: calc((100vw - 1120px) / 4 - 66px); } }
+.psq-hoja { max-width: 1120px !important; }
 #root { position: relative; z-index: 1; }
 
 /* ============ MODO OSCURO: correcciones de contraste ============ */
@@ -605,3 +615,39 @@ html[data-tema="oscuro"] .psn-emblema svg { color: #0A1236 !important; }
 .psn-miradas article.on .psn-mirada-cuerpo h5 { break-after: avoid; }
 .psn-miradas article.on .psn-tec li { break-inside: avoid; }
 @media (max-width: 720px) { .psn-tl-decada h4 small { background: var(--c-paper); padding: 0 6px; display: inline-block; margin-left: 4px; } }
+.psn-titulo { font-size: clamp(32px, 5.4vw, 64px) !important; }
+.psn-hero-top > * { min-width: 0; }
+
+.psn-mono { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; border: 2px solid var(--c-ink); color: #fff; font-family: var(--f-display); font-weight: 800; letter-spacing: -0.04em; flex: none; }
+html[data-tema="oscuro"] .psn-mono { color: #0A1236; border-color: #FFC233; }
+
+/* Casos ilustrados y debate ampliado */
+.psn-galeria-casos ul { gap: 12px 18px; }
+.psn-galeria-casos button { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 6px 12px 6px 6px; border: 2px solid var(--c-ink); border-radius: 999px; background: var(--c-paper); transition: transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s; }
+.psn-galeria-casos button:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--c-gold); }
+.psn-galeria-casos img { width: 56px; height: 56px; border-radius: 50%; border: 2.5px solid var(--c-ink); object-fit: cover; flex: none; }
+.psn-galeria-casos small { font: 500 11px var(--f-text); color: var(--c-inkSoft); }
+.psn-caso-ejemplos img { border-radius: 50%; vertical-align: middle; border: 1.5px solid var(--c-ink); margin-right: 4px; }
+.psn-caso-ejemplos button.on { background: var(--c-gold); color: #15183C; }
+.psn-caso-cab { display: flex; align-items: center; gap: 14px; margin: 14px 0 4px; padding: 10px 14px; border: 2px solid var(--c-ink); border-radius: 18px; background: var(--c-paper); }
+.psn-caso-cab img { border-radius: 50%; border: 3px solid var(--c-ink); object-fit: cover; flex: none; }
+.psn-caso-cab div { display: flex; flex-direction: column; gap: 3px; font-size: 13px; }
+.psn-caso-cab strong { font: 800 16px var(--f-display); }
+.psn-caso-cab span { color: var(--c-inkSoft); }
+.psn-contactos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.psn-contacto { border: 2px solid var(--c-ink); border-radius: 16px; padding: 10px 14px; background: var(--c-paper); font-size: 13px; }
+.psn-contacto.ok { border-left: 10px solid #1F8A68; }
+.psn-contacto.no { border-left: 10px solid #D9402A; }
+.psn-contacto h5 { margin: 0 0 6px; font: 800 12px var(--f-mono); text-transform: uppercase; }
+.psn-contacto > div { margin-bottom: 8px; }
+.psn-contacto p { margin: 3px 0; }
+.psn-nota { color: var(--c-inkSoft); font-size: 12.5px; }
+.psn-veredicto { border: 3px solid var(--c-ink); border-radius: 16px; padding: 12px 16px; background: var(--c-gold); color: #15183C; box-shadow: 4px 4px 0 var(--c-ink); }
+.psn-veredicto p { margin: 4px 0 0; font-size: 13.5px; }
+.psn-veredicto .psn-nota { color: #3a3560; }
+.psn-juicio { border: 2px dashed var(--c-ink); border-radius: 16px; padding: 12px 16px; display: grid; gap: 10px; }
+.psn-juicio > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.psn-juicio button { font: 600 12px var(--f-mono); border: 2px solid var(--c-ink); border-radius: 999px; padding: 6px 12px; background: var(--c-paper); color: var(--c-ink); cursor: pointer; }
+.psn-juicio button.on { background: var(--c-ink); color: var(--c-paper); }
+html[data-tema="oscuro"] .psn-juicio button.on { color: #0A1236; }
+html[data-tema="oscuro"] .psn-veredicto { background: #FFC233; box-shadow: 0 0 24px #FFC23366; border-color: #FFC233; }

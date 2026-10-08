@@ -175,9 +175,9 @@ const CAMPOS = [
   { k: "meta", t: "Qué espera de la terapia", ph: "Objetivos de la persona y cómo reconocería el cambio." },
 ];
 
-const CASOS = [
+export const CASOS = [
   {
-    t: "Marta, 34 años",
+    t: "Marta, 34 años", av: "marta", sub: "Ansiedad desde un ascenso",
     c: {
       motivo: "Ansiedad desde hace ocho meses, tras un ascenso. Duerme mal, evita las reuniones y se critica por «no estar a la altura». Tiene palpitaciones antes de presentar.",
       historia: "Su padre era muy exigente; siempre sintió que debía ganarse el cariño con logros. En la adolescencia tuvo un periodo de perfeccionismo con notas muy altas.",
@@ -187,7 +187,7 @@ const CASOS = [
     },
   },
   {
-    t: "Familia Rojas",
+    t: "Familia Rojas", av: "daniel", sub: "Adolescente que dejó el colegio",
     c: {
       motivo: "Los padres traen a Daniel, de 15 años, que dejó de ir al colegio y pasa el día en su habitación, jugando en línea. La madre habla por él y el padre casi no interviene.",
       historia: "Hace un año falleció el abuelo materno, con quien Daniel tenía mucho vínculo. Antes era buen alumno y tocaba la guitarra.",
@@ -197,7 +197,7 @@ const CASOS = [
     },
   },
   {
-    t: "Andrés, 47 años",
+    t: "Andrés, 47 años", av: "andres", sub: "Pérdida de empleo y vacío",
     c: {
       motivo: "Perdió su empleo hace seis meses. Siente vacío y falta de sentido, bebe más de lo habitual y repite que «ya nada importa». Duerme poco.",
       historia: "Siempre se definió por su trabajo. Se divorció hace tres años. Su padre falleció cuando tenía 20 y no pudo hablar de ello.",
@@ -206,12 +206,74 @@ const CASOS = [
       meta: "Quisiera entender «para qué vive» y recuperar el vínculo con sus hijos.",
     },
   },
+  {
+    t: "Lucía, 19 años", av: "lucia", sub: "Autoexigencia y atracones",
+    c: {
+      motivo: "Estudiante universitaria de segundo año. Desde hace seis meses tiene atracones nocturnos seguidos de culpa y de restricción al día siguiente. Se siente «a punto de explotar» en época de exámenes.",
+      historia: "Siempre fue la mejor de su clase y se sentía valorada por sus notas. A los 14 años hizo una dieta estricta tras un comentario sobre su cuerpo. No ha tenido tratamientos previos.",
+      contexto: "Vive en una residencia lejos de su familia. Habla a diario con su madre, que le pregunta por sus notas y su peso. Tiene pocas amistades en la ciudad nueva.",
+      recursos: "Es disciplinada, creativa (dibuja) y tiene una compañera de cuarto que la apoya.",
+      meta: "Quiere dejar de sentir que pierde el control con la comida y vivir los estudios con más calma.",
+    },
+  },
+  {
+    t: "Rosa, 68 años", av: "rosa", sub: "Duelo y soledad",
+    c: {
+      motivo: "Enviudó hace ocho meses. Llora con frecuencia, dejó de ir al club de lectura y dice que «ya no tiene a quién cuidar». Duerme mal y ha perdido el apetito.",
+      historia: "Estuvo casada 42 años y cuidó a su esposo durante una enfermedad larga. Fue maestra y se jubiló hace cinco años. Hace dos años perdió a su hermana.",
+      contexto: "Vive sola. Su hijo vive en otro país y la llama los domingos; una vecina la visita a veces. Se siente una carga para los demás.",
+      recursos: "Le gusta leer, tiene fe, recuerda con cariño muchas anécdotas de su vida y cuida un pequeño huerto.",
+      meta: "Quiere sentirse menos sola y encontrar algo que le dé sentido sin su esposo.",
+    },
+  },
 ];
+
+const BASE_IMG = (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.BASE_URL) || "/";
+export const fotoCaso = (av) => `${BASE_IMG}img/casos/${av}.jpg`;
+
+/* Galería de casos para practicar (cabecera de Protocolos y Técnicas). */
+export function GaleriaCasos() {
+  const abrir = (i) => window.dispatchEvent(new CustomEvent("psn-caso", { detail: i }));
+  return (
+    <aside className="psn-galeria psn-galeria-casos" aria-label="Casos para practicar">
+      <span className="psn-galeria-titulo">Casos para practicar · toca uno para leerlo desde las 7 perspectivas</span>
+      <ul>
+        {CASOS.map((c, i) => (
+          <li key={c.t}>
+            <button onClick={() => abrir(i)} title={`Abrir el caso: ${c.t}`}>
+              <img src={fotoCaso(c.av)} alt={`Ilustración de ${c.t}`} width="64" height="64" loading="lazy" />
+              <span>
+                <strong>{c.t}</strong>
+                <small>{c.sub}</small>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
 
 export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela, idDe = () => null }) {
   const vacio = { motivo: "", historia: "", contexto: "", recursos: "", meta: "" };
   const [campos, setCampos] = useState(vacio);
   const [abierto, setAbierto] = useState(null);
+  const [activo, setActivo] = useState(null);
+  const ref = React.useRef(null);
+  useEffect(() => {
+    const h = (ev) => {
+      const c = CASOS[ev.detail];
+      if (!c) return;
+      setCampos(c.c);
+      setActivo(ev.detail);
+      setAbierto(null);
+      const d = ref.current && ref.current.closest("details");
+      if (d) d.open = true;
+      setTimeout(() => ref.current && ref.current.scrollIntoView({ behavior: "smooth", block: "start" }), 150);
+    };
+    window.addEventListener("psn-caso", h);
+    return () => window.removeEventListener("psn-caso", h);
+  }, []);
   const texto = Object.values(campos).join(" ");
   const q = norm(texto);
   const temas = Object.entries(TEMAS).filter(([, ks]) => ks.some((k) => q.includes(k))).map(([t]) => t);
@@ -231,17 +293,17 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
     return lista.sort((a, b) => b.encaja.length - a.encaja.length).slice(0, 5);
   };
   return (
-    <section className="psn-caso">
+    <section className="psn-caso" ref={ref}>
       <p className="psn-intro">
         Escribe o elige un caso (ficticio o anonimizado) y completa los campos que quieras: cuanto más material, más fino el análisis. La app lo lee desde cada una de las siete perspectivas: qué problema ve, cómo lo concibe, qué preguntaría, qué técnicas usaría y por qué, y qué escuelas revisar primero.
       </p>
       <div className="psn-caso-ejemplos">
-        {CASOS.map((c) => (
-          <button key={c.t} onClick={() => setCampos(c.c)}>
-            Ejemplo: {c.t}
+        {CASOS.map((c, i) => (
+          <button key={c.t} className={activo === i ? "on" : ""} onClick={() => { setCampos(c.c); setActivo(i); setAbierto(null); }}>
+            <img src={fotoCaso(c.av)} alt="" width="26" height="26" /> {c.t}
           </button>
         ))}
-        <button onClick={() => { setCampos(vacio); setAbierto(null); }}>Limpiar</button>
+        <button onClick={() => { setCampos(vacio); setAbierto(null); setActivo(null); }}>Limpiar</button>
       </div>
       <div className="psn-caso-campos">
         {CAMPOS.map((c) => (
@@ -258,6 +320,15 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
       )}
       {completos >= 1 && texto.trim().length > 25 && (
         <>
+          {activo !== null && CASOS[activo] && (
+            <div className="psn-caso-cab">
+              <img src={fotoCaso(CASOS[activo].av)} alt={`Ilustración de ${CASOS[activo].t}`} width="84" height="84" />
+              <div>
+                <strong>{CASOS[activo].t}</strong>
+                <span>{CASOS[activo].sub}</span>
+              </div>
+            </div>
+          )}
           <h5 className="psn-sub-h">Un mismo caso, siete problemas distintos</h5>
           <ul className="psn-resumen">
             {perspectivas.map((p) => (MIRADAS[p.id] ? (
@@ -609,15 +680,55 @@ function dicho(e, k) {
   return t.length > 520 ? t.slice(0, 500).replace(/\s+\S*$/, "") + "…" : t;
 }
 
+const REL_CONTACTO = ["equivalente aproximado", "análogo funcional", "solapamiento parcial"];
+const REL_CHOQUE = ["falso amigo", "inconmensurable", "reinterpretación asimilativa"];
+
+/* Qué haría una escuela con un caso: técnicas y presentaciones de su ficha que mejor encajan con el texto. */
+function conCaso(e, caso) {
+  const q = norm(Object.values(caso.c).join(" "));
+  const ws = [...new Set(q.split(" ").filter((w) => w.length > 4))];
+  const puntua = (t) => ws.reduce((s, w) => s + (norm(t).includes(w.slice(0, 6)) ? 1 : 0), 0);
+  const lista = (v) => (Array.isArray(v) ? v.filter((x) => typeof x === "string") : []);
+  const tec = lista(e.tecnicas).map((t) => ({ t, sc: puntua(t) })).sort((a, b) => b.sc - a.sc);
+  const pres = lista(e.presentaciones).map((t) => ({ t, sc: puntua(t) })).sort((a, b) => b.sc - a.sc);
+  return {
+    tecnicas: tec.slice(0, 3).map((x) => oraciones(x.t, 150).replace(/[.]+$/, "")),
+    presentaciones: pres.filter((x) => x.sc > 0).slice(0, 2).map((x) => oraciones(x.t, 120).replace(/[.]+$/, "")),
+    encaja: tec.some((x) => x.sc > 0),
+  };
+}
+
 export function DebateSimulado({ escuelas, enlaces, colorDe }) {
   const ordenadas = useMemo(() => [...escuelas].sort((a, b) => a.perspectiva.localeCompare(b.perspectiva) || a.nombre.localeCompare(b.nombre)), [escuelas]);
   const [ida, setIda] = useState("");
   const [idb, setIdb] = useState("");
   const [tema, setTema] = useState("psicopatologia");
   const [completa, setCompleta] = useState(false);
+  const [idCaso, setIdCaso] = useState("");
+  const [voto, setVoto] = useState("");
+  const [nota, setNota] = useState("");
   const A = escuelas.find((e) => e.id === ida), B = escuelas.find((e) => e.id === idb);
+  const clave = `psiconautas:debate:${ida}|${idb}`;
+  useEffect(() => {
+    try {
+      const g = JSON.parse(localStorage.getItem(clave) || "{}");
+      setVoto(g.voto || "");
+      setNota(g.nota || "");
+    } catch { setVoto(""); setNota(""); }
+  }, [clave]);
+  const guarda = (v, n) => { try { localStorage.setItem(clave, JSON.stringify({ voto: v, nota: n })); } catch { /* sin almacenamiento */ } };
   const puentes = A && B ? enlaces.filter((l) => (l.conceptoA.escuela === A.id && l.conceptoB.escuela === B.id) || (l.conceptoA.escuela === B.id && l.conceptoB.escuela === A.id)) : [];
+  const contacto = puentes.filter((l) => REL_CONTACTO.includes(l.relacion));
+  const choque = puentes.filter((l) => REL_CHOQUE.includes(l.relacion));
   const resumenRel = puentes.reduce((m, l) => ((m[l.relacion] = (m[l.relacion] || 0) + 1), m), {});
+  const caso = idCaso !== "" ? CASOS[Number(idCaso)] : null;
+  const veredicto = !A || !B ? "" : puentes.length === 0
+    ? "Sin puentes documentados: probablemente comparten poco vocabulario y habría que construir la traducción desde cero."
+    : choque.some((l) => l.relacion === "inconmensurable")
+      ? "Distancia alta: al menos un punto es inconmensurable, es decir, no hay un criterio común para decidir quién tiene razón; conviene tratarlas como lenguajes distintos."
+      : choque.length > contacto.length
+        ? "Más choques que contactos: comparten palabras pero a menudo significan cosas distintas (falsos amigos o reinterpretaciones)."
+        : "Convergencia razonable: hay equivalencias o solapamientos que permiten traducir con pocas pérdidas, aunque cada nota documenta lo que se pierde.";
   const elige = (valor, set) => (
     <select value={valor} onChange={(e) => set(e.target.value)}>
       <option value="">— elige una escuela —</option>
@@ -628,29 +739,44 @@ export function DebateSimulado({ escuelas, enlaces, colorDe }) {
       ))}
     </select>
   );
-  const Voz = ({ e, lado, k }) => {
+  const Cabecera = ({ e }) => {
     const s = slugsDeAutores(e.autores)[0];
-    const t = dicho(e, k);
     return (
-      <div className={`psn-voz ${lado}`} style={{ "--pc": colorDe(e.perspectiva) }}>
-        <div className="psn-voz-id">
-          {s ? <Mini slug={s} tam={56} /> : <i className="psn-tl-punto" />}
-          <strong>{e.nombre}</strong>
-          <small>{e.perspectiva}</small>
-        </div>
-        <blockquote>{t || "Esta ficha aún no desarrolla este punto."}</blockquote>
+      <div className="psn-voz-id">
+        {s ? <Mini slug={s} tam={56} color={colorDe(e.perspectiva)} /> : <i className="psn-tl-punto" />}
+        <strong>{e.nombre}</strong>
+        <small>{e.perspectiva}</small>
       </div>
     );
   };
+  const Voz = ({ e, lado, k }) => (
+    <div className={`psn-voz ${lado}`} style={{ "--pc": colorDe(e.perspectiva) }}>
+      <Cabecera e={e} />
+      <blockquote>{dicho(e, k) || "Esta ficha aún no desarrolla este punto."}</blockquote>
+    </div>
+  );
   const rondas = completa ? TEMAS_DEBATE : TEMAS_DEBATE.filter((x) => x.k === tema);
   const preguntas = A && B ? [
     `¿Qué tendría que concederle ${A.nombre} a ${B.nombre} para que la conversación fuera posible, y qué perdería al hacerlo?`,
-    `Si una misma persona consultara a ambas escuelas, ¿qué cambiaría en lo que cada una consideraría «el problema»?`,
-    `¿Qué evidencia o experiencia haría que alguna de las dos revisara su postura?`,
+    "Si una misma persona consultara a ambas escuelas, ¿qué cambiaría en lo que cada una considera «el problema»?",
+    "¿Qué evidencia o experiencia haría que alguna de las dos revisara su postura?",
   ] : [];
+  const Caja = ({ titulo, lista, cls }) => (
+    <div className={`psn-contacto ${cls}`}>
+      <h5>{titulo} ({lista.length})</h5>
+      {lista.length === 0 && <p className="psn-vacio">Ninguno documentado.</p>}
+      {lista.slice(0, 3).map((l) => (
+        <div key={l.id}>
+          <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#514D74" }}>{l.relacion}</span>
+          <p><em>{l.conceptoA.nombre}</em> ↔ <em>{l.conceptoB.nombre}</em></p>
+          <p className="psn-nota">{oraciones(l.nota, 300)}</p>
+        </div>
+      ))}
+    </div>
+  );
   return (
     <section className="psn-debate">
-      <p className="psn-intro">Elige dos escuelas y un tema (o una ronda completa). La app arma el cruce con lo que dice la ficha de cada una —sin inventar argumentos—, añade los puentes que el diccionario documenta entre ambas y cierra con preguntas para pensar.</p>
+      <p className="psn-intro">Elige dos escuelas y un tema (o una ronda completa de ocho). La app arma el cruce con lo que dice la ficha de cada una —sin inventar argumentos—, separa los puntos de contacto de los de choque según el diccionario traslacional, puede llevar el debate a un caso concreto y cierra con un veredicto del moderador y tu propio juicio.</p>
       <div className="psn-debate-sel">
         <label>Escuela A {elige(ida, setIda)}</label>
         <label>Escuela B {elige(idb, setIdb)}</label>
@@ -658,6 +784,13 @@ export function DebateSimulado({ escuelas, enlaces, colorDe }) {
           Tema
           <select value={tema} onChange={(e) => setTema(e.target.value)} disabled={completa}>
             {TEMAS_DEBATE.map((x) => <option key={x.k} value={x.k}>{x.t}</option>)}
+          </select>
+        </label>
+        <label>
+          Caso en disputa (opcional)
+          <select value={idCaso} onChange={(e) => setIdCaso(e.target.value)}>
+            <option value="">— sin caso —</option>
+            {CASOS.map((c, i) => <option key={c.t} value={i}>{c.t} · {c.sub}</option>)}
           </select>
         </label>
         <label className="psn-check">
@@ -674,22 +807,51 @@ export function DebateSimulado({ escuelas, enlaces, colorDe }) {
               <Voz e={B} lado="der" k={r.k} />
             </React.Fragment>
           ))}
-          <p className="psn-mod">
-            <b>Qué dice el diccionario:</b>{" "}
-            {puentes.length
-              ? `hay ${puentes.length} ${puentes.length === 1 ? "puente documentado" : "puentes documentados"} entre ambas (${Object.entries(resumenRel).map(([r, n]) => `${n} ${r}`).join(", ")}).`
-              : "no hay puentes documentados entre estas dos escuelas; eso no impide trazarlos, pero advierte que quizá no comparten vocabulario."}
-          </p>
-          {puentes.slice(0, 4).map((l) => (
-            <div key={l.id} className="psn-voz-puente">
-              <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#514D74" }}>{l.relacion}</span>
-              <p><em>{l.conceptoA.nombre}</em> ↔ <em>{l.conceptoB.nombre}</em></p>
-              <p>{oraciones(l.nota, 360)}</p>
-            </div>
-          ))}
+          <p className="psn-ronda">Puntos de contacto y de choque</p>
+          <div className="psn-contactos">
+            <Caja titulo="Contacto: se puede traducir" lista={contacto} cls="ok" />
+            <Caja titulo="Choque: cuidado al traducir" lista={choque} cls="no" />
+          </div>
+          {puentes.length > 0 && <p className="psn-mod">Total: {puentes.length} {puentes.length === 1 ? "puente" : "puentes"} ({Object.entries(resumenRel).map(([r, n]) => `${n} ${r}`).join(", ")}).</p>}
+          {caso && (
+            <>
+              <p className="psn-ronda">Caso en disputa · {caso.t}</p>
+              <div className="psn-caso-cab">
+                <img src={fotoCaso(caso.av)} alt={`Ilustración de ${caso.t}`} width="72" height="72" />
+                <div><strong>{caso.t}</strong><span>{caso.c.motivo}</span></div>
+              </div>
+              <div className="psn-contactos">
+                {[A, B].map((e) => {
+                  const r = conCaso(e, caso);
+                  return (
+                    <div key={e.id} className="psn-contacto" style={{ "--pc": colorDe(e.perspectiva) }}>
+                      <h5>{e.nombre}</h5>
+                      {r.presentaciones.length > 0 && <p className="psn-nota"><b>Presentaciones que reconocería:</b> {r.presentaciones.join("; ")}.</p>}
+                      <p className="psn-nota"><b>{r.encaja ? "Técnicas de su ficha que encajan con el caso:" : "Técnicas centrales de su ficha (ninguna coincide claramente con el caso):"}</b> {r.tecnicas.join("; ")}.</p>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="psn-aviso">Cruce automático entre el texto del caso y las técnicas y presentaciones registradas en cada ficha; no es una indicación clínica.</p>
+            </>
+          )}
+          <div className="psn-veredicto">
+            <b>Veredicto del moderador</b>
+            <p>{veredicto}</p>
+            <p className="psn-nota">Criterios de verdad: {A.nombre} → «{oraciones(A.criterioVerdad, 110).replace(/[.]+$/, "")}»; {B.nombre} → «{oraciones(B.criterioVerdad, 110).replace(/[.]+$/, "")}».</p>
+          </div>
           <div className="psn-preguntas">
             <b>Para pensar</b>
             <ol>{preguntas.map((x) => <li key={x}>{x}</li>)}</ol>
+          </div>
+          <div className="psn-juicio">
+            <b>Tu juicio</b>
+            <div role="radiogroup" aria-label="¿Quién te convenció?">
+              {[["A", A.nombre], ["B", B.nombre], ["ambas", "Ambas, en distintos planos"], ["ninguna", "Ninguna todavía"]].map(([v, t]) => (
+                <button key={v} className={voto === v ? "on" : ""} onClick={() => { setVoto(v); guarda(v, nota); }}>{t}</button>
+              ))}
+            </div>
+            <textarea rows={3} value={nota} onChange={(e) => { setNota(e.target.value); guarda(voto, e.target.value); }} placeholder="¿Por qué? Anota aquí tu razonamiento (se guarda solo en este navegador)…" aria-label="Razonamiento del debate" />
           </div>
         </div>
       ) : (
