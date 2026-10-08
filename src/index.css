@@ -751,3 +751,18 @@ html[data-tema="oscuro"] .psn-examen fieldset button.sel { color: #0A1236; }
 .psn-glos-ok { border-top: 1px dashed var(--pc) !important; color: var(--c-ink) !important; }
 .psn-glos-hueco { font-style: italic; opacity: .75; }
 .psn-glos button { margin-left: 6px; font: 600 10px var(--f-mono); background: none; border: 1px solid var(--pc); color: var(--pc); border-radius: 999px; padding: 1px 8px; cursor: pointer; }
+
+/* Detección de temas en el caso */
+.psn-temas{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin:10px 0}
+.psn-temas>span:first-child{font-weight:600;font-size:.88rem}
+.psn-temas .psn-chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:0;padding:4px 10px;border-radius:12px}
+.psn-temas .psn-chip em{font-style:normal;font-size:.72rem;opacity:.72;margin-top:-1px}
+.psn-temas small{flex-basis:100%;opacity:.8;font-size:.8rem}
+.psn-temas-vacio{font-size:.88rem;opacity:.85}
+.psn-riesgo{border:1px solid #c0392b;background:rgba(192,57,43,.08);border-radius:10px;padding:10px 14px;margin:10px 0}
+.psn-riesgo ul{margin:6px 0 0 18px;padding:0;font-size:.86rem}
+.psn-conc{list-style:none;margin:6px 0 10px;padding:0;display:grid;gap:8px}
+.psn-conc li{display:grid;gap:2px;border-left:3px solid var(--pc,#888);padding:2px 0 2px 10px}
+.psn-conc li button{all:unset;cursor:pointer;font-weight:600;text-decoration:underline dotted;text-underline-offset:3px}
+.psn-conc li em{font-style:normal;font-size:.72rem;opacity:.7}
+.psn-conc li span{font-size:.84rem;opacity:.92}

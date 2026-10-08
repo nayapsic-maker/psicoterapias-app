@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
+import { analiza, semejantes, RIESGOS } from "./Deteccion.js";
 import { slugsDeAutores, AUTORES } from "./Figuras.jsx";
 import { norm, unir, oraciones, Mini, COLOR_REL, barajar, recortar } from "./Funciones.jsx";
 
@@ -254,7 +255,7 @@ export function GaleriaCasos() {
   );
 }
 
-export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela, idDe = () => null, modoEstudio = false }) {
+export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela, idDe = () => null, modoEstudio = false, nudos = [], glosario = [] }) {
   const vacio = { motivo: "", historia: "", contexto: "", recursos: "", meta: "" };
   const [campos, setCampos] = useState(vacio);
   const [abierto, setAbierto] = useState(null);
@@ -276,7 +277,23 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
   }, []);
   const texto = Object.values(campos).join(" ");
   const q = norm(texto);
-  const temas = Object.entries(TEMAS).filter(([, ks]) => ks.some((k) => q.includes(k))).map(([t]) => t);
+  const det = useMemo(() => analiza(texto), [texto]);
+  const temasBase = Object.entries(TEMAS).filter(([, ks]) => ks.some((k) => q.includes(k))).map(([t]) => t);
+  const temas = [...new Set([...temasBase, ...det.macros])];
+  const porEscuela = useMemo(() => Object.fromEntries(escuelas.map((e) => [e.id, e])), [escuelas]);
+  const conceptosDe = (p) => {
+    const out = [];
+    det.nociones.slice(0, 6).forEach((n) => {
+      const nodo = nudos.find((x) => x.id === NOCION_NODO[n]);
+      const y = nodo && nodo.porPerspectiva.find((z) => idDe(z.perspectiva) === p.id);
+      if (y && !out.some((o) => o.termino === y.termino)) out.push({ ...y, nocion: nodo.nombre });
+    });
+    if (out.length < 2 && glosario.length) {
+      semejantes(texto, glosario, (g) => { const E = porEscuela[g.escuela]; return E && idDe(E.perspectiva) === p.id && g.tipo !== "escuela"; }, 3 - out.length)
+        .forEach((g) => { if (!out.some((o) => o.termino === g.termino)) out.push({ escuela: g.escuela, termino: g.termino, definicion: g.definicion, nocion: "semejanza con tu relato" }); });
+    }
+    return out.slice(0, 4);
+  };
   const palabras = [...new Set(q.split(" ").filter((w) => w.length > 4))];
   const completos = Object.values(campos).filter((v) => v.trim().length > 10).length;
   const sugerencias = (p) =>
@@ -313,9 +330,29 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
           </label>
         ))}
       </div>
-      {temas.length > 0 && (
-        <p className="psn-temas">
-          Temas detectados: {temas.map((t) => <span key={t} className="psn-chip">{t}</span>)}
+      {det.riesgos.length > 0 && (
+        <div className="psn-riesgo" role="alert">
+          <strong>Señales de riesgo en el texto</strong>
+          <ul>{det.riesgos.map((r) => <li key={r}>{RIESGOS[r]}</li>)}</ul>
+        </div>
+      )}
+      {det.temas.length > 0 && (
+        <div className="psn-temas">
+          <span>Lo que se detectó en tu texto:</span>
+          {det.temas.slice(0, 12).map((t) => (
+            <span key={t.id} className="psn-chip" title={"Palabras: " + t.evidencia.join(", ")}>
+              {t.t}
+              <em>{t.evidencia.slice(0, 2).join(" · ")}</em>
+            </span>
+          ))}
+          {det.negados.length > 0 && (
+            <small>El texto niega o descarta: {det.negados.map((n) => n.t.toLowerCase()).join(", ")}.</small>
+          )}
+        </div>
+      )}
+      {det.temas.length === 0 && texto.trim().length > 80 && (
+        <p className="psn-temas psn-temas-vacio">
+          No reconocí temas clínicos habituales en este relato. Aun así, abajo verás conceptos del diccionario que se parecen a tus palabras; si añades síntomas, vínculos, hechos recientes o contexto, el análisis se afina.
         </p>
       )}
       {completos >= 1 && texto.trim().length > 25 && (
@@ -356,6 +393,20 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
                       <p>{m.concepcion}</p>
                       <h5>Rol del terapeuta</h5>
                       <p>{m.rol}</p>
+                      {conceptosDe(p).length > 0 && (
+                        <>
+                          <h5>Conceptos de esta perspectiva que dialogan con tu caso</h5>
+                          <ul className="psn-conc">
+                            {conceptosDe(p).map((c) => (
+                              <li key={c.termino}>
+                                <button onClick={() => onIrAEscuela(c.escuela)} title="Abrir la escuela">{c.termino}</button>
+                                <em>{c.nocion}</em>
+                                <span>{String(c.definicion).split(" (")[0].slice(0, 170)}{String(c.definicion).length > 170 ? "…" : ""}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
                       <h5>Preguntas que haría</h5>
                       <ul>{m.preguntas.map((x) => <li key={x}>{x}</li>)}</ul>
                       <h5>Técnicas que usaría, y por qué</h5>

@@ -21695,7 +21695,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrA
       <GaleriaCasos />
       <details className="psn-detalles">
         <summary>Caso clínico en 7 miradas <small>— un mismo caso, leído desde cada perspectiva</small></summary>
-        <CasoSieteMiradas modoEstudio={modoEstudio} idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} escuelas={escuelas} perspectivas={FUNDAMENTOS_PERSPECTIVAS} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
+        <CasoSieteMiradas nudos={CONCEPTOS_TRANSVERSALES} glosario={GLOSARIO} modoEstudio={modoEstudio} idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} escuelas={escuelas} perspectivas={FUNDAMENTOS_PERSPECTIVAS} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
       </details>
 
       {/* Banda fija con la distinción operativa, siempre visible al entrar
