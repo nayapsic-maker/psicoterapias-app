@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { LineaTiempoGlobal, MapaRed, CasoSieteMiradas, TraductorClinico, DebateSimulado, QuizEscuela, RetoRetratos } from "./Funciones.jsx";
-import { HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, Escena, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato } from "./Figuras.jsx";
-import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy, Sparkles } from "lucide-react";
+import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos } from "./Funciones.jsx";
+import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso } from "./Funciones2.jsx";
+import { LogoPsiconautas, HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato } from "./Figuras.jsx";
+import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "lucide-react";
 
 /* ============================================================
    PALETA Y TOKENS
@@ -73,8 +74,12 @@ function aplicarVarsTema(nombre) {
     r.style.setProperty("--canvas", nombre === "oscuro" ? "#070C24" : nombre === "alto-contraste" ? "#000000" : "#0E1B4D");
     r.style.setProperty("--sombra", nombre === "oscuro" ? "#FFB62E" : nombre === "alto-contraste" ? "#FFD400" : "#E9A100");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
+    // En modo oscuro los colores de perspectiva se aclaran para conservar contraste sobre fondo azul noche.
+    if (typeof PERSPECTIVA_COLOR !== "undefined") Object.assign(PERSPECTIVA_COLOR, nombre === "oscuro" ? PERSP_COLOR_OSCURO : PERSP_COLOR_CLARO);
   } catch (e) {}
 }
+const PERSP_COLOR_CLARO = { "Humanista-existencial": "#E39B00", "Psicodinámica": "#D6275A", "Sistémica": "#2E6BFF", "Sistémica y familiar": "#2E6BFF", "Conductual": "#0E9F6E", "Cognitivo-Conductual": "#E8541A", "Integradora": "#8B4DF0", "Integradora y ecléctica": "#8B4DF0", "Transpersonal": "#0FA3B8" };
+const PERSP_COLOR_OSCURO = { "Humanista-existencial": "#FFC233", "Psicodinámica": "#FF7A98", "Sistémica": "#7FA8FF", "Sistémica y familiar": "#7FA8FF", "Conductual": "#4FDBA8", "Cognitivo-Conductual": "#FF9566", "Integradora": "#BE98FF", "Integradora y ecléctica": "#BE98FF", "Transpersonal": "#4FD9EE" };
 if (typeof document !== "undefined") aplicarVarsTema("claro");
 
 /* Paleta reservada para ESTADO DEL SISTEMA (íntegro / advertencia / error),
@@ -17938,6 +17943,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
       <CintaEscuelas items={escuelas.map((e) => ({ nombre: e.nombre, color: PERSPECTIVA_COLOR[e.perspectiva] }))} />
       <CreditosFotos />
       {modoEstudio && <RetoRetratos />}
+      {modoEstudio && <TarjetasRepaso glosario={GLOSARIO} escuelas={escuelas} colorDe={(p) => PERSPECTIVA_COLOR[p]} />}
 
       <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20, marginTop: 16, marginBottom: 20 }}>
         <TextoConCitas
@@ -18375,7 +18381,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
     <div style={{ minHeight: "60vh" }}>
       <Cabecera
         icono={<Scale size={18} />}
-        titulo="Comparar, perspectiva por perspectiva" autores={["freud","skinner","rogers","satir","beck"]} tituloAutores="Escuelas en diálogo" escena="balanza"
+        titulo="Comparar, perspectiva por perspectiva" autores={["freud","skinner","rogers","satir","beck"]} tituloAutores="Escuelas en diálogo"
         subtitulo="Comparación campo por campo entre perspectivas completas o escuelas seleccionadas, conservando en cada columna el vocabulario propio de su marco teórico."
       />
       <details className="psn-detalles">
@@ -18761,7 +18767,6 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
         colorAcento={PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre]}
         autores={AUTORES_POR_PERSPECTIVA[perspectivaId]}
         tituloAutores="Voces de esta perspectiva"
-        escena={ESCENA_POR_PERSPECTIVA[perspectivaId]}
       />
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "16px 0 20px" }}>
@@ -19802,13 +19807,11 @@ function SelloPerspectiva({ color }) {
   );
 }
 
-const ESCENAS = Object.fromEntries(["sesion", "grupo", "balanza", "puente", "divan", "meditacion", "debate"].map((n) => [n, () => <Escena nombre={n} />]));
-const ESCENA_POR_PERSPECTIVA = { psicodinamica: "divan", humanista: "meditacion", sistemica: "grupo" };
 function nombresPerspectivas(escuelas) {
   const orden = FUNDAMENTOS_PERSPECTIVAS.map((p) => p.id);
   return [...new Set(escuelas.map((e) => e.perspectiva))].sort((x, y) => orden.indexOf(PERSPECTIVA_ID_POR_NOMBRE[x]) - orden.indexOf(PERSPECTIVA_ID_POR_NOMBRE[y]));
 }
-function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutores, escena }) {
+function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutores }) {
   // El filete bajo el título: un solo color cuando la pantalla pertenece a
   // una perspectiva concreta (colorAcento), o un degradado con las 7
   // perspectivas cuando el módulo las mira todas a la vez — un mismo
@@ -19823,10 +19826,9 @@ function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutore
       </div>
       {subtitulo && <p style={{ fontSize: 13, color: COLORS.inkSoft, marginTop: 7, maxWidth: 760, lineHeight: 1.55, fontFamily: "var(--f-text)" }}>{subtitulo}</p>}
       <div style={{ height: 3, borderRadius: 2, marginTop: 14, background: colorAcento || gradienteSiete, opacity: colorAcento ? 0.85 : 0.55, transition: "background 0.4s ease" }} />
-      {(autores || (escena && ESCENAS[escena])) && (
+      {autores && (
         <div className="psn-cab-fila">
-          {autores && <GaleriaAutores slugs={autores} color={colorAcento} titulo={tituloAutores} />}
-          {escena && ESCENAS[escena] && <div className="psn-escena-lateral">{ESCENAS[escena]()}</div>}
+          <GaleriaAutores slugs={autores} color={colorAcento} titulo={tituloAutores} />
         </div>
       )}
     </div>
@@ -21412,7 +21414,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrA
     <div>
       <Cabecera
         icono={<ClipboardList size={18} />}
-        titulo="Protocolos y Técnicas" autores={["milton","ellis","perls"]} tituloAutores="Creadores de técnicas" escena="sesion"
+        titulo="Protocolos y Técnicas" autores={["milton","ellis","perls"]} tituloAutores="Creadores de técnicas"
         subtitulo="Protocolos completos y técnicas puntuales, con pasos interactivos, objetivo clínico clasificado y comparación de hasta tres a la vez."
       />
       <details className="psn-detalles">
@@ -22222,12 +22224,12 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
     <div>
       <Cabecera
         icono={<Languages size={18} />}
-        titulo="Diccionario metateórico y traslacional" escena="puente"
+        titulo="Diccionario metateórico y traslacional"
         subtitulo="Equivalencias, analogías, falsos amigos e inconmensurabilidades entre escuelas: cada enlace documenta un puente conceptual con pérdidas, nunca una identidad."
       />
       <details className="psn-detalles">
         <summary>Traductor de lenguaje clínico <small>— un término, siete vocabularios</small></summary>
-        <TraductorClinico escuelas={escuelas} glosario={GLOSARIO} enlaces={enlaces} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} perspectivas={nombresPerspectivas(escuelas)} />
+        <TraductorClinico perspectivasFund={FUNDAMENTOS_PERSPECTIVAS} escuelas={escuelas} glosario={GLOSARIO} enlaces={enlaces} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} perspectivas={nombresPerspectivas(escuelas)} />
       </details>
 
       <div style={{ marginTop: 12, marginBottom: 4 }}>
@@ -23702,7 +23704,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
           cifras y controles avanzados ocultos detrás de desplegables para
           no competir visualmente con el contenido. */}
       <div className="psq-cabecera" style={{ background: COLORS.primaryDark, padding: "14px clamp(14px, 4vw, 24px)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", rowGap: 10 }}>
-        <Sparkles className="psq-flotar" color="rgba(255,255,255,0.9)" size={19} strokeWidth={1.75} style={{ flexShrink: 0 }} />
+        <LogoPsiconautas size={30} className="psq-flotar" />
         <button
           onClick={() => setStatsAbiertas((v) => !v)}
           aria-expanded={statsAbiertas}

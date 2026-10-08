@@ -1,5 +1,5 @@
 // Retratos: Wikimedia Commons (licencias libres). Datos generados; créditos visibles en la app.
-// s = síntesis (redacción propia); q/qf = cita textual y obra.
+// s = síntesis (redacción propia); q/qf = cita textual verificada en la biblioteca y su fuente.
 export const AUTORES = {
  "freud": {
   "n": "Sigmund Freud",
@@ -8,8 +8,8 @@ export const AUTORES = {
   "l": "Public domain",
   "f": "Max Halberstadt",
   "s": "Lo reprimido gobierna en silencio la vida consciente; hablarlo con otro lo vuelve elaborable.",
-  "q": "Donde era Ello, debe devenir Yo.",
-  "qf": "Nuevas conferencias de introducción al psicoanálisis (1933), conf. 31"
+  "q": "Donde Ello era, Yo debo devenir.",
+  "qf": "Nuevas conferencias de introducción al psicoanálisis (1933), conf. 31, en Obras completas, vol. 22, Amorrortu, p. 74"
  },
  "jung": {
   "n": "Carl G. Jung",
@@ -17,9 +17,7 @@ export const AUTORES = {
   "r": "Psicología analítica",
   "l": "Dominio público (ETH-Bibliothek)",
   "f": "ETH-Bibliothek",
-  "s": "El inconsciente colectivo y los arquetipos ofrecen un camino de individuación a lo largo de la vida.",
-  "q": "Quien mira hacia fuera sueña; quien mira hacia dentro despierta.",
-  "qf": "Carta a Fanny Bowditch (1916)"
+  "s": "El inconsciente colectivo y los arquetipos ofrecen un camino de individuación a lo largo de la vida."
  },
  "adler": {
   "n": "Alfred Adler",
@@ -43,8 +41,8 @@ export const AUTORES = {
   "l": "CC BY 2.5",
   "f": "The original uploader was Didius at Dutch Wikipedia.",
   "s": "Las condiciones de aceptación, empatía y congruencia del terapeuta liberan la tendencia actualizante.",
-  "q": "La curiosa paradoja es que, cuando me acepto tal como soy, entonces puedo cambiar.",
-  "qf": "El proceso de convertirse en persona (1961)"
+  "q": "Paradójicamente, cuando me acepto como soy, puedo modificarme.",
+  "qf": "El proceso de convertirse en persona (1961), cap. 1 «Este soy yo» (ed. Paidós, 1992)"
  },
  "maslow": {
   "n": "Abraham Maslow",
@@ -52,9 +50,7 @@ export const AUTORES = {
   "r": "Psicología humanista",
   "l": "Public domain",
   "f": "William Carter",
-  "s": "La salud psicológica se orienta a la autorrealización, no solo a la ausencia de síntoma.",
-  "q": "Lo que un hombre puede ser, debe serlo.",
-  "qf": "Motivación y personalidad (1954)"
+  "s": "La salud psicológica se orienta a la autorrealización, no solo a la ausencia de síntoma."
  },
  "frankl": {
   "n": "Viktor Frankl",
@@ -62,9 +58,7 @@ export const AUTORES = {
   "r": "Logoterapia",
   "l": "CC BY-SA 3.0 de",
   "f": "Prof. Dr. Franz Vesely",
-  "s": "La principal fuerza motivacional es la voluntad de sentido, incluso ante el sufrimiento inevitable.",
-  "q": "Cuando ya no podemos cambiar una situación, el reto es cambiarnos a nosotros mismos.",
-  "qf": "El hombre en busca de sentido (1946)"
+  "s": "La principal fuerza motivacional es la voluntad de sentido, incluso ante el sufrimiento inevitable."
  },
  "perls": {
   "n": "Fritz Perls",
@@ -72,9 +66,7 @@ export const AUTORES = {
   "r": "Terapia Gestalt",
   "l": "Public domain",
   "f": "autor desconocido",
-  "s": "Lo que importa es el aquí y ahora: hacerse cargo de lo evitado y completar la gestalt inconclusa.",
-  "q": "Yo hago lo mío y tú haces lo tuyo.",
-  "qf": "Gestalt Therapy Verbatim (1969)"
+  "s": "Lo que importa es el aquí y ahora: hacerse cargo de lo evitado y completar la gestalt inconclusa."
  },
  "may": {
   "n": "Rollo May",
@@ -114,7 +106,9 @@ export const AUTORES = {
   "r": "Conductismo",
   "l": "Public domain",
   "f": "autor desconocido",
-  "s": "La psicología científica estudia conducta observable, no estados mentales internos."
+  "s": "La psicología científica estudia conducta observable, no estados mentales internos.",
+  "q": "Dadnos una docena de niños sanos, bien formados y un mundo apropiado para criarlos, y garantizamos convertir a cualquiera de ellos, tomado al azar, en determinado especialista…",
+  "qf": "El conductismo (1924), ed. Paidós, 1945, p. 130"
  },
  "bandura": {
   "n": "Albert Bandura",
@@ -123,8 +117,8 @@ export const AUTORES = {
   "l": "CC BY-SA 4.0",
   "f": "bandura@stanford.edu",
   "s": "Aprendemos observando modelos, y la autoeficacia percibida regula lo que nos atrevemos a hacer.",
-  "q": "La mayor parte de la conducta humana se aprende por observación, mediante modelado.",
-  "qf": "Teoría del aprendizaje social (1977)"
+  "q": "Al observar un modelo de la conducta deseada, el individuo se forma una idea de cómo deben combinarse y secuenciarse los componentes de la respuesta.",
+  "qf": "Social Learning Theory (1971), General Learning Corporation, p. 8 (traducción propia)"
  },
  "beck": {
   "n": "Aaron T. Beck",
@@ -205,8 +199,8 @@ export const AUTORES = {
   "l": "CC BY 3.0",
   "f": "ExperienceLifeMag",
   "s": "Entrenar la atención plena en el presente reduce el sufrimiento asociado al estrés y al dolor.",
-  "q": "Prestar atención de una manera particular: a propósito, en el momento presente y sin juzgar.",
-  "qf": "Wherever You Go, There You Are (1994)"
+  "q": "Atención plena significa prestar atención de una manera determinada: de forma deliberada, en el momento presente y sin juzgar.",
+  "qf": "Mindfulness en la vida cotidiana (1994), cap. «¿Qué es la atención plena?» (edición digital sin paginación)"
  },
  "seligman": {
   "n": "Martin Seligman",
@@ -222,9 +216,7 @@ export const AUTORES = {
   "r": "Psicoterapia existencial",
   "l": "CC BY-SA 3.0",
   "f": "User:Masangina",
-  "s": "El grupo y la relación terapéutica son el motor del cambio, junto con las preocupaciones existenciales.",
-  "q": "Es la relación la que cura.",
-  "qf": "El don de la terapia (2002)"
+  "s": "El grupo y la relación terapéutica son el motor del cambio, junto con las preocupaciones existenciales."
  },
  "bertalanffy": {
   "n": "Ludwig von Bertalanffy",
@@ -432,9 +424,7 @@ export const AUTORES = {
   "r": "Anarquismo epistemológico",
   "l": "Attribution",
   "f": "Grazia Borrini-Feyerabend",
-  "s": "Ningún método único garantiza el progreso científico: la pluralidad teórica es una virtud.",
-  "q": "Todo vale.",
-  "qf": "Contra el método (1975)"
+  "s": "Ningún método único garantiza el progreso científico: la pluralidad teórica es una virtud."
  },
  "imrelakatos": {
   "n": "Imre Lakatos",
@@ -491,6 +481,102 @@ export const AUTORES = {
   "l": "Public domain",
   "f": "Unknown (Mondadori Publishers)",
   "s": "Volver «a las cosas mismas»: describir la experiencia tal como se vive."
+ },
+ "alfriedlangle": {
+  "n": "Alfried Längle",
+  "a": "",
+  "r": "Análisis existencial personal",
+  "l": "CC BY-SA 4.0",
+  "f": "Regina Längle",
+  "s": "Integra la voluntad de sentido de Frankl con la fenomenología: la existencia plena exige acceso al mundo, a la vida, a sí mismo y al futuro (cuatro motivaciones fundamentales)."
+ },
+ "maraselvinipalazzoli": {
+  "n": "Mara Selvini Palazzoli",
+  "a": "1916–1999",
+  "r": "Escuela de Milán",
+  "l": "CC BY-SA 4.0",
+  "f": "Frederico L",
+  "s": "Con el equipo de Milán, hipotetización, circularidad y neutralidad para trabajar con familias con trastornos graves."
+ },
+ "michaelwhite": {
+  "n": "Michael White",
+  "a": "1948–2008",
+  "r": "Terapia narrativa",
+  "l": "CC BY-SA 3.0",
+  "f": "Jill Freedman",
+  "s": "La persona no es el problema: el problema es el problema; se reescriben historias alternativas."
+ },
+ "paulgoodman": {
+  "n": "Paul Goodman",
+  "a": "1911–1972",
+  "r": "Terapia Gestalt (cofundador)",
+  "l": "Public domain",
+  "f": "Photo credited to Paul Hawken",
+  "s": "Cofundó la terapia Gestalt con Perls y Hefferline y aportó su visión social del crecimiento."
+ },
+ "wilfredbion": {
+  "n": "Wilfred Bion",
+  "a": "1897–1979",
+  "r": "Psicoanálisis kleiniano",
+  "l": "Public domain",
+  "f": "UnknownUnknown The original uploader was Kaesar at Italian Wikipedia.",
+  "s": "Contener y pensar lo impensable: la función continente del analista transforma la experiencia emocional bruta."
+ },
+ "donaldwinnicott": {
+  "n": "Donald Winnicott",
+  "a": "1896–1971",
+  "r": "Relaciones objetales (Escuela independiente)",
+  "l": "CC BY 4.0",
+  "f": "autor desconocido",
+  "s": "La «madre suficientemente buena» y el espacio transicional sostienen el desarrollo del verdadero self."
+ },
+ "karenhorney": {
+  "n": "Karen Horney",
+  "a": "1885–1952",
+  "r": "Psicoanálisis culturalista",
+  "l": "CC BY-SA 3.0",
+  "f": "autor desconocido",
+  "s": "La neurosis nace de la ansiedad básica y del conflicto entre ir hacia, contra y lejos de los demás."
+ },
+ "wilhelmreich": {
+  "n": "Wilhelm Reich",
+  "a": "1897–1957",
+  "r": "Análisis del carácter y terapias corporales",
+  "l": "Public domain",
+  "f": "Ludwig Gutmann",
+  "s": "El carácter se expresa en la coraza muscular; trabajar el cuerpo libera la emoción retenida."
+ },
+ "sandorferenczi": {
+  "n": "Sándor Ferenczi",
+  "a": "1873–1933",
+  "r": "Técnica activa y trauma",
+  "l": "Public domain",
+  "f": "Aladár Székely",
+  "s": "Pionero de la flexibilidad técnica y de la empatía en el análisis y del estudio del trauma."
+ },
+ "ottorank": {
+  "n": "Otto Rank",
+  "a": "1884–1939",
+  "r": "Terapia de la voluntad",
+  "l": "Public domain",
+  "f": "Becker &amp; Maass / Marie Boehm",
+  "s": "La voluntad creadora y la relación presente como motor del cambio, más que la reconstrucción del pasado."
+ },
+ "ericberne": {
+  "n": "Eric Berne",
+  "a": "1910–1970",
+  "r": "Análisis transaccional",
+  "l": "Public domain",
+  "f": "autor desconocido",
+  "s": "Los estados del yo (padre, adulto, niño) y los juegos psicológicos explican cómo nos relacionamos."
+ },
+ "ludwigbinswanger": {
+  "n": "Ludwig Binswanger",
+  "a": "1881–1966",
+  "r": "Daseinsanálisis",
+  "l": "Public domain",
+  "f": "de:Franz Vältl, photographer, Weimar",
+  "s": "Aplicó la fenomenología existencial a la clínica: comprender el modo de estar en el mundo de cada persona."
  }
 };
-export const ALIAS_AUTOR = {"donaldmeichenbaum": "donaldmeichenbaum", "carlgustavjung": "jung", "aarontbeck": "beck", "mihalycsikszentmihalyi": "mihalycsikszentmihalyi", "imrelakatos": "imrelakatos", "wrdfairbairn": "wrdfairbairn", "alfredadler": "adler", "paulwatzlawick": "paulwatzlawick", "edmundhusserl": "edmundhusserl", "paulfeyerabend": "paulfeyerabend", "abrahammaslow": "maslow", "emmyvandeurzen": "emmyvandeurzen", "robertoassagioli": "assagioli", "carlrogers": "rogers", "stanislavgrof": "grof", "martinheidegger": "martinheidegger", "abrahamhmaslow": "maslow", "eugenegendlin": "eugenegendlin", "thomaskuhn": "thomaskuhn", "jmarkgwilliams": "jmarkgwilliams", "davidepston": "davidepston", "rudolphloewenstein": "rudolphloewenstein", "heinzhartmann": "heinzhartmann", "alexanderluria": "alexanderluria", "josephzinker": "josephzinker", "viktorefrankl": "frankl", "martinseligman": "seligman", "ottofkernberg": "ottofkernberg", "rollomay": "may", "jamesbugental": "jamesbugental", "jessicabenjamin": "jessicabenjamin", "karlpopper": "karlpopper", "melanieklein": "melanieklein", "lewisaron": "lewisaron", "albertellis": "ellis", "heinzkohut": "heinzkohut", "annafreud": "anna", "edwardlthorndike": "edwardlthorndike", "norbertwiener": "norbertwiener", "albertbandura": "bandura", "humbertomaturana": "humbertomaturana", "ronalddlaing": "ronalddlaing", "peterfonagy": "peterfonagy", "virginiasatir": "satir", "carlwhitaker": "carlwhitaker", "jayhaley": "haley", "irvinyalom": "yalom", "sigmundfreud": "freud", "fritzperls": "perls", "carlgjung": "jung", "erikerikson": "erikson", "viktorfrankl": "frankl", "erichfromm": "fromm", "bfskinner": "skinner", "ivanpavlov": "pavlov", "johnbwatson": "watson", "jeanpiaget": "piaget", "wilhelmwundt": "wundt", "williamjames": "james", "jonkabatzinn": "kabatzinn", "ludwigvonbertalanffy": "bertalanffy", "miltonherickson": "milton", "rdlaing": "ronalddlaing", "freud": "freud", "jung": "jung", "adler": "adler", "erikson": "erikson", "rogers": "rogers", "maslow": "maslow", "frankl": "frankl", "perls": "perls", "may": "may", "fromm": "fromm", "skinner": "skinner", "pavlov": "pavlov", "watson": "watson", "bandura": "bandura", "beck": "beck", "ellis": "ellis", "piaget": "piaget", "satir": "satir", "haley": "haley", "grof": "grof", "assagioli": "assagioli", "wundt": "wundt", "james": "james", "kabatzinn": "kabatzinn", "seligman": "seligman", "yalom": "yalom", "bertalanffy": "bertalanffy", "milton": "milton", "anna": "anna"};
+export const ALIAS_AUTOR = {"donaldmeichenbaum": "donaldmeichenbaum", "carlgustavjung": "jung", "aarontbeck": "beck", "mihalycsikszentmihalyi": "mihalycsikszentmihalyi", "imrelakatos": "imrelakatos", "wrdfairbairn": "wrdfairbairn", "alfredadler": "adler", "paulwatzlawick": "paulwatzlawick", "edmundhusserl": "edmundhusserl", "paulfeyerabend": "paulfeyerabend", "abrahammaslow": "maslow", "emmyvandeurzen": "emmyvandeurzen", "robertoassagioli": "assagioli", "carlrogers": "rogers", "stanislavgrof": "grof", "martinheidegger": "martinheidegger", "abrahamhmaslow": "maslow", "eugenegendlin": "eugenegendlin", "thomaskuhn": "thomaskuhn", "jmarkgwilliams": "jmarkgwilliams", "davidepston": "davidepston", "rudolphloewenstein": "rudolphloewenstein", "heinzhartmann": "heinzhartmann", "alexanderluria": "alexanderluria", "josephzinker": "josephzinker", "viktorefrankl": "frankl", "martinseligman": "seligman", "ottofkernberg": "ottofkernberg", "rollomay": "may", "jamesbugental": "jamesbugental", "jessicabenjamin": "jessicabenjamin", "karlpopper": "karlpopper", "melanieklein": "melanieklein", "lewisaron": "lewisaron", "albertellis": "ellis", "heinzkohut": "heinzkohut", "annafreud": "anna", "edwardlthorndike": "edwardlthorndike", "norbertwiener": "norbertwiener", "albertbandura": "bandura", "humbertomaturana": "humbertomaturana", "ronalddlaing": "ronalddlaing", "peterfonagy": "peterfonagy", "virginiasatir": "satir", "carlwhitaker": "carlwhitaker", "jayhaley": "haley", "irvinyalom": "yalom", "sigmundfreud": "freud", "fritzperls": "perls", "carlgjung": "jung", "erikerikson": "erikson", "viktorfrankl": "frankl", "erichfromm": "fromm", "bfskinner": "skinner", "ivanpavlov": "pavlov", "johnbwatson": "watson", "jeanpiaget": "piaget", "wilhelmwundt": "wundt", "williamjames": "james", "jonkabatzinn": "kabatzinn", "ludwigvonbertalanffy": "bertalanffy", "miltonherickson": "milton", "rdlaing": "ronalddlaing", "freud": "freud", "jung": "jung", "adler": "adler", "erikson": "erikson", "rogers": "rogers", "maslow": "maslow", "frankl": "frankl", "perls": "perls", "may": "may", "fromm": "fromm", "skinner": "skinner", "pavlov": "pavlov", "watson": "watson", "bandura": "bandura", "beck": "beck", "ellis": "ellis", "piaget": "piaget", "satir": "satir", "haley": "haley", "grof": "grof", "assagioli": "assagioli", "wundt": "wundt", "james": "james", "kabatzinn": "kabatzinn", "seligman": "seligman", "yalom": "yalom", "bertalanffy": "bertalanffy", "milton": "milton", "anna": "anna", "alfriedlangle": "alfriedlangle", "maraselvinipalazzoli": "maraselvinipalazzoli", "michaelwhite": "michaelwhite", "paulgoodman": "paulgoodman", "wilfredbion": "wilfredbion", "donaldwinnicott": "donaldwinnicott", "karenhorney": "karenhorney", "wilhelmreich": "wilhelmreich", "sandorferenczi": "sandorferenczi", "ottorank": "ottorank", "ericberne": "ericberne", "ludwigbinswanger": "ludwigbinswanger"};

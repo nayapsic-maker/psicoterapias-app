@@ -10,8 +10,8 @@ import { AUTORES, fotoAutor, slugsDeAutores } from "./Figuras.jsx";
    Todo se calcula a partir de las fichas y el diccionario de la app.
    ============================================================ */
 
-const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9ñ ]+/g, " ").replace(/\s+/g, " ").trim();
-const unir = (v) => (Array.isArray(v) ? v.filter((x) => typeof x === "string").join(". ") : typeof v === "string" ? v : "");
+export const norm = (s) => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9ñ ]+/g, " ").replace(/\s+/g, " ").trim();
+export const unir = (v) => (Array.isArray(v) ? v.filter((x) => typeof x === "string").join(". ") : typeof v === "string" ? v : "");
 
 /* Primeras oraciones de un texto, sin cortar a mitad de frase. */
 export function oraciones(texto, max = 330) {
@@ -26,17 +26,17 @@ export function oraciones(texto, max = 330) {
   }
   return (out || partes[0]).trim();
 }
-const recortar = (t, n = 120) => {
+export const recortar = (t, n = 120) => {
   const s = oraciones(t, n);
   if (s.length <= n + 30) return s;
   return s.slice(0, n).replace(/\s+\S*$/, "") + "…";
 };
-function semilla(str) {
+export function semilla(str) {
   let h = 2166136261;
   for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619);
   return () => ((h = Math.imul(h ^ (h >>> 15), 2246822507) ^ Math.imul(h ^ (h >>> 13), 3266489909)), ((h >>> 0) % 100000) / 100000);
 }
-const barajar = (arr, rnd = Math.random) => {
+export const barajar = (arr, rnd = Math.random) => {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(rnd() * (i + 1));
@@ -45,9 +45,28 @@ const barajar = (arr, rnd = Math.random) => {
   return a;
 };
 
-function Mini({ slug, tam = 40 }) {
+export function Mini({ slug, tam = 40 }) {
   if (!AUTORES[slug]) return null;
   return <img className="psn-mini" src={fotoAutor(slug)} alt={`Retrato de ${AUTORES[slug].n}`} title={AUTORES[slug].n} width={tam} height={tam} loading="lazy" style={{ width: tam, height: tam }} />;
+}
+
+
+/* Emblema de perspectiva: se usa cuando una escuela no tiene retrato de autor con licencia libre. */
+export function Emblema({ perspectiva, color, tam = 44 }) {
+  const p = (perspectiva || "").toLowerCase();
+  let dibujo;
+  if (p.startsWith("human")) dibujo = <path d="M12 20 C4 14.5 3.2 9.5 6.2 6.8 C8.6 4.7 11 6 12 8 C13 6 15.4 4.7 17.8 6.8 C20.8 9.5 20 14.5 12 20Z" fill="currentColor" />;
+  else if (p.startsWith("psicod")) dibujo = (<><path d="M12 3 L16 11 H8Z" fill="currentColor" /><path d="M3 11 H21" stroke="currentColor" strokeWidth="1.6" /><path d="M6.5 12.5 H17.5 L12 21Z" fill="currentColor" opacity="0.5" /></>);
+  else if (p.startsWith("sist")) dibujo = (<><path d="M12 6 L6 17 H18Z" fill="none" stroke="currentColor" strokeWidth="1.6" /><circle cx="12" cy="6" r="2.8" fill="currentColor" /><circle cx="6" cy="17" r="2.8" fill="currentColor" /><circle cx="18" cy="17" r="2.8" fill="currentColor" /></>);
+  else if (p.startsWith("conduc")) dibujo = (<><circle cx="12" cy="12" r="6.5" fill="none" stroke="currentColor" strokeWidth="3.4" strokeDasharray="3.2 2.6" /><circle cx="12" cy="12" r="3.2" fill="currentColor" /></>);
+  else if (p.startsWith("cogn")) dibujo = (<><path d="M12 3 a6 6 0 0 0 -3.2 11 v2.2 h6.4 v-2.2 A6 6 0 0 0 12 3z" fill="currentColor" /><path d="M9.6 19 h4.8 M10.6 21.4 h2.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></>);
+  else if (p.startsWith("integ")) dibujo = (<><circle cx="9" cy="12" r="5.6" fill="currentColor" opacity="0.65" /><circle cx="15" cy="12" r="5.6" fill="currentColor" opacity="0.65" /></>);
+  else dibujo = <path d="M12 2.5 C12.7 8.4 15.6 11.3 21.5 12 C15.6 12.7 12.7 15.6 12 21.5 C11.3 15.6 8.4 12.7 2.5 12 C8.4 11.3 11.3 8.4 12 2.5Z" fill="currentColor" />;
+  return (
+    <span className="psn-emblema" style={{ width: tam, height: tam, background: color }} aria-hidden="true">
+      <svg viewBox="0 0 24 24" width={tam * 0.62} height={tam * 0.62} style={{ color: "#fff" }}>{dibujo}</svg>
+    </span>
+  );
 }
 
 /* ------------------------------------------------------------ */
@@ -95,7 +114,7 @@ export function LineaTiempoGlobal({ escuelas, anioDe, colorDe, onIrAEscuela, per
                     <button onClick={() => onIrAEscuela(e.id)} title="Abrir ficha detallada">
                       <span className="psn-tl-anio">{anio}</span>
                       <span className="psn-tl-retratos">
-                        {slugs.length ? slugs.map((s) => <Mini key={s} slug={s} tam={44} />) : <i className="psn-tl-punto" />}
+                        {slugs.length ? slugs.map((s) => <Mini key={s} slug={s} tam={44} />) : <Emblema perspectiva={e.perspectiva} color={colorDe(e.perspectiva)} tam={44} />}
                       </span>
                       <span className="psn-tl-texto">
                         <strong>{e.nombre}</strong>
@@ -117,7 +136,7 @@ export function LineaTiempoGlobal({ escuelas, anioDe, colorDe, onIrAEscuela, per
 /* ------------------------------------------------------------ */
 /*  MAPA CONCEPTUAL (red + territorios)                         */
 /* ------------------------------------------------------------ */
-const COLOR_REL = { "equivalente aproximado": "#1F8A68", "análogo funcional": "#2F4BB5", "solapamiento parcial": "#E9A100", "falso amigo": "#D9402A", "reinterpretación asimilativa": "#8A5CC2", inconmensurable: "#15183C" };
+export const COLOR_REL = { "equivalente aproximado": "#1F8A68", "análogo funcional": "#2F4BB5", "solapamiento parcial": "#E9A100", "falso amigo": "#D9402A", "reinterpretación asimilativa": "#8A5CC2", inconmensurable: "#15183C" };
 
 export function MapaRed({ escuelas, enlaces, colorDe, onIrAEscuela, perspectivas: persp0, nombreCorto }) {
   const perspectivas = useMemo(() => [...persp0.filter((p) => escuelas.some((e) => e.perspectiva === p)), ...new Set(escuelas.map((e) => e.perspectiva).filter((p) => !persp0.includes(p)))], [escuelas]);
@@ -242,327 +261,6 @@ export function MapaRed({ escuelas, enlaces, colorDe, onIrAEscuela, perspectivas
           </ul>
           {puentes.length > 8 && <p className="psn-vacio">+{puentes.length - 8} más en el módulo Diccionario.</p>}
         </aside>
-      )}
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------ */
-/*  CASO CLÍNICO EN 7 MIRADAS                                   */
-/* ------------------------------------------------------------ */
-const MIRADAS = {
-  humanista: {
-    mira: "La experiencia vivida de la persona, su sentido y su autenticidad.",
-    rol: "Acompañar con presencia: empatía, aceptación y congruencia, sin dirigir.",
-    preguntas: ["¿Qué siente esta persona que no se permite ser o decir?", "¿Qué condiciones de valía ha tenido que cumplir para sentirse aceptada?", "¿Qué sentido o valor está en juego en lo que le ocurre?", "¿Qué haría si se permitiera ser plenamente quien es?"],
-    exito: "Mayor congruencia, autenticidad y sentido; no solo menos síntomas.",
-  },
-  psicodinamica: {
-    mira: "El conflicto inconsciente, las defensas y los patrones relacionales que vienen de la historia temprana.",
-    rol: "Interpretar y sostener el vínculo, trabajando con la transferencia y la contratransferencia.",
-    preguntas: ["¿Qué patrón relacional se repite, y desde cuándo?", "¿Qué defensas aparecen ante la angustia?", "¿Qué se evita sentir o decir en la sesión?", "¿Qué despierta en el vínculo terapéutico (transferencia)?"],
-    exito: "Insight, elaboración del conflicto y defensas más flexibles.",
-  },
-  sistemica: {
-    mira: "El sistema: pautas de interacción, reglas, jerarquías y la función del síntoma.",
-    rol: "Intervenir en el sistema (o en su lectura), con el terapeuta como parte de lo que observa.",
-    preguntas: ["¿Quién más participa del problema, y cómo?", "¿Qué ocurre justo antes y justo después del síntoma?", "¿Qué función podría cumplir el síntoma en la familia?", "¿Qué cambiaría, para cada miembro, si el problema desapareciera?"],
-    exito: "Cambio en las pautas de interacción y en la narrativa compartida.",
-  },
-  conductual: {
-    mira: "La conducta observable y sus contingencias: antecedentes, conducta y consecuencias.",
-    rol: "Analizar funcionalmente y diseñar el entrenamiento o la exposición, con medición.",
-    preguntas: ["¿Qué conducta exactamente, con qué frecuencia, duración e intensidad?", "¿Qué la precede y qué la sigue?", "¿Qué la mantiene hoy (refuerzo, evitación)?", "¿Qué conducta alternativa se puede reforzar?"],
-    exito: "Cambio medible en la conducta objetivo y generalización a la vida cotidiana.",
-  },
-  cognitivo: {
-    mira: "Los pensamientos automáticos, las creencias y los esquemas que median la emoción y la conducta.",
-    rol: "Colaborar empíricamente: contrastar creencias con evidencia y experimentos.",
-    preguntas: ["¿Qué pasó por tu mente en ese momento?", "¿Qué evidencia hay a favor y en contra de ese pensamiento?", "¿Qué creencia de fondo sostiene esta reacción?", "¿Qué experimento pondría a prueba esa creencia?"],
-    exito: "Reducción de síntomas con evidencia y un pensamiento más flexible.",
-  },
-  integradora: {
-    mira: "La formulación individualizada, los factores comunes y el ajuste del tratamiento a la persona.",
-    rol: "Combinar enfoques según la formulación, cuidando la alianza y la fase del cambio.",
-    preguntas: ["¿En qué fase del cambio está la persona?", "¿Cómo es la alianza terapéutica hoy?", "¿Qué técnicas de distintas escuelas encajan con esta formulación?", "¿Qué evidencia respalda ese ajuste?"],
-    exito: "Respuesta al tratamiento, alianza sólida y ajuste continuo.",
-  },
-  transpersonal: {
-    mira: "La dimensión espiritual y transpersonal: estados de conciencia, sentido trascendente e integración.",
-    rol: "Acompañar y facilitar la integración de experiencias que exceden la biografía individual.",
-    preguntas: ["¿Qué lugar tienen la espiritualidad o la trascendencia en su vida?", "¿Qué experiencias de conexión o expansión ha tenido?", "¿Cómo integra experiencias no ordinarias de conciencia?", "¿Qué parte de sí quiere desarrollarse?"],
-    exito: "Integración de la experiencia y una identidad más amplia.",
-  },
-};
-const TEMAS = {
-  ansiedad: ["ansied", "panico", "preocup", "miedo", "fobia", "nerv", "taquicardia", "evita"],
-  "estado de ánimo": ["deprim", "triste", "anhedonia", "desanim", "sin ganas", "llanto", "culpa"],
-  trauma: ["trauma", "abuso", "violencia", "accidente", "flashback", "pesadilla", "agresion"],
-  duelo: ["duelo", "perdida", "falleci", "muert", "separacion"],
-  "pareja y familia": ["pareja", "familia", "madre", "padre", "hijo", "hermano", "matrimonio", "conflicto familiar"],
-  "adicciones": ["alcohol", "droga", "consumo", "adiccion", "sustancia", "juego"],
-  "alimentación": ["comida", "atracon", "peso", "anorex", "bulim", "alimenta"],
-  "identidad y sentido": ["sentido", "vacio", "identidad", "proposito", "existencial", "soledad"],
-  "psicosis": ["voces", "alucin", "delirio", "paranoi", "psicosis"],
-  "relaciones y personalidad": ["impulsiv", "abandono", "inestable", "relaciones intensas", "limite", "borderline", "personalidad"],
-};
-const CASOS_EJEMPLO = [
-  { t: "Marta, 34 años", txt: "Marta consulta por ansiedad desde hace ocho meses, tras un ascenso. Duerme mal, evita las reuniones y se critica por «no estar a la altura». Cuenta que su padre era muy exigente y que ella siempre sintió que debía ganarse el cariño. Con su pareja discute más y se aísla." },
-  { t: "Familia Rojas", txt: "Los padres traen a Daniel, de 15 años, que dejó de ir al colegio y pasa el día en su habitación. La madre habla por él y el padre casi no interviene. Hace un año falleció el abuelo y desde entonces hay tensión en casa." },
-  { t: "Andrés, 47 años", txt: "Andrés llegó tras perder su empleo. Dice sentir vacío, sin sentido ni ganas de hacer nada, bebe más de lo habitual y repite que «ya nada importa». Siempre se definió por su trabajo; quisiera entender para qué vive." },
-];
-
-export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela, idDe = () => null }) {
-  const [caso, setCaso] = useState("");
-  const [abierto, setAbierto] = useState(null);
-  const q = norm(caso);
-  const temas = Object.entries(TEMAS).filter(([, ks]) => ks.some((k) => q.includes(k))).map(([t]) => t);
-  const palabras = [...new Set(q.split(" ").filter((w) => w.length > 4))];
-  const sugerencias = (p) =>
-    escuelas
-      .filter((e) => e.perspectiva === p.nombre || idDe(e.perspectiva) === p.id)
-      .map((e) => {
-        const texto = norm([e.nombre, unir(e.psicopatologia), unir(e.presentaciones), unir(e.conceptos), unir(e.tecnicas)].join(" "));
-        const sc = palabras.reduce((s, w) => s + (texto.includes(w.slice(0, 6)) ? 1 : 0), 0);
-        return { e, sc };
-      })
-      .sort((a, b) => b.sc - a.sc)
-      .slice(0, 3);
-  return (
-    <section className="psn-caso">
-      <p className="psn-intro">Escribe o elige un caso breve (ficticio o anonimizado). La app lo lee desde cada una de las siete perspectivas: qué miraría, qué preguntaría, qué buscaría lograr y qué escuelas de esa perspectiva revisar primero.</p>
-      <div className="psn-caso-ejemplos">
-        {CASOS_EJEMPLO.map((c) => (
-          <button key={c.t} onClick={() => setCaso(c.txt)}>
-            Ejemplo: {c.t}
-          </button>
-        ))}
-      </div>
-      <textarea value={caso} onChange={(e) => setCaso(e.target.value)} rows={5} placeholder="Describe el motivo de consulta, la historia relevante y el contexto…" aria-label="Caso clínico" />
-      {temas.length > 0 && (
-        <p className="psn-temas">
-          Temas detectados: {temas.map((t) => <span key={t} className="psn-chip">{t}</span>)}
-        </p>
-      )}
-      {caso.trim().length > 25 && (
-        <>
-          <div className="psn-miradas">
-            {perspectivas.map((p) => {
-              const m = MIRADAS[p.id];
-              if (!m) return null;
-              const col = colorDe(p.nombre);
-              const abre = abierto === p.id;
-              return (
-                <article key={p.id} className={abre ? "on" : ""} style={{ "--pc": col }}>
-                  <button className="psn-mirada-cab" onClick={() => setAbierto(abre ? null : p.id)} aria-expanded={abre}>
-                    <h4>{p.nombre}</h4>
-                    <span>{m.mira}</span>
-                  </button>
-                  {abre && (
-                    <div className="psn-mirada-cuerpo">
-                      <h5>Cómo lo formularía</h5>
-                      <p>
-                        {temas.length ? `Ante ${temas.join(" y ")}, ` : ""}esta perspectiva se centraría en: {m.mira.charAt(0).toLowerCase() + m.mira.slice(1)} {m.rol}
-                      </p>
-                      <h5>Preguntas que haría</h5>
-                      <ul>{m.preguntas.map((x) => <li key={x}>{x}</li>)}</ul>
-                      <h5>Qué buscaría lograr</h5>
-                      <p>{m.exito}</p>
-                      <h5>Escuelas para revisar primero</h5>
-                      <div className="psn-mirada-esc">
-                        {sugerencias(p).map(({ e }) => (
-                          <button key={e.id} onClick={() => onIrAEscuela(e.id)}>
-                            {e.nombre}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </article>
-              );
-            })}
-          </div>
-          <p className="psn-aviso">Ejercicio de estudio: no sustituye el juicio clínico, el diagnóstico ni la supervisión. Las preguntas y metas sintetizan el enfoque general de cada perspectiva; el detalle de cada escuela está en su ficha.</p>
-        </>
-      )}
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------ */
-/*  TRADUCTOR DE LENGUAJE CLÍNICO                               */
-/* ------------------------------------------------------------ */
-export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEscuela, perspectivas }) {
-  const [texto, setTexto] = useState("");
-  const [elegido, setElegido] = useState(0);
-  const porId = useMemo(() => Object.fromEntries(escuelas.map((e) => [e.id, e])), [escuelas]);
-  const q = norm(texto);
-  const enlacesDe = (g) => {
-    const nt = norm(g.termino);
-    return enlaces.filter((l) => [l.conceptoA, l.conceptoB].some((c) => c.escuela === g.escuela && (norm(c.nombre).includes(nt) || nt.includes(norm(c.nombre)))));
-  };
-  const candidatos = useMemo(() => {
-    if (q.length < 3) return [];
-    const ordena = (lista) => lista.map((g) => ({ g, n: enlacesDe(g).length })).sort((a, b) => b.n - a.n).map((x) => x.g);
-    const exactos = glosario.filter((g) => norm(g.termino).includes(q) || (norm(g.termino).length > 3 && q.includes(norm(g.termino))));
-    if (exactos.length) return ordena(exactos).slice(0, 8);
-    const ws = q.split(" ").filter((w) => w.length > 4);
-    if (!ws.length) return [];
-    return ordena(glosario
-      .map((g) => ({ g, sc: ws.reduce((s, w) => s + (norm(g.termino + " " + g.definicion).includes(w.slice(0, 6)) ? 1 : 0), 0) }))
-      .filter((x) => x.sc > 0)
-      .sort((a, b) => b.sc - a.sc)
-      .slice(0, 24)
-      .map((x) => x.g)).slice(0, 8);
-  }, [q, glosario, enlaces]);
-  useEffect(() => setElegido(0), [q]);
-  const c = candidatos[elegido];
-  const puentes = useMemo(() => {
-    if (!c) return {};
-    const nt = norm(c.termino);
-    const out = {};
-    enlaces.forEach((l) => {
-      [[l.conceptoA, l.conceptoB], [l.conceptoB, l.conceptoA]].forEach(([yo, otro]) => {
-        if (yo.escuela !== c.escuela) return;
-        const ny = norm(yo.nombre);
-        if (!(ny.includes(nt) || nt.includes(ny))) return;
-        const E = porId[otro.escuela];
-        if (!E) return;
-        (out[E.perspectiva] = out[E.perspectiva] || []).push({ l, E, otro });
-      });
-    });
-    return out;
-  }, [c, enlaces, porId]);
-  const origen = c ? porId[c.escuela] : null;
-  const total = Object.values(puentes).reduce((s, a) => s + a.length, 0);
-  return (
-    <section className="psn-trad">
-      <p className="psn-intro">Escribe un término o una frase clínica («resistencia», «apego», «pensamiento automático»…). El traductor busca la definición y muestra cómo se reformula —o se pierde— en cada perspectiva, con los puentes que documenta el diccionario traslacional.</p>
-      <input value={texto} onChange={(e) => setTexto(e.target.value)} placeholder="Ej.: resistencia, refuerzo, inconsciente, esquema…" aria-label="Término clínico a traducir" />
-      {q.length >= 3 && candidatos.length === 0 && <p className="psn-vacio">No encontré ese término en el glosario. Prueba con otra palabra más específica.</p>}
-      {candidatos.length > 1 && (
-        <div className="psn-trad-cands" role="tablist" aria-label="Coincidencias">
-          {candidatos.map((g, i) => (
-            <button key={g.escuela + g.termino} className={i === elegido ? "on" : ""} onClick={() => setElegido(i)}>
-              {g.termino}
-              <small>{porId[g.escuela]?.nombre}</small>
-            </button>
-          ))}
-        </div>
-      )}
-      {c && origen && (
-        <div className="psn-trad-res">
-          <article className="psn-trad-origen" style={{ "--pc": colorDe(origen.perspectiva) }}>
-            <span className="psn-chip">{origen.perspectiva} · {origen.nombre}</span>
-            <h4>{c.termino}</h4>
-            <p>{c.definicion}</p>
-          </article>
-          <h5>Cómo se dice en las demás perspectivas ({total} {total === 1 ? "puente" : "puentes"})</h5>
-          <div className="psn-trad-grid">
-            {perspectivas.map((p) => {
-              const lista = puentes[p] || [];
-              return (
-                <article key={p} style={{ "--pc": colorDe(p) }} className={lista.length ? "" : "vacia"}>
-                  <h6>{p}</h6>
-                  {lista.length === 0 ? (
-                    <p className="psn-vacio">Sin puente documentado para este término.</p>
-                  ) : (
-                    lista.slice(0, 3).map(({ l, E, otro }) => (
-                      <div key={l.id} className="psn-trad-puente">
-                        <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#514D74" }}>{l.relacion}</span>
-                        <strong>{otro.nombre}</strong>
-                        <button onClick={() => onIrAEscuela(E.id)}>{E.nombre}</button>
-                        <p>{oraciones(l.nota, 300)}</p>
-                      </div>
-                    ))
-                  )}
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      )}
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------ */
-/*  DEBATE SIMULADO                                             */
-/* ------------------------------------------------------------ */
-const TEMAS_DEBATE = [
-  { k: "psicopatologia", t: "¿Qué es el sufrimiento psíquico?" },
-  { k: "ontologia", t: "¿Qué es una persona?" },
-  { k: "epistemologia", t: "¿Cómo se conoce lo clínico?" },
-  { k: "criterioVerdad", t: "¿Qué cuenta como verdad?" },
-  { k: "metodologia", t: "¿Cómo se trabaja en terapia?" },
-  { k: "tecnicas", t: "¿Qué produce el cambio?" },
-];
-
-export function DebateSimulado({ escuelas, enlaces, colorDe }) {
-  const ordenadas = useMemo(() => [...escuelas].sort((a, b) => a.perspectiva.localeCompare(b.perspectiva) || a.nombre.localeCompare(b.nombre)), [escuelas]);
-  const [ida, setIda] = useState("");
-  const [idb, setIdb] = useState("");
-  const [tema, setTema] = useState("psicopatologia");
-  const A = escuelas.find((e) => e.id === ida), B = escuelas.find((e) => e.id === idb);
-  const tt = TEMAS_DEBATE.find((x) => x.k === tema);
-  const dicho = (e) => (tema === "tecnicas" ? (Array.isArray(e.tecnicas) ? "Para producir cambio recurre a: " + e.tecnicas.filter((x) => typeof x === "string").slice(0, 5).join("; ") + "." : oraciones(e.tecnicas)) : oraciones(e[tema], 360));
-  const puentes = A && B ? enlaces.filter((l) => (l.conceptoA.escuela === A.id && l.conceptoB.escuela === B.id) || (l.conceptoA.escuela === B.id && l.conceptoB.escuela === A.id)) : [];
-  const elige = (valor, set) => (
-    <select value={valor} onChange={(e) => set(e.target.value)}>
-      <option value="">— elige una escuela —</option>
-      {ordenadas.map((e) => (
-        <option key={e.id} value={e.id} disabled={e.id === ida || e.id === idb}>
-          {e.perspectiva.split("-")[0]} · {e.nombre}
-        </option>
-      ))}
-    </select>
-  );
-  const Voz = ({ e, lado }) => {
-    const s = slugsDeAutores(e.autores)[0];
-    return (
-      <div className={`psn-voz ${lado}`} style={{ "--pc": colorDe(e.perspectiva) }}>
-        <div className="psn-voz-id">
-          {s ? <Mini slug={s} tam={56} /> : <i className="psn-tl-punto" />}
-          <strong>{e.nombre}</strong>
-          <small>{e.perspectiva}</small>
-        </div>
-        <blockquote>{dicho(e) || "Esta ficha aún no desarrolla este punto."}</blockquote>
-      </div>
-    );
-  };
-  return (
-    <section className="psn-debate">
-      <p className="psn-intro">Elige dos escuelas y un tema. La app arma el cruce de posturas con lo que dice la ficha de cada una —sin inventar argumentos— y añade los puentes que el diccionario documenta entre ambas.</p>
-      <div className="psn-debate-sel">
-        <label>Escuela A {elige(ida, setIda)}</label>
-        <label>Escuela B {elige(idb, setIdb)}</label>
-        <label>
-          Tema
-          <select value={tema} onChange={(e) => setTema(e.target.value)}>
-            {TEMAS_DEBATE.map((x) => <option key={x.k} value={x.k}>{x.t}</option>)}
-          </select>
-        </label>
-      </div>
-      {A && B ? (
-        <div className="psn-debate-escena">
-          <p className="psn-mod"><b>Moderación:</b> «{tt.t}». {A.nombre} responde desde la perspectiva {A.perspectiva}; {B.nombre}, desde {B.perspectiva}.</p>
-          <Voz e={A} lado="izq" />
-          <Voz e={B} lado="der" />
-          <p className="psn-mod">
-            <b>Qué dice el diccionario:</b>{" "}
-            {puentes.length ? `hay ${puentes.length} ${puentes.length === 1 ? "puente documentado" : "puentes documentados"} entre ambas.` : "no hay puentes documentados entre estas dos escuelas; eso no impide trazarlos, pero advierte que quizá no comparten vocabulario."}
-          </p>
-          {puentes.slice(0, 3).map((l) => (
-            <div key={l.id} className="psn-voz-puente">
-              <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#514D74" }}>{l.relacion}</span>
-              <p><em>{l.conceptoA.nombre}</em> ↔ <em>{l.conceptoB.nombre}</em></p>
-              <p>{oraciones(l.nota, 340)}</p>
-            </div>
-          ))}
-          <p className="psn-mod"><b>Para pensar:</b> ¿qué tendría que concederle {A.nombre} a {B.nombre} para que la conversación fuera posible, y qué perdería al hacerlo?</p>
-        </div>
-      ) : (
-        <p className="psn-vacio">Elige las dos escuelas para empezar el cruce.</p>
       )}
     </section>
   );
