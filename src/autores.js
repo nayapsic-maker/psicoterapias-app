@@ -638,11 +638,9 @@ export const AUTORES = {
   "n": "Jeffrey Young",
   "a": "",
   "r": "Terapia de esquemas",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "Trabaja esquemas desadaptativos tempranos y modos con técnicas cognitivas, vivenciales y de relación terapéutica.",
-  "foto": false,
-  "g": "m"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "alchetron.com (fotograma de vídeo)",
+  "s": "Trabaja esquemas desadaptativos tempranos y modos con técnicas cognitivas, vivenciales y de relación terapéutica."
  },
  "murraybowen": {
   "n": "Murray Bowen",
@@ -656,11 +654,9 @@ export const AUTORES = {
   "n": "Joseph Wolpe",
   "a": "1915–1997",
   "r": "Desensibilización sistemática",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "La inhibición recíproca: una respuesta incompatible con la ansiedad, en jerarquía gradual, la debilita.",
-  "foto": false,
-  "g": "m"
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "psych.athabascau.ca",
+  "s": "La inhibición recíproca: una respuesta incompatible con la ansiedad, en jerarquía gradual, la debilita."
  },
  "stevedeshazer": {
   "n": "Steve de Shazer e Insoo Kim Berg",
@@ -682,11 +678,9 @@ export const AUTORES = {
   "n": "Ken Wilber",
   "a": "n. 1949",
   "r": "Psicología integral (modelo espectral)",
-  "l": "sin retrato libre disponible",
-  "f": "",
-  "s": "Integra psicología, filosofía y tradiciones contemplativas en un mapa de niveles y líneas de desarrollo de la conciencia.",
-  "foto": false,
-  "g": "m"
+  "l": "CC BY 2.0",
+  "f": "Kanzeon Zen Center (Flickr), vía Wikimedia Commons; recorte",
+  "s": "Integra psicología, filosofía y tradiciones contemplativas en un mapa de niveles y líneas de desarrollo de la conciencia."
  },
  "beutler": {
   "n": "Larry Beutler",
@@ -807,6 +801,30 @@ export const AUTORES = {
   "s": "Cofundadora de la FAP: la relación terapéutica es el contexto donde ocurren y se refuerzan conductas clínicamente relevantes.",
   "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
   "f": "researchgate.net"
- }
+ },
+ "paulgilbert": {
+  "n": "Paul Gilbert",
+  "a": "",
+  "r": "Terapia centrada en la compasión",
+  "l": "CC BY-SA 3.0",
+  "f": "JonRhodes, vía Wikimedia Commons; recorte",
+  "s": "Formula la compasión como motivo y competencia terapéutica desde un modelo evolutivo de tres sistemas de regulación emocional."
+ },
+ "thomaslynch": {
+  "n": "Thomas R. Lynch",
+  "a": "",
+  "r": "DBT radicalmente abierta (RO-DBT)",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "radicallyopen.net (fotograma de vídeo)",
+  "s": "Trata el sobrecontrol como un problema de soledad emocional y señalización social, con apertura radical y autoindagación."
+ },
+ "dennistirch": {
+  "n": "Dennis Tirch",
+  "a": "",
+  "r": "Terapia centrada en la compasión y ACT",
+  "l": "imagen obtenida por búsqueda web; derechos de sus titulares",
+  "f": "praxiscet.com",
+  "s": "Integra la ciencia de la compasión con ACT y la terapia centrada en la compasión en la práctica clínica."
+ },
 };
-export const ALIAS_AUTOR = {"donaldmeichenbaum": "donaldmeichenbaum", "carlgustavjung": "jung", "aarontbeck": "beck", "mihalycsikszentmihalyi": "mihalycsikszentmihalyi", "imrelakatos": "imrelakatos", "wrdfairbairn": "wrdfairbairn", "alfredadler": "adler", "paulwatzlawick": "paulwatzlawick", "edmundhusserl": "edmundhusserl", "paulfeyerabend": "paulfeyerabend", "abrahammaslow": "maslow", "emmyvandeurzen": "emmyvandeurzen", "robertoassagioli": "assagioli", "carlrogers": "rogers", "stanislavgrof": "grof", "martinheidegger": "martinheidegger", "abrahamhmaslow": "maslow", "eugenegendlin": "eugenegendlin", "thomaskuhn": "thomaskuhn", "jmarkgwilliams": "jmarkgwilliams", "davidepston": "davidepston", "rudolphloewenstein": "rudolphloewenstein", "heinzhartmann": "heinzhartmann", "alexanderluria": "alexanderluria", "josephzinker": "josephzinker", "viktorefrankl": "frankl", "martinseligman": "seligman", "ottofkernberg": "ottofkernberg", "rollomay": "may", "jamesbugental": "jamesbugental", "jessicabenjamin": "jessicabenjamin", "karlpopper": "karlpopper", "melanieklein": "melanieklein", "lewisaron": "lewisaron", "albertellis": "ellis", "heinzkohut": "heinzkohut", "annafreud": "anna", "edwardlthorndike": "thorndike", "norbertwiener": "norbertwiener", "albertbandura": "bandura", "humbertomaturana": "humbertomaturana", "ronalddlaing": "ronalddlaing", "peterfonagy": "peterfonagy", "virginiasatir": "satir", "carlwhitaker": "carlwhitaker", "jayhaley": "haley", "irvinyalom": "yalom", "sigmundfreud": "freud", "fritzperls": "perls", "carlgjung": "jung", "erikerikson": "erikson", "viktorfrankl": "frankl", "erichfromm": "fromm", "bfskinner": "skinner", "ivanpavlov": "pavlov", "johnbwatson": "watson", "jeanpiaget": "piaget", "wilhelmwundt": "wundt", "williamjames": "james", "jonkabatzinn": "kabatzinn", "ludwigvonbertalanffy": "bertalanffy", "miltonherickson": "milton", "rdlaing": "ronalddlaing", "freud": "freud", "jung": "jung", "adler": "adler", "erikson": "erikson", "rogers": "rogers", "maslow": "maslow", "frankl": "frankl", "perls": "perls", "may": "may", "fromm": "fromm", "skinner": "skinner", "pavlov": "pavlov", "watson": "watson", "bandura": "bandura", "beck": "beck", "ellis": "ellis", "piaget": "piaget", "satir": "satir", "haley": "haley", "grof": "grof", "assagioli": "assagioli", "wundt": "wundt", "james": "james", "kabatzinn": "kabatzinn", "seligman": "seligman", "yalom": "yalom", "bertalanffy": "bertalanffy", "milton": "milton", "anna": "anna", "alfriedlangle": "alfriedlangle", "maraselvinipalazzoli": "maraselvinipalazzoli", "michaelwhite": "michaelwhite", "paulgoodman": "paulgoodman", "wilfredbion": "wilfredbion", "donaldwinnicott": "donaldwinnicott", "karenhorney": "karenhorney", "wilhelmreich": "wilhelmreich", "sandorferenczi": "sandorferenczi", "ottorank": "ottorank", "ericberne": "ericberne", "ludwigbinswanger": "ludwigbinswanger", "arnoldalazarus": "lazarus", "arnoldlazarus": "lazarus", "jamesoprochaska": "prochaska", "jamesprochaska": "prochaska", "georgestricker": "stricker", "marvinrgoldfried": "goldfried", "marvingoldfried": "goldfried", "jeromedfrank": "jeromefrank", "jeromefrank": "jeromefrank", "stevenchayes": "hayes", "stevenhayes": "hayes", "marshamlinehan": "linehan", "marshalinehan": "linehan", "jeffreyyoung": "jeffreyyoung", "murraybowen": "murraybowen", "josephwolpe": "wolpe", "stevedeshazer": "stevedeshazer", "insookimberg": "stevedeshazer", "stevedeshazereinsookimberg": "stevedeshazer", "edwardthorndike": "thorndike", "kenwilber": "kenwilber", "larryebeutler": "beutler", "larrybeutler": "beutler", "jacqueslacan": "lacan", "elisabethlukas": "lukas", "salvadorminuchin": "minuchin", "robertdstolorow": "stolorow", "robertstolorow": "stolorow", "paullwachtel": "wachtel", "paulwachtel": "wachtel", "andrewchristensen": "christensen", "johnfclarkin": "clarkin", "johnclarkin": "clarkin", "frederickhkanfer": "kanfer", "frederickkanfer": "kanfer", "stanleybmesser": "messer", "stanleymesser": "messer", "ivanboszormenyinagy": "nagy", "emilioribesinesta": "ribes", "emilioribes": "ribes", "stephenrollnick": "rollnick", "kirkdstrosahl": "strosahl", "kirkstrosahl": "strosahl", "mavistsai": "tsai"};
+export const ALIAS_AUTOR = {"donaldmeichenbaum": "donaldmeichenbaum", "carlgustavjung": "jung", "aarontbeck": "beck", "mihalycsikszentmihalyi": "mihalycsikszentmihalyi", "imrelakatos": "imrelakatos", "wrdfairbairn": "wrdfairbairn", "alfredadler": "adler", "paulwatzlawick": "paulwatzlawick", "edmundhusserl": "edmundhusserl", "paulfeyerabend": "paulfeyerabend", "abrahammaslow": "maslow", "emmyvandeurzen": "emmyvandeurzen", "robertoassagioli": "assagioli", "carlrogers": "rogers", "stanislavgrof": "grof", "martinheidegger": "martinheidegger", "abrahamhmaslow": "maslow", "eugenegendlin": "eugenegendlin", "thomaskuhn": "thomaskuhn", "jmarkgwilliams": "jmarkgwilliams", "davidepston": "davidepston", "rudolphloewenstein": "rudolphloewenstein", "heinzhartmann": "heinzhartmann", "alexanderluria": "alexanderluria", "josephzinker": "josephzinker", "viktorefrankl": "frankl", "martinseligman": "seligman", "ottofkernberg": "ottofkernberg", "rollomay": "may", "jamesbugental": "jamesbugental", "jessicabenjamin": "jessicabenjamin", "karlpopper": "karlpopper", "melanieklein": "melanieklein", "lewisaron": "lewisaron", "albertellis": "ellis", "heinzkohut": "heinzkohut", "annafreud": "anna", "edwardlthorndike": "thorndike", "norbertwiener": "norbertwiener", "albertbandura": "bandura", "humbertomaturana": "humbertomaturana", "ronalddlaing": "ronalddlaing", "peterfonagy": "peterfonagy", "virginiasatir": "satir", "carlwhitaker": "carlwhitaker", "jayhaley": "haley", "irvinyalom": "yalom", "sigmundfreud": "freud", "fritzperls": "perls", "carlgjung": "jung", "erikerikson": "erikson", "viktorfrankl": "frankl", "erichfromm": "fromm", "bfskinner": "skinner", "ivanpavlov": "pavlov", "johnbwatson": "watson", "jeanpiaget": "piaget", "wilhelmwundt": "wundt", "williamjames": "james", "jonkabatzinn": "kabatzinn", "ludwigvonbertalanffy": "bertalanffy", "miltonherickson": "milton", "rdlaing": "ronalddlaing", "freud": "freud", "jung": "jung", "adler": "adler", "erikson": "erikson", "rogers": "rogers", "maslow": "maslow", "frankl": "frankl", "perls": "perls", "may": "may", "fromm": "fromm", "skinner": "skinner", "pavlov": "pavlov", "watson": "watson", "bandura": "bandura", "beck": "beck", "ellis": "ellis", "piaget": "piaget", "satir": "satir", "haley": "haley", "grof": "grof", "assagioli": "assagioli", "wundt": "wundt", "james": "james", "kabatzinn": "kabatzinn", "seligman": "seligman", "yalom": "yalom", "bertalanffy": "bertalanffy", "milton": "milton", "anna": "anna", "alfriedlangle": "alfriedlangle", "maraselvinipalazzoli": "maraselvinipalazzoli", "michaelwhite": "michaelwhite", "paulgoodman": "paulgoodman", "wilfredbion": "wilfredbion", "donaldwinnicott": "donaldwinnicott", "karenhorney": "karenhorney", "wilhelmreich": "wilhelmreich", "sandorferenczi": "sandorferenczi", "ottorank": "ottorank", "ericberne": "ericberne", "ludwigbinswanger": "ludwigbinswanger", "arnoldalazarus": "lazarus", "arnoldlazarus": "lazarus", "jamesoprochaska": "prochaska", "jamesprochaska": "prochaska", "georgestricker": "stricker", "marvinrgoldfried": "goldfried", "marvingoldfried": "goldfried", "jeromedfrank": "jeromefrank", "jeromefrank": "jeromefrank", "stevenchayes": "hayes", "stevenhayes": "hayes", "marshamlinehan": "linehan", "marshalinehan": "linehan", "jeffreyyoung": "jeffreyyoung", "murraybowen": "murraybowen", "josephwolpe": "wolpe", "stevedeshazer": "stevedeshazer", "insookimberg": "stevedeshazer", "stevedeshazereinsookimberg": "stevedeshazer", "edwardthorndike": "thorndike", "kenwilber": "kenwilber", "larryebeutler": "beutler", "larrybeutler": "beutler", "jacqueslacan": "lacan", "elisabethlukas": "lukas", "salvadorminuchin": "minuchin", "robertdstolorow": "stolorow", "robertstolorow": "stolorow", "paullwachtel": "wachtel", "paulwachtel": "wachtel", "andrewchristensen": "christensen", "johnfclarkin": "clarkin", "johnclarkin": "clarkin", "frederickhkanfer": "kanfer", "frederickkanfer": "kanfer", "stanleybmesser": "messer", "stanleymesser": "messer", "ivanboszormenyinagy": "nagy", "emilioribesinesta": "ribes", "emilioribes": "ribes", "stephenrollnick": "rollnick", "kirkdstrosahl": "strosahl", "kirkstrosahl": "strosahl", "mavistsai": "tsai", "paulgilbert": "paulgilbert", "thomasrlynch": "thomaslynch", "thomaslynch": "thomaslynch", "dennistirch": "dennistirch"};
