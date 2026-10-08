@@ -15,7 +15,7 @@ export const fotoAutor = (slug) => `${BASE}img/autores/${slug}.jpg`;
 // Autores representativos por perspectiva (ids de FUNDAMENTOS_PERSPECTIVAS).
 export const AUTORES_POR_PERSPECTIVA = {
   humanista: ["rogers", "maslow", "frankl", "seligman", "yalom"],
-  psicodinamica: ["freud", "jung", "adler", "melanieklein", "winnicott"],
+  psicodinamica: ["freud", "jung", "adler", "melanieklein", "donaldwinnicott"],
   sistemica: ["satir", "haley", "bertalanffy", "michaelwhite", "maraselvinipalazzoli"],
   conductual: ["skinner", "pavlov", "watson", "thorndike", "linehan"],
   cognitivo: ["beck", "ellis", "bandura", "kabatzinn", "donaldmeichenbaum"],
@@ -95,7 +95,7 @@ export function GaleriaAutores({ slugs, color, titulo = "Voces de este módulo" 
           <li key={s} title={textoCredito(s)}>
             <Avatar slug={s} tam={56} desplaza={desp[i]} />
             <span>
-              <strong>{infoAutor(s).n}</strong>
+              <strong>{(infoAutor(s) || {}).n || s}</strong>
               {infoAutor(s).a && <em>{infoAutor(s).a}</em>}
               {infoAutor(s).r && <small>{infoAutor(s).r}</small>}
             </span>
@@ -165,7 +165,7 @@ export function GaleriaTodasLasVoces({ nombreDe, colorDe }) {
                 {slugs.map((s, i) => (
                   <li key={s} title={textoCredito(s)}>
                     <Avatar slug={s} tam={46} desplaza={desp[i]} />
-                    <span>{infoAutor(s).n}</span>
+                    <span>{(infoAutor(s) || {}).n || s}</span>
                   </li>
                 ))}
               </ul>
