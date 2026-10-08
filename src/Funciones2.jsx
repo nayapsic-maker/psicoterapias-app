@@ -438,7 +438,7 @@ const NOCIONES = [
     "Consecuencia de interpretar las situaciones como amenazantes (catastrofización); se contrastan esas predicciones.",
     "Se formula según factores mantenedores, etapa y preferencias; combina psicoeducación, exposición y trabajo cognitivo.",
     "Puede señalar resistencia a un cambio de identidad o una crisis de sentido; se acompaña con presencia y observación del yo."),
-  N("depresion", "deprim|tristeza|animo bajo|anhedonia", "Depresión / ánimo bajo",
+  N("depresion", "depres|deprim|tristeza|animo bajo|anhedonia|melanc|desanimo", "Depresión / ánimo bajo",
     "Pérdida de contacto con la propia valía y con el sentido; se busca recuperar la autenticidad y los valores.",
     "Pérdida de objeto con hostilidad vuelta contra sí mismo; autocrítica y culpa severas.",
     "Síntoma que ocurre dentro de relaciones: qué función cumple y cómo se reorganiza la familia o la pareja alrededor.",
@@ -680,7 +680,16 @@ const NOCIONES = [
     "Estados afectivos como puertas a niveles más profundos de experiencia."),
 ];
 
-export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEscuela, perspectivas, perspectivasFund, idDe = () => null }) {
+const NOCION_NODO = {
+  ansiedad: "ansiedad", sintoma: "sintoma", resistencia: "resistencia", relacion: "relacion_terapeutica", cambio: "mecanismo_cambio",
+  apego: "apego", culpa: "culpa", duelo: "muerte_finitud", inconsciente: "inconsciente", self: "self", motivacion: "motivacion",
+  cuerpo: "cuerpo_somatico", libertad: "libertad_determinismo", emocion: "emocion", cultura: "contexto_social", meta: "criterio_cura",
+  depresion: "depresion", trauma: "trauma", autoestima: "autoestima", conflicto: "conflicto", sentido: "sentido", pensamiento: "pensamiento",
+  conducta: "conducta", aprendizaje: "aprendizaje", defensa: "defensa", empatia: "empatia", diagnostico: "diagnostico", familia: "familia",
+  mindfulness: "atencion_plena", sueno: "suenos", esperanza: "esperanza",
+};
+
+export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEscuela, perspectivas, perspectivasFund, idDe = () => null, nudos = [] }) {
   const [texto, setTexto] = useState("");
   const [elegido, setElegido] = useState(0);
   const porId = useMemo(() => Object.fromEntries(escuelas.map((e) => [e.id, e])), [escuelas]);
@@ -759,11 +768,28 @@ export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEs
                     <article key={id} style={{ "--pc": colorDe(p?.nombre) }}>
                       <h6>{p?.nombre}</h6>
                       <p>{n.f[i]}</p>
-                      {glosarioDe(n, id).map((g) => (
-                        <p key={g.escuela + g.termino} className="psn-glos" title={g.fuente}>
-                          <b>{g.termino}</b> · <span>{recortar(g.definicion, 120)}</span>
-                        </p>
-                      ))}
+                      {(() => {
+                        const nodo = nudos.find((x) => x.id === NOCION_NODO[n.id]);
+                        const e = nodo && nodo.porPerspectiva.find((y) => idDe(y.perspectiva) === id);
+                        if (e) {
+                          return (
+                            <p className="psn-glos psn-glos-ok" title="Término verificado del glosario">
+                              <b>{e.termino}</b> · <span>{recortar(e.definicion, 150)}</span>
+                              <button onClick={() => setTexto(e.termino)}>ver puentes</button>
+                            </p>
+                          );
+                        }
+                        const lex = glosarioDe(n, id);
+                        if (lex.length) {
+                          return lex.map((g) => (
+                            <p key={g.escuela + g.termino} className="psn-glos" title={g.fuente}>
+                              <b>{g.termino}</b> · <span>{recortar(g.definicion, 120)}</span>
+                              <button onClick={() => setTexto(g.termino)}>ver puentes</button>
+                            </p>
+                          ));
+                        }
+                        return <p className="psn-glos psn-glos-hueco">Sin término verificado en el glosario para esta perspectiva todavía.</p>;
+                      })()}
                     </article>
                   );
                 })}
