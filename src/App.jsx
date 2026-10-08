@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { HeroAtlas, CintaEscuelas, GlifoPerspectiva } from "./Figuras.jsx";
+import { HeroMision, CintaEscuelas, PlanetaPerspectiva } from "./Figuras.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy, Sparkles } from "lucide-react";
 
 /* ============================================================
@@ -9,18 +9,18 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
    Afinidad/equivalente: #5C7A5E
    ============================================================ */
 const COLORS = {
-  paper: "#090D18",
-  paperDark: "#05070D",
-  ink: "#E9EDFA",
-  inkSoft: "#9AA6C6",
-  primary: "#7C9BFF",
-  primaryDark: "#0F1530",
-  clay: "#FF7A4D",
-  garnet: "#FF5C8A",
-  sage: "#2FD6A0",
-  gold: "#FFC233",
-  line: "#222C4A",
-  cardBg: "#10162B",
+  paper: "#F3E9D2",
+  paperDark: "#E6D8B6",
+  ink: "#15183C",
+  inkSoft: "#514D74",
+  primary: "#D9402A",
+  primaryDark: "#0E1B4D",
+  clay: "#D9402A",
+  garnet: "#B4253F",
+  sage: "#1F8A68",
+  gold: "#E9A100",
+  line: "#CBB98E",
+  cardBg: "#FBF5E4",
 };
 
 /* Sistema de temas: COLORS es un objeto MUTABLE referenciado por
@@ -40,14 +40,14 @@ const COLORS = {
    módulos; solo cambia la paleta "estructural" (fondo, tinta, tarjetas).
    */
 const TEMA_CLARO = {
-  paper: "#ECEFF8", paperDark: "#DDE3F3", ink: "#0D1226", inkSoft: "#47527A",
-  primary: "#2E4BFF", primaryDark: "#0D1226", clay: "#E8541A", garnet: "#D6275A",
-  sage: "#0E9F6E", gold: "#D98E00", line: "#C6CEE6", cardBg: "#FFFFFF",
+  paper: "#F3E9D2", paperDark: "#E6D8B6", ink: "#15183C", inkSoft: "#514D74",
+  primary: "#D9402A", primaryDark: "#0E1B4D", clay: "#D9402A", garnet: "#B4253F",
+  sage: "#1F8A68", gold: "#E9A100", line: "#CBB98E", cardBg: "#FBF5E4",
 };
 const TEMA_OSCURO = {
-  paper: "#090D18", paperDark: "#05070D", ink: "#E9EDFA", inkSoft: "#9AA6C6",
-  primary: "#7C9BFF", primaryDark: "#0F1530", clay: "#FF7A4D", garnet: "#FF5C8A",
-  sage: "#2FD6A0", gold: "#FFC233", line: "#222C4A", cardBg: "#10162B",
+  paper: "#16214F", paperDark: "#0F1840", ink: "#F4EBD3", inkSoft: "#B5B9DD",
+  primary: "#FFB62E", primaryDark: "#0A1236", clay: "#FF7A4D", garnet: "#FF6B8A",
+  sage: "#47D1A0", gold: "#FFC233", line: "#33427F", cardBg: "#1D2A63",
 };
 const TEMA_ALTO_CONTRASTE = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
@@ -67,12 +67,14 @@ const TEMA_STORAGE_KEY = "psicoterapias:tema";
 function aplicarVarsTema(nombre) {
   try {
     const r = document.documentElement;
-    const t = TEMAS[nombre] || TEMA_OSCURO;
+    const t = TEMAS[nombre] || TEMA_CLARO;
     r.dataset.tema = nombre;
+    r.style.setProperty("--canvas", nombre === "oscuro" ? "#070C24" : nombre === "alto-contraste" ? "#000000" : "#0E1B4D");
+    r.style.setProperty("--sombra", nombre === "oscuro" ? "#FFB62E" : nombre === "alto-contraste" ? "#FFD400" : "#E9A100");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
   } catch (e) {}
 }
-if (typeof document !== "undefined") aplicarVarsTema("oscuro");
+if (typeof document !== "undefined") aplicarVarsTema("claro");
 
 /* Paleta reservada para ESTADO DEL SISTEMA (íntegro / advertencia / error),
    deliberadamente distinta de PERSPECTIVA_COLOR y RELACION_INFO: estas tres
@@ -17924,13 +17926,13 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
   ];
   return (
     <div className="psq-aparece">
-      <HeroAtlas
+      <HeroMision
         perspectivas={perspectivas.map((p) => ({ id: p.id, nombre: p.nombre, corto: NOMBRE_CORTO_PERSPECTIVA[p.id] || p.nombre, color: PERSPECTIVA_COLOR[p.nombre] }))}
         totalEscuelas={escuelas.length}
         totalTerminos={GLOSARIO.length}
         onIrAFundamentos={() => irA("fundamentos")}
-        onIrAEscuelas={() => irA("comparacion")}
-        onActivarModoEstudio={setModoEstudio ? () => setModoEstudio((v) => !v) : undefined}
+        onIrAComparar={() => irA("comparacion")}
+        onModoEstudio={setModoEstudio ? () => setModoEstudio((v) => !v) : undefined}
       />
       <CintaEscuelas items={escuelas.map((e) => ({ nombre: e.nombre, color: PERSPECTIVA_COLOR[e.perspectiva] }))} />
 
@@ -17994,7 +17996,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
               className="psq-tarjeta-viva"
               style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 12, padding: 16, cursor: "pointer" }}
             >
-              <GlifoPerspectiva id={p.id} color={color} />
+              <PlanetaPerspectiva id={p.id} color={color} />
               <Sello color={color}>{p.nombre}</Sello>
               {modoEstudio ? (
                 <>
@@ -23134,10 +23136,10 @@ export default function App() {
   // el árbol tras la mutación — sin memoización de componentes en esta
   // app, un solo cambio de estado en la raíz basta para que las miles de
   // referencias a COLORS.algo en los hijos recojan el valor nuevo.
-  const [tema, setTema] = useState("oscuro");
+  const [tema, setTema] = useState("claro");
   const [, setTemaVersion] = useState(0);
   function cambiarTema(nuevo) {
-    Object.assign(COLORS, TEMAS[nuevo] || TEMA_OSCURO);
+    Object.assign(COLORS, TEMAS[nuevo] || TEMA_CLARO);
     aplicarVarsTema(nuevo);
     setTema(nuevo);
     setTemaVersion((v) => v + 1);
@@ -23682,7 +23684,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
               textOverflow: "ellipsis",
             }}
           >
-            Psicoterapias, comparadas
+            Psiconautas
           </span>
           <ChevronDown
             size={13}
@@ -24115,7 +24117,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
         );
       })()}
 
-      <div ref={contenidoRef} key={tab} className="psq-fade" style={{ padding: "22px clamp(12px, 4vw, 24px) 60px", maxWidth: 1180, margin: "0 auto", width: "100%", boxSizing: "border-box" }}>
+      <div ref={contenidoRef} key={tab} className="psq-fade psq-hoja" style={{ padding: "26px clamp(14px, 4vw, 34px) 48px", maxWidth: 1180, margin: "0 auto", width: "100%", boxSizing: "border-box" }}>
         {tab === "intro" && <ModuloIntroduccion irA={setTab} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} escuelas={escuelas} onIrAEscuela={irAEscuela} />}
         {tab === "buscador" && (
           <ModuloBuscador
