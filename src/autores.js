@@ -1,5 +1,5 @@
 // Retratos: Wikimedia Commons (licencias libres). Datos generados; créditos visibles en la app.
-// s = síntesis (redacción propia); q/qf = cita textual verificada en la biblioteca; foto:false = sin retrato libre (se muestra monograma).
+// s = síntesis (redacción propia); q/qf = cita textual verificada en la biblioteca; foto:false = sin retrato libre (se muestra una ilustración representativa genérica).
 export const AUTORES = {
  "freud": {
   "n": "Sigmund Freud",
@@ -585,7 +585,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "Evalúa siete modalidades (BASIC ID) y elige técnicas de distintas escuelas según lo que funcione para cada persona: eclecticismo técnico.",
-  "foto": false
+  "foto": false,
+  "g": "m"
  },
  "prochaska": {
   "n": "James Prochaska",
@@ -594,7 +595,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "El cambio ocurre por etapas (precontemplación, contemplación, preparación, acción y mantenimiento) y la intervención debe ajustarse a la etapa.",
-  "foto": false
+  "foto": false,
+  "g": "m"
  },
  "stricker": {
   "n": "George Stricker",
@@ -603,7 +605,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "Incorpora técnicas de otras escuelas dentro de una teoría anfitriona, adaptándolas a su marco (integración asimilativa).",
-  "foto": false
+  "foto": false,
+  "g": "m"
  },
  "goldfried": {
   "n": "Marvin Goldfried",
@@ -612,7 +615,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "Busca principios de cambio compartidos entre escuelas, más allá de sus técnicas específicas.",
-  "foto": false
+  "foto": false,
+  "g": "m"
  },
  "jeromefrank": {
   "n": "Jerome Frank",
@@ -621,7 +625,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "La desmoralización es el estado común de quienes consultan; toda terapia eficaz ofrece una relación, esperanza y un marco que da sentido.",
-  "foto": false
+  "foto": false,
+  "g": "m"
  },
  "hayes": {
   "n": "Steven Hayes",
@@ -630,7 +635,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "Busca flexibilidad psicológica —aceptación, defusión, valores y acción comprometida— más que eliminar síntomas.",
-  "foto": false
+  "foto": false,
+  "g": "m"
  },
  "linehan": {
   "n": "Marsha Linehan",
@@ -639,7 +645,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "Equilibra aceptación y cambio con habilidades de mindfulness, regulación emocional, tolerancia al malestar y efectividad interpersonal.",
-  "foto": false
+  "foto": false,
+  "g": "f"
  },
  "jeffreyyoung": {
   "n": "Jeffrey Young",
@@ -648,7 +655,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "Trabaja esquemas desadaptativos tempranos y modos con técnicas cognitivas, vivenciales y de relación terapéutica.",
-  "foto": false
+  "foto": false,
+  "g": "m"
  },
  "murraybowen": {
   "n": "Murray Bowen",
@@ -657,7 +665,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "La diferenciación del self y los triángulos en el sistema emocional familiar explican la ansiedad y los síntomas.",
-  "foto": false
+  "foto": false,
+  "g": "m"
  },
  "wolpe": {
   "n": "Joseph Wolpe",
@@ -666,7 +675,8 @@ export const AUTORES = {
   "l": "sin retrato libre disponible",
   "f": "",
   "s": "La inhibición recíproca: una respuesta incompatible con la ansiedad, en jerarquía gradual, la debilita.",
-  "foto": false
+  "foto": false,
+  "g": "m"
  },
  "stevedeshazer": {
   "n": "Steve de Shazer e Insoo Kim Berg",
@@ -675,6 +685,24 @@ export const AUTORES = {
   "l": "CC BY-SA 4.0",
   "f": "Marieelodieamelie",
   "s": "Se centra en las soluciones y en las excepciones, no en el análisis del problema: la pregunta del milagro orienta el cambio."
+ },
+ "thorndike": {
+  "n": "Edward L. Thorndike",
+  "a": "1874–1949",
+  "r": "Ley del efecto",
+  "l": "Public domain",
+  "f": "autor desconocido",
+  "s": "Las conductas seguidas de consecuencias satisfactorias tienden a repetirse: la ley del efecto."
+ },
+ "kenwilber": {
+  "n": "Ken Wilber",
+  "a": "n. 1949",
+  "r": "Psicología integral (modelo espectral)",
+  "l": "sin retrato libre disponible",
+  "f": "",
+  "s": "Integra psicología, filosofía y tradiciones contemplativas en un mapa de niveles y líneas de desarrollo de la conciencia.",
+  "foto": false,
+  "g": "m"
  }
 };
-export const ALIAS_AUTOR = {"donaldmeichenbaum": "donaldmeichenbaum", "carlgustavjung": "jung", "aarontbeck": "beck", "mihalycsikszentmihalyi": "mihalycsikszentmihalyi", "imrelakatos": "imrelakatos", "wrdfairbairn": "wrdfairbairn", "alfredadler": "adler", "paulwatzlawick": "paulwatzlawick", "edmundhusserl": "edmundhusserl", "paulfeyerabend": "paulfeyerabend", "abrahammaslow": "maslow", "emmyvandeurzen": "emmyvandeurzen", "robertoassagioli": "assagioli", "carlrogers": "rogers", "stanislavgrof": "grof", "martinheidegger": "martinheidegger", "abrahamhmaslow": "maslow", "eugenegendlin": "eugenegendlin", "thomaskuhn": "thomaskuhn", "jmarkgwilliams": "jmarkgwilliams", "davidepston": "davidepston", "rudolphloewenstein": "rudolphloewenstein", "heinzhartmann": "heinzhartmann", "alexanderluria": "alexanderluria", "josephzinker": "josephzinker", "viktorefrankl": "frankl", "martinseligman": "seligman", "ottofkernberg": "ottofkernberg", "rollomay": "may", "jamesbugental": "jamesbugental", "jessicabenjamin": "jessicabenjamin", "karlpopper": "karlpopper", "melanieklein": "melanieklein", "lewisaron": "lewisaron", "albertellis": "ellis", "heinzkohut": "heinzkohut", "annafreud": "anna", "edwardlthorndike": "edwardlthorndike", "norbertwiener": "norbertwiener", "albertbandura": "bandura", "humbertomaturana": "humbertomaturana", "ronalddlaing": "ronalddlaing", "peterfonagy": "peterfonagy", "virginiasatir": "satir", "carlwhitaker": "carlwhitaker", "jayhaley": "haley", "irvinyalom": "yalom", "sigmundfreud": "freud", "fritzperls": "perls", "carlgjung": "jung", "erikerikson": "erikson", "viktorfrankl": "frankl", "erichfromm": "fromm", "bfskinner": "skinner", "ivanpavlov": "pavlov", "johnbwatson": "watson", "jeanpiaget": "piaget", "wilhelmwundt": "wundt", "williamjames": "james", "jonkabatzinn": "kabatzinn", "ludwigvonbertalanffy": "bertalanffy", "miltonherickson": "milton", "rdlaing": "ronalddlaing", "freud": "freud", "jung": "jung", "adler": "adler", "erikson": "erikson", "rogers": "rogers", "maslow": "maslow", "frankl": "frankl", "perls": "perls", "may": "may", "fromm": "fromm", "skinner": "skinner", "pavlov": "pavlov", "watson": "watson", "bandura": "bandura", "beck": "beck", "ellis": "ellis", "piaget": "piaget", "satir": "satir", "haley": "haley", "grof": "grof", "assagioli": "assagioli", "wundt": "wundt", "james": "james", "kabatzinn": "kabatzinn", "seligman": "seligman", "yalom": "yalom", "bertalanffy": "bertalanffy", "milton": "milton", "anna": "anna", "alfriedlangle": "alfriedlangle", "maraselvinipalazzoli": "maraselvinipalazzoli", "michaelwhite": "michaelwhite", "paulgoodman": "paulgoodman", "wilfredbion": "wilfredbion", "donaldwinnicott": "donaldwinnicott", "karenhorney": "karenhorney", "wilhelmreich": "wilhelmreich", "sandorferenczi": "sandorferenczi", "ottorank": "ottorank", "ericberne": "ericberne", "ludwigbinswanger": "ludwigbinswanger", "arnoldalazarus": "lazarus", "arnoldlazarus": "lazarus", "jamesoprochaska": "prochaska", "jamesprochaska": "prochaska", "georgestricker": "stricker", "marvinrgoldfried": "goldfried", "marvingoldfried": "goldfried", "jeromedfrank": "jeromefrank", "jeromefrank": "jeromefrank", "stevenchayes": "hayes", "stevenhayes": "hayes", "marshamlinehan": "linehan", "marshalinehan": "linehan", "jeffreyyoung": "jeffreyyoung", "murraybowen": "murraybowen", "josephwolpe": "wolpe", "stevedeshazer": "stevedeshazer", "insookimberg": "stevedeshazer", "stevedeshazereinsookimberg": "stevedeshazer"};
+export const ALIAS_AUTOR = {"donaldmeichenbaum": "donaldmeichenbaum", "carlgustavjung": "jung", "aarontbeck": "beck", "mihalycsikszentmihalyi": "mihalycsikszentmihalyi", "imrelakatos": "imrelakatos", "wrdfairbairn": "wrdfairbairn", "alfredadler": "adler", "paulwatzlawick": "paulwatzlawick", "edmundhusserl": "edmundhusserl", "paulfeyerabend": "paulfeyerabend", "abrahammaslow": "maslow", "emmyvandeurzen": "emmyvandeurzen", "robertoassagioli": "assagioli", "carlrogers": "rogers", "stanislavgrof": "grof", "martinheidegger": "martinheidegger", "abrahamhmaslow": "maslow", "eugenegendlin": "eugenegendlin", "thomaskuhn": "thomaskuhn", "jmarkgwilliams": "jmarkgwilliams", "davidepston": "davidepston", "rudolphloewenstein": "rudolphloewenstein", "heinzhartmann": "heinzhartmann", "alexanderluria": "alexanderluria", "josephzinker": "josephzinker", "viktorefrankl": "frankl", "martinseligman": "seligman", "ottofkernberg": "ottofkernberg", "rollomay": "may", "jamesbugental": "jamesbugental", "jessicabenjamin": "jessicabenjamin", "karlpopper": "karlpopper", "melanieklein": "melanieklein", "lewisaron": "lewisaron", "albertellis": "ellis", "heinzkohut": "heinzkohut", "annafreud": "anna", "edwardlthorndike": "thorndike", "norbertwiener": "norbertwiener", "albertbandura": "bandura", "humbertomaturana": "humbertomaturana", "ronalddlaing": "ronalddlaing", "peterfonagy": "peterfonagy", "virginiasatir": "satir", "carlwhitaker": "carlwhitaker", "jayhaley": "haley", "irvinyalom": "yalom", "sigmundfreud": "freud", "fritzperls": "perls", "carlgjung": "jung", "erikerikson": "erikson", "viktorfrankl": "frankl", "erichfromm": "fromm", "bfskinner": "skinner", "ivanpavlov": "pavlov", "johnbwatson": "watson", "jeanpiaget": "piaget", "wilhelmwundt": "wundt", "williamjames": "james", "jonkabatzinn": "kabatzinn", "ludwigvonbertalanffy": "bertalanffy", "miltonherickson": "milton", "rdlaing": "ronalddlaing", "freud": "freud", "jung": "jung", "adler": "adler", "erikson": "erikson", "rogers": "rogers", "maslow": "maslow", "frankl": "frankl", "perls": "perls", "may": "may", "fromm": "fromm", "skinner": "skinner", "pavlov": "pavlov", "watson": "watson", "bandura": "bandura", "beck": "beck", "ellis": "ellis", "piaget": "piaget", "satir": "satir", "haley": "haley", "grof": "grof", "assagioli": "assagioli", "wundt": "wundt", "james": "james", "kabatzinn": "kabatzinn", "seligman": "seligman", "yalom": "yalom", "bertalanffy": "bertalanffy", "milton": "milton", "anna": "anna", "alfriedlangle": "alfriedlangle", "maraselvinipalazzoli": "maraselvinipalazzoli", "michaelwhite": "michaelwhite", "paulgoodman": "paulgoodman", "wilfredbion": "wilfredbion", "donaldwinnicott": "donaldwinnicott", "karenhorney": "karenhorney", "wilhelmreich": "wilhelmreich", "sandorferenczi": "sandorferenczi", "ottorank": "ottorank", "ericberne": "ericberne", "ludwigbinswanger": "ludwigbinswanger", "arnoldalazarus": "lazarus", "arnoldlazarus": "lazarus", "jamesoprochaska": "prochaska", "jamesprochaska": "prochaska", "georgestricker": "stricker", "marvinrgoldfried": "goldfried", "marvingoldfried": "goldfried", "jeromedfrank": "jeromefrank", "jeromefrank": "jeromefrank", "stevenchayes": "hayes", "stevenhayes": "hayes", "marshamlinehan": "linehan", "marshalinehan": "linehan", "jeffreyyoung": "jeffreyyoung", "murraybowen": "murraybowen", "josephwolpe": "wolpe", "stevedeshazer": "stevedeshazer", "insookimberg": "stevedeshazer", "stevedeshazereinsookimberg": "stevedeshazer", "edwardthorndike": "thorndike", "kenwilber": "kenwilber"};

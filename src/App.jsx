@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos } from "./Funciones.jsx";
-import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos } from "./Funciones2.jsx";
+import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos, AvataresSub } from "./Funciones.jsx";
+import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato } from "./Figuras.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "lucide-react";
 
@@ -8724,6 +8724,34 @@ const CONCEPTOS_TRANSVERSALES = [
       { perspectiva: "Cognitivo-Conductual", escuela: "c19", termino: "Internalización del habla reguladora externa", definicion: "El autocontrol se estructura por la interiorización progresiva del habla de los adultos, que pasa de regular la conducta del niño desde fuera a regularla desde el habla encubierta propia (Vygotsky, 1934; Meichenbaum y Goodman, 1971)." },
       { perspectiva: "Cognitivo-Conductual", escuela: "c10", termino: "Aprendizaje observacional y autoeficacia temprana", definicion: "Las estructuras de expectativa y autoeficacia se forman por observación de modelos y por la retroalimentación de las propias experiencias de dominio, no por maduración de instancias internas (Bandura, 1977)." },
       { perspectiva: "Transpersonal", escuela: "t5", termino: "Fulcros 1-3 (estructuras prepersonales)", definicion: "Los tres primeros fulcros del desarrollo —yo sensorio-físico, yo emocional-fantásmico y mente representacional— establecen la base estructural sobre la que se erige todo el desarrollo personal y transpersonal posterior (Wilber, 1994)." },
+    ],
+  },
+  {
+    id: "emocion",
+    nombre: "La emoción y el afecto",
+    descripcion: "Qué lugar ocupa la emoción en cada perspectiva: vivencia que resuena, señal que se esconde, material a regular, algo que se acepta o se repara en la relación.",
+    porPerspectiva: [
+      { perspectiva: "Humanista-existencial", escuela: "h6d", termino: "Percepción Afectiva (Resonancia)", definicion: "Vivencia emocional que genera resonancia interna: «una experiencia de algo que se piensa, que pasa, que sucede o podría suceder, me toca, me llama, entra en mí y genera vibración, resonancia afectiva». (Martínez Ortiz, E. (2012). El diálogo socrático en la psicoterapia centrada en el sentido (logoterapia), p. 90)" },
+      { perspectiva: "Psicodinámica", escuela: "p5", termino: "Triángulo del Conflicto (Sentimiento-Angustia-Defensa)", definicion: "Estructura de Malan radicalizada por Davanloo: el Sentimiento verdadero reprimido dispara Angustia, que fuerza al yo a erigir una Defensa para volver a enterrar el sentimiento; junto al Triángulo de las Personas (Pasado-Actual-Terapeuta), guía minuto a minuto la intervención en la ISTDP. (Malan, D. H. (1979); Davanloo, H. (2000))" },
+      { perspectiva: "Sistémica", escuela: "s1", termino: "Corte emocional", definicion: "Estrategia de manejar la fusión emocional no resuelta con la familia de origen mediante la distancia física o emocional, sin lograr una diferenciación real. (Kerr, M. E., & Bowen, M. (1988). Family Evaluation. Norton, p. 300)" },
+      { perspectiva: "Conductual", escuela: "c5", termino: "Regulación emocional", definicion: "Conjunto de habilidades para identificar, comprender y modular la intensidad y expresión de las propias emociones. (Linehan, M. M. (2015). DBT Skills Training Manual (2.ª ed.). Guilford Press)" },
+      { perspectiva: "Cognitivo-Conductual", escuela: "c18", termino: "Disonancia cognitivo-emocional", definicion: "Desfase entre el insight neocortical (saber intelectualmente que un pensamiento es irracional) y el cambio afectivo límbico real; explica por qué la sola comprensión verbal no basta y se requiere práctica repetida de IRE y RSA. (Maultsby, M. C., Jr. (1984). Rational Behavior Therapy. Prentice-Hall)" },
+      { perspectiva: "Integradora", escuela: "i1", termino: "Experiencia emocional correctiva", definicion: "Vivencia, dentro de la relación terapéutica, de una respuesta distinta de la esperada por el paciente según sus patrones previos, que permite reprocesar la experiencia. (Goldfried, M. R. (1980). American Psychologist, 35(11), p. 997 (estrategia clínica común); Alexander, F., & French, T. M. (1946). Psychoanal)" },
+      { perspectiva: "Transpersonal", escuela: "t3", termino: "Judo Psicológico (Técnica de Aceptación)", definicion: "Aceptación radical de emociones negativas en vez de combatirlas, para quitarles «el viento a sus velas» y disminuir su poder, usándolas como material de trabajo. (Ferrucci, P. (1982). Psicosíntesis. Editorial Sirio)" },
+    ],
+  },
+  {
+    id: "contexto_social",
+    nombre: "El contexto: cultura y vínculos sociales",
+    descripcion: "Cómo entiende cada perspectiva el papel del entorno social, cultural y relacional en el malestar y en el cambio.",
+    porPerspectiva: [
+      { perspectiva: "Humanista-existencial", escuela: "h10", termino: "Modelo biopsicosocial feminista", definicion: "«Emphasizes the necessity of understanding the multiple roots of people's styles of being in the world [...] this same emphasis on the contributions of culture to experience directs attention to the biological, as well, framed in a particularly feminist manner» (Brown, 1994). (Brown, L. S. (1994). Subversive dialogues: Theory in feminist therapy. Basic Books, pp. 144–148 (cap. 5, «A feminist biopsychosocial model»))" },
+      { perspectiva: "Psicodinámica", escuela: "p7", termino: "Interés social", definicion: "Disposición, innata en potencia pero a desarrollar, a cooperar con los demás y contribuir al bienestar colectivo; criterio adleriano de salud psicológica. (Adler, A. (1927/1998). Understanding Human Nature)" },
+      { perspectiva: "Sistémica", escuela: "s7", termino: "Escultura familiar", definicion: "Los miembros de la familia se disponen físicamente en el espacio para representar de forma no verbal la estructura relacional y emocional percibida, creando una experiencia vívida en el momento. (Veldorale-Griffin, A., en Watters, A., Adamson, S. (Eds.). Family Therapy Review)" },
+      { perspectiva: "Conductual", escuela: "c5", termino: "Teoría Biosocial", definicion: "Modelo etiopatogénico central de DBT: la desregulación emocional severa resulta de una transacción continua entre una vulnerabilidad biológica innata (alta sensibilidad, alta reactividad, retorno lento a la calma) y un ambiente invalidante que castiga o ignora las expresiones emocionales del individuo. (Linehan, M. M. (1993a). Cognitive-Behavioral Treatment of Borderline Personality Disorder. Guilford Press)" },
+      { perspectiva: "Cognitivo-Conductual", escuela: "c10", termino: "Entrenamiento en Habilidades Sociales (EHS)", definicion: "Paquete estructurado de instrucciones, modelado, ensayo conductual (role-playing), retroalimentación y reestructuración cognitiva paralela para instalar un repertorio interpersonal adaptativo. (Caballo, V. E. (1997). Manual de evaluación y entrenamiento de las habilidades sociales)" },
+      { perspectiva: "Integradora", escuela: "i4", termino: "Contexto relacional", definicion: "Marco vincular específico en que se resignifica una técnica asimilada, de modo que su efecto depende tanto del procedimiento como de la relación en que se aplica. (Stricker, G., & Gold, J. R. (1996). Psychotherapy integration: An assimilative, psychodynamic approach. Clinical Psychology: Science and Pra)" },
+      { perspectiva: "Transpersonal", escuela: "t2", termino: "Contexto, contenido y proceso en la terapia transpersonal (Vaughan)", definicion: "Siguiendo a Vaughan (1979), Hastings distingue tres dimensiones: el contexto (la actitud y los supuestos del terapeuta, que pueden ser transpersonales aunque nunca se mencione lo transpersonal), el contenido (las experiencias transpersonales como tema de la terapia, con apoyo y guía del terapeuta) y el proceso. Indica que ante vivencias como visiones, percepción extrasensorial, recuerdos de vidas pasadas o sincronicidades, el terapeuta no las rechaza como fantasía o patología ni las toma como signo de iluminación, y que conviene que haya explorado personalmente el ámbito transpersonal (p. 204)." },
     ],
   },
 ];
@@ -18327,7 +18355,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
   // Antes este módulo solo exponía los 6 campos narrativos guardados bajo
   // `p.contexto`, dejando fuera precisamente las cuatro coordenadas
   // filosóficas (ontología, epistemología, metodología, criterio de
-  // verdad) que son el eje central de todo el Módulo 0 de la app y que
+  // verdad) que son el eje central de la app y que
   // ya existen, completas, como campos de nivel superior de cada
   // perspectiva — simplemente no estaban conectadas a esta pantalla. Se
   // añaden aquí junto con unidad de análisis y relación mente-cuerpo, que
@@ -18373,7 +18401,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
   // Nivel de comparación: perspectivas completas (7, fijas) o escuelas
   // sueltas elegidas libremente (comparación cruzada entre perspectivas).
   const [nivel, setNivel] = useState("perspectivas"); // "perspectivas" | "escuelas"
-  const [vista, setVista] = useState("tarjetas"); // "tarjetas" | "tabla"
+  const [vista, setVista] = useState("rosa"); // "rosa" | "tarjetas" | "tabla"
   const [escuelasSeleccionadas, setEscuelasSeleccionadas] = useState([]);
   const escuelasComparadas = escuelasSeleccionadas.map((id) => escuelas.find((e) => e.id === id)).filter(Boolean);
 
@@ -18386,7 +18414,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
       />
       <details className="psn-detalles">
         <summary>Debate simulado <small>— dos escuelas frente a frente</small></summary>
-        <DebateSimulado escuelas={escuelas} enlaces={enlaces || ENLACES_SEED} colorDe={(p) => PERSPECTIVA_COLOR[p]} />
+        <DebateSimulado modoEstudio={modoEstudio} escuelas={escuelas} enlaces={enlaces || ENLACES_SEED} colorDe={(p) => PERSPECTIVA_COLOR[p]} />
       </details>
 
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center", margin: "16px 0" }}>
@@ -18411,6 +18439,16 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
           </button>
         </div>
         <div style={{ display: "flex", gap: 4, background: COLORS.paperDark, borderRadius: 20, padding: 3 }}>
+          <button
+            onClick={() => setVista("rosa")}
+            title="Dial de ejes con pétalos por perspectiva"
+            style={{
+              fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
+              background: vista === "rosa" ? COLORS.garnet : "transparent", color: vista === "rosa" ? "#fff" : COLORS.inkSoft,
+            }}
+          >
+            Rosa de ejes
+          </button>
           <button
             onClick={() => setVista("tarjetas")}
             title="Ver una categoría a la vez, en profundidad"
@@ -18438,6 +18476,10 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
         <SelectorEscuelasComparador escuelas={escuelas} seleccionadas={escuelasSeleccionadas} setSeleccionadas={setEscuelasSeleccionadas} />
       )}
 
+      {nivel === "perspectivas" && vista === "rosa" && (
+        <RosaDeEjes campos={campos} perspectivas={perspectivas} colorDe={(p) => PERSPECTIVA_COLOR[p.nombre] || COLORS.primary} modoEstudio={modoEstudio} />
+      )}
+
       {nivel === "perspectivas" && vista === "tarjetas" && (
         <div style={{ display: "grid", gap: 10, marginBottom: 16 }}>
           <div>
@@ -18456,7 +18498,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
           </div>
           <div>
             <div style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: COLORS.garnet, textTransform: "uppercase", marginBottom: 4 }}>
-              Coordenadas filosóficas (Módulo 0)
+              Coordenadas filosóficas
             </div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               {campos
@@ -18571,6 +18613,9 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
       <p style={{ marginTop: 20, fontFamily: "var(--f-text)", fontSize: 12, color: COLORS.inkSoft, fontStyle: "italic" }}>
         Para comparar conceptos específicos entre escuelas (no solo fichas completas) con su tipo de relación popperiano exacto, usa el Diccionario traslacional.
       </p>
+      {modoEstudio && (
+        <ExamenSimulado escuelas={escuelas} enlaces={enlaces || ENLACES_SEED} perspectivas={perspectivas} colorDe={(p) => PERSPECTIVA_COLOR[p.nombre || p]} />
+      )}
     </div>
   );
 }
@@ -19261,6 +19306,7 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
                     style={{ marginTop: 4, cursor: "pointer", accentColor: color }}
                   />
                 )}
+                <AvataresSub escuelas={escuelas} escuelaId={sp.escuela} color={color} perspectiva={(FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId) || {}).nombre} />
                 <div style={{ flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
                     <span style={{ fontFamily: "var(--f-display)", fontWeight: 700, fontSize: 13.5 }}>{sp.nombre}</span>
@@ -21292,7 +21338,7 @@ function TablaProtocolos({ filas, ordenTabla, cambiarOrden }) {
 
 function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrAEscuela }) {
   const [q, setQ] = useState("");
-  const [vista, setVista] = useState("tarjetas"); // "tarjetas" | "tabla"
+  const [vista, setVista] = useState("rosa"); // "rosa" | "tarjetas" | "tabla"
   const [ordenTabla, setOrdenTabla] = useState({ col: "perspectiva", asc: true });
   const [indiceEstudio, setIndiceEstudio] = useState(0);
   useEffect(() => {
@@ -21420,7 +21466,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrA
       <GaleriaCasos />
       <details className="psn-detalles">
         <summary>Caso clínico en 7 miradas <small>— un mismo caso, leído desde cada perspectiva</small></summary>
-        <CasoSieteMiradas idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} escuelas={escuelas} perspectivas={FUNDAMENTOS_PERSPECTIVAS} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
+        <CasoSieteMiradas modoEstudio={modoEstudio} idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} escuelas={escuelas} perspectivas={FUNDAMENTOS_PERSPECTIVAS} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
       </details>
 
       {/* Banda fija con la distinción operativa, siempre visible al entrar
@@ -22230,7 +22276,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
       />
       <details className="psn-detalles">
         <summary>Traductor de lenguaje clínico <small>— un término, siete vocabularios</small></summary>
-        <TraductorClinico perspectivasFund={FUNDAMENTOS_PERSPECTIVAS} escuelas={escuelas} glosario={GLOSARIO} enlaces={enlaces} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} perspectivas={nombresPerspectivas(escuelas)} />
+        <TraductorClinico idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} perspectivasFund={FUNDAMENTOS_PERSPECTIVAS} escuelas={escuelas} glosario={GLOSARIO} enlaces={enlaces} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} perspectivas={nombresPerspectivas(escuelas)} />
       </details>
 
       <div style={{ marginTop: 12, marginBottom: 4 }}>
@@ -22624,7 +22670,7 @@ function IntroConceptosTransversales() {
   return (
     <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: 16, marginBottom: 6 }}>
       <p style={{ fontFamily: "var(--f-text)", fontSize: 12.5, color: COLORS.inkSoft, marginTop: 0 }}>
-        Antes de navegar escuela por escuela, esta es una referencia rápida: dieciocho nudos conceptuales (el síntoma, la ansiedad, el self, el inconsciente, la resistencia, la relación terapéutica, el mecanismo de cambio, el criterio de cura, el rol del terapeuta, la temporalidad, el lenguaje, el cuerpo, la motivación, la manualización, la culpa, el apego temprano, la muerte y la finitud, y la libertad y el determinismo) con el término y la definición propios de cada una de las siete perspectivas, lado a lado (donde aplica).
+        Antes de navegar escuela por escuela, esta es una referencia rápida: {CONCEPTOS_TRANSVERSALES.length} nudos conceptuales (el síntoma, la ansiedad, el self, el inconsciente, la resistencia, la relación terapéutica, el mecanismo de cambio, el criterio de cura, el rol del terapeuta, la temporalidad, el lenguaje, el cuerpo, la motivación, la manualización, la culpa, el apego temprano, la muerte y la finitud, la libertad y el determinismo, la emoción y el afecto, y el contexto social y cultural, entre otros) con el término y la definición propios de cada una de las siete perspectivas, lado a lado (donde aplica).
       </p>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
         {CONCEPTOS_TRANSVERSALES.map((c) => (

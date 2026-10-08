@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { slugsDeAutores } from "./Figuras.jsx";
-import { norm, unir, oraciones, Mini, COLOR_REL, barajar } from "./Funciones.jsx";
+import { slugsDeAutores, AUTORES } from "./Figuras.jsx";
+import { norm, unir, oraciones, Mini, COLOR_REL, barajar, recortar } from "./Funciones.jsx";
 
 /* ============================================================
    PSICONAUTAS — funciones diferenciales (parte 2)
@@ -15,7 +15,7 @@ import { norm, unir, oraciones, Mini, COLOR_REL, barajar } from "./Funciones.jsx
 /* ------------------------------------------------------------ */
 const T = (n, por, temas = ["*"]) => ({ n, por, temas });
 
-const MIRADAS = {
+export const MIRADAS = {
   humanista: {
     problema: "Una desconexión de la propia experiencia y de los valores que dan sentido.",
     mira: "La experiencia vivida de la persona, su sentido y su autenticidad.",
@@ -254,7 +254,7 @@ export function GaleriaCasos() {
   );
 }
 
-export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela, idDe = () => null }) {
+export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela, idDe = () => null, modoEstudio = false }) {
   const vacio = { motivo: "", historia: "", contexto: "", recursos: "", meta: "" };
   const [campos, setCampos] = useState(vacio);
   const [abierto, setAbierto] = useState(null);
@@ -384,12 +384,43 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
               );
             })}
           </div>
+          {modoEstudio && <RetoACiegas perspectivas={perspectivas} colorDe={colorDe} />}
           <h5 className="psn-sub-h">Para completar el caso, convendría preguntar</h5>
           <ul className="psn-pend">{PENDIENTES.map((x) => <li key={x}>{x}</li>)}</ul>
           <p className="psn-aviso">Ejercicio de estudio: no sustituye el juicio clínico, el diagnóstico ni la supervisión. Las preguntas, técnicas y metas sintetizan el enfoque general de cada perspectiva (redacción propia); el detalle verificado de cada escuela está en su ficha.</p>
         </>
       )}
     </section>
+  );
+}
+
+
+/* Modo estudio: une cada formulación del problema con la perspectiva que la haría. */
+function RetoACiegas({ perspectivas, colorDe }) {
+  const items = useMemo(() => barajar(perspectivas.filter((p) => MIRADAS[p.id]).map((p) => ({ id: p.id, nombre: p.nombre, txt: MIRADAS[p.id].problema }))), [perspectivas]);
+  const [resp, setResp] = useState({});
+  const [ver, setVer] = useState(false);
+  const aciertos = items.filter((x) => resp[x.id] === x.nombre).length;
+  return (
+    <div className="psn-ciegas">
+      <h5 className="psn-sub-h">Modo estudio · reto a ciegas</h5>
+      <p className="psn-nota">Cada línea es cómo una perspectiva formularía «el problema» de este caso. ¿Cuál es cuál?</p>
+      {items.map((x) => (
+        <div key={x.id} className="psn-ciegas-fila" style={{ "--pc": ver ? colorDe(x.nombre) : "var(--c-ink)" }}>
+          <span>{x.txt}</span>
+          <select value={resp[x.id] || ""} onChange={(e) => setResp({ ...resp, [x.id]: e.target.value })} disabled={ver}>
+            <option value="">— perspectiva —</option>
+            {perspectivas.map((p) => <option key={p.id} value={p.nombre}>{p.nombre}</option>)}
+          </select>
+          {ver && <b className={resp[x.id] === x.nombre ? "ok" : "mal"}>{resp[x.id] === x.nombre ? "✓" : `✗ era ${x.nombre}`}</b>}
+        </div>
+      ))}
+      <div className="psn-ciegas-acc">
+        <button className="psn-btn psn-btn-primario" onClick={() => setVer(true)} disabled={ver || Object.keys(resp).length < items.length}>Comprobar</button>
+        {ver && <span className="psn-chip">{aciertos}/{items.length}</span>}
+        {ver && <button className="psn-btn" onClick={() => { setResp({}); setVer(false); }}>Reintentar</button>}
+      </div>
+    </div>
   );
 }
 
@@ -511,6 +542,134 @@ const NOCIONES = [
     "Creencias sobre el significado de los hechos y de la propia vida.",
     "Se integra como parte de los objetivos del caso.",
     "Dimensión espiritual como fuente de sentido."),
+  N("inconsciente", "inconscien|subconscien", "Inconsciente",
+    "Experiencia organísmica aún no simbolizada ni admitida en la conciencia; se acompaña hasta que pueda ser vivida.",
+    "Sede de deseos, recuerdos y defensas reprimidas que influyen sin saberlo; se accede por asociación, sueños y transferencia.",
+    "Interesa menos como contenedor individual y más lo que no se dice: reglas y premisas implícitas del sistema.",
+    "No se postula como causa; lo «inconsciente» son conductas controladas por contingencias que la persona no describe.",
+    "Procesamiento automático: pensamientos automáticos y esquemas que operan fuera de la atención y se vuelven accesibles con registro.",
+    "Se acepta de forma pragmática: procesos implícitos y explícitos que la formulación integra según su utilidad clínica.",
+    "Se amplía a un inconsciente colectivo o a un superconsciente: fuente de recursos y de material transpersonal."),
+  N("self", "self|identidad|autoconcepto|el yo", "Yo, self e identidad",
+    "El self es una estructura fenoménica organizada de percepciones sobre sí; busca congruencia con la experiencia.",
+    "El yo media entre pulsión, conciencia moral y realidad; el self (Kohut) se estructura en la relación con objetos del self.",
+    "La identidad se construye en las relaciones y varía según el contexto; interesa la diferenciación respecto del sistema.",
+    "Repertorio de conductas y reglas verbales sobre uno mismo; en ACT, «yo-como-contexto».",
+    "Autoconcepto y esquemas sobre sí mismo que filtran la experiencia.",
+    "Proceso integrado de varios niveles que se aborda según la formulación.",
+    "El yo personal es solo una parte: un Yo integrador o transpersonal es la meta del desarrollo."),
+  N("pensamiento", "pensamient|creenci|cognici", "Pensamiento y creencias",
+    "Se atienden como parte de la experiencia vivida y de los valores, no como errores a corregir.",
+    "Fantasías y pensamientos son derivados de conflictos; se distingue proceso primario y secundario.",
+    "Creencias y premisas compartidas por la familia organizan las pautas; se examinan las narrativas dominantes.",
+    "Conducta verbal privada («eventos privados») regida por contingencias.",
+    "Eje central: pensamientos automáticos, creencias y esquemas determinan la emoción y la conducta.",
+    "Se evalúan junto con emoción, conducta y relaciones; se usan técnicas cognitivas si la formulación lo indica.",
+    "Se observan sin identificarse con ellos (desidentificación, atención plena)."),
+  N("conducta", "conducta|comportam|habito", "Conducta",
+    "Expresión de la persona como un todo, no el foco; cambia cuando cambia la experiencia.",
+    "Acto con significado inconsciente: repetición, actuación (acting out).",
+    "Se lee dentro de secuencias de interacción: cada conducta responde a otra.",
+    "Objeto central: se define, se mide y se modifica por sus consecuencias.",
+    "Resultado de interpretaciones y creencias; se pone a prueba con experimentos conductuales.",
+    "Una de las modalidades a evaluar (p. ej., BASIC ID) y a modificar según el plan.",
+    "Expresa el nivel de conciencia; el cambio sostenido se apoya en una transformación interior."),
+  N("aprendizaje", "aprendiz|condicion|habituac", "Aprendizaje",
+    "Aprendizaje significativo, que implica a toda la persona (Rogers).",
+    "Se aprende en las relaciones tempranas, por identificación e internalización.",
+    "Se aprende en el sistema: reglas, roles y pautas transmitidas.",
+    "Condicionamiento clásico y operante: asociación y consecuencias.",
+    "Aprendizaje observacional y de significados; autoeficacia (Bandura).",
+    "Los principios de aprendizaje son uno de los factores que operan en el cambio.",
+    "Aprendizaje como transformación de la conciencia mediante práctica."),
+  N("defensa", "defens|evita|evasi", "Defensa y evitación",
+    "Distorsión o negación de experiencias amenazantes para el self.",
+    "Mecanismos (represión, proyección, negación…) que protegen al yo de la angustia.",
+    "Evitar el conflicto mediante triangulaciones o coaliciones que protegen al sistema.",
+    "Evitación reforzada negativamente: reduce el malestar a corto plazo y mantiene el miedo.",
+    "Conductas de seguridad y evitación que impiden desconfirmar las creencias.",
+    "Se evalúa su función y se decide el abordaje (exploración, exposición, etc.).",
+    "Defensas del ego ante lo transpersonal; evitación de experiencias profundas."),
+  N("empatia", "empati|sintonia|comprension", "Empatía",
+    "Condición central: comprender el marco de referencia interno de la otra persona como si fuera propio.",
+    "Herramienta de comprensión (Kohut: introspección vicaria) que acompaña a la interpretación.",
+    "Se expresa como validación de todos los miembros del sistema (multiparcialidad).",
+    "Habilidad terapéutica que facilita la alianza y el reforzamiento de lo que se busca cambiar.",
+    "Componente de la relación colaborativa que permite el cuestionamiento.",
+    "Factor común asociado a los resultados en múltiples enfoques.",
+    "Presencia compasiva que acompaña más allá de la técnica."),
+  N("diagnostico", "diagnost|formulac|evaluac", "Diagnóstico y formulación",
+    "Se desconfía de las etiquetas; interesa comprender a la persona concreta.",
+    "Diagnóstico estructural y dinámico del funcionamiento (neurótico, límite, psicótico).",
+    "Se evalúa el sistema: pautas, límites y jerarquías; se formula una hipótesis sistémica.",
+    "Análisis funcional y evaluación conductual.",
+    "Conceptualización del caso con creencias nucleares y mantenedores.",
+    "Formulación integrada que orienta la selección del tratamiento.",
+    "Incluye la dimensión espiritual y distingue una crisis espiritual de un trastorno."),
+  N("meta", "objetivo|meta |logro|finalidad", "Meta de la terapia",
+    "Mayor autenticidad, congruencia y autorrealización.",
+    "Insight, elaboración y mayor libertad psíquica.",
+    "Cambio de las pautas de interacción o de la narrativa compartida.",
+    "Conducta meta operacionalizada y medible.",
+    "Reducción del malestar y pensamiento más flexible.",
+    "Metas negociadas y revisadas según el progreso.",
+    "Integración y expansión de la conciencia."),
+  N("familia", "famili|padres|madre|pareja", "Familia y pareja",
+    "Contexto de las condiciones de valía que la persona aprendió a cumplir.",
+    "Escenario de los vínculos tempranos y de los conflictos de la infancia.",
+    "Unidad de análisis principal: un sistema con reglas, jerarquías y límites.",
+    "Fuente de contingencias; permite entrenar a madres, padres o parejas.",
+    "Origen de muchos esquemas y escenario de interacciones que los mantienen.",
+    "Contexto que se incluye en la formulación del caso.",
+    "Parte del contexto vital que también se integra en el camino de crecimiento."),
+  N("cuerpo", "cuerpo|somat|corpor", "Cuerpo",
+    "Fuente de la «sensación sentida» y de la sabiduría organísmica.",
+    "Sede de las pulsiones; los síntomas pueden expresar conflictos (conversión).",
+    "Los síntomas somáticos se leen como parte de las pautas del sistema.",
+    "Respuestas fisiológicas condicionadas; se trabajan con relajación y exposición.",
+    "Sensaciones corporales interpretadas de forma catastrófica.",
+    "Dimensión biológica de la formulación.",
+    "Puerta a estados de conciencia (respiración, movimiento, meditación)."),
+  N("libertad", "libertad|responsab|elecci", "Libertad y responsabilidad",
+    "Núcleo existencial: la persona es libre y responsable de lo que elige.",
+    "La libertad está limitada por determinantes inconscientes; el análisis amplía su margen.",
+    "Libertad dentro de los límites que impone el sistema.",
+    "Se estudia como control por consecuencias; el autocontrol es una conducta aprendida.",
+    "Responsabilidad sobre las propias interpretaciones y su revisión.",
+    "Autonomía de la persona en las decisiones sobre su tratamiento.",
+    "Libertad como liberación de identificaciones limitantes."),
+  N("mindfulness", "mindful|atencion plena|meditac", "Atención plena",
+    "Presencia y atención al momento presente.",
+    "Atención flotante y escucha de lo que ocurre aquí y ahora.",
+    "No es central; se presta atención al proceso en la sesión.",
+    "Tercera ola: aceptación, defusión y habilidades de mindfulness (ACT, DBT).",
+    "Terapia cognitiva basada en mindfulness para prevenir recaídas depresivas.",
+    "Técnica compatible con varios enfoques según la formulación.",
+    "Práctica contemplativa central en el desarrollo de la conciencia."),
+  N("sueno", "sueno|onirico", "Sueños",
+    "Mensaje existencial que se vive en el aquí y ahora (Gestalt).",
+    "Vía de acceso al inconsciente (Freud) o compensación de la psique (Jung).",
+    "Se usa poco; puede tratarse como relato compartido en la familia.",
+    "No es objeto de trabajo, o se trata como evento privado.",
+    "En pesadillas, técnicas como la reescritura con imaginería.",
+    "Se usa si es útil para la formulación.",
+    "Fuente de simbolismo y guía interior."),
+  N("cultura", "cultur|diversidad|genero|social", "Cultura y diversidad",
+    "Las terapias feministas y multiculturales sostienen que lo personal también es político.",
+    "El contexto social moldea la conciencia moral y la identidad.",
+    "El contexto cultural forma parte del sistema; se examinan las narrativas dominantes (narrativa).",
+    "El aprendizaje ocurre en contextos culturales; se adaptan los tratamientos.",
+    "Los esquemas se moldean por la cultura; hay adaptaciones culturales de los protocolos.",
+    "La competencia cultural es un factor transversal.",
+    "Las tradiciones espirituales y culturales se consideran parte del camino."),
+  N("esperanza", "esperanza|expectativ|desmoraliz", "Esperanza y expectativas",
+    "La fe en el potencial de la persona crea condiciones para el cambio.",
+    "Se explora qué se espera y se teme del análisis y de sí mismo.",
+    "Reencuadrar y ofrecer una narrativa más esperanzadora del problema.",
+    "Las expectativas de refuerzo orientan lo que se intenta hacer.",
+    "Predicciones y expectativas se ponen a prueba con evidencia.",
+    "Remoralizar es un factor común (Frank): esperanza, relación y un marco que da sentido.",
+    "Esperanza arraigada en el sentido y en la trascendencia."),
   N("emocion", "emocion|afecto|rabia|ira|tristeza", "Emoción",
     "Fuente de información sobre necesidades; se experimenta y se simboliza.",
     "Afecto ligado a representaciones; se hace consciente y se elabora.",
@@ -521,12 +680,17 @@ const NOCIONES = [
     "Estados afectivos como puertas a niveles más profundos de experiencia."),
 ];
 
-export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEscuela, perspectivas, perspectivasFund }) {
+export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEscuela, perspectivas, perspectivasFund, idDe = () => null }) {
   const [texto, setTexto] = useState("");
   const [elegido, setElegido] = useState(0);
   const porId = useMemo(() => Object.fromEntries(escuelas.map((e) => [e.id, e])), [escuelas]);
   const q = norm(texto);
   const nociones = useMemo(() => (q.length < 3 ? [] : NOCIONES.filter((n) => n.claves.some((k) => q.includes(k) || (q.length >= 4 && k.startsWith(q))))), [q]);
+  const glosarioDe = (n, perspId) =>
+    glosario
+      .filter((g) => { const E = porId[g.escuela]; return E && idDe(E.perspectiva) === perspId && g.tipo === "concepto" && n.claves.some((k) => norm(g.termino).includes(k.trim())); })
+      .sort((a, b) => a.termino.length - b.termino.length)
+      .slice(0, 2);
   const enlacesDe = (g) => {
     const nt = norm(g.termino);
     return enlaces.filter((l) => [l.conceptoA, l.conceptoB].some((c) => c.escuela === g.escuela && (norm(c.nombre).includes(nt) || nt.includes(norm(c.nombre)))));
@@ -585,7 +749,7 @@ export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEs
       )}
       {nociones.length > 0 && (
         <div className="psn-trad-nociones">
-          {nociones.slice(0, 2).map((n) => (
+          {nociones.slice(0, 3).map((n) => (
             <article key={n.id}>
               <h4>«{n.nombre}» en siete lenguajes <small>(síntesis orientativa, redacción propia)</small></h4>
               <div className="psn-trad-grid">
@@ -595,6 +759,11 @@ export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEs
                     <article key={id} style={{ "--pc": colorDe(p?.nombre) }}>
                       <h6>{p?.nombre}</h6>
                       <p>{n.f[i]}</p>
+                      {glosarioDe(n, id).map((g) => (
+                        <p key={g.escuela + g.termino} className="psn-glos" title={g.fuente}>
+                          <b>{g.termino}</b> · <span>{recortar(g.definicion, 120)}</span>
+                        </p>
+                      ))}
                     </article>
                   );
                 })}
@@ -698,7 +867,7 @@ function conCaso(e, caso) {
   };
 }
 
-export function DebateSimulado({ escuelas, enlaces, colorDe }) {
+export function DebateSimulado({ escuelas, enlaces, colorDe, modoEstudio = false }) {
   const ordenadas = useMemo(() => [...escuelas].sort((a, b) => a.perspectiva.localeCompare(b.perspectiva) || a.nombre.localeCompare(b.nombre)), [escuelas]);
   const [ida, setIda] = useState("");
   const [idb, setIdb] = useState("");
@@ -707,6 +876,8 @@ export function DebateSimulado({ escuelas, enlaces, colorDe }) {
   const [idCaso, setIdCaso] = useState("");
   const [voto, setVoto] = useState("");
   const [nota, setNota] = useState("");
+  const [abogado, setAbogado] = useState("");
+  const [reveladoAb, setReveladoAb] = useState(false);
   const A = escuelas.find((e) => e.id === ida), B = escuelas.find((e) => e.id === idb);
   const clave = `psiconautas:debate:${ida}|${idb}`;
   useEffect(() => {
@@ -743,7 +914,7 @@ export function DebateSimulado({ escuelas, enlaces, colorDe }) {
     const s = slugsDeAutores(e.autores)[0];
     return (
       <div className="psn-voz-id">
-        {s ? <Mini slug={s} tam={56} color={colorDe(e.perspectiva)} /> : <i className="psn-tl-punto" />}
+        {s ? <Mini slug={s} tam={56} /> : <i className="psn-tl-punto" />}
         <strong>{e.nombre}</strong>
         <small>{e.perspectiva}</small>
       </div>
@@ -844,6 +1015,18 @@ export function DebateSimulado({ escuelas, enlaces, colorDe }) {
             <b>Para pensar</b>
             <ol>{preguntas.map((x) => <li key={x}>{x}</li>)}</ol>
           </div>
+          {modoEstudio && voto && (voto === "A" || voto === "B") && (() => {
+            const otra = voto === "A" ? B : A;
+            return (
+              <div className="psn-abogado">
+                <b>Modo estudio · abogado del diablo</b>
+                <p>Elegiste a {voto === "A" ? A.nombre : B.nombre}. Ahora defiende lo mejor posible a <strong>{otra.nombre}</strong>: ¿qué diría su mejor argumento sobre «{rondas[0].t}»?</p>
+                <textarea rows={3} value={abogado} onChange={(e) => setAbogado(e.target.value)} placeholder="Escribe en tres líneas el argumento más fuerte de la escuela que no elegiste…" />
+                <button className="psn-btn" onClick={() => setReveladoAb(!reveladoAb)}>{reveladoAb ? "Ocultar" : "Comparar con su ficha"}</button>
+                {reveladoAb && <blockquote>{dicho(otra, rondas[0].k) || "Su ficha no desarrolla este punto."}</blockquote>}
+              </div>
+            );
+          })()}
           <div className="psn-juicio">
             <b>Tu juicio</b>
             <div role="radiogroup" aria-label="¿Quién te convenció?">
@@ -857,6 +1040,195 @@ export function DebateSimulado({ escuelas, enlaces, colorDe }) {
       ) : (
         <p className="psn-vacio">Elige las dos escuelas para empezar el cruce.</p>
       )}
+    </section>
+  );
+}
+
+
+/* ------------------------------------------------------------ */
+/*  ROSA DE EJES (Comparación): dial de ejes + pétalos          */
+/* ------------------------------------------------------------ */
+export function RosaDeEjes({ campos, perspectivas, colorDe, modoEstudio = false }) {
+  const [ejeKey, setEjeKey] = useState(campos[0].key);
+  const [abierto, setAbierto] = useState(null);
+  const [duelo, setDuelo] = useState([]);
+  const [ciego, setCiego] = useState(false);
+  const [adivina, setAdivina] = useState({});
+  const eje = campos.find((c) => c.key === ejeKey) || campos[0];
+  const R = 128, cx = 160, cy = 160;
+  const pos = (i, n, r) => {
+    const a = (i / n) * 2 * Math.PI - Math.PI / 2;
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a), a];
+  };
+  const textos = useMemo(() => perspectivas.map((p) => ({ p, t: eje.get(p) || "" })), [eje, perspectivas]);
+  const orden = useMemo(() => (ciego ? barajar(textos.map((_, i) => i)) : textos.map((_, i) => i)), [ciego, ejeKey]);
+  const toggleDuelo = (id) => setDuelo((d) => (d.includes(id) ? d.filter((x) => x !== id) : [...d.slice(-1), id]));
+  return (
+    <section className="psn-rosa">
+      <div className="psn-rosa-dial">
+        <svg viewBox="0 0 320 320" role="img" aria-label="Dial de ejes de comparación">
+          <circle cx={cx} cy={cy} r={R + 20} fill="none" stroke="var(--c-ink)" strokeOpacity=".18" strokeDasharray="2 6" />
+          <circle cx={cx} cy={cy} r={R - 46} fill="var(--c-paperDark)" stroke="var(--c-ink)" strokeWidth="2.5" />
+          {perspectivas.map((p, i) => {
+            const [x, y] = pos(i, perspectivas.length, R - 74);
+            return <circle key={p.id} cx={x} cy={y} r="7" fill={colorDe(p)} stroke="var(--c-ink)" strokeWidth="1.5" />;
+          })}
+          {campos.map((c, i) => {
+            const [x, y] = pos(i, campos.length, R);
+            const on = c.key === ejeKey;
+            const fil = c.grupo === "filosofico";
+            return (
+              <g key={c.key} className="psn-eje-nodo" onClick={() => { setEjeKey(c.key); setAbierto(null); }} tabIndex={0} role="button" aria-label={c.label} onKeyDown={(e) => e.key === "Enter" && setEjeKey(c.key)}>
+                <circle cx={x} cy={y} r={on ? 17 : 13} fill={on ? (fil ? "#2F4BB5" : "#D9402A") : "var(--c-cardBg)"} stroke="var(--c-ink)" strokeWidth="2.5" />
+                <text x={x} y={y + 4} textAnchor="middle" style={{ font: "800 11px var(--f-mono)" }} fill={on ? "#fff" : "var(--c-ink)"}>{i + 1}</text>
+              </g>
+            );
+          })}
+          <text x={cx} y={cy - 4} textAnchor="middle" style={{ font: "800 11px var(--f-display)" }} fill="var(--c-ink)">
+            {eje.label.split(" ").slice(0, 2).join(" ")}
+          </text>
+          <text x={cx} y={cy + 12} textAnchor="middle" style={{ font: "500 9px var(--f-mono)" }} fill="var(--c-inkSoft)">{eje.grupo === "filosofico" ? "coordenada filosófica" : "eje narrativo"}</text>
+        </svg>
+        <ol className="psn-rosa-leyenda">
+          {campos.map((c, i) => (
+            <li key={c.key} className={`${c.key === ejeKey ? "on" : ""} ${c.grupo}`}>
+              <button onClick={() => { setEjeKey(c.key); setAbierto(null); }}><b>{i + 1}</b> {c.label}</button>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div className="psn-rosa-petalos">
+        <header>
+          <h4>{eje.label}</h4>
+          <span className="psn-chip">{eje.grupo === "filosofico" ? "coordenada filosófica" : "eje narrativo"}</span>
+          {modoEstudio && (
+            <button className={`psn-btn ${ciego ? "psn-btn-primario" : ""}`} onClick={() => { setCiego(!ciego); setAdivina({}); setAbierto(null); }}>
+              {ciego ? "Mostrar nombres" : "Modo adivina"}
+            </button>
+          )}
+        </header>
+        {ciego && <p className="psn-nota">Modo adivina: lee cada respuesta y elige la perspectiva que la daría.</p>}
+        <ul>
+          {orden.map((i) => {
+            const { p, t } = textos[i];
+            const abre = abierto === p.id;
+            const en = duelo.includes(p.id);
+            const fin = adivina[p.id];
+            return (
+              <li key={p.id} className={`${abre ? "abre" : ""} ${en ? "duelo" : ""}`} style={{ "--pc": ciego && !fin ? "var(--c-ink)" : colorDe(p) }}>
+                <button className="psn-petalo" onClick={() => setAbierto(abre ? null : p.id)} aria-expanded={abre}>
+                  <strong>{ciego && !fin ? "¿Quién responde así?" : p.nombre}</strong>
+                  <span>{abre ? "" : oraciones(t, 150) || "—"}</span>
+                </button>
+                {abre && <div className="psn-petalo-texto">{t || "Sin información registrada para este eje."}</div>}
+                {ciego ? (
+                  <select value={fin || ""} onChange={(e) => setAdivina({ ...adivina, [p.id]: e.target.value })}>
+                    <option value="">— adivina —</option>
+                    {perspectivas.map((q) => <option key={q.id} value={q.nombre}>{q.nombre}</option>)}
+                  </select>
+                ) : (
+                  <label className="psn-duelo-check"><input type="checkbox" checked={en} onChange={() => toggleDuelo(p.id)} /> cara a cara</label>
+                )}
+                {ciego && fin && <b className={fin === p.nombre ? "ok" : "mal"}>{fin === p.nombre ? "✓ correcto" : `✗ era ${p.nombre}`}</b>}
+              </li>
+            );
+          })}
+        </ul>
+        {!ciego && duelo.length === 2 && (
+          <div className="psn-cara-cara">
+            {duelo.map((id) => {
+              const x = textos.find((y) => y.p.id === id);
+              return (
+                <article key={id} style={{ "--pc": colorDe(x.p) }}>
+                  <h5>{x.p.nombre}</h5>
+                  <p>{x.t || "—"}</p>
+                </article>
+              );
+            })}
+          </div>
+        )}
+        {!ciego && duelo.length < 2 && <p className="psn-nota">Marca dos perspectivas con «cara a cara» para ver sus textos completos lado a lado.</p>}
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------ */
+/*  EXAMEN SIMULADO (modo estudio, final de Comparación)        */
+/* ------------------------------------------------------------ */
+export function ExamenSimulado({ escuelas, enlaces, perspectivas, colorDe }) {
+  const [ronda, setRonda] = useState(0);
+  const [resp, setResp] = useState({});
+  const [fin, setFin] = useState(false);
+  const [t0, setT0] = useState(Date.now());
+  const [segs, setSegs] = useState(0);
+  const preguntas = useMemo(() => {
+    const qs = [];
+    const nombres = perspectivas.map((p) => p.nombre);
+    const opcionesP = (ok) => barajar([ok, ...barajar(nombres.filter((n) => n !== ok)).slice(0, 3)]);
+    const campos = [["ontologia", "ontología del psiquismo"], ["epistemologia", "epistemología"], ["criterioVerdad", "criterio de verdad"], ["metodologia", "metodología"], ["relacionMenteCuerpo", "relación mente-cuerpo"], ["unidadAnalisis", "unidad de análisis"]];
+    barajar(campos).slice(0, 3).forEach(([k, lab]) => {
+      const p = perspectivas[Math.floor(Math.random() * perspectivas.length)];
+      const t = recortar(p[k], 230);
+      if (t) qs.push({ tipo: "Perspectiva", q: `¿Qué perspectiva sostiene esta ${lab}?`, cita: t, ok: p.nombre, ops: opcionesP(p.nombre), exp: `Es la ${lab} de la perspectiva ${p.nombre}.` });
+    });
+    const conTexto = escuelas.filter((e) => e.criterioVerdad && e.criterioVerdad.length > 60);
+    barajar(conTexto).slice(0, 2).forEach((e) => {
+      const otras = barajar(conTexto.filter((x) => x.perspectiva !== e.perspectiva)).slice(0, 3);
+      qs.push({ tipo: "Escuela", q: "¿Qué escuela tiene este criterio de verdad?", cita: recortar(e.criterioVerdad, 230), ok: e.nombre, ops: barajar([e.nombre, ...otras.map((x) => x.nombre)]), exp: `Corresponde a ${e.nombre} (${e.perspectiva}).` });
+    });
+    const probl = perspectivas.filter((p) => MIRADAS[p.id]);
+    barajar(probl).slice(0, 2).forEach((p) => {
+      qs.push({ tipo: "Caso", q: "Ante un mismo caso, ¿qué perspectiva formularía el problema así?", cita: MIRADAS[p.id].problema, ok: p.nombre, ops: opcionesP(p.nombre), exp: `Así lo formula la perspectiva ${p.nombre}.` });
+    });
+    const porId = Object.fromEntries(escuelas.map((e) => [e.id, e]));
+    const rels = ["equivalente aproximado", "análogo funcional", "solapamiento parcial", "falso amigo", "reinterpretación asimilativa", "inconmensurable"];
+    barajar(enlaces.filter((l) => porId[l.conceptoA.escuela] && porId[l.conceptoB.escuela])).slice(0, 2).forEach((l) => {
+      qs.push({ tipo: "Puente", q: `El diccionario traslacional relaciona «${l.conceptoA.nombre}» (${porId[l.conceptoA.escuela].nombre}) con «${l.conceptoB.nombre}» (${porId[l.conceptoB.escuela].nombre}). ¿Qué tipo de relación documenta?`, cita: "", ok: l.relacion, ops: barajar([l.relacion, ...barajar(rels.filter((r) => r !== l.relacion)).slice(0, 3)]), exp: oraciones(l.nota, 260) });
+    });
+    const con = Object.keys(AUTORES).filter((s) => AUTORES[s].s && AUTORES[s].foto !== false);
+    const o = con[Math.floor(Math.random() * con.length)];
+    qs.push({ tipo: "Autor", q: "¿Quién sostiene esta idea?", cita: AUTORES[o].s, ok: AUTORES[o].n, ops: barajar([AUTORES[o].n, ...barajar(con.filter((s) => s !== o)).slice(0, 3).map((s) => AUTORES[s].n)]), exp: `${AUTORES[o].n}: ${AUTORES[o].r}.` });
+    return qs;
+  }, [ronda]);
+  useEffect(() => {
+    if (fin) return;
+    const id = setInterval(() => setSegs(Math.round((Date.now() - t0) / 1000)), 1000);
+    return () => clearInterval(id);
+  }, [fin, t0]);
+  const aciertos = preguntas.filter((p, i) => resp[i] === p.ok).length;
+  const nota = Math.round((aciertos / preguntas.length) * 100);
+  const mm = String(Math.floor(segs / 60)).padStart(2, "0");
+  const ss = String(segs % 60).padStart(2, "0");
+  return (
+    <section className="psn-examen">
+      <header>
+        <h4>Modo estudio · examen simulado</h4>
+        <span className="psn-chip">{preguntas.length} preguntas · {mm}:{ss}</span>
+      </header>
+      <p className="psn-nota">Mezcla perspectivas, escuelas, casos, puentes del diccionario y autores. Cada intento arma preguntas nuevas.</p>
+      {preguntas.map((p, i) => (
+        <fieldset key={i} className={fin ? (resp[i] === p.ok ? "ok" : "mal") : ""}>
+          <legend><span className="psn-chip">{p.tipo}</span> {i + 1}. {p.q}</legend>
+          {p.cita && <blockquote>{p.cita}</blockquote>}
+          <div>
+            {p.ops.map((o) => (
+              <button key={o} disabled={fin} className={`${resp[i] === o ? "sel" : ""} ${fin && o === p.ok ? "correcta" : ""}`} onClick={() => setResp({ ...resp, [i]: o })}>{o}</button>
+            ))}
+          </div>
+          {fin && <p className="psn-nota">{resp[i] === p.ok ? "✓ " : `✗ Respuesta: ${p.ok}. `}{p.exp}</p>}
+        </fieldset>
+      ))}
+      <div className="psn-examen-acc">
+        {!fin ? (
+          <button className="psn-btn psn-btn-primario" onClick={() => setFin(true)} disabled={Object.keys(resp).length < preguntas.length}>Entregar ({Object.keys(resp).length}/{preguntas.length})</button>
+        ) : (
+          <>
+            <span className="psn-nota-final">{aciertos}/{preguntas.length} · {nota}/100 · {mm}:{ss}</span>
+            <button className="psn-btn" onClick={() => { setRonda(ronda + 1); setResp({}); setFin(false); setT0(Date.now()); setSegs(0); }}>Nuevo examen</button>
+          </>
+        )}
+      </div>
     </section>
   );
 }

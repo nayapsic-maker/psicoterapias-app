@@ -15,49 +15,84 @@ export const fotoAutor = (slug) => `${BASE}img/autores/${slug}.jpg`;
 // Autores representativos por perspectiva (ids de FUNDAMENTOS_PERSPECTIVAS).
 export const AUTORES_POR_PERSPECTIVA = {
   humanista: ["rogers", "maslow", "frankl", "seligman", "yalom"],
-  psicodinamica: ["freud", "jung", "adler"],
-  sistemica: ["satir", "haley", "bertalanffy"],
-  conductual: ["skinner", "pavlov", "watson"],
-  cognitivo: ["beck", "ellis", "bandura", "kabatzinn"],
+  psicodinamica: ["freud", "jung", "adler", "melanieklein", "winnicott"],
+  sistemica: ["satir", "haley", "bertalanffy", "michaelwhite", "maraselvinipalazzoli"],
+  conductual: ["skinner", "pavlov", "watson", "thorndike", "wolpe"],
+  cognitivo: ["beck", "ellis", "bandura", "kabatzinn", "donaldmeichenbaum"],
   integradora: ["lazarus", "prochaska", "stricker", "goldfried", "jeromefrank"],
-  transpersonal: ["grof", "assagioli", "jung"],
+  transpersonal: ["grof", "assagioli", "jung", "maslow", "kenwilber"],
 };
 
 function textoCredito(slug) {
-  const a = AUTORES[slug];
-  return a ? `${a.n} · Foto: ${a.f}, ${a.l}, vía Wikimedia Commons` : "";
+  const a = infoAutor(slug);
+  if (!a) return "";
+  return a.foto === false ? `${a.n} · ilustración representativa (no es un retrato)` : `${a.n} · Foto: ${a.f}, ${a.l}, vía Wikimedia Commons`;
 }
 
 /* ---------- Retratos ---------- */
-/* Retrato circular o, si no hay foto libre, monograma sobre el color de la perspectiva. */
-export function Avatar({ slug, tam = 48, className = "", color }) {
-  const a = AUTORES[slug];
+/* Ilustraciones representativas (genéricas) para quienes no tienen retrato con licencia libre. */
+const POOL = { m: 8, f: 4 };
+const FEMENINOS = new Set(["natalie", "laura", "miriam", "lynne", "emmy", "elisabeth", "bonnie", "oliva", "maria", "edith", "jessica", "donna", "alessandra", "mary", "cloé", "cloe", "giuliana", "insoo", "mara", "susan", "barbara", "geraldine", "catherine", "marsha", "mavis", "sona", "janet", "marjorie", "judith", "christine", "ana", "virginia", "karen", "melanie", "anna", "lynn", "sandra", "nancy", "ellen", "lisa", "carolyn", "kirsten"]);
+function hash(s) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+  return h;
+}
+function infoAutor(slug) {
+  if (AUTORES[slug]) return AUTORES[slug];
+  if (slug && slug.startsWith("g:")) return { n: slug.slice(2), foto: false, g: FEMENINOS.has(norm1(slug.slice(2).split(" ")[0])) ? "f" : "m", generico: true };
+  return null;
+}
+const norm1 = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+export function tieneFoto(slug) {
+  const a = infoAutor(slug);
+  return !!a && a.foto !== false;
+}
+const rutaPool = (slug, a, desplaza = 0) => {
+  const g = a.g === "f" ? "f" : "m";
+  const i = (hash(slug) + desplaza) % POOL[g];
+  return `${BASE}img/autores/pool-${g}${i + 1}.jpg`;
+};
+
+/* Retrato circular; si no hay foto libre, ilustración representativa genérica (no es un retrato). */
+export function Avatar({ slug, tam = 48, className = "", desplaza = 0 }) {
+  const a = infoAutor(slug);
   if (!a) return null;
   if (a.foto === false) {
-    const ini = a.n.split(" ").filter((w) => /^[A-ZÁÉÍÓÚÑ]/.test(w)).map((w) => w[0]).slice(0, 2).join("");
-    return (
-      <span className={`psn-mono ${className}`} title={`${a.n} · sin retrato libre disponible`} style={{ width: tam, height: tam, fontSize: tam * 0.36, background: color || "var(--c-gold)" }}>
-        {ini}
-      </span>
-    );
+    return <img className={className} src={rutaPool(slug, a, desplaza)} alt={`Ilustración representativa para ${a.n} (no es un retrato)`} title={`${a.n} · ilustración representativa, sin retrato con licencia libre`} width={tam} height={tam} loading="lazy" style={{ width: tam, height: tam }} />;
   }
   return <img className={className} src={fotoAutor(slug)} alt={`Retrato de ${a.n}`} title={textoCredito(slug)} width={tam} height={tam} loading="lazy" style={{ width: tam, height: tam }} />;
 }
 
+/* Reparte desplazamientos para que dos autores del mismo género no repitan ilustración dentro de una lista. */
+function desplazamientos(slugs) {
+  const usados = { m: new Set(), f: new Set() };
+  return slugs.map((s) => {
+    const a = infoAutor(s);
+    if (!a || a.foto !== false) return 0;
+    const g = a.g === "f" ? "f" : "m";
+    let d = 0;
+    while (d < POOL[g] && usados[g].has((hash(s) + d) % POOL[g])) d++;
+    usados[g].add((hash(s) + d) % POOL[g]);
+    return d;
+  });
+}
+
 export function GaleriaAutores({ slugs, color, titulo = "Voces de este módulo" }) {
-  const lista = slugs.filter((s) => AUTORES[s]);
+  const lista = slugs.filter((s) => infoAutor(s));
+  const desp = desplazamientos(lista);
   if (!lista.length) return null;
   return (
     <aside className="psn-galeria" aria-label={titulo} style={{ "--pc": color || "var(--c-gold)" }}>
       <span className="psn-galeria-titulo">{titulo}</span>
       <ul>
-        {lista.map((s) => (
+        {lista.map((s, i) => (
           <li key={s} title={textoCredito(s)}>
-            <Avatar slug={s} tam={56} color={color} />
+            <Avatar slug={s} tam={56} desplaza={desp[i]} />
             <span>
-              <strong>{AUTORES[s].n}</strong>
-              <em>{AUTORES[s].a}</em>
-              <small>{AUTORES[s].r}</small>
+              <strong>{infoAutor(s).n}</strong>
+              {infoAutor(s).a && <em>{infoAutor(s).a}</em>}
+              {infoAutor(s).r && <small>{infoAutor(s).r}</small>}
             </span>
           </li>
         ))}
@@ -79,25 +114,16 @@ export function Retrato({ slug, tam = 64 }) {
 
 /* Retratos de quienes figuran en el campo «autores» de una escuela, con una frase que resume su enfoque. */
 export function RetratosEscuela({ autores, color }) {
-  if (!autores) return null;
-  const vistos = new Set();
-  const lista = [];
-  autores.split(/;| y | e /).forEach((t) => {
-    const nombre = t.replace(/\(.*?\)/g, "").replace(/[,.]+$/g, "").trim();
-    const sl = ALIAS_AUTOR[claveNombre(nombre)];
-    if (sl && AUTORES[sl] && !vistos.has(sl)) {
-      vistos.add(sl);
-      lista.push(sl);
-    }
-  });
+  const lista = slugsDeAutores(autores).slice(0, 5);
   if (!lista.length) return null;
+  const desp = desplazamientos(lista);
   return (
     <div className="psn-retratos-escuela" style={{ "--pc": color }}>
-      {lista.slice(0, 4).map((s) => {
-        const a = AUTORES[s];
+      {lista.map((s, i) => {
+        const a = infoAutor(s);
         return (
           <figure key={s} title={textoCredito(s)}>
-            <Avatar slug={s} tam={52} color={color} />
+            <Avatar slug={s} tam={52} desplaza={desp[i]} />
             <figcaption>
               <strong>{a.n}</strong>
               {a.a && <em> {a.a}</em>}
@@ -119,10 +145,11 @@ export function RetratosEscuela({ autores, color }) {
 /* Dos retratos superpuestos en la esquina de la tarjeta de perspectiva. */
 export function RetratosPerspectiva({ id, color }) {
   const slugs = (AUTORES_POR_PERSPECTIVA[id] || []).slice(0, 2);
+  const desp = desplazamientos(slugs);
   return (
     <span className="psn-retratos" style={{ "--pc": color }} aria-hidden="true">
-      {slugs.map((s) => (
-        <Avatar key={s} slug={s} tam={58} color={color} />
+      {slugs.map((s, i) => (
+        <Avatar key={s} slug={s} tam={58} desplaza={desp[i]} />
       ))}
     </span>
   );
@@ -140,37 +167,55 @@ export function CreditosFotos() {
           </li>
         ))}
       </ul>
-      <p>Imágenes obtenidas de Wikimedia Commons; cada obra conserva su licencia y autoría.</p>
+      <p>Imágenes obtenidas de Wikimedia Commons; cada obra conserva su licencia y autoría. Cuando una persona no tiene retrato con licencia libre se muestra una ilustración genérica, hecha en Canva, que no pretende reproducir su rostro.</p>
     </details>
   );
 }
 
 
-/* Logo: la Ψ de la psicología cuyo astil central es un telescopio que apunta a una estrella. */
+/* Logo: la Ψ de la psicología, dorada y detallada, con estrellas alrededor. */
 export function LogoPsiconautas({ size = 28, className = "" }) {
   const id = React.useId().replace(/:/g, "");
+  const cup = "M17 17v11a15 15 0 0 0 30 0V17";
   return (
-    <svg className={className} width={size} height={size} viewBox="0 0 64 64" fill="none" strokeLinecap="round" strokeLinejoin="round" role="img" aria-label="Logo de Psiconautas: una Ψ cuyo astil central es un telescopio apuntando a una estrella" style={{ flexShrink: 0 }}>
+    <svg className={className} width={size} height={size} viewBox="0 0 64 64" fill="none" strokeLinecap="round" strokeLinejoin="round" role="img" aria-label="Logo de Psiconautas: la letra Ψ de la psicología, dorada, rodeada de estrellas" style={{ flexShrink: 0 }}>
       <defs>
-        <linearGradient id={`oro-${id}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#FFD76A" />
-          <stop offset=".5" stopColor="#FFF0B8" />
-          <stop offset="1" stopColor="#E8A100" />
+        <linearGradient id={`oro-${id}`} gradientUnits="userSpaceOnUse" x1="10" y1="4" x2="54" y2="58">
+          <stop offset="0" stopColor="#FFEFB0" />
+          <stop offset=".5" stopColor="#FFD25A" />
+          <stop offset="1" stopColor="#E39A00" />
         </linearGradient>
+        <radialGradient id={`halo-${id}`} cx="50%" cy="50%" r="50%">
+          <stop offset="0" stopColor="#FFD25A" stopOpacity=".26" />
+          <stop offset="1" stopColor="#FFD25A" stopOpacity="0" />
+        </radialGradient>
       </defs>
-      <circle cx="32" cy="32" r="29.5" stroke="#F3E9D2" strokeOpacity=".3" strokeWidth="1" />
-      <path d="M32 2.5v3M32 58.5v3M2.5 32h3M58.5 32h3" stroke="#F3E9D2" strokeOpacity=".5" strokeWidth="1" />
-      <path d="M17.5 18v10.5a14.5 14.5 0 0 0 29 0V18" stroke="#F3E9D2" strokeWidth="3.2" />
-      <path d="M24 53.5h16M32 43v10.5" stroke="#F3E9D2" strokeWidth="3.2" />
-      <g transform="rotate(14 32 43)">
-        <path d="M30.2 43 L29.4 26 h5.2 L33.8 43z" fill={`url(#oro-${id})`} stroke="#F3E9D2" strokeWidth="1.4" />
-        <path d="M29.2 26 L28.3 14.5 h7.4 L34.8 26z" fill={`url(#oro-${id})`} stroke="#F3E9D2" strokeWidth="1.4" />
-        <path d="M27.4 14.5 L26.6 9.5 h10.8 l-.8 5z" fill="#FFF6D6" stroke="#F3E9D2" strokeWidth="1.4" />
-        <path d="M29.6 19.5h4.8M29.9 32h4.2" stroke="#7A4E00" strokeWidth="1" strokeOpacity=".55" />
+      <circle cx="31" cy="34" r="27" fill={`url(#halo-${id})`} />
+      <g stroke="#F3E9D2" strokeWidth="7.2" opacity=".95">
+        <path d={cup} />
+        <path d="M32 12v41" />
+        <path d="M23 54h18" strokeWidth="5.4" />
       </g>
-      <path d="M51 6c.5 4 2 5.5 6 6-4 .5-5.5 2-6 6-.5-4-2-5.5-6-6 4-.5 5.5-2 6-6z" fill="#FFE08A" stroke="none" />
-      <circle cx="46" cy="22" r="1" fill="#FFE08A" stroke="none" />
-      <circle cx="57" cy="24" r=".9" fill="#FFE08A" stroke="none" />
+      <g stroke={`url(#oro-${id})`} strokeWidth="4.6">
+        <path d={cup} />
+        <path d="M32 12v41" />
+        <path d="M23 54h18" strokeWidth="2.8" />
+      </g>
+      <g stroke="#FFFBE6" strokeWidth=".9" opacity=".85">
+        <path d="M15.3 18v10a16.7 16.7 0 0 0 4 10.8" />
+        <path d="M30.6 14v37" />
+      </g>
+      <g fill={`url(#oro-${id})`} stroke="#F3E9D2" strokeWidth="1.2">
+        <path d="M17 7.5l3 5.2-3 4.3-3-4.3z" />
+        <path d="M47 7.5l3 5.2-3 4.3-3-4.3z" />
+        <path d="M32 3.5l3.4 6-3.4 4.8-3.4-4.8z" />
+      </g>
+      <path d="M54 8c.7 5 2.4 6.9 7.4 7.6-5 .7-6.7 2.6-7.4 7.6-.7-5-2.4-6.9-7.4-7.6 5-.7 6.7-2.6 7.4-7.6z" fill="#FFE9A8" />
+      <path d="M54 4v3M54 24v3M43 15.6h3M62 15.6h3" stroke="#FFE9A8" strokeWidth=".9" opacity=".7" />
+      <path d="M9 38c.4 2.8 1.4 3.8 4.2 4.2-2.8.4-3.8 1.4-4.2 4.2-.4-2.8-1.4-3.8-4.2-4.2 2.8-.4 3.8-1.4 4.2-4.2z" fill="#FFE9A8" />
+      <circle cx="56" cy="40" r="1.3" fill="#FFE9A8" />
+      <circle cx="6" cy="14" r="1" fill="#FFE9A8" />
+      <circle cx="58" cy="52" r=".9" fill="#FFE9A8" />
     </svg>
   );
 }
@@ -186,8 +231,6 @@ const COLORES_ESTRELLA = ["#ffffff", "#ffffff", "#dbe6ff", "#fff0c4", "#ffd9b8"]
 const W = 1600, H = 1000;
 
 const CONSTELACIONES = [
-  // Ψ: constelación con la forma de la psicología
-  { pts: [[1295, 150], [1295, 232], [1332, 268], [1369, 232], [1369, 150], [1332, 118], [1332, 268], [1332, 338]], lineas: [[0, 1], [1, 2], [2, 3], [3, 4], [5, 6], [6, 7]] },
   { pts: [[130, 360], [210, 318], [262, 392], [350, 350], [398, 430], [300, 470]], lineas: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 2]] },
   { pts: [[1180, 760], [1262, 720], [1320, 800], [1410, 770], [1456, 850]], lineas: [[0, 1], [1, 2], [2, 3], [3, 4]] },
 ];
@@ -197,60 +240,50 @@ function MedallonObjeto({ id }) {
   const oro = "#FFD76A";
   const icono = {
     libro: (
-      <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
-        <path d="M30 50 Q45 42 60 50 Q75 42 90 50 V78 Q75 70 60 78 Q45 70 30 78Z" fill="#2a2f86" fillOpacity=".6" />
-        <path d="M60 50 V78" />
-        <path d="M36 56 Q45 52 54 56 M36 62 Q45 58 54 62 M66 56 Q75 52 84 56 M66 62 Q75 58 84 62" strokeWidth="1.4" strokeOpacity=".7" />
-        <path d="M44 38 l2.5 5 5.5 .8 -4 3.9 .9 5.5 -4.9 -2.6 -4.9 2.6 .9 -5.5 -4 -3.9 5.5 -.8z" fill={oro} stroke="none" transform="translate(16 -10) scale(.9)" />
+      <g strokeLinejoin="round" strokeLinecap="round">
+        <rect x="35" y="26" width="52" height="70" rx="3" fill="#1d2a78" stroke={cr} strokeWidth="2" />
+        <path d="M35 26 V96" stroke="#0e1650" strokeWidth="6" />
+        <rect x="42" y="32" width="41" height="58" rx="1.5" fill="none" stroke={oro} strokeWidth="1" strokeOpacity=".8" />
+        <text x="62.5" y="48" textAnchor="middle" fill={oro} style={{ font: "700 5.4px Georgia, serif", letterSpacing: "0.3px" }}>PRINCIPLES</text>
+        <text x="62.5" y="55" textAnchor="middle" fill={cr} style={{ font: "italic 5px Georgia, serif" }}>of</text>
+        <text x="62.5" y="63" textAnchor="middle" fill={oro} style={{ font: "700 5.4px Georgia, serif", letterSpacing: "0.3px" }}>PSYCHOLOGY</text>
+        <path d="M50 70 H75" stroke={oro} strokeWidth=".8" strokeOpacity=".8" />
+        <path d="M62.5 74 c1.2 3.4 2.6 4.8 6 5.6 -3.4 .8 -4.8 2.2 -6 5.6 -1.2 -3.4 -2.6 -4.8 -6 -5.6 3.4 -.8 4.8 -2.2 6 -5.6z" fill={oro} stroke="none" />
       </g>
     ),
-    probeta: (
-      <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
-        <g transform="rotate(28 60 60)">
-          <path d="M52 30 V80 a8 8 0 0 0 16 0 V30" fill="#2a2f86" fillOpacity=".5" />
-          <path d="M50 30 H70" />
-          <path d="M52 62 H68 V80 a8 8 0 0 1 -16 0Z" fill={oro} stroke="none" fillOpacity=".9" />
-          <circle cx="58" cy="70" r="1.6" fill="#fff" stroke="none" />
-          <circle cx="63" cy="76" r="1.2" fill="#fff" stroke="none" />
-        </g>
-        <circle cx="86" cy="40" r="2.4" fill={oro} stroke="none" />
-        <circle cx="34" cy="86" r="1.8" fill={oro} stroke="none" />
-      </g>
-    ),
-    matraz: (
-      <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
-        <path d="M52 32 H68 V52 L86 84 Q89 90 82 90 H38 Q31 90 34 84 L52 52Z" fill="#2a2f86" fillOpacity=".5" />
-        <path d="M44 70 H76 L86 84 Q89 90 82 90 H38 Q31 90 34 84Z" fill="#3de0b5" stroke="none" fillOpacity=".85" />
-        <path d="M50 32 H70" />
-        <circle cx="54" cy="80" r="2" fill="#fff" stroke="none" fillOpacity=".8" />
-        <circle cx="66" cy="76" r="1.5" fill="#fff" stroke="none" fillOpacity=".8" />
+    divan: (
+      <g strokeLinejoin="round" strokeLinecap="round" fill="none" stroke={cr} strokeWidth="2.2">
+        <path d="M28 78 V62 a8 8 0 0 1 8 -8 H44 a6 6 0 0 1 6 6 V66 H86 a8 8 0 0 1 8 8 V78 Z" fill="#7a2f5a" fillOpacity=".75" />
+        <path d="M28 78 H94 M34 78 V88 M88 78 V88" />
+        <path d="M54 66 Q70 58 86 66" strokeOpacity=".8" />
+        <ellipse cx="46" cy="58" rx="7" ry="5" fill={oro} fillOpacity=".9" stroke="none" />
+        <path d="M30 44 q4 -6 8 0 M44 38 q3 -5 6 0" strokeWidth="1.4" strokeOpacity=".7" />
+        <path d="M82 38 c.9 2.6 2 3.7 4.6 4.6 -2.6 .9 -3.7 2 -4.6 4.6 -.9 -2.6 -2 -3.7 -4.6 -4.6 2.6 -.9 3.7 -2 4.6 -4.6z" fill={oro} stroke="none" />
       </g>
     ),
     cerebro: (
       <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
-        <path d="M60 36 C48 32 38 40 40 50 C32 54 32 66 40 70 C40 80 52 86 60 80 C68 86 80 80 80 70 C88 66 88 54 80 50 C82 40 72 32 60 36Z" fill="#7a2f6a" fillOpacity=".55" />
-        <path d="M60 36 V80 M46 52 Q52 50 54 58 M74 52 Q68 50 66 58 M48 68 Q54 66 56 72 M72 68 Q66 66 64 72" strokeWidth="1.6" />
+        <path d="M60 32 C47 27 36 36 38 47 C29 51 29 65 38 69 C38 80 51 87 60 80 C69 87 82 80 82 69 C91 65 91 51 82 47 C84 36 73 27 60 32Z" fill="#7a2f6a" fillOpacity=".6" />
+        <path d="M60 32 V80 M44 48 Q51 45 54 54 M76 48 Q69 45 66 54 M46 66 Q53 63 56 70 M74 66 Q67 63 64 70 M47 38 Q55 36 58 43 M73 38 Q65 36 62 43" strokeWidth="1.7" />
+        <path d="M60 80 v8 M54 90 h12" strokeWidth="2" />
       </g>
     ),
-    microscopio: (
-      <g fill="none" stroke={cr} strokeWidth="2.2" strokeLinejoin="round" strokeLinecap="round">
-        <g transform="rotate(-18 60 60)">
-          <rect x="54" y="30" width="12" height="30" rx="3" fill="#2a2f86" fillOpacity=".6" />
-          <path d="M58 60 V68 M62 60 V68" />
-          <path d="M48 70 H72" />
-        </g>
-        <path d="M42 88 H80 M70 56 a16 16 0 0 1 0 28" />
-        <circle cx="52" cy="34" r="2.2" fill={oro} stroke="none" />
-      </g>
-    ),
-    atomo: (
-      <g fill="none" stroke={cr} strokeWidth="1.8">
-        {[0, 60, 120].map((r) => <ellipse key={r} cx="60" cy="60" rx="30" ry="11" transform={`rotate(${r} 60 60)`} />)}
-        <circle cx="60" cy="60" r="4.5" fill={oro} stroke="none" />
+    mariposa: (
+      <g strokeLinejoin="round" strokeLinecap="round">
+        <path d="M60 58 C48 34 24 36 24 54 C24 64 40 66 60 62Z" fill="#4fd9ee" fillOpacity=".85" stroke={cr} strokeWidth="1.6" />
+        <path d="M60 58 C72 34 96 36 96 54 C96 64 80 66 60 62Z" fill="#4fd9ee" fillOpacity=".85" stroke={cr} strokeWidth="1.6" />
+        <path d="M60 64 C46 66 34 74 38 86 C42 94 54 88 60 70Z" fill="#b58cff" fillOpacity=".9" stroke={cr} strokeWidth="1.6" />
+        <path d="M60 64 C74 66 86 74 82 86 C78 94 66 88 60 70Z" fill="#b58cff" fillOpacity=".9" stroke={cr} strokeWidth="1.6" />
+        <circle cx="39" cy="50" r="5" fill="#fff" fillOpacity=".5" /><circle cx="81" cy="50" r="5" fill="#fff" fillOpacity=".5" />
+        <circle cx="46" cy="80" r="3" fill={oro} fillOpacity=".9" /><circle cx="74" cy="80" r="3" fill={oro} fillOpacity=".9" />
+        <path d="M32 46 q10 -4 20 2 M88 46 q-10 -4 -20 2" fill="none" stroke={cr} strokeWidth="1" strokeOpacity=".7" />
+        <path d="M60 52 V84" stroke={cr} strokeWidth="3.6" />
+        <path d="M60 52 C56 42 50 38 46 36 M60 52 C64 42 70 38 74 36" fill="none" stroke={cr} strokeWidth="1.4" />
+        <circle cx="46" cy="36" r="1.6" fill={oro} stroke="none" /><circle cx="74" cy="36" r="1.6" fill={oro} stroke="none" />
       </g>
     ),
   }[id];
-  const col = { libro: ["#6c4fe0", "#241a78"], probeta: ["#1fb5a6", "#0b3b6e"], matraz: ["#2d6bff", "#101b6a"], cerebro: ["#d6477a", "#4a1760"], microscopio: ["#e8941a", "#5a2a6a"], atomo: ["#8b5cf6", "#17205e"] }[id];
+  const col = { libro: ["#6c4fe0", "#241a78"], divan: ["#c2417a", "#3d1560"], cerebro: ["#d6477a", "#4a1760"], mariposa: ["#2d6bff", "#101b6a"] }[id];
   return (
     <svg viewBox="0 0 120 120" overflow="visible">
       <defs>
@@ -262,19 +295,37 @@ function MedallonObjeto({ id }) {
       <circle cx="60" cy="60" r="52" fill={`url(#mg-${id})`} />
       <circle cx="60" cy="60" r="52" fill="none" stroke={cr} strokeOpacity=".5" strokeWidth="1.2" />
       <circle cx="60" cy="60" r="57" fill="none" stroke={oro} strokeOpacity=".35" strokeWidth=".8" strokeDasharray="1 5" strokeLinecap="round" />
-      <ellipse cx="44" cy="34" rx="22" ry="12" fill="#fff" fillOpacity=".1" transform="rotate(-24 44 34)" />
+      <ellipse cx="44" cy="30" rx="22" ry="11" fill="#fff" fillOpacity=".1" transform="rotate(-24 44 30)" />
       {icono}
     </svg>
   );
 }
 
+/* Constelación con la forma de la Ψ, para el margen derecho. */
+function ConstelacionPsi() {
+  const P = [[20, 30], [20, 88], [50, 116], [80, 88], [80, 30], [50, 6], [50, 150]];
+  const L = [[0, 1], [1, 2], [2, 3], [3, 4], [5, 2], [2, 6]];
+  return (
+    <svg viewBox="0 0 100 160" overflow="visible">
+      <g stroke="#FFD76A" strokeOpacity=".5" strokeWidth="1.3" strokeDasharray="2 4">
+        {L.map(([a, b], i) => <line key={i} x1={P[a][0]} y1={P[a][1]} x2={P[b][0]} y2={P[b][1]} />)}
+      </g>
+      {P.map(([x, y], i) => (
+        <g key={i} className="psn-tit" style={{ animationDelay: `${i * 0.7}s`, animationDuration: "4.5s" }}>
+          <circle cx={x} cy={y} r="7" fill="#FFE9A8" fillOpacity=".14" />
+          <circle cx={x} cy={y} r="2.8" fill="#FFF3C9" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 const MEDALLONES = [
-  { id: "libro", lado: "i", y: 12, d: 0 },
-  { id: "cerebro", lado: "i", y: 42, d: -5 },
-  { id: "microscopio", lado: "i", y: 72, d: -9 },
-  { id: "probeta", lado: "d", y: 20, d: -3 },
-  { id: "matraz", lado: "d", y: 50, d: -7 },
-  { id: "atomo", lado: "d", y: 78, d: -11 },
+  { id: "libro", lado: "i", y: 16, d: 0 },
+  { id: "divan", lado: "i", y: 58, d: -6 },
+  { id: "psi", lado: "d", y: 11, d: -3 },
+  { id: "cerebro", lado: "d", y: 43, d: -8 },
+  { id: "mariposa", lado: "d", y: 70, d: -11 },
 ];
 
 export function Cosmos() {
@@ -318,8 +369,8 @@ export function Cosmos() {
       <b className="psn-fugaz f1" />
       <b className="psn-fugaz f2" />
       {MEDALLONES.map((m) => (
-        <span key={m.id} className={`psn-medallon ${m.lado}`} style={{ top: `${m.y}%`, animationDelay: `${m.d}s` }}>
-          <MedallonObjeto id={m.id} />
+        <span key={m.id} className={`psn-medallon ${m.lado}${m.id === "psi" ? " psi" : ""}`} style={{ top: `${m.y}%`, animationDelay: `${m.d}s` }}>
+          {m.id === "psi" ? <ConstelacionPsi /> : <MedallonObjeto id={m.id} />}
         </span>
       ))}
     </div>
@@ -342,20 +393,28 @@ export function Escena({ nombre }) {
 }
 export const EscenaSesion = () => <Escena nombre="sesion" />;
 
-/* Slugs con retrato a partir de un campo «autores». */
+/* Slugs de los autores de un campo «autores»: los conocidos (con foto o ilustración propia) y, si no, genéricos. */
 export function slugsDeAutores(autores) {
   const vistos = new Set();
-  const lista = [];
+  const conocidos = [];
+  const genericos = [];
   (autores || "").split(/;| y | e /).forEach((t) => {
-    const nombre = t.replace(/\(.*?\)/g, "").replace(/[,.]+$/g, "").trim();
+    const nombre = t.replace(/\(.*?\)/g, "").replace(/[,.]+$/g, "").replace(/\s+/g, " ").trim();
+    if (!nombre) return;
     const sl = ALIAS_AUTOR[claveNombre(nombre)];
-    if (sl && AUTORES[sl] && !vistos.has(sl)) {
-      vistos.add(sl);
-      lista.push(sl);
+    if (sl && AUTORES[sl]) {
+      if (!vistos.has(sl)) { vistos.add(sl); conocidos.push(sl); }
+    } else if (nombre.split(" ").length >= 2 && nombre.split(" ").length <= 5 && !nombre.includes(",") && /^[A-ZÁÉÍÓÚÑ]/.test(nombre)) {
+      const g = "g:" + nombre;
+      if (!vistos.has(g)) { vistos.add(g); genericos.push(g); }
     }
   });
-  return lista;
+  // primero quienes tienen foto real, luego ilustraciones propias, luego genéricos
+  const conFoto = conocidos.filter((s) => AUTORES[s].foto !== false);
+  const sinFoto = conocidos.filter((s) => AUTORES[s].foto === false);
+  return [...conFoto, ...sinFoto, ...genericos];
 }
+export { desplazamientos };
 export { AUTORES };
 
 /* ---------- Portada ---------- */
@@ -408,7 +467,7 @@ export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFu
       <ul className="psn-leyenda" aria-label="Perspectivas">
         {perspectivas.map((p) => (
           <li key={p.id} style={{ "--pc": p.color }}>
-            <Avatar slug={(AUTORES_POR_PERSPECTIVA[p.id] || ["freud"]).find((s) => AUTORES[s] && AUTORES[s].foto !== false) || "freud"} tam={34} />
+            <Avatar slug={(AUTORES_POR_PERSPECTIVA[p.id] || ["freud"]).find((s) => tieneFoto(s)) || "freud"} tam={34} />
             <span>{p.corto}</span>
           </li>
         ))}

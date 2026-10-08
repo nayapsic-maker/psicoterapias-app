@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { AUTORES, Avatar, slugsDeAutores } from "./Figuras.jsx";
+import { AUTORES, Avatar, slugsDeAutores, desplazamientos } from "./Figuras.jsx";
 
 /* ============================================================
    PSICONAUTAS — funciones diferenciales
@@ -45,9 +45,8 @@ export const barajar = (arr, rnd = Math.random) => {
   return a;
 };
 
-export function Mini({ slug, tam = 40, color }) {
-  if (!AUTORES[slug]) return null;
-  return <Avatar slug={slug} tam={tam} className="psn-mini" color={color} />;
+export function Mini({ slug, tam = 40, desplaza = 0 }) {
+  return <Avatar slug={slug} tam={tam} className="psn-mini" desplaza={desplaza} />;
 }
 
 
@@ -107,14 +106,15 @@ export function LineaTiempoGlobal({ escuelas, anioDe, colorDe, onIrAEscuela, per
             </h4>
             <ul>
               {porDecada[d].map(({ e, anio }) => {
-                const slugs = slugsDeAutores(e.autores).filter((s) => AUTORES[s].foto !== false).slice(0, 2);
+                const slugs = slugsDeAutores(e.autores).slice(0, 2);
+                const desp = desplazamientos(slugs);
                 lado += 1;
                 return (
                   <li key={e.id} className={`psn-tl-item ${lado % 2 ? "izq" : "der"}`} style={{ "--pc": colorDe(e.perspectiva) }}>
                     <button onClick={() => onIrAEscuela(e.id)} title="Abrir ficha detallada">
                       <span className="psn-tl-anio">{anio}</span>
                       <span className="psn-tl-retratos">
-                        {slugs.length ? slugs.map((s) => <Mini key={s} slug={s} tam={44} />) : <Emblema perspectiva={e.perspectiva} color={colorDe(e.perspectiva)} tam={44} />}
+                        {slugs.length ? slugs.map((s, i) => <Mini key={s} slug={s} tam={44} desplaza={desp[i]} />) : <Emblema perspectiva={e.perspectiva} color={colorDe(e.perspectiva)} tam={44} />}
                       </span>
                       <span className="psn-tl-texto">
                         <strong>{e.nombre}</strong>
@@ -209,7 +209,7 @@ export function MapaRed({ escuelas, enlaces, colorDe, onIrAEscuela, perspectivas
           const col = colorDe(p);
           const lista = escuelas.filter((e) => e.perspectiva === p);
           const subs = [...new Set(lista.map((e) => (e.subfamilia || "Otras").replace(/^\d+\.\s*/, "")))];
-          const retratos = [...new Set(lista.flatMap((e) => slugsDeAutores(e.autores)))].slice(0, 5);
+          const retratos = [...new Set(lista.flatMap((e) => slugsDeAutores(e.autores).filter((s) => AUTORES[s] && AUTORES[s].foto !== false)))].slice(0, 5);
           return (
             <article key={p} className="psn-terr" style={{ "--pc": col }}>
               <header>
@@ -243,7 +243,7 @@ export function MapaRed({ escuelas, enlaces, colorDe, onIrAEscuela, perspectivas
               <p>{oraciones(esc.fundamentacion, 280)}</p>
             </div>
             <div className="psn-mapa-det-acc">
-              {slugsDeAutores(esc.autores).slice(0, 3).map((s) => <Mini key={s} slug={s} tam={52} />)}
+              {(() => { const ss = slugsDeAutores(esc.autores).slice(0, 3); const d = desplazamientos(ss); return ss.map((s, i) => <Mini key={s} slug={s} tam={52} desplaza={d[i]} />); })()}
               <button className="psn-btn psn-btn-primario" onClick={() => onIrAEscuela(esc.id)}>Abrir ficha →</button>
             </div>
           </header>
@@ -367,5 +367,17 @@ export function RetoRetratos() {
         </p>
       )}
     </section>
+  );
+}
+
+/* Retratos (o ilustración / emblema) junto a cada sub-perspectiva. */
+export function AvataresSub({ escuelas, escuelaId, color, perspectiva }) {
+  const e = (escuelas || []).find((x) => x.id === escuelaId);
+  const slugs = e ? slugsDeAutores(e.autores).slice(0, 2) : [];
+  const desp = desplazamientos(slugs);
+  return (
+    <span className="psn-tl-retratos" style={{ flex: "none", alignSelf: "center" }}>
+      {slugs.length ? slugs.map((s, i) => <Mini key={s} slug={s} tam={40} desplaza={desp[i]} />) : <Emblema perspectiva={perspectiva} color={color} tam={40} />}
+    </span>
   );
 }
