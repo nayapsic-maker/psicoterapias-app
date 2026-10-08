@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
-import { HeroMision, CintaEscuelas, PlanetaPerspectiva } from "./Figuras.jsx";
+import { HeroMision, CintaEscuelas, RetratosPerspectiva, GaleriaAutores, EscenaSesion, EscenaGrupo, CreditosFotos, AUTORES_POR_PERSPECTIVA } from "./Figuras.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy, Sparkles } from "lucide-react";
 
 /* ============================================================
@@ -16660,7 +16660,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
     <div>
       <Cabecera
         icono={<Search size={18} />}
-        titulo="Buscador global"
+        titulo="Buscador global" autores={["freud","rogers","skinner","beck"]} tituloAutores="Voces que encontrarás"
         subtitulo="Búsqueda unificada sobre escuelas, autores, conceptos, protocolos y enlaces traslacionales, con sugerencias ortográficas cuando el término no se encuentra."
       />
 
@@ -17935,6 +17935,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         onModoEstudio={setModoEstudio ? () => setModoEstudio((v) => !v) : undefined}
       />
       <CintaEscuelas items={escuelas.map((e) => ({ nombre: e.nombre, color: PERSPECTIVA_COLOR[e.perspectiva] }))} />
+      <CreditosFotos />
 
       <div style={{ background: COLORS.cardBg, border: `1px solid ${COLORS.line}`, borderRadius: 12, padding: 20, marginTop: 16, marginBottom: 20 }}>
         <TextoConCitas
@@ -17996,7 +17997,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
               className="psq-tarjeta-viva"
               style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: `4px solid ${color}`, borderRadius: 12, padding: 16, cursor: "pointer" }}
             >
-              <PlanetaPerspectiva id={p.id} color={color} />
+              <RetratosPerspectiva id={p.id} color={color} />
               <Sello color={color}>{p.nombre}</Sello>
               {modoEstudio ? (
                 <>
@@ -18359,7 +18360,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio }) {
     <div style={{ minHeight: "60vh" }}>
       <Cabecera
         icono={<Scale size={18} />}
-        titulo="Comparar, perspectiva por perspectiva"
+        titulo="Comparar, perspectiva por perspectiva" autores={["freud","skinner","rogers","satir","beck"]} tituloAutores="Escuelas en diálogo"
         subtitulo="Comparación campo por campo entre perspectivas completas o escuelas seleccionadas, conservando en cada columna el vocabulario propio de su marco teórico."
       />
 
@@ -18739,6 +18740,8 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
         titulo="Escuelas Psicoterapéuticas"
         subtitulo="Recorrido continuo desde los fundamentos filosóficos de cada perspectiva hasta la técnica clínica concreta de cada escuela, con línea de tiempo y mapa conceptual como apoyo."
         colorAcento={PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre]}
+        autores={AUTORES_POR_PERSPECTIVA[perspectivaId]}
+        tituloAutores="Voces de esta perspectiva"
       />
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "16px 0 20px" }}>
@@ -19779,7 +19782,7 @@ function SelloPerspectiva({ color }) {
   );
 }
 
-function Cabecera({ icono, titulo, subtitulo, colorAcento }) {
+function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutores, escena }) {
   // El filete bajo el título: un solo color cuando la pantalla pertenece a
   // una perspectiva concreta (colorAcento), o un degradado con las 7
   // perspectivas cuando el módulo las mira todas a la vez — un mismo
@@ -19794,6 +19797,9 @@ function Cabecera({ icono, titulo, subtitulo, colorAcento }) {
       </div>
       {subtitulo && <p style={{ fontSize: 13, color: COLORS.inkSoft, marginTop: 7, maxWidth: 760, lineHeight: 1.55, fontFamily: "var(--f-text)" }}>{subtitulo}</p>}
       <div style={{ height: 3, borderRadius: 2, marginTop: 14, background: colorAcento || gradienteSiete, opacity: colorAcento ? 0.85 : 0.55, transition: "background 0.4s ease" }} />
+      {autores && <GaleriaAutores slugs={autores} color={colorAcento} titulo={tituloAutores} />}
+      {escena === "sesion" && <div className="psn-escena-lateral" style={{ marginTop: 14 }}><EscenaSesion /></div>}
+      {escena === "grupo" && <div className="psn-escena-lateral" style={{ marginTop: 14 }}><EscenaGrupo /></div>}
     </div>
   );
 }
@@ -21375,7 +21381,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio }) {
     <div>
       <Cabecera
         icono={<ClipboardList size={18} />}
-        titulo="Protocolos y Técnicas"
+        titulo="Protocolos y Técnicas" autores={["milton","ellis","perls"]} tituloAutores="Creadores de técnicas" escena="sesion"
         subtitulo="Protocolos completos y técnicas puntuales, con pasos interactivos, objetivo clínico clasificado y comparación de hasta tres a la vez."
       />
 
@@ -22181,7 +22187,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
     <div>
       <Cabecera
         icono={<Languages size={18} />}
-        titulo="Diccionario metateórico y traslacional"
+        titulo="Diccionario metateórico y traslacional" autores={["wundt","james","bertalanffy"]} tituloAutores="Quienes fijaron el vocabulario" escena="grupo"
         subtitulo="Equivalencias, analogías, falsos amigos e inconmensurabilidades entre escuelas: cada enlace documenta un puente conceptual con pérdidas, nunca una identidad."
       />
 

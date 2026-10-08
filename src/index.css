@@ -164,13 +164,13 @@ h2 { font-weight: 800; }
 .psn-titulo {
   font-family: var(--f-display);
   font-weight: 900;
-  font-size: clamp(42px, 9vw, 120px);
+  font-size: clamp(34px, 6.2vw, 78px);
   line-height: 0.9;
   letter-spacing: -0.06em;
   margin: 16px 0 6px;
   color: var(--c-ink);
   text-shadow: 5px 5px 0 var(--c-gold);
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 .psn-titulo span { color: var(--c-primary); }
 .psn-sub { font-family: var(--f-display); font-weight: 600; font-size: clamp(15px, 2.2vw, 24px); letter-spacing: -0.02em; margin: 0; }
@@ -203,17 +203,11 @@ h2 { font-weight: 800; }
   background: #0e1b4d;
   aspect-ratio: 16 / 9;
 }
-.psn-cabina img { width: 100%; height: 100%; object-fit: cover; display: block; animation: psn-zoom 28s ease-in-out infinite alternate; }
-@keyframes psn-zoom { from { transform: scale(1.02) translate(0, 0); } to { transform: scale(1.12) translate(-1.5%, 1.5%); } }
 .psn-cabina figcaption {
   position: absolute; left: 14px; bottom: 10px;
   font-family: var(--f-mono); font-size: 10.5px; color: #f3e9d2;
   background: #15183ccc; padding: 3px 9px; border-radius: 999px;
 }
-.psn-estrella { position: absolute; animation: psn-titilar 3s ease-in-out infinite; filter: drop-shadow(0 0 6px currentColor); pointer-events: none; }
-@keyframes psn-titilar { 0%,100% { opacity: 0.25; transform: scale(0.7) rotate(0deg); } 50% { opacity: 1; transform: scale(1.15) rotate(25deg); } }
-.psn-sello { position: absolute; right: 18px; bottom: 18px; width: clamp(76px, 12vw, 128px); animation: psn-girar 22s linear infinite; }
-@keyframes psn-girar { to { transform: rotate(360deg); } }
 
 .psn-leyenda { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; padding: 0; }
 .psn-leyenda li {
@@ -237,19 +231,10 @@ h2 { font-weight: 800; }
 @keyframes psn-cinta { to { transform: translateX(-50%); } }
 .psn-cinta-pista span::before { content: "✦"; margin-right: 14px; color: var(--pc, var(--c-gold)); filter: brightness(1.4); }
 
-.psn-planeta {
-  float: right; width: 84px; height: 84px; margin: -6px -4px 6px 12px;
-  shape-outside: circle(50%); border-radius: 50%; border: 3px solid var(--c-ink);
-  overflow: hidden; box-shadow: 4px 4px 0 var(--pc);
-  animation: psn-flotando 6s ease-in-out infinite; background: #0e1b4d;
-}
-.psn-planeta img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-[class~="psq-tarjeta-viva"]:hover .psn-planeta img { transform: scale(1.18) rotate(8deg); }
-@keyframes psn-flotando { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
 @media (max-width: 820px) {
   .psn-hero-top { grid-template-columns: 1fr; gap: 16px; }
-  .psn-planeta { width: 62px; height: 62px; }
+  /*x*/ .psn-x { width: 62px; height: 62px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
@@ -258,3 +243,58 @@ h2 { font-weight: 800; }
 
 ::highlight(psq-buscar) { background-color: #e9a10066; color: inherit; }
 ::highlight(psq-buscar-actual) { background-color: #e9a100; color: #15183c; }
+
+/* ---------- Personas animadas ---------- */
+.psn-cabina { background: #F3E9D2; aspect-ratio: 480 / 280; }
+.psn-cabina .psn-escena { width: 100%; height: 100%; display: block; }
+.psn-escena { width: 100%; height: auto; display: block; }
+.psn-resp { animation: psn-respira 4s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes psn-respira { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.025); } }
+.psn-cabeza { animation: psn-asiente 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes psn-asiente { 0%,60%,100% { transform: rotate(0); } 70% { transform: rotate(5deg); } 80% { transform: rotate(-2deg); } 90% { transform: rotate(4deg); } }
+.psn-brazo { animation: psn-gesto 3.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 0% 0%; }
+@keyframes psn-gesto { 0%,100% { transform: rotate(0); } 40% { transform: rotate(-14deg); } 60% { transform: rotate(8deg); } }
+.psn-ojo { animation: psn-parpadeo 4.5s infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes psn-parpadeo { 0%,94%,100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
+.psn-burbuja { animation: psn-hablar 6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.psn-burbuja-b { animation-delay: 3s; }
+@keyframes psn-hablar { 0%,45%,100% { opacity: 0; transform: scale(0.6); } 55%,85% { opacity: 1; transform: scale(1); } }
+.psn-punto { animation: psn-punto 1s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes psn-punto { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.psn-onda { animation: psn-onda 1.2s ease-in-out infinite; }
+@keyframes psn-onda { 0%,100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+.psn-planta { animation: psn-mece 5s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes psn-mece { 0%,100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+.psn-aguja { animation: psn-gira 24s linear infinite; transform-box: view-box; transform-origin: 236px 52px; }
+@keyframes psn-gira { to { transform: rotate(360deg); } }
+
+/* ---------- Retratos ---------- */
+.psn-fundadores { overflow: hidden; margin: 20px 0 0; padding: 12px 0; border-top: 3px solid var(--c-ink); border-bottom: 3px solid var(--c-ink); }
+.psn-fundadores-pista { display: flex; gap: 18px; width: max-content; animation: psn-cinta 70s linear infinite; }
+.psn-fundadores:hover .psn-fundadores-pista { animation-play-state: paused; }
+.psn-fundadores figure { margin: 0; text-align: center; width: 92px; }
+.psn-fundadores img, .psn-galeria img, .psn-retratos img { object-fit: cover; object-position: center 20%; background: var(--c-paperDark); }
+.psn-fundadores img { width: 84px; height: 84px; border-radius: 50%; border: 3px solid var(--c-ink); filter: grayscale(1) contrast(1.05); transition: filter 0.3s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.psn-fundadores figure:hover img { filter: none; transform: scale(1.1) rotate(-3deg); }
+.psn-fundadores figcaption { font: 700 10.5px var(--f-mono); margin-top: 5px; line-height: 1.2; }
+.psn-galeria { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin: 14px 0 4px; padding: 10px 14px; border: 2px solid var(--c-ink); border-radius: 16px; background: var(--c-cardBg); box-shadow: 4px 4px 0 var(--pc); }
+.psn-galeria-titulo { font: 800 10.5px var(--f-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-inkSoft); width: 100%; }
+.psn-galeria ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 14px 22px; }
+.psn-galeria li { display: flex; align-items: center; gap: 10px; }
+.psn-galeria img { width: 56px; height: 56px; border-radius: 50%; border: 2.5px solid var(--c-ink); flex: none; }
+.psn-galeria li span { display: flex; flex-direction: column; line-height: 1.25; }
+.psn-galeria strong { font: 800 13px var(--f-text); }
+.psn-galeria em { font: 500 11px var(--f-mono); color: var(--c-inkSoft); font-style: normal; }
+.psn-galeria small { font: 500 11.5px var(--f-text); color: var(--c-inkSoft); }
+.psn-retratos { float: right; display: flex; margin: -6px -2px 6px 12px; }
+.psn-retratos img { width: 58px; height: 58px; border-radius: 50%; border: 3px solid var(--c-ink); box-shadow: 3px 3px 0 var(--pc); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.psn-retratos img + img { margin-left: -18px; }
+[class~="psq-tarjeta-viva"]:hover .psn-retratos img { transform: translateY(-4px) rotate(-5deg); }
+.psn-escena-lateral { max-width: 300px; margin: 0 0 0 auto; border: 3px solid var(--c-ink); border-radius: 18px; overflow: hidden; box-shadow: 4px 4px 0 var(--c-primary); }
+.psn-creditos { margin: 22px 0 0; font: 12px var(--f-text); color: var(--c-inkSoft); }
+.psn-creditos summary { cursor: pointer; font: 700 11.5px var(--f-mono); }
+.psn-creditos ul { columns: 2 260px; padding-left: 18px; }
+@media (max-width: 820px) { .psn-galeria img { width: 46px; height: 46px; } }
+
+.psn-cabina { max-height: 380px; }
+.psn-cabina .psn-escena { object-fit: contain; }
