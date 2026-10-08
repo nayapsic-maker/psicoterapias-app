@@ -6326,7 +6326,7 @@ const SUBVARIANTES_ESCUELA = {
     {
       nombre: "Vertiente maslowiana (Psicología de la Autorrealización)",
       autores: "Abraham Maslow",
-      definicionTextual: "«Aunque el mismo Maslow no era un clínico en activo, sus ideas han tenido un impacto significativo en la práctica de la psicoterapia. No desarrolló un sistema de técnicas, sino más bien un enfoque ético de las relaciones humanas»",
+      definicionTextual: "Aunque Maslow no era un clínico en activo, sus ideas han influido significativamente en la práctica de la psicoterapia: no desarrolló un sistema de técnicas sino un enfoque ético de las relaciones humanas (paráfrasis del prólogo de Frager; formulación literal no verificada en la biblioteca).",
       fuenteDefinicion: "Frager, R., en Maslow, A. H. (1970). Motivation and Personality. Harper & Row.",
       ontologia: "Persona organizada por una jerarquía de necesidades (seguridad, pertenencia, amor, autoestima) cuya satisfacción conduce a la autorrealización, «objetivo último de toda terapia».",
       epistemologia: "El conocimiento terapéutico es ético-relacional, no técnico: se sistematiza en principios de conducta del terapeuta, no en procedimientos.",
@@ -6406,8 +6406,8 @@ const SUBVARIANTES_ESCUELA = {
     {
       nombre: "Análisis Existencial Personal (Escuela de Viena contemporánea)",
       autores: "Alfried Längle",
-      definicionTextual: "El AEP «es el proceso intra/interpersonal, a través del cual una persona se constituye a sí misma en el paso decisivo de tomar una posición con respecto a una situación dada»",
-      fuenteDefinicion: "Längle, A. (1993).",
+      definicionTextual: "El AEP se concibe como el proceso intra e interpersonal por el que la persona se constituye a sí misma al tomar posición ante una situación dada (paráfrasis; el texto de 1993 no está en la biblioteca, véase Längle, 2007).",
+      fuenteDefinicion: "Längle, A. (1993); Längle, A. (2007). Análisis existencial: la búsqueda de sentido y una afirmación de la vida.",
       conceptosClave: ["Autodistanciamiento (AD)", "Toma de Posición Personal", "Método de Búsqueda de Sentido"],
       manual: "Längle, S. (2003). Niveles operativos para la aplicación de los métodos analítico-existenciales.",
     },
@@ -6422,8 +6422,8 @@ const SUBVARIANTES_ESCUELA = {
     {
       nombre: "Psicoterapia Centrada en el Sentido / Modelo CAYA (escuela latinoamericana)",
       autores: "Efrén Martínez",
-      definicionTextual: "Las huellas de sentido «son nuestras razones diarias para vivir, son aquellos pequeños o grandes momentos cotidianos que llenan la vida de sentido»",
-      fuenteDefinicion: "Martínez, E. (2009). Buscando el sentido de la vida. Manual del facilitador.",
+      definicionTextual: "Las huellas de sentido son las razones cotidianas para vivir: momentos pequeños o grandes que llenan la vida de sentido y que el diálogo socrático ayuda a seguir (paráfrasis; el manual de 2009 no está en la biblioteca, véase Martínez Ortiz, 2012).",
+      fuenteDefinicion: "Martínez, E. (2009). Buscando el sentido de la vida. Manual del facilitador; Martínez Ortiz, E. (2012). El diálogo socrático en la psicoterapia.",
       conceptosClave: ["Huellas de sentido", "Diálogo socrático (mayéutica logoterapéutica)", "Proyecto de Vida Directo"],
       manual: "Martínez, E. (2009). Buscando el sentido de la vida. Manual del facilitador. Ed. CAA.",
     },
