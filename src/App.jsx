@@ -20370,6 +20370,7 @@ function Desplegable({ titulo, subtitulo, color, defaultAbierto = false, childre
   return (
     <div style={{ marginBottom: 10, border: `1px solid ${COLORS.line}`, borderRadius: 12, overflow: "hidden" }}>
       <div
+        className="psn-desp-cab"
         onClick={() => setAbierta(!abierta)}
         style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", padding: "9px 14px", background: COLORS.paperDark }}
       >
@@ -20402,7 +20403,7 @@ function Desplegable({ titulo, subtitulo, color, defaultAbierto = false, childre
           );
         })()}
         {subtitulo && (
-          <span style={{ fontFamily: "var(--f-mono)", fontSize: 9.5, color: COLORS.inkSoft, textTransform: "none" }}>{subtitulo}</span>
+          <span className="psn-desp-sub" style={{ fontFamily: "var(--f-mono)", fontSize: 9.5, color: COLORS.inkSoft, textTransform: "none" }}>{subtitulo}</span>
         )}
       </div>
       {abierta && <div style={{ padding: "14px", background: COLORS.cardBg }}>{children}</div>}
