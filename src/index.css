@@ -766,3 +766,9 @@ html[data-tema="oscuro"] .psn-examen fieldset button.sel { color: #0A1236; }
 .psn-conc li button{all:unset;cursor:pointer;font-weight:600;text-decoration:underline dotted;text-underline-offset:3px}
 .psn-conc li em{font-style:normal;font-size:.72rem;opacity:.7}
 .psn-conc li span{font-size:.84rem;opacity:.92}
+
+/* Portada centrada: título, bajada y botones en un solo eje sobre la ilustración */
+.psn-hero-top { grid-template-columns: 1fr !important; justify-items: center; text-align: center; gap: 14px !important; }
+.psn-hero-top .psn-titulo { margin: 14px 0 4px; }
+.psn-hero-top .psn-bajada p { margin-left: auto; margin-right: auto; max-width: 62ch; }
+.psn-hero-top .psn-botones { justify-content: center; }
