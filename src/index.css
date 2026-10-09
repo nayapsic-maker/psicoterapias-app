@@ -801,3 +801,14 @@ html[data-tema="oscuro"] .psn-examen fieldset button.sel { color: #0A1236; }
   div[style*="cursor: pointer"][style*="display: flex"][style*="align-items: center"] > span:not([style*="--f-mono"]) { flex: 1 1 0; min-width: 0; }
   .psn-desp-cab > span:not(.psn-desp-sub) { flex: 1 1 0; min-width: 0; }
 }
+
+/* Cabecera: el botón de búsqueda solo existe en móvil; allí el campo se despliega a todo el ancho */
+.psn-buscar-btn { display: none; }
+@media (max-width: 720px) {
+  .psq-cabecera { padding-top: 8px !important; padding-bottom: 8px !important; row-gap: 6px !important; }
+  .psn-cab-der { display: contents !important; }
+  .psn-buscar-btn { display: inline-flex; }
+  .psn-buscar { display: none; order: 9; flex: 1 0 100%; }
+  .psn-buscar[data-abierto="1"] { display: block; }
+  .psn-buscar input { width: 100% !important; box-sizing: border-box; }
+}
