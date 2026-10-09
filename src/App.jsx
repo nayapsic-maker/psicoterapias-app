@@ -11,18 +11,18 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
    Afinidad/equivalente: #5C7A5E
    ============================================================ */
 const COLORS = {
-  paper: "#F3E9D2",
-  paperDark: "#E6D8B6",
-  ink: "#15183C",
-  inkSoft: "#514D74",
-  primary: "#D9402A",
-  primaryDark: "#0E1B4D",
-  clay: "#D9402A",
+  paper: "#F1ECE0",
+  paperDark: "#E4DCC9",
+  ink: "#1D2B26",
+  inkSoft: "#4F5E57",
+  primary: "#8E2F3E",
+  primaryDark: "#12302B",
+  clay: "#8E2F3E",
   garnet: "#B4253F",
   sage: "#1F8A68",
-  gold: "#E9A100",
-  line: "#CBB98E",
-  cardBg: "#FBF5E4",
+  gold: "#B8892B",
+  line: "#C9BE9F",
+  cardBg: "#F8F4EA",
 };
 
 /* Sistema de temas: COLORS es un objeto MUTABLE referenciado por
@@ -42,14 +42,14 @@ const COLORS = {
    módulos; solo cambia la paleta "estructural" (fondo, tinta, tarjetas).
    */
 const TEMA_CLARO = {
-  paper: "#F3E9D2", paperDark: "#E6D8B6", ink: "#15183C", inkSoft: "#514D74",
-  primary: "#D9402A", primaryDark: "#0E1B4D", clay: "#D9402A", garnet: "#B4253F",
-  sage: "#1F8A68", gold: "#E9A100", line: "#CBB98E", cardBg: "#FBF5E4",
+  paper: "#F1ECE0", paperDark: "#E4DCC9", ink: "#1D2B26", inkSoft: "#4F5E57",
+  primary: "#8E2F3E", primaryDark: "#12302B", clay: "#8E2F3E", garnet: "#B4253F",
+  sage: "#1F8A68", gold: "#B8892B", line: "#C9BE9F", cardBg: "#F8F4EA",
 };
 const TEMA_OSCURO = {
-  paper: "#16214F", paperDark: "#0F1840", ink: "#F4EBD3", inkSoft: "#B5B9DD",
-  primary: "#FFB62E", primaryDark: "#0A1236", clay: "#FF7A4D", garnet: "#FF6B8A",
-  sage: "#47D1A0", gold: "#FFC233", line: "#33427F", cardBg: "#1D2A63",
+  paper: "#15261F", paperDark: "#0E1B16", ink: "#EFE6CF", inkSoft: "#AEBDB5",
+  primary: "#E3B55A", primaryDark: "#0A1612", clay: "#E98863", garnet: "#E8798F",
+  sage: "#58D1A0", gold: "#E3B55A", line: "#2D4A40", cardBg: "#1B3128",
 };
 const TEMA_ALTO_CONTRASTE = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
@@ -71,8 +71,8 @@ function aplicarVarsTema(nombre) {
     const r = document.documentElement;
     const t = TEMAS[nombre] || TEMA_CLARO;
     r.dataset.tema = nombre;
-    r.style.setProperty("--canvas", nombre === "oscuro" ? "#070C24" : nombre === "alto-contraste" ? "#000000" : "#0E1B4D");
-    r.style.setProperty("--sombra", nombre === "oscuro" ? "#FFB62E" : nombre === "alto-contraste" ? "#FFD400" : "#E9A100");
+    r.style.setProperty("--canvas", nombre === "oscuro" ? "#07130F" : nombre === "alto-contraste" ? "#000000" : "#12302B");
+    r.style.setProperty("--sombra", nombre === "oscuro" ? "#E3B55A" : nombre === "alto-contraste" ? "#FFD400" : "#B8892B");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
     // En modo oscuro los colores de perspectiva se aclaran para conservar contraste sobre fondo azul noche.
     if (typeof PERSPECTIVA_COLOR !== "undefined") Object.assign(PERSPECTIVA_COLOR, nombre === "oscuro" ? PERSP_COLOR_OSCURO : PERSP_COLOR_CLARO);
@@ -21525,6 +21525,7 @@ export default function App() {
     });
   }
   const [buscadorMovil, setBuscadorMovil] = useState(false);
+  useEffect(() => { try { document.documentElement.dataset.vista = tab; } catch (e) {} }, [tab]);
   const [, setProtocolosListos] = useState(protocolosCargados());
   useEffect(() => { cargarProtocolos().then(() => setProtocolosListos(true)); }, []);
   const [escuelas, setEscuelas] = useState(ESCUELAS_SEED);

@@ -138,7 +138,7 @@ export function LineaTiempoGlobal({ escuelas, anioDe, colorDe, onIrAEscuela, per
 /* ------------------------------------------------------------ */
 /*  MAPA CONCEPTUAL (red + territorios)                         */
 /* ------------------------------------------------------------ */
-export const COLOR_REL = { "equivalente aproximado": "#1F8A68", "análogo funcional": "#2F4BB5", "solapamiento parcial": "#E9A100", "falso amigo": "#D9402A", "reinterpretación asimilativa": "#8A5CC2", inconmensurable: "#15183C" };
+export const COLOR_REL = { "equivalente aproximado": "#1F8A68", "análogo funcional": "#2F4BB5", "solapamiento parcial": "#B8892B", "falso amigo": "#8E2F3E", "reinterpretación asimilativa": "#8A5CC2", inconmensurable: "#1D2B26" };
 
 export function MapaRed({ escuelas, enlaces, colorDe, onIrAEscuela, perspectivas: persp0, nombreCorto }) {
   const perspectivas = useMemo(() => [...persp0.filter((p) => escuelas.some((e) => e.perspectiva === p)), ...new Set(escuelas.map((e) => e.perspectiva).filter((p) => !persp0.includes(p)))], [escuelas]);
@@ -182,7 +182,7 @@ export function MapaRed({ escuelas, enlaces, colorDe, onIrAEscuela, perspectivas
             const A = hub(x.a), B = hub(x.b);
             if (!A || !B) return null;
             const activo = !sel || sel === x.a || sel === x.b;
-            return <line key={x.a + x.b} x1={A.x} y1={A.y} x2={B.x} y2={B.y} stroke="#15183C" strokeOpacity={activo ? 0.55 : 0.08} strokeWidth={1 + (x.n / maxN) * 9} strokeLinecap="round" />;
+            return <line key={x.a + x.b} x1={A.x} y1={A.y} x2={B.x} y2={B.y} stroke="#1D2B26" strokeOpacity={activo ? 0.55 : 0.08} strokeWidth={1 + (x.n / maxN) * 9} strokeLinecap="round" />;
           })}
           {hubs.map((h) => {
             const col = colorDe(h.p);
@@ -191,7 +191,7 @@ export function MapaRed({ escuelas, enlaces, colorDe, onIrAEscuela, perspectivas
             const anchor = Math.cos(h.a) > 0.25 ? "start" : Math.cos(h.a) < -0.25 ? "end" : "middle";
             return (
               <g key={h.p} className="psn-hub" opacity={activo ? 1 : 0.3} onClick={() => { setSel(sel === h.p ? null : h.p); setEscSel(null); }} tabIndex={0} role="button" aria-label={`Perspectiva ${h.p}`} onKeyDown={(ev) => ev.key === "Enter" && setSel(sel === h.p ? null : h.p)}>
-                <circle cx={h.x} cy={h.y} r={34} fill={col} stroke="#15183C" strokeWidth="4" />
+                <circle cx={h.x} cy={h.y} r={34} fill={col} stroke="#1D2B26" strokeWidth="4" />
                 <text x={h.x} y={h.y + 6} textAnchor="middle" fill="#fff" style={{ font: "800 17px var(--f-display)" }}>
                   {escuelas.filter((e) => e.perspectiva === h.p).length}
                 </text>
@@ -254,7 +254,7 @@ export function MapaRed({ escuelas, enlaces, colorDe, onIrAEscuela, perspectivas
           <ul>
             {puentes.slice(0, 8).map(({ l, otro, otroC, propioC }) => (
               <li key={l.id}>
-                <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#514D74" }}>{l.relacion}</span>
+                <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#4F5E57" }}>{l.relacion}</span>
                 <p>
                   <em>{propioC}</em> ↔ <button onClick={() => setEscSel(otro.id)}>{otro.nombre}</button>: <em>{otroC}</em>
                 </p>

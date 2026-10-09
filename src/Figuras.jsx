@@ -259,7 +259,7 @@ function Constelacion({ id }) {
   const [w, h] = F.vb;
   return (
     <svg viewBox={`0 0 ${w} ${h}`} overflow="visible">
-      <g stroke="#F3E9D2" strokeOpacity=".55" strokeWidth="1" strokeDasharray="2 3.5" strokeLinecap="round">
+      <g stroke="#F1ECE0" strokeOpacity=".55" strokeWidth="1" strokeDasharray="2 3.5" strokeLinecap="round">
         {F.lin.map(([a, b], i) => <line key={i} x1={F.pts[a][0]} y1={F.pts[a][1]} x2={F.pts[b][0]} y2={F.pts[b][1]} />)}
       </g>
       {F.pts.map(([x, y], i) => (
@@ -296,7 +296,7 @@ export function Cosmos() {
       <div className="psn-nebulosa n2" />
       <div className="psn-nebulosa n3" />
       <svg className="psn-capa" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice">
-        <g fill="none" stroke="#F3E9D2" strokeOpacity=".07" strokeWidth="1">
+        <g fill="none" stroke="#F1ECE0" strokeOpacity=".07" strokeWidth="1">
           <ellipse cx="800" cy="1180" rx="1150" ry="520" />
           <ellipse cx="800" cy="1180" rx="1500" ry="760" />
           <ellipse cx="-80" cy="-120" rx="620" ry="380" transform="rotate(20 -80 -120)" />
@@ -376,7 +376,7 @@ export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFu
     <section className="psn-hero" aria-label="Presentación">
       <div className="psn-hero-top">
         <div>
-          <div className="psn-eyebrow">Expedición clínica · {perspectivas.length} perspectivas</div>
+          <div className="psn-eyebrow">Atlas de psicoterapias · {perspectivas.length} perspectivas</div>
           <h1 className="psn-titulo">
             Psico<span>nautas</span>
           </h1>

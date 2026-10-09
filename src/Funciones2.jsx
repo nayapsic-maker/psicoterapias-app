@@ -906,7 +906,7 @@ export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEs
                   ) : (
                     lista.slice(0, 3).map(({ l, E, otro }) => (
                       <div key={l.id} className="psn-trad-puente">
-                        <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#514D74" }}>{l.relacion}</span>
+                        <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#4F5E57" }}>{l.relacion}</span>
                         <strong>{otro.nombre}</strong>
                         <button onClick={() => onIrAEscuela(E.id)}>{E.nombre}</button>
                         <p>{oraciones(l.nota, 320)}</p>
@@ -1040,7 +1040,7 @@ export function DebateSimulado({ escuelas, enlaces, colorDe, modoEstudio = false
       {lista.length === 0 && <p className="psn-vacio">Ninguno documentado.</p>}
       {lista.slice(0, 3).map((l) => (
         <div key={l.id}>
-          <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#514D74" }}>{l.relacion}</span>
+          <span className="psn-rel" style={{ background: COLOR_REL[l.relacion] || "#4F5E57" }}>{l.relacion}</span>
           <p><em>{l.conceptoA.nombre}</em> ↔ <em>{l.conceptoB.nombre}</em></p>
           <p className="psn-nota">{oraciones(l.nota, 300)}</p>
         </div>
@@ -1181,7 +1181,7 @@ export function RosaDeEjes({ campos, perspectivas, colorDe, modoEstudio = false 
             const fil = c.grupo === "filosofico";
             return (
               <g key={c.key} className="psn-eje-nodo" onClick={() => { setEjeKey(c.key); setAbierto(null); }} tabIndex={0} role="button" aria-label={c.label} onKeyDown={(e) => e.key === "Enter" && setEjeKey(c.key)}>
-                <circle cx={x} cy={y} r={on ? 17 : 13} fill={on ? (fil ? "#2F4BB5" : "#D9402A") : "var(--c-cardBg)"} stroke="var(--c-ink)" strokeWidth="2.5" />
+                <circle cx={x} cy={y} r={on ? 17 : 13} fill={on ? (fil ? "#2F4BB5" : "#8E2F3E") : "var(--c-cardBg)"} stroke="var(--c-ink)" strokeWidth="2.5" />
                 <text x={x} y={y + 4} textAnchor="middle" style={{ font: "800 11px var(--f-mono)" }} fill={on ? "#fff" : "var(--c-ink)"}>{i + 1}</text>
               </g>
             );
