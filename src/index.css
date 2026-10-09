@@ -812,3 +812,57 @@ html[data-tema="oscuro"] .psn-examen fieldset button.sel { color: #0A1236; }
   .psn-buscar[data-abierto="1"] { display: block; }
   .psn-buscar input { width: 100% !important; box-sizing: border-box; }
 }
+
+/* Menú de la marca: ficha de papel que cae bajo el título, no una franja oscura */
+.psn-menu-expedicion { position: fixed; z-index: 1101; top: 62px; left: clamp(10px, 3vw, 24px); width: min(380px, calc(100vw - 20px)); max-height: calc(100vh - 80px); overflow-y: auto; background: var(--c-paper, #fbf5e4); color: var(--c-ink, #1b1b3a); border: 2px solid var(--c-ink, #1b1b3a); border-radius: 14px; box-shadow: 6px 6px 0 var(--c-gold, #e9a100); padding: 16px 16px 12px; }
+.psn-menu-lema { margin: 0 0 10px; font-family: var(--f-display); font-weight: 700; font-size: 15px; line-height: 1.25; }
+.psn-menu-lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.psn-menu-lista button { width: 100%; text-align: left; display: grid; gap: 1px; padding: 8px 10px; border: none; border-radius: 8px; background: transparent; cursor: pointer; color: inherit; }
+.psn-menu-lista button:hover, .psn-menu-lista button.on { background: rgba(0,0,0,0.06); }
+.psn-menu-lista strong { font-family: var(--f-display); font-size: 14px; }
+.psn-menu-lista span { font-family: var(--f-text); font-size: 12px; opacity: .72; }
+.psn-menu-pie { display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.3); }
+.psn-menu-pie button { flex: 1; font-family: var(--f-mono); font-size: 11px; padding: 8px; border: 1.5px solid currentColor; border-radius: 999px; background: transparent; color: inherit; cursor: pointer; }
+@media (max-width: 720px) { .psn-menu-expedicion { top: 56px; } }
+
+
+/* ============================================================
+   Capa editorial (2026-10): menos «cartel de plantilla», más revista de psicología.
+   Todo lo de abajo se puede quitar en bloque para volver al aspecto anterior.
+   ============================================================ */
+:root { --f-display: "Young Serif", Georgia, "Times New Roman", serif; }
+.psn-titulo { letter-spacing: -0.02em !important; font-weight: 400 !important; text-shadow: none !important; line-height: 0.98 !important; }
+.psn-titulo span { font-style: italic; }
+.psq-cabecera span, .psq-cabecera button { letter-spacing: 0 !important; }
+
+/* papel: borde fino y sombra difusa en lugar de borde grueso con sombra dura */
+.psq-hoja { border: 1px solid color-mix(in srgb, var(--c-ink) 35%, transparent) !important; border-radius: 10px !important; box-shadow: 0 30px 60px -34px rgba(0,0,0,.65) !important; }
+.psq-hoja [style*="border-radius: 12px"][style*="border: 1px solid"],
+.psq-hoja [style*="border-radius: 14px"][style*="border: 1px solid"] { border-width: 1px !important; border-color: var(--c-line) !important; box-shadow: none !important; }
+.psq-hoja [style*="border-radius: 12px"], .psq-hoja [style*="border-radius: 14px"], .psq-hoja [style*="border-radius: 16px"] { border-radius: 8px !important; }
+
+/* etiquetas: sin versalitas ni monoespaciado gritón */
+[style*="text-transform: uppercase"], .psn-eyebrow, .psq-tabs [role="tab"] { text-transform: none !important; letter-spacing: 0 !important; }
+.psn-eyebrow { transform: none !important; border-radius: 4px !important; background: transparent !important; color: #f3e9d2 !important; border: 1px solid rgba(243,233,210,.55); font-weight: 500 !important; }
+
+/* adornos fuera: destellos y línea arcoíris */
+.psn-cinta-pista span::before, .psn-detalles > summary::before { content: "—"; filter: none; }
+[style*="linear-gradient(90deg"][style*="height: 3px"], [style*="linear-gradient(90deg"][style*="height: 4px"] { background: var(--c-line) !important; height: 1px !important; }
+.psq-cabecera { border-bottom-width: 1px !important; }
+.psq-fade, .psq-fade-in { animation-duration: .18s !important; }
+
+/* botones: menos píldora, más etiqueta */
+.psn-btn, .psq-hoja button { border-radius: 6px; }
+.psq-tabs [role="tab"] { font-family: var(--f-text) !important; font-size: 13px !important; font-weight: 600; }
+
+/* tarjetas: filete fino y, donde hay color de perspectiva, un lomo de color a la izquierda */
+.psn-btn, .psn-detalles, .psn-terr, .psn-mapa-detalle, .psn-miradas article, .psn-trad-origen, .psn-voz, .psn-carta, .psn-veredicto,
+.psn-examen, .psn-voces-todas, .psn-galeria, .psn-escena-lateral, .psn-tl-item button, .psn-rosa-petalos li, .psn-galeria-casos button, .psn-hero-escena, .psn-hero figure {
+  border-width: 1px !important; border-color: color-mix(in srgb, var(--c-ink) 40%, transparent) !important; border-radius: 10px !important; box-shadow: none !important;
+}
+.psn-btn:hover, .psn-tl-item button:hover, .psn-galeria-casos button:hover { transform: none; box-shadow: 0 6px 16px -10px rgba(0,0,0,.5) !important; }
+.psn-miradas article, .psn-tl-item button, .psn-terr, .psn-rosa-petalos li, .psn-trad-origen { border-left: 4px solid var(--pc, var(--c-line)) !important; }
+.psn-btn { box-shadow: none !important; }
+.psn-eyebrow { color: var(--c-inkSoft) !important; border-color: var(--c-line) !important; }
+.psn-retratos img, .psn-retrato-flota { border-width: 2px !important; box-shadow: none !important; }
+.psn-cabina { border: 1px solid color-mix(in srgb, var(--c-ink) 40%, transparent) !important; border-radius: 10px !important; box-shadow: 0 24px 50px -30px rgba(0,0,0,.6) !important; }

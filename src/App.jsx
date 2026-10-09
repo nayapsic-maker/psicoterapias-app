@@ -22243,33 +22243,38 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
       </div>
 
       {statsAbiertas && (
-        <div
-          className="psq-fade-in"
-          style={{
-            background: COLORS.primaryDark,
-            borderTop: "1px solid rgba(255,255,255,0.12)",
-            padding: "10px 24px 14px",
-            display: "flex",
-            gap: "8px 20px",
-            flexWrap: "wrap",
-            color: "rgba(255,255,255,0.75)",
-            fontFamily: "var(--f-mono)",
-            fontSize: 11,
-          }}
-        >
-          {[
-            ["perspectivas", 7],
-            ["escuelas", escuelas.length],
-            ["conceptos definidos", GLOSARIO.filter((g) => g.tipo === "concepto").length],
-            ["enlaces conceptuales", enlaces.length],
-            ["enlaces de técnicas", enlacesTecnicas.length],
-            ["protocolos", Object.keys(PROTOCOLOS_SEED).length],
-          ].map(([label, valor]) => (
-            <span key={label}>
-              <strong style={{ color: "#fff", fontWeight: 600 }}>{valor}</strong> {label}
-            </span>
-          ))}
-        </div>
+        <>
+          <div style={{ position: "fixed", inset: 0, zIndex: 1100 }} onClick={() => setStatsAbiertas(false)} />
+          <div
+            className="psn-menu-expedicion"
+            role="dialog"
+            aria-label="Menú de la expedición"
+            onKeyDown={(ev) => { if (ev.key === "Escape") setStatsAbiertas(false); }}
+          >
+            <p className="psn-menu-lema">Un mismo sufrimiento, siete maneras de nombrarlo.</p>
+            <ul className="psn-menu-lista">
+              {[
+                ["intro", "Introducción", "El mapa de las siete perspectivas"],
+                ["fundamentos", "Escuelas", `${escuelas.length} escuelas con su ficha completa`],
+                ["planificador", "Protocolos y técnicas", "Qué se hace, sesión por sesión, y con qué fuente"],
+                ["diccionario", "Diccionario y traductor", `${GLOSARIO.filter((g) => g.tipo === "concepto").length} conceptos que se pueden traducir entre escuelas`],
+                ["comparacion", "Comparación", "Dos escuelas frente a frente"],
+                ["buscador", "Buscador global", "Todo el contenido en un solo lugar"],
+              ].map(([id, nombre, detalle]) => (
+                <li key={id}>
+                  <button onClick={() => { setTab(id); setStatsAbiertas(false); }} className={tab === id ? "on" : ""}>
+                    <strong>{nombre}</strong>
+                    <span>{detalle}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <div className="psn-menu-pie">
+              <button onClick={() => { setModoEstudio(!modoEstudio); setStatsAbiertas(false); }}>{modoEstudio ? "Salir del modo estudio" : "Entrar al modo estudio"}</button>
+              <button onClick={() => { setPanelIntegridadAbierto(true); setStatsAbiertas(false); }}>Salud de los datos</button>
+            </div>
+          </div>
+        </>
       )}
 
       {/* Pestañas de carpeta */}
