@@ -21232,12 +21232,12 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
               <svg viewBox="0 0 140 140" width="120" height="120" style={{ flexShrink: 0 }} role="img" aria-label="Brújula de las cuatro coordenadas filosóficas">
                 <circle cx="70" cy="70" r="62" fill="none" stroke={COLORS.line} strokeWidth="1" />
                 <circle cx="70" cy="70" r="4" fill={color} />
-                <line x1="70" y1="8" x2="70" y2="132" stroke={COLORS.line} strokeWidth="1" strokeDasharray="2,3" />
-                <line x1="8" y1="70" x2="132" y2="70" stroke={COLORS.line} strokeWidth="1" strokeDasharray="2,3" />
+                <line x1="70" y1="28" x2="70" y2="112" stroke={COLORS.line} strokeWidth="1" strokeDasharray="2,3" />
+                <line x1="52" y1="70" x2="88" y2="70" stroke={COLORS.line} strokeWidth="1" strokeDasharray="2,3" />
                 <text x="70" y="20" textAnchor="middle" fontFamily={FONT_MONO} fontSize="7.5" fill={color} fontWeight="700">ONTOLOGÍA</text>
                 <text x="70" y="126" textAnchor="middle" fontFamily={FONT_MONO} fontSize="7.5" fill={color} fontWeight="700">CRITERIO DE VERDAD</text>
-                <text x="12" y="68" textAnchor="start" fontFamily={FONT_MONO} fontSize="7.5" fill={color} fontWeight="700">EPISTEM.</text>
-                <text x="128" y="68" textAnchor="end" fontFamily={FONT_MONO} fontSize="7.5" fill={color} fontWeight="700">MÉTODO</text>
+                <text x="12" y="73" textAnchor="start" fontFamily={FONT_MONO} fontSize="7.5" fill={color} fontWeight="700">EPISTEM.</text>
+                <text x="128" y="73" textAnchor="end" fontFamily={FONT_MONO} fontSize="7.5" fill={color} fontWeight="700">MÉTODO</text>
               </svg>
               <div style={{ flex: 1, minWidth: 200, display: "grid", gap: 6 }}>
                 <div style={{ fontFamily: FONT_MONO, fontSize: 9.5, color: color, fontWeight: 700, textTransform: "uppercase" }}>◆ Modo estudio — síntesis rápida antes del detalle</div>
@@ -24417,7 +24417,6 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
           cifras y controles avanzados ocultos detrás de desplegables para
           no competir visualmente con el contenido. */}
       <div className="psq-cabecera" style={{ background: COLORS.primaryDark, padding: "14px clamp(14px, 4vw, 24px)", display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", rowGap: 10 }}>
-        <LogoPsiconautas size={36} />
         <button
           onClick={() => setStatsAbiertas((v) => !v)}
           aria-expanded={statsAbiertas}

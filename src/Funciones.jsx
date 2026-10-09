@@ -15,9 +15,11 @@ export const unir = (v) => (Array.isArray(v) ? v.filter((x) => typeof x === "str
 
 /* Primeras oraciones de un texto, sin cortar a mitad de frase. */
 export function oraciones(texto, max = 330) {
-  const t = unir(texto).replace(/\s+/g, " ").trim();
-  if (!t) return "";
-  const partes = t.match(/[^.!?]+[.!?]+(\s|$)/g) || [t];
+  const crudo = unir(texto).replace(/\s+/g, " ").trim();
+  if (!crudo) return "";
+  // Los puntos de abreviaturas y citas (et al., p., pp., s. f., cap., iniciales) no cierran oración.
+  const t = crudo.replace(/\b(et al|pp?|s\. ?f|cap|caps|ed|eds|vol|n\.º|núm|cf|Dr|Dra|Sr|Sra|ej|etc|vs|ca|aprox)\.|\b([A-ZÁÉÍÓÚ])\.(?=\s?[A-ZÁÉÍÓÚ])/g, (m) => m.replace(/\./g, "\u0001"));
+  const partes = (t.match(/[^.!?]+[.!?]+(\s|$)/g) || [t]).map((x) => x.replace(/\u0001/g, "."));
   let out = "";
   for (const p of partes) {
     if (out && (out + p).length > max) break;
