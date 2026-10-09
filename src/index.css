@@ -772,3 +772,5 @@ html[data-tema="oscuro"] .psn-examen fieldset button.sel { color: #0A1236; }
 .psn-hero-top .psn-titulo { margin: 14px 0 4px; }
 .psn-hero-top .psn-bajada p { margin-left: auto; margin-right: auto; max-width: 62ch; }
 .psn-hero-top .psn-botones { justify-content: center; }
+
+.psn-aprox { display: block; margin-top: 4px; font-size: 11px; font-style: italic; color: var(--c-muted, #6d6a85); }

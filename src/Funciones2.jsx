@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { analiza, semejantes, RIESGOS } from "./Deteccion.js";
+import { AFINES } from "./Afines.js";
 import { slugsDeAutores, AUTORES } from "./Figuras.jsx";
 import { norm, unir, oraciones, Mini, COLOR_REL, barajar, recortar } from "./Funciones.jsx";
 
@@ -715,6 +716,23 @@ const NOCION_NODO = {
   mindfulness: "atencion_plena", sueno: "suenos", esperanza: "esperanza",
 };
 
+// Noción del traductor más afín a un término del glosario (por sus palabras clave y, si no, por el léxico clínico).
+function afinDe(termino, definicion) {
+  const t = " " + norm(termino), d = " " + norm(definicion);
+  const sc = NOCIONES.map((n) => ({
+    n,
+    s: [...n.claves, ...(AFINES[n.id] || [])].reduce((acc, k) => { const kk = " " + k.trim(); return acc + (t.includes(kk) ? 3 : 0) + (d.includes(kk) ? 1 : 0); }, 0),
+  }))
+    .filter((x) => x.s > 0)
+    .sort((a, b) => b.s - a.s);
+  if (sc.length) return sc[0].n;
+  for (const it of analiza(termino + ". " + definicion).nociones || []) {
+    const n = NOCIONES.find((x) => x.id === (typeof it === "string" ? it : it.id));
+    if (n) return n;
+  }
+  return null;
+}
+
 export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEscuela, perspectivas, perspectivasFund, idDe = () => null, nudos = [] }) {
   const [texto, setTexto] = useState("");
   const [elegido, setElegido] = useState(0);
@@ -764,6 +782,14 @@ export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEs
     });
     return out;
   }, [c, enlaces, porId]);
+  const nocionAfin = useMemo(() => (c ? afinDe(c.termino, c.definicion) : null), [c]);
+  // Cuando no hay puente documentado: término semejante de esa perspectiva o, si no, la noción afín. Nunca se presenta como puente verificado.
+  const aproxDe = (persp) => {
+    if (!c) return null;
+    if (nocionAfin) { const i = ORDEN.indexOf(idDe(persp)); if (i >= 0 && nocionAfin.f[i]) return { nocion: nocionAfin, texto: nocionAfin.f[i] }; }
+    const sem = semejantes(c.termino + " " + c.definicion, glosario, (g) => { const E = porId[g.escuela]; return E && E.perspectiva === persp && g.tipo === "concepto"; }, 2);
+    return sem.length ? { sem } : null;
+  };
   const origen = c ? porId[c.escuela] : null;
   const total = Object.values(puentes).reduce((s, a) => s + a.length, 0);
   const pidx = (nombre) => ORDEN.indexOf(perspectivasFund.find((p) => p.nombre === nombre || nombre.startsWith(p.nombre.split(" ")[0]))?.id);
@@ -852,7 +878,31 @@ export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEs
                 <article key={p} style={{ "--pc": colorDe(p) }} className={lista.length ? "" : "vacia"}>
                   <h6>{p}</h6>
                   {lista.length === 0 ? (
-                    <p className="psn-vacio">Sin puente documentado para este término.</p>
+                    p === origen.perspectiva ? (
+                      <p className="psn-vacio">Es la perspectiva de origen de este término.</p>
+                    ) : (() => {
+                      const ap = aproxDe(p);
+                      if (!ap) return <p className="psn-vacio">Sin equivalente directo documentado en esta perspectiva.</p>;
+                      if (ap.sem) {
+                        return (
+                          <>
+                            {ap.sem.map((g) => (
+                              <p key={g.escuela + g.termino} className="psn-glos" title={g.fuente}>
+                                <b>{g.termino}</b> · <span>{recortar(g.definicion, 120)}</span>
+                                <button onClick={() => setTexto(g.termino)}>ver puentes</button>
+                              </p>
+                            ))}
+                            <small className="psn-aprox">Término semejante por su definición; no es un puente verificado.</small>
+                          </>
+                        );
+                      }
+                      return (
+                        <>
+                          <p>{ap.texto}</p>
+                          <small className="psn-aprox">Noción afín «{ap.nocion.nombre}»: síntesis orientativa de cómo esta perspectiva la entiende; no es un puente verificado.</small>
+                        </>
+                      );
+                    })()
                   ) : (
                     lista.slice(0, 3).map(({ l, E, otro }) => (
                       <div key={l.id} className="psn-trad-puente">
