@@ -14,9 +14,9 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
    Afinidad/equivalente: #5C7A5E
    ============================================================ */
 const COLORS = {
-  paper: "#F6F2E7", paperDark: "#E6E2D3", ink: "#17233F", inkSoft: "#4B5873",
-  primary: "#C2452B", primaryDark: "#0F1F45", clay: "#C2452B", garnet: "#B5283F",
-  sage: "#177E87", gold: "#B9801A", line: "#CCC6AE", cardBg: "#FBF8EF",
+  paper: "#F5F1E6", paperDark: "#E7E3D4", ink: "#12292E", inkSoft: "#46606A",
+  primary: "#14606B", primaryDark: "#0C2F36", clay: "#B8741A", garnet: "#9E3B3B",
+  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE",
 };
 
 /* Sistema de temas: COLORS es un objeto MUTABLE referenciado por
@@ -36,14 +36,14 @@ const COLORS = {
    módulos; solo cambia la paleta "estructural" (fondo, tinta, tarjetas).
    */
 const TEMA_CLARO = {
-  paper: "#F6F2E7", paperDark: "#E6E2D3", ink: "#17233F", inkSoft: "#4B5873",
-  primary: "#C2452B", primaryDark: "#0F1F45", clay: "#C2452B", garnet: "#B5283F",
-  sage: "#177E87", gold: "#B9801A", line: "#CCC6AE", cardBg: "#FBF8EF",
+  paper: "#F5F1E6", paperDark: "#E7E3D4", ink: "#12292E", inkSoft: "#46606A",
+  primary: "#14606B", primaryDark: "#0C2F36", clay: "#B8741A", garnet: "#9E3B3B",
+  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE",
 };
 const TEMA_OSCURO = {
-  paper: "#16213B", paperDark: "#0F172C", ink: "#EDE8D8", inkSoft: "#A9B4CC",
-  primary: "#F2946F", primaryDark: "#0A1226", clay: "#F2946F", garnet: "#EE8A8F",
-  sage: "#5CD0D0", gold: "#EBB347", line: "#2C3B5C", cardBg: "#1D2B4B",
+  paper: "#10262B", paperDark: "#0A1A1F", ink: "#EAE5D3", inkSoft: "#9FB6BA",
+  primary: "#5CBFC8", primaryDark: "#071419", clay: "#E3A64A", garnet: "#E58A7A",
+  sage: "#8FCB9B", gold: "#E3A64A", line: "#27474E", cardBg: "#173238",
 };
 const TEMA_ALTO_CONTRASTE = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
@@ -65,16 +65,16 @@ function aplicarVarsTema(nombre) {
     const r = document.documentElement;
     const t = TEMAS[nombre] || TEMA_CLARO;
     r.dataset.tema = nombre;
-    r.style.setProperty("--canvas", nombre === "oscuro" ? "#070D1E" : nombre === "alto-contraste" ? "#000000" : "#0E2A66");
-    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#060B18" : nombre === "alto-contraste" ? "#000000" : "#0A1A40");
-    r.style.setProperty("--sombra", nombre === "oscuro" ? "#EBB347" : nombre === "alto-contraste" ? "#FFD400" : "#B9801A");
+    r.style.setProperty("--canvas", nombre === "oscuro" ? "#051014" : nombre === "alto-contraste" ? "#000000" : "#0B3640");
+    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#040B0E" : nombre === "alto-contraste" ? "#000000" : "#071A1F");
+    r.style.setProperty("--sombra", nombre === "oscuro" ? "#E3A64A" : nombre === "alto-contraste" ? "#FFD400" : "#B8741A");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
     // En modo oscuro los colores de perspectiva se aclaran para conservar contraste sobre fondo azul noche.
     if (typeof PERSPECTIVA_COLOR !== "undefined") Object.assign(PERSPECTIVA_COLOR, nombre === "oscuro" ? PERSP_COLOR_OSCURO : PERSP_COLOR_CLARO);
   } catch (e) {}
 }
-const PERSP_COLOR_CLARO = { "Humanista-existencial": "#B27700", "Psicodinámica": "#C01F4F", "Sistémica": "#2457D6", "Sistémica y familiar": "#2457D6", "Conductual": "#0B7A55", "Cognitivo-Conductual": "#D2480F", "Integradora": "#7340D6", "Integradora y ecléctica": "#7340D6", "Transpersonal": "#0A7B8C" };
-const PERSP_COLOR_OSCURO = { "Humanista-existencial": "#FFC233", "Psicodinámica": "#FF7A98", "Sistémica": "#7FA8FF", "Sistémica y familiar": "#7FA8FF", "Conductual": "#4FDBA8", "Cognitivo-Conductual": "#FF9566", "Integradora": "#BE98FF", "Integradora y ecléctica": "#BE98FF", "Transpersonal": "#4FD9EE" };
+const PERSP_COLOR_CLARO = { "Humanista-existencial": "#A9701A", "Psicodinámica": "#9B3550", "Sistémica": "#2F5F9E", "Sistémica y familiar": "#2F5F9E", "Conductual": "#2E7D5B", "Cognitivo-Conductual": "#B4552A", "Integradora": "#6B4C9A", "Integradora y ecléctica": "#6B4C9A", "Transpersonal": "#157A86" };
+const PERSP_COLOR_OSCURO = { "Humanista-existencial": "#E8B452", "Psicodinámica": "#E58AA4", "Sistémica": "#86AEE6", "Sistémica y familiar": "#86AEE6", "Conductual": "#79D1A4", "Cognitivo-Conductual": "#EE9E78", "Integradora": "#BDA6E6", "Integradora y ecléctica": "#BDA6E6", "Transpersonal": "#6FD0DA" };
 if (typeof document !== "undefined") aplicarVarsTema("claro");
 
 /* Paleta reservada para ESTADO DEL SISTEMA (íntegro / advertencia / error),
