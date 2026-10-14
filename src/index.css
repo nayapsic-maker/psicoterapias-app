@@ -6,20 +6,21 @@
    Las variables --c-* y --canvas las publica App.jsx (aplicarVarsTema).
    ============================================================ */
 :root {
-  --f-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
-  --f-text: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --canvas: #17433F;
-  --canvas-mod: #84BFB2;
-  --c-paper: #FBF6EA;
-  --c-paperDark: #F0E5CB;
-  --c-ink: #22312E;
-  --c-inkSoft: #566763;
+  --f-display: "Bricolage Grotesque", "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --f-serif: "Newsreader", Georgia, serif;
+  --f-text: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --canvas: #0E2A66;
+  --canvas-mod: #0A1A40;
+  --c-paper: #F6F2E7;
+  --c-paperDark: #E6E2D3;
+  --c-ink: #17233F;
+  --c-inkSoft: #4B5873;
   --c-primary: #C2452B;
-  --c-line: #DACBA6;
-  --c-cardBg: #FFFBF1;
-  --c-gold: #C98F12;
-  --sombra: #C98F12;
+  --c-line: #CCC6AE;
+  --c-cardBg: #FBF8EF;
+  --c-gold: #B9801A;
+  --sombra: #B9801A;
   --grano: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .9  0 0 0 .07 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
 }
 
@@ -513,16 +514,16 @@ html[data-tema="oscuro"] ::selection { background: #E3B55A; }
 .psn-cab-fila .psn-escena-lateral { flex: 0 1 300px; margin: 0 0 0 auto; }
 
 /* ============ Cosmos ============ */
-.psn-cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: linear-gradient(180deg, #0F302D 0%, #17433F 45%, #1F5A52 80%, #2A6E63 100%); }
-html[data-tema="oscuro"] .psn-cosmos { background: linear-gradient(180deg, #08130F 0%, #0F1D1A 50%, #16302B 100%); }
+.psn-cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: linear-gradient(180deg, #060F2B 0%, #0C2459 38%, #14438F 72%, #1B6A9E 100%); }
+html[data-tema="oscuro"] .psn-cosmos { background: linear-gradient(180deg, #03060F 0%, #070D1E 50%, #0D1A38 100%); }
 html[data-tema="alto-contraste"] .psn-cosmos { background: #000; }
 .psn-capa { position: absolute; inset: 0; width: 100%; height: 100%; }
 .psn-tit { animation: psn-brilla 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes psn-brilla { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
 .psn-nebulosa { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.5; mix-blend-mode: screen; animation: psn-deriva-n 70s ease-in-out infinite alternate; }
-.psn-nebulosa.n1 { width: 55vw; height: 45vh; left: -12vw; top: -8vh; background: radial-gradient(closest-side, #6a3fd0cc, transparent); }
-.psn-nebulosa.n2 { width: 50vw; height: 50vh; right: -10vw; top: 28vh; background: radial-gradient(closest-side, #129f9acc, transparent); animation-delay: -20s; }
-.psn-nebulosa.n3 { width: 60vw; height: 40vh; left: 20vw; bottom: -14vh; background: radial-gradient(closest-side, #d6477a99, transparent); animation-delay: -40s; }
+.psn-nebulosa.n1 { width: 55vw; height: 45vh; left: -12vw; top: -8vh; background: radial-gradient(closest-side, #3556d8cc, transparent); }
+.psn-nebulosa.n2 { width: 50vw; height: 50vh; right: -10vw; top: 28vh; background: radial-gradient(closest-side, #19b0c8cc, transparent); animation-delay: -20s; }
+.psn-nebulosa.n3 { width: 60vw; height: 40vh; left: 20vw; bottom: -14vh; background: radial-gradient(closest-side, #e9955f66, transparent); animation-delay: -40s; }
 html[data-tema="oscuro"] .psn-nebulosa { opacity: 0.32; }
 html[data-tema="alto-contraste"] .psn-nebulosa { display: none; }
 @keyframes psn-deriva-n { from { transform: translate(0, 0) scale(1); } to { transform: translate(5vw, 3vh) scale(1.12); } }
@@ -877,7 +878,7 @@ html[data-tema="oscuro"] .psn-examen fieldset button.sel { color: #0A1612; }
    ============================================================ */
 /* 1. fondo: las estrellas bajan de intensidad cuando un módulo ocupa la pantalla (la portada las conserva) */
 .psn-cosmos { transition: opacity .5s ease; }
-html:not([data-vista="intro"]) .psn-cosmos { opacity: .38; }
+
 html:not([data-vista="intro"]) .psn-medallon { opacity: .55; }
 
 /* 2. pestañas: texto con filete inferior en lugar de píldoras */
@@ -1013,13 +1014,15 @@ div[style*="overflow-x: auto"]::-webkit-scrollbar { display: none; }
    Bricolage Grotesque para titulares, Figtree para leer. Módulos sobre verde claro; la portada conserva el cielo oscuro.
    ============================================================ */
 body { font-size: 16px; line-height: 1.6; }
-html:not([data-vista="intro"]) body { background-color: var(--canvas-mod); }
-html:not([data-vista="intro"]) .psn-cosmos { opacity: 1 !important; background: linear-gradient(180deg, var(--canvas-mod) 0%, color-mix(in srgb, var(--canvas-mod) 72%, #fff) 100%); }
-html:not([data-vista="intro"]) .psn-cosmos > * { display: none !important; }
-html[data-tema="alto-contraste"]:not([data-vista="intro"]) .psn-cosmos { background: #000; }
-h1, h2, h3, .psn-titulo, .psn-sub { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.02em !important; }
+
+/* en los módulos el mismo cielo, más oscuro y desenfocado */
+html:not([data-vista="intro"]) .psn-cosmos { opacity: 1 !important; }
+html:not([data-vista="intro"]) .psn-cosmos::after { content: ""; position: absolute; inset: 0; background: rgba(4, 10, 28, .5); }
+html:not([data-vista="intro"]) .psn-cosmos .psn-capa, html:not([data-vista="intro"]) .psn-cosmos .psn-medallon { filter: blur(3px); opacity: .7; }
+html:not([data-vista="intro"]) .psn-cosmos .psn-nebulosa { opacity: .3; filter: blur(90px); }
+h1, h2, h3, .psn-titulo, .psn-sub { font-family: var(--f-serif) !important; font-style: italic; font-weight: 400 !important; letter-spacing: 0 !important; }
 .psn-titulo { font-weight: 800 !important; }
-.psn-titulo span { font-style: normal; font-weight: 800; color: var(--c-gold); }
+.psn-titulo span { font-style: normal; font-weight: 800; color: var(--c-primary); }
 [style*="var(--f-mono)"], .psn-eyebrow, .psq-tabs [role="tab"], button { letter-spacing: 0 !important; }
 .psn-eyebrow { font-style: normal; font-weight: 600; font-size: 13px; border: 0 !important; border-radius: 999px !important; padding: 3px 12px !important; background: color-mix(in srgb, var(--c-gold) 22%, transparent) !important; color: var(--c-ink) !important; }
 .psq-hoja { background-image: var(--grano); border-radius: 20px !important; border: 1px solid color-mix(in srgb, var(--c-ink) 18%, transparent) !important; box-shadow: 0 2px 0 rgba(255,255,255,.5) inset, 0 26px 50px -30px rgba(10,40,36,.55) !important; }
@@ -1029,18 +1032,22 @@ h1, h2, h3, .psn-titulo, .psn-sub { font-family: var(--f-display); font-weight: 
 .psn-miradas article, .psn-tl-item button, .psn-terr, .psn-rosa-petalos li, .psn-trad-origen { border-left-width: 5px !important; }
 .psq-tabs [role="tab"] { font-weight: 600 !important; font-size: 13.5px !important; }
 
-/* Láminas: un solo tratamiento para todas (grises, tinte cálido, grano), así quedan como un mismo archivo */
-.psn-placa { margin: 14px 0 18px; display: grid; grid-template-columns: minmax(140px, 26%) 1fr; gap: 16px; align-items: end; }
-.psn-placa img { width: 100%; height: auto; max-height: 190px; object-fit: cover; object-position: center 35%; display: block; filter: grayscale(1) sepia(.28) contrast(1.06) brightness(.97); mix-blend-mode: multiply; border: 1px solid var(--c-line); background: var(--c-paperDark); }
-.psn-placa figcaption { font: 14px/1.5 var(--f-text); color: var(--c-inkSoft); }
-.psn-placa figcaption b { display: block; font: 700 16px/1.3 var(--f-display); color: var(--c-ink); margin-bottom: 2px; }
-.psn-placa figcaption small { display: block; margin-top: 4px; font: italic 13px/1.4 var(--f-mono); opacity: .8; }
-html[data-tema="oscuro"] .psn-placa img { mix-blend-mode: normal; filter: grayscale(1) sepia(.3) brightness(.8) contrast(1.05); }
-.psn-franja { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 22px 0 8px; align-items: start; }
-.psn-franja .psn-placa { display: block; margin: 0; }
-.psn-franja .psn-placa img { aspect-ratio: 4 / 5; max-height: none; }
-.psn-franja .psn-placa figcaption { margin-top: 8px; font-size: 13px; color: inherit; opacity: .9; }
-.psn-franja .psn-placa figcaption b { font-size: 14.5px; }
-.psn-franja .psn-placa img { mix-blend-mode: normal; filter: grayscale(1) sepia(.25) contrast(1.05) brightness(.9); }
-@media (max-width: 900px) { .psn-franja { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .psn-placa { grid-template-columns: 1fr; } .psn-franja { grid-template-columns: 1fr 1fr; gap: 10px; } .psn-franja figcaption small { display: none; } }
+/* Collage de portada: siete láminas pegadas (filete de 3 px), una sola figura; el texto de cada una aparece al pulsarla */
+.psn-collage { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(2, minmax(150px, 17vw)); gap: 3px; margin: 22px 0 6px; background: var(--c-ink); border: 3px solid var(--c-ink); border-radius: 14px; overflow: hidden; max-height: 420px; }
+.psn-collage button { position: relative; padding: 0; border: 0 !important; border-radius: 0 !important; overflow: hidden; cursor: pointer; background: #0c1a3d; min-width: 0; min-height: 0; }
+.psn-collage img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) sepia(.2) contrast(1.08) brightness(.92); transition: filter .35s ease, transform .5s ease; }
+.psn-collage button:hover img { filter: grayscale(1) sepia(.2) contrast(1.1) brightness(1.04); transform: scale(1.03); }
+.psn-col-humanista { grid-area: 1 / 1 / 3 / 2; } .psn-col-psicodinamica { grid-area: 1 / 2 / 2 / 4; } .psn-col-sistemica { grid-area: 1 / 4 / 2 / 6; }
+.psn-col-transpersonal { grid-area: 1 / 6 / 3 / 7; } .psn-col-conductual { grid-area: 2 / 2 / 3 / 3; } .psn-col-cognitivo { grid-area: 2 / 3 / 3 / 5; } .psn-col-integradora { grid-area: 2 / 5 / 3 / 6; }
+.psn-col-humanista img { object-position: 50% 40%; } .psn-col-conductual img { object-position: 50% 50%; }
+.psn-col-ficha { position: absolute; inset: auto 0 0 0; padding: 10px 12px; text-align: left; color: #F6F2E7; font: 12.5px/1.4 var(--f-text); background: linear-gradient(0deg, rgba(8,18,45,.94) 55%, transparent); transform: translateY(101%); transition: transform .3s ease; }
+.psn-col-ficha b { display: block; font: 700 13.5px/1.25 var(--f-display); margin-bottom: 2px; }
+.psn-col-ficha small { display: block; margin-top: 3px; opacity: .7; font-style: italic; }
+.psn-collage button.on .psn-col-ficha { transform: none; }
+@media (max-width: 760px) { .psn-collage { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 28vw); max-height: none; }
+  .psn-col-humanista { grid-area: 1 / 1 / 3 / 2; } .psn-col-psicodinamica { grid-area: 1 / 2 / 2 / 4; } .psn-col-sistemica { grid-area: 2 / 2 / 3 / 3; } .psn-col-transpersonal { grid-area: 2 / 3 / 4 / 4; }
+  .psn-col-conductual { grid-area: 3 / 1 / 4 / 2; } .psn-col-cognitivo { grid-area: 3 / 2 / 4 / 3; } .psn-col-integradora { display: none; } }
+/* Banda de cada perspectiva: larga, baja y desenfocada, al fondo de la cabecera */
+.psn-banda { position: relative; height: 140px; margin: -8px -8px -64px; overflow: hidden; border-radius: 14px 14px 0 0; pointer-events: none; -webkit-mask-image: linear-gradient(180deg, #000 20%, transparent 100%); mask-image: linear-gradient(180deg, #000 20%, transparent 100%); }
+.psn-banda img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; filter: grayscale(1) sepia(.2) blur(4px) contrast(1.05); opacity: .7; transform: scale(1.08); }
+html[data-tema="oscuro"] .psn-banda img { opacity: .38; }

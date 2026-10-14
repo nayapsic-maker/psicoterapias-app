@@ -1,5 +1,5 @@
 import React from "react";
-import { FranjaArchivo } from "./Placas.jsx";
+import { Collage } from "./Placas.jsx";
 import { AUTORES, ALIAS_AUTOR } from "./autores.js";
 
 /* ============================================================
@@ -381,7 +381,7 @@ export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFu
           <h1 className="psn-titulo">
             Psico<span>nautas</span>
           </h1>
-          <p className="psn-sub">Las escuelas de psicoterapia, lado a lado</p>
+          <p className="psn-sub">Navegación por el espacio psicoterapéutico</p>
         </div>
         <div className="psn-bajada">
           <p>Cada escuela nombra el sufrimiento a su manera y tiene su propia idea de qué produce el cambio y qué vale como prueba clínica. Aquí están sus conceptos, protocolos y fuentes, con la página de donde sale cada cosa.</p>
@@ -401,7 +401,7 @@ export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFu
         </div>
       </div>
 
-      <FranjaArchivo />
+      <Collage />
 
       <div className="psn-fundadores" aria-label="Algunas de las voces de la psicología">
         <div className="psn-fundadores-pista">

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 /* Láminas de archivo: reproducciones de dominio público (Wikimedia Commons) con un único tratamiento
    (escala de grises con tinte cálido, ver .psn-placa en index.css). Cada una lleva su crédito. */
 const PLACAS = {
@@ -13,22 +15,36 @@ const PLACAS = {
 };
 const URL = (f) => `${import.meta.env.BASE_URL}img/archivo/${f}.jpg`;
 
-export function Placa({ id, ancho, alto }) {
-  const p = PLACAS[id];
-  if (!p) return null;
+const ORDEN = ["humanista", "psicodinamica", "sistemica", "transpersonal", "conductual", "cognitivo", "integradora"];
+
+/* Collage de portada: las siete láminas, una por perspectiva, pegadas con un filete mínimo.
+   Gestalt: proximidad y semejanza (mismo tratamiento) las leen como una sola figura; el collage va al frente, como figura, no de fondo
+   (de fondo perdería el contraste figura-fondo que sostiene el título). Al pulsar una lámina aparece su ficha. */
+export function Collage() {
+  const [abierta, setAbierta] = useState(null);
   return (
-    <figure className="psn-placa">
-      <img src={URL(p.f)} alt={p.t} loading="lazy" decoding="async" width={ancho} height={alto} />
-      <figcaption><b>{p.t}</b> {p.n} <small>{p.c}</small></figcaption>
-    </figure>
+    <div className="psn-collage" role="group" aria-label="Láminas de las siete perspectivas">
+      {ORDEN.map((id) => {
+        const p = PLACAS[id];
+        const on = abierta === id;
+        return (
+          <button key={id} type="button" className={`psn-col-${id}${on ? " on" : ""}`} onClick={() => setAbierta(on ? null : id)} aria-expanded={on} aria-label={p.t}>
+            <img src={URL(p.f)} alt="" loading="lazy" decoding="async" />
+            <span className="psn-col-ficha"><b>{p.t}</b>{p.n}<small>{p.c}</small></span>
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
-export function FranjaArchivo() {
-  const ids = ["mesmer", "psicodinamica", "humanista", "transpersonal"];
+/* Banda larga y difuminada al fondo de la cabecera de cada perspectiva. */
+export function BandaPerspectiva({ id }) {
+  const p = PLACAS[id];
+  if (!p) return null;
   return (
-    <div className="psn-franja" aria-label="Láminas de archivo">
-      {ids.map((id) => <Placa key={id} id={id} />)}
+    <div className="psn-banda" role="img" aria-label={p.t} title={`${p.t}. ${p.c}`}>
+      <img src={URL(p.f)} alt="" loading="lazy" decoding="async" />
     </div>
   );
 }

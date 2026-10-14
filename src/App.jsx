@@ -4,7 +4,7 @@ import { MiLectura } from "./MiCaso.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
-import { Placa } from "./Placas.jsx";
+import { BandaPerspectiva } from "./Placas.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "./Iconos.jsx";
 
 /* ============================================================
@@ -14,9 +14,9 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
    Afinidad/equivalente: #5C7A5E
    ============================================================ */
 const COLORS = {
-  paper: "#FBF6EA", paperDark: "#F0E5CB", ink: "#22312E", inkSoft: "#566763",
-  primary: "#C2452B", primaryDark: "#17433F", clay: "#C2452B", garnet: "#B5283F",
-  sage: "#2B8A6E", gold: "#C98F12", line: "#DACBA6", cardBg: "#FFFBF1",
+  paper: "#F6F2E7", paperDark: "#E6E2D3", ink: "#17233F", inkSoft: "#4B5873",
+  primary: "#C2452B", primaryDark: "#0F1F45", clay: "#C2452B", garnet: "#B5283F",
+  sage: "#177E87", gold: "#B9801A", line: "#CCC6AE", cardBg: "#FBF8EF",
 };
 
 /* Sistema de temas: COLORS es un objeto MUTABLE referenciado por
@@ -36,14 +36,14 @@ const COLORS = {
    módulos; solo cambia la paleta "estructural" (fondo, tinta, tarjetas).
    */
 const TEMA_CLARO = {
-  paper: "#FBF6EA", paperDark: "#F0E5CB", ink: "#22312E", inkSoft: "#566763",
-  primary: "#C2452B", primaryDark: "#17433F", clay: "#C2452B", garnet: "#B5283F",
-  sage: "#2B8A6E", gold: "#C98F12", line: "#DACBA6", cardBg: "#FFFBF1",
+  paper: "#F6F2E7", paperDark: "#E6E2D3", ink: "#17233F", inkSoft: "#4B5873",
+  primary: "#C2452B", primaryDark: "#0F1F45", clay: "#C2452B", garnet: "#B5283F",
+  sage: "#177E87", gold: "#B9801A", line: "#CCC6AE", cardBg: "#FBF8EF",
 };
 const TEMA_OSCURO = {
-  paper: "#1F2E2B", paperDark: "#162320", ink: "#F3EBD6", inkSoft: "#B7C2B8",
-  primary: "#F28B68", primaryDark: "#0E1B19", clay: "#F28B68", garnet: "#F0838F",
-  sage: "#7FD0A8", gold: "#EDBB47", line: "#34504A", cardBg: "#27403A",
+  paper: "#16213B", paperDark: "#0F172C", ink: "#EDE8D8", inkSoft: "#A9B4CC",
+  primary: "#F2946F", primaryDark: "#0A1226", clay: "#F2946F", garnet: "#EE8A8F",
+  sage: "#5CD0D0", gold: "#EBB347", line: "#2C3B5C", cardBg: "#1D2B4B",
 };
 const TEMA_ALTO_CONTRASTE = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
@@ -65,9 +65,9 @@ function aplicarVarsTema(nombre) {
     const r = document.documentElement;
     const t = TEMAS[nombre] || TEMA_CLARO;
     r.dataset.tema = nombre;
-    r.style.setProperty("--canvas", nombre === "oscuro" ? "#0F1D1A" : nombre === "alto-contraste" ? "#000000" : "#17433F");
-    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#1A2B28" : nombre === "alto-contraste" ? "#000000" : "#84BFB2");
-    r.style.setProperty("--sombra", nombre === "oscuro" ? "#EDBB47" : nombre === "alto-contraste" ? "#FFD400" : "#C98F12");
+    r.style.setProperty("--canvas", nombre === "oscuro" ? "#070D1E" : nombre === "alto-contraste" ? "#000000" : "#0E2A66");
+    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#060B18" : nombre === "alto-contraste" ? "#000000" : "#0A1A40");
+    r.style.setProperty("--sombra", nombre === "oscuro" ? "#EBB347" : nombre === "alto-contraste" ? "#FFD400" : "#B9801A");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
     // En modo oscuro los colores de perspectiva se aclaran para conservar contraste sobre fondo azul noche.
     if (typeof PERSPECTIVA_COLOR !== "undefined") Object.assign(PERSPECTIVA_COLOR, nombre === "oscuro" ? PERSP_COLOR_OSCURO : PERSP_COLOR_CLARO);
@@ -17029,6 +17029,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
       }}
     >
       <SelloPerspectiva color={PERSPECTIVA_COLOR[FUNDAMENTOS_PERSPECTIVAS.find((p) => p.id === perspectivaId)?.nombre] || COLORS.primary} />
+      <BandaPerspectiva id={perspectivaId} />
       <Cabecera
         icono={<Network size={18} />}
         titulo="Escuelas Psicoterapéuticas"
@@ -17037,7 +17038,6 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
         autores={AUTORES_POR_PERSPECTIVA[perspectivaId]}
         tituloAutores="Voces de esta perspectiva"
       />
-      <Placa id={perspectivaId} />
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "16px 0 20px" }}>
         {FUNDAMENTOS_PERSPECTIVAS.map((p) => {
