@@ -376,20 +376,20 @@ export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFu
     <section className="psn-hero" aria-label="Presentación">
       <div className="psn-hero-top">
         <div>
-          <div className="psn-eyebrow">Atlas de psicoterapias · {perspectivas.length} perspectivas</div>
+          <div className="psn-eyebrow">Cuaderno de estudio · {perspectivas.length} perspectivas</div>
           <h1 className="psn-titulo">
             Psico<span>nautas</span>
           </h1>
-          <p className="psn-sub">El cosmos psicoterapéutico</p>
+          <p className="psn-sub">Las escuelas de psicoterapia, lado a lado</p>
         </div>
         <div className="psn-bajada">
-          <p>Un recorrido por diferentes términos y perspectivas acerca de la psicoterapia. Cada perspectiva responde a su manera qué es el sufrimiento, qué produce el cambio y qué cuenta como verdad clínica.</p>
+          <p>Cada escuela nombra el sufrimiento a su manera y tiene su propia idea de qué produce el cambio y qué vale como prueba clínica. Aquí están sus conceptos, protocolos y fuentes, con la página de donde sale cada cosa.</p>
           <div className="psn-botones">
             <button className="psn-btn psn-btn-primario" onClick={onIrAFundamentos}>
-              Explorar las perspectivas →
+              Ver las escuelas →
             </button>
             <button className="psn-btn" onClick={onIrAComparar}>
-              Comparar escuelas
+              Poner dos frente a frente
             </button>
             {onModoEstudio && (
               <button className="psn-btn psn-btn-texto" onClick={onModoEstudio}>

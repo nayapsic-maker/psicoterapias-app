@@ -4,7 +4,7 @@ import { MiLectura } from "./MiCaso.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
-import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "lucide-react";
+import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "./Iconos.jsx";
 
 /* ============================================================
    PALETA Y TOKENS
@@ -13,18 +13,18 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
    Afinidad/equivalente: #5C7A5E
    ============================================================ */
 const COLORS = {
-  paper: "#F1ECE0",
-  paperDark: "#E4DCC9",
-  ink: "#1D2B26",
-  inkSoft: "#4F5E57",
-  primary: "#8E2F3E",
-  primaryDark: "#12302B",
-  clay: "#8E2F3E",
-  garnet: "#B4253F",
-  sage: "#1F8A68",
-  gold: "#B8892B",
-  line: "#C9BE9F",
-  cardBg: "#F8F4EA",
+  paper: "#E9E3D4",
+  paperDark: "#DAD2BE",
+  ink: "#1B1915",
+  inkSoft: "#575248",
+  primary: "#A23A1E",
+  primaryDark: "#1C1A17",
+  clay: "#A23A1E",
+  garnet: "#A82B2B",
+  sage: "#4F6B4A",
+  gold: "#9C7A2E",
+  line: "#BBB198",
+  cardBg: "#F1ECDF",
 };
 
 /* Sistema de temas: COLORS es un objeto MUTABLE referenciado por
@@ -44,14 +44,14 @@ const COLORS = {
    módulos; solo cambia la paleta "estructural" (fondo, tinta, tarjetas).
    */
 const TEMA_CLARO = {
-  paper: "#F1ECE0", paperDark: "#E4DCC9", ink: "#1D2B26", inkSoft: "#4F5E57",
-  primary: "#8E2F3E", primaryDark: "#12302B", clay: "#8E2F3E", garnet: "#B4253F",
-  sage: "#16745A", gold: "#B8892B", line: "#C9BE9F", cardBg: "#F8F4EA",
+  paper: "#E9E3D4", paperDark: "#DAD2BE", ink: "#1B1915", inkSoft: "#575248",
+  primary: "#A23A1E", primaryDark: "#1C1A17", clay: "#A23A1E", garnet: "#A82B2B",
+  sage: "#4F6B4A", gold: "#9C7A2E", line: "#BBB198", cardBg: "#F1ECDF",
 };
 const TEMA_OSCURO = {
-  paper: "#15261F", paperDark: "#0E1B16", ink: "#EFE6CF", inkSoft: "#AEBDB5",
-  primary: "#E3B55A", primaryDark: "#0A1612", clay: "#E98863", garnet: "#E8798F",
-  sage: "#58D1A0", gold: "#E3B55A", line: "#2D4A40", cardBg: "#1B3128",
+  paper: "#211F1B", paperDark: "#171512", ink: "#E8E1CE", inkSoft: "#B0A893",
+  primary: "#E0875A", primaryDark: "#0F0E0C", clay: "#E0875A", garnet: "#E27C6B",
+  sage: "#9DB690", gold: "#D2AE5B", line: "#3A362E", cardBg: "#292621",
 };
 const TEMA_ALTO_CONTRASTE = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
@@ -73,15 +73,15 @@ function aplicarVarsTema(nombre) {
     const r = document.documentElement;
     const t = TEMAS[nombre] || TEMA_CLARO;
     r.dataset.tema = nombre;
-    r.style.setProperty("--canvas", nombre === "oscuro" ? "#07130F" : nombre === "alto-contraste" ? "#000000" : "#12302B");
-    r.style.setProperty("--sombra", nombre === "oscuro" ? "#E3B55A" : nombre === "alto-contraste" ? "#FFD400" : "#B8892B");
+    r.style.setProperty("--canvas", nombre === "oscuro" ? "#0D0C0A" : nombre === "alto-contraste" ? "#000000" : "#1C1A17");
+    r.style.setProperty("--sombra", nombre === "oscuro" ? "#D2AE5B" : nombre === "alto-contraste" ? "#FFD400" : "#9C7A2E");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
     // En modo oscuro los colores de perspectiva se aclaran para conservar contraste sobre fondo azul noche.
     if (typeof PERSPECTIVA_COLOR !== "undefined") Object.assign(PERSPECTIVA_COLOR, nombre === "oscuro" ? PERSP_COLOR_OSCURO : PERSP_COLOR_CLARO);
   } catch (e) {}
 }
-const PERSP_COLOR_CLARO = { "Humanista-existencial": "#946000", "Psicodinámica": "#C01F4F", "Sistémica": "#2457D6", "Sistémica y familiar": "#2457D6", "Conductual": "#0B7A55", "Cognitivo-Conductual": "#B23A09", "Integradora": "#7340D6", "Integradora y ecléctica": "#7340D6", "Transpersonal": "#086A79" };
-const PERSP_COLOR_OSCURO = { "Humanista-existencial": "#FFC233", "Psicodinámica": "#FF7A98", "Sistémica": "#7FA8FF", "Sistémica y familiar": "#7FA8FF", "Conductual": "#4FDBA8", "Cognitivo-Conductual": "#FF9566", "Integradora": "#BE98FF", "Integradora y ecléctica": "#BE98FF", "Transpersonal": "#4FD9EE" };
+const PERSP_COLOR_CLARO = { "Humanista-existencial": "#8A5A12", "Psicodinámica": "#9E2F45", "Sistémica": "#2E4F8A", "Sistémica y familiar": "#2E4F8A", "Conductual": "#2F6B4F", "Cognitivo-Conductual": "#A14A1C", "Integradora": "#62408F", "Integradora y ecléctica": "#62408F", "Transpersonal": "#2A6470" };
+const PERSP_COLOR_OSCURO = { "Humanista-existencial": "#E0B050", "Psicodinámica": "#E58A9E", "Sistémica": "#8FAEE6", "Sistémica y familiar": "#8FAEE6", "Conductual": "#8CC9A5", "Cognitivo-Conductual": "#EA9E6E", "Integradora": "#BCA3E6", "Integradora y ecléctica": "#BCA3E6", "Transpersonal": "#7FCAD6" };
 if (typeof document !== "undefined") aplicarVarsTema("claro");
 
 /* Paleta reservada para ESTADO DEL SISTEMA (íntegro / advertencia / error),
@@ -22258,18 +22258,19 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
           <div
             className="psn-menu-expedicion"
             role="dialog"
-            aria-label="Menú de la expedición"
+            aria-label="Menú"
             onKeyDown={(ev) => { if (ev.key === "Escape") setStatsAbiertas(false); }}
           >
             <p className="psn-menu-lema">Un mismo sufrimiento, siete maneras de nombrarlo.</p>
             <ul className="psn-menu-lista">
               {[
-                ["intro", "Introducción", "El mapa de las siete perspectivas"],
+                ["intro", "Introducción", "Las siete perspectivas en una página"],
                 ["fundamentos", "Escuelas", `${escuelas.length} escuelas con su ficha completa`],
                 ["planificador", "Protocolos y técnicas", "Qué se hace, sesión por sesión, y con qué fuente"],
                 ["diccionario", "Diccionario y traductor", `${GLOSARIO.filter((g) => g.tipo === "concepto").length} conceptos que se pueden traducir entre escuelas`],
                 ["comparacion", "Comparación", "Dos escuelas frente a frente"],
                 ["buscador", "Buscador global", "Todo el contenido en un solo lugar"],
+                ["micaso", "Mi lectura de un caso", "Un caso con tus palabras, leído desde cada escuela"],
               ].map(([id, nombre, detalle]) => (
                 <li key={id}>
                   <button onClick={() => { setTab(id); setStatsAbiertas(false); }} className={tab === id ? "on" : ""}>

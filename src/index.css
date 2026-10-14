@@ -6,19 +6,20 @@
    Las variables --c-* y --canvas las publica App.jsx (aplicarVarsTema).
    ============================================================ */
 :root {
-  --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
-  --f-text: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono: "Chivo Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  --canvas: #12302B;
-  --c-paper: #F1ECE0;
-  --c-paperDark: #E4DCC9;
-  --c-ink: #1D2B26;
-  --c-inkSoft: #4F5E57;
-  --c-primary: #8E2F3E;
-  --c-line: #C9BE9F;
-  --c-cardBg: #F8F4EA;
-  --c-gold: #B8892B;
-  --sombra: #B8892B;
+  --f-display: "Alegreya", Georgia, "Times New Roman", serif;
+  --f-text: "Literata", Georgia, "Times New Roman", serif;
+  --f-mono: "Alegreya Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --canvas: #1C1A17;
+  --c-paper: #E9E3D4;
+  --c-paperDark: #DAD2BE;
+  --c-ink: #1B1915;
+  --c-inkSoft: #575248;
+  --c-primary: #A23A1E;
+  --c-line: #BBB198;
+  --c-cardBg: #F1ECDF;
+  --c-gold: #9C7A2E;
+  --sombra: #9C7A2E;
+  --grano: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .9  0 0 0 .07 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
 }
 
 * { box-sizing: border-box; }
@@ -28,7 +29,7 @@ body {
   font: 16px/1.55 var(--f-text);
   color: var(--c-ink);
   background-color: var(--canvas);
-  background-image: radial-gradient(900px 520px at 12% -5%, #2b7a6577, transparent 70%), radial-gradient(700px 480px at 100% 100%, #7a3a5a44, transparent 70%);
+  background-image: var(--grano);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -38,7 +39,7 @@ html[data-tema="alto-contraste"] body { background-image: none; }
 
 #root { width: 100%; min-height: 100svh; display: flex; flex-direction: column; }
 
-::selection { background: #B8892B; color: #1D2B26; }
+::selection { background: #9C7A2E; color: #fff; }
 ::-webkit-scrollbar { width: 12px; height: 12px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--c-ink); border: 3px solid var(--canvas); border-radius: 8px; }
@@ -511,8 +512,8 @@ html[data-tema="oscuro"] ::selection { background: #E3B55A; }
 .psn-cab-fila .psn-escena-lateral { flex: 0 1 300px; margin: 0 0 0 auto; }
 
 /* ============ Cosmos ============ */
-.psn-cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: linear-gradient(180deg, #06201b 0%, #0b2c26 40%, #12392f 72%, #1b4a3c 100%); }
-html[data-tema="oscuro"] .psn-cosmos { background: linear-gradient(180deg, #020d0a 0%, #051812 45%, #0a2a22 80%, #12382d 100%); }
+.psn-cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: linear-gradient(180deg, #100F0D 0%, #171512 45%, #1E1B17 80%, #25211B 100%); }
+html[data-tema="oscuro"] .psn-cosmos { background: linear-gradient(180deg, #070706 0%, #0D0C0A 50%, #14120F 100%); }
 html[data-tema="alto-contraste"] .psn-cosmos { background: #000; }
 .psn-capa { position: absolute; inset: 0; width: 100%; height: 100%; }
 .psn-tit { animation: psn-brilla 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
@@ -830,7 +831,7 @@ html[data-tema="oscuro"] .psn-examen fieldset button.sel { color: #0A1612; }
    Capa editorial (2026-10): menos «cartel de plantilla», más revista de psicología.
    Todo lo de abajo se puede quitar en bloque para volver al aspecto anterior.
    ============================================================ */
-:root { --f-display: "Young Serif", Georgia, "Times New Roman", serif; }
+
 .psn-titulo { letter-spacing: -0.02em !important; font-weight: 400 !important; text-shadow: none !important; line-height: 0.98 !important; }
 .psn-titulo span { font-style: italic; }
 .psq-cabecera span, .psq-cabecera button { letter-spacing: 0 !important; }
@@ -1004,3 +1005,25 @@ div[style*="overflow-x: auto"]::-webkit-scrollbar { display: none; }
 .psn-fuente-cruda { font-style: italic; }
 .psn-fuente-copiar { margin-top: 4px; border: 1px solid var(--c-line); background: transparent; color: var(--c-inkSoft); border-radius: 5px; padding: 2px 8px; font: 600 11px var(--f-text); cursor: pointer; min-height: 0 !important; }
 .psn-fuente-apa.compacta .psn-fuente-ref { display: none; }
+
+
+/* ============================================================
+   Capa de imprenta (2026-10-14): papel de archivo, tinta y bermellón.
+   Alegreya para titulares, Literata para leer, Alegreya Sans para rótulos.
+   ============================================================ */
+body { font-size: 16.5px; line-height: 1.62; font-variant-numeric: oldstyle-nums; }
+h1, h2, h3, .psn-titulo, .psn-sub { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.005em !important; }
+.psn-titulo { font-weight: 800 !important; }
+.psn-titulo span { font-style: italic; font-weight: 500; }
+/* rótulos: cursiva sobria en lugar de micro-mayúsculas monoespaciadas */
+[style*="var(--f-mono)"], .psn-eyebrow, .psq-tabs [role="tab"], button { letter-spacing: 0 !important; }
+.psn-eyebrow { font-style: italic; font-size: 14px; border: 0 !important; border-bottom: 1px solid currentColor !important; border-radius: 0 !important; padding: 0 2px 1px !important; }
+/* relieve de papel: la hoja se apoya con una sombra corta y un filete interior, sin brillo */
+.psq-hoja { background-image: var(--grano); box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 28px 50px -34px rgba(0,0,0,.7) !important; border-radius: 3px !important; }
+.psq-hoja [style*="border-radius"] { border-radius: 3px !important; }
+.psn-btn, .psq-hoja button, .psn-detalles, .psn-terr, .psn-mapa-detalle, .psn-miradas article, .psn-trad-origen, .psn-voz, .psn-carta, .psn-veredicto,
+.psn-examen, .psn-voces-todas, .psn-galeria, .psn-tl-item button, .psn-rosa-petalos li, .psn-galeria-casos button { border-radius: 2px !important; }
+/* el lomo de color pasa a ser una línea de índice fina */
+.psn-miradas article, .psn-tl-item button, .psn-terr, .psn-rosa-petalos li, .psn-trad-origen { border-left-width: 3px !important; }
+/* el fondo de estrellas queda solo en portada; en módulos, papel y grano */
+html:not([data-vista="intro"]) .psn-cosmos { opacity: .1 !important; }
