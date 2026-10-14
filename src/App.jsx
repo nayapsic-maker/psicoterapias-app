@@ -44,7 +44,7 @@ const COLORS = {
 const TEMA_CLARO = {
   paper: "#F1ECE0", paperDark: "#E4DCC9", ink: "#1D2B26", inkSoft: "#4F5E57",
   primary: "#8E2F3E", primaryDark: "#12302B", clay: "#8E2F3E", garnet: "#B4253F",
-  sage: "#1F8A68", gold: "#B8892B", line: "#C9BE9F", cardBg: "#F8F4EA",
+  sage: "#16745A", gold: "#B8892B", line: "#C9BE9F", cardBg: "#F8F4EA",
 };
 const TEMA_OSCURO = {
   paper: "#15261F", paperDark: "#0E1B16", ink: "#EFE6CF", inkSoft: "#AEBDB5",
@@ -78,7 +78,7 @@ function aplicarVarsTema(nombre) {
     if (typeof PERSPECTIVA_COLOR !== "undefined") Object.assign(PERSPECTIVA_COLOR, nombre === "oscuro" ? PERSP_COLOR_OSCURO : PERSP_COLOR_CLARO);
   } catch (e) {}
 }
-const PERSP_COLOR_CLARO = { "Humanista-existencial": "#E39B00", "Psicodinámica": "#D6275A", "Sistémica": "#2E6BFF", "Sistémica y familiar": "#2E6BFF", "Conductual": "#0E9F6E", "Cognitivo-Conductual": "#E8541A", "Integradora": "#8B4DF0", "Integradora y ecléctica": "#8B4DF0", "Transpersonal": "#0FA3B8" };
+const PERSP_COLOR_CLARO = { "Humanista-existencial": "#946000", "Psicodinámica": "#C01F4F", "Sistémica": "#2457D6", "Sistémica y familiar": "#2457D6", "Conductual": "#0B7A55", "Cognitivo-Conductual": "#B23A09", "Integradora": "#7340D6", "Integradora y ecléctica": "#7340D6", "Transpersonal": "#086A79" };
 const PERSP_COLOR_OSCURO = { "Humanista-existencial": "#FFC233", "Psicodinámica": "#FF7A98", "Sistémica": "#7FA8FF", "Sistémica y familiar": "#7FA8FF", "Conductual": "#4FDBA8", "Cognitivo-Conductual": "#FF9566", "Integradora": "#BE98FF", "Integradora y ecléctica": "#BE98FF", "Transpersonal": "#4FD9EE" };
 if (typeof document !== "undefined") aplicarVarsTema("claro");
 
@@ -115,16 +115,17 @@ const NOMBRE_CORTO_PERSPECTIVA = {
 // conceptual, la tabla comparativa y los chips, todos referenciados por
 // esta misma constante.
 const PERSPECTIVA_COLOR = {
-  "Humanista-existencial": "#E39B00",
-  "Psicodinámica": "#D6275A",
-  "Sistémica": "#2E6BFF",
-  "Sistémica y familiar": "#2E6BFF",
-  "Conductual": "#0E9F6E",
-  "Cognitivo-Conductual": "#E8541A",
-  "Integradora": "#8B4DF0",
-  "Integradora y ecléctica": "#8B4DF0",
-  "Transpersonal": "#0FA3B8",
+  "Humanista-existencial": "#946000",
+  "Psicodinámica": "#C01F4F",
+  "Sistémica": "#2457D6",
+  "Sistémica y familiar": "#2457D6",
+  "Conductual": "#0B7A55",
+  "Cognitivo-Conductual": "#B23A09",
+  "Integradora": "#7340D6",
+  "Integradora y ecléctica": "#7340D6",
+  "Transpersonal": "#086A79",
 };
+
 
 /* Colores de relación traslacional: deliberadamente distintos de los 7
    colores de PERSPECTIVA_COLOR (antes «equivalente aproximado» compartía
@@ -14584,7 +14585,7 @@ function Boton({ children, onClick, variant = "default", small, title, style, di
     padding: small ? "4px 8px" : "7px 14px",
     borderRadius: 8,
     cursor: disabled ? "default" : "pointer",
-    border: `1px solid ${COLORS.primaryDark}`,
+    border: `1px solid ${document.documentElement.dataset.tema === "claro" ? COLORS.primaryDark : COLORS.line}`,
     display: "inline-flex",
     alignItems: "center",
     gap: 6,
@@ -14592,8 +14593,8 @@ function Boton({ children, onClick, variant = "default", small, title, style, di
     opacity: disabled ? 0.4 : 1,
   };
   const variants = {
-    default: { background: COLORS.primary, color: "#fff" },
-    ghost: { background: "transparent", color: COLORS.primaryDark },
+    default: { background: COLORS.primary, color: document.documentElement.dataset.tema === "claro" ? "#fff" : "#0A1612" },
+    ghost: { background: "transparent", color: document.documentElement.dataset.tema === "claro" ? COLORS.primaryDark : COLORS.ink },
     danger: { background: "transparent", color: COLORS.garnet, border: `1px solid ${COLORS.garnet}` },
   };
   return (
@@ -16214,7 +16215,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
             borderRadius: 12, padding: "10px 14px", marginBottom: 20,
           }}
         >
-          <span style={{ fontFamily: FONT_MONO, fontSize: 11, color: modoEstudio ? COLORS.gold : COLORS.ink }}>
+          <span style={{ fontFamily: FONT_MONO, fontSize: 11, color: modoEstudio ? (document.documentElement.dataset.tema === "claro" ? "#7A5A12" : COLORS.gold) : COLORS.ink }}>
             {modoEstudio
               ? "◆ Modo estudio activo: el contenido de cada módulo se muestra extendido y sin truncar."
               : "El modo estudio expande automáticamente fundamentación, conceptos y pasos en todos los módulos — útil para leer a fondo en vez de solo consultar."}
@@ -16223,7 +16224,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
             onClick={() => setModoEstudio((v) => !v)}
             style={{
               marginLeft: "auto", fontFamily: FONT_MONO, fontSize: 11, fontWeight: 700, padding: "6px 14px", borderRadius: 16, cursor: "pointer",
-              border: `1px solid ${COLORS.gold}`, background: modoEstudio ? COLORS.gold : "transparent", color: modoEstudio ? "#fff" : COLORS.gold,
+              border: `1px solid ${COLORS.gold}`, background: modoEstudio ? COLORS.gold : "transparent", color: modoEstudio ? "#1D2B26" : (document.documentElement.dataset.tema === "claro" ? "#7A5A12" : COLORS.gold),
             }}
           >
             {modoEstudio ? "Desactivar modo estudio" : "Activar modo estudio"}
