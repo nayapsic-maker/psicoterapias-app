@@ -6,19 +6,20 @@
    Las variables --c-* y --canvas las publica App.jsx (aplicarVarsTema).
    ============================================================ */
 :root {
-  --f-display: "Alegreya", Georgia, "Times New Roman", serif;
-  --f-text: "Literata", Georgia, "Times New Roman", serif;
-  --f-mono: "Alegreya Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --canvas: #1C1A17;
-  --c-paper: #E9E3D4;
-  --c-paperDark: #DAD2BE;
-  --c-ink: #1B1915;
-  --c-inkSoft: #575248;
-  --c-primary: #A23A1E;
-  --c-line: #BBB198;
-  --c-cardBg: #F1ECDF;
-  --c-gold: #9C7A2E;
-  --sombra: #9C7A2E;
+  --f-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --f-text: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --canvas: #17433F;
+  --canvas-mod: #84BFB2;
+  --c-paper: #FBF6EA;
+  --c-paperDark: #F0E5CB;
+  --c-ink: #22312E;
+  --c-inkSoft: #566763;
+  --c-primary: #C2452B;
+  --c-line: #DACBA6;
+  --c-cardBg: #FFFBF1;
+  --c-gold: #C98F12;
+  --sombra: #C98F12;
   --grano: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .9  0 0 0 .07 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
 }
 
@@ -512,8 +513,8 @@ html[data-tema="oscuro"] ::selection { background: #E3B55A; }
 .psn-cab-fila .psn-escena-lateral { flex: 0 1 300px; margin: 0 0 0 auto; }
 
 /* ============ Cosmos ============ */
-.psn-cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: linear-gradient(180deg, #100F0D 0%, #171512 45%, #1E1B17 80%, #25211B 100%); }
-html[data-tema="oscuro"] .psn-cosmos { background: linear-gradient(180deg, #070706 0%, #0D0C0A 50%, #14120F 100%); }
+.psn-cosmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: linear-gradient(180deg, #0F302D 0%, #17433F 45%, #1F5A52 80%, #2A6E63 100%); }
+html[data-tema="oscuro"] .psn-cosmos { background: linear-gradient(180deg, #08130F 0%, #0F1D1A 50%, #16302B 100%); }
 html[data-tema="alto-contraste"] .psn-cosmos { background: #000; }
 .psn-capa { position: absolute; inset: 0; width: 100%; height: 100%; }
 .psn-tit { animation: psn-brilla 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
@@ -539,7 +540,7 @@ html[data-tema="alto-contraste"] .psn-nebulosa { display: none; }
   .psn-medallon.d { right: calc((100vw - 1120px) / 4 - 52px); }
 }
 @media (min-width: 1700px) { .psn-medallon { width: 132px; height: 132px; } .psn-medallon.i { left: calc((100vw - 1120px) / 4 - 66px); } .psn-medallon.d { right: calc((100vw - 1120px) / 4 - 66px); } }
-.psq-hoja { max-width: 1120px !important; }
+.psq-hoja { max-width: min(1560px, calc(100vw - 28px)) !important; }
 #root { position: relative; z-index: 1; }
 
 /* ============ MODO OSCURO: correcciones de contraste ============ */
@@ -1008,25 +1009,25 @@ div[style*="overflow-x: auto"]::-webkit-scrollbar { display: none; }
 
 
 /* ============================================================
-   Capa de imprenta (2026-10-14): papel de archivo, tinta y bermellón.
-   Alegreya para titulares, Literata para leer, Alegreya Sans para rótulos.
+   Capa «cuaderno de campo» (2026-10-14): más color y más aire que la capa de imprenta.
+   Bricolage Grotesque para titulares, Figtree para leer. Módulos sobre verde claro; la portada conserva el cielo oscuro.
    ============================================================ */
-body { font-size: 16.5px; line-height: 1.62; font-variant-numeric: oldstyle-nums; }
-h1, h2, h3, .psn-titulo, .psn-sub { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.005em !important; }
+body { font-size: 16px; line-height: 1.6; }
+html:not([data-vista="intro"]) body { background-color: var(--canvas-mod); }
+html:not([data-vista="intro"]) .psn-cosmos { opacity: 1 !important; background: linear-gradient(180deg, var(--canvas-mod) 0%, color-mix(in srgb, var(--canvas-mod) 72%, #fff) 100%); }
+html:not([data-vista="intro"]) .psn-cosmos > * { display: none !important; }
+html[data-tema="alto-contraste"]:not([data-vista="intro"]) .psn-cosmos { background: #000; }
+h1, h2, h3, .psn-titulo, .psn-sub { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.02em !important; }
 .psn-titulo { font-weight: 800 !important; }
-.psn-titulo span { font-style: italic; font-weight: 500; }
-/* rótulos: cursiva sobria en lugar de micro-mayúsculas monoespaciadas */
+.psn-titulo span { font-style: normal; font-weight: 800; color: var(--c-gold); }
 [style*="var(--f-mono)"], .psn-eyebrow, .psq-tabs [role="tab"], button { letter-spacing: 0 !important; }
-.psn-eyebrow { font-style: italic; font-size: 14px; border: 0 !important; border-bottom: 1px solid currentColor !important; border-radius: 0 !important; padding: 0 2px 1px !important; }
-/* relieve de papel: la hoja se apoya con una sombra corta y un filete interior, sin brillo */
-.psq-hoja { background-image: var(--grano); box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 28px 50px -34px rgba(0,0,0,.7) !important; border-radius: 3px !important; }
-.psq-hoja [style*="border-radius"] { border-radius: 3px !important; }
+.psn-eyebrow { font-style: normal; font-weight: 600; font-size: 13px; border: 0 !important; border-radius: 999px !important; padding: 3px 12px !important; background: color-mix(in srgb, var(--c-gold) 22%, transparent) !important; color: var(--c-ink) !important; }
+.psq-hoja { background-image: var(--grano); border-radius: 20px !important; border: 1px solid color-mix(in srgb, var(--c-ink) 18%, transparent) !important; box-shadow: 0 2px 0 rgba(255,255,255,.5) inset, 0 26px 50px -30px rgba(10,40,36,.55) !important; }
+.psq-hoja [style*="border-radius"] { border-radius: 12px !important; }
 .psn-btn, .psq-hoja button, .psn-detalles, .psn-terr, .psn-mapa-detalle, .psn-miradas article, .psn-trad-origen, .psn-voz, .psn-carta, .psn-veredicto,
-.psn-examen, .psn-voces-todas, .psn-galeria, .psn-tl-item button, .psn-rosa-petalos li, .psn-galeria-casos button { border-radius: 2px !important; }
-/* el lomo de color pasa a ser una línea de índice fina */
-.psn-miradas article, .psn-tl-item button, .psn-terr, .psn-rosa-petalos li, .psn-trad-origen { border-left-width: 3px !important; }
-/* el fondo de estrellas queda solo en portada; en módulos, papel y grano */
-html:not([data-vista="intro"]) .psn-cosmos { opacity: .1 !important; }
+.psn-examen, .psn-voces-todas, .psn-galeria, .psn-tl-item button, .psn-rosa-petalos li, .psn-galeria-casos button { border-radius: 12px !important; }
+.psn-miradas article, .psn-tl-item button, .psn-terr, .psn-rosa-petalos li, .psn-trad-origen { border-left-width: 5px !important; }
+.psq-tabs [role="tab"] { font-weight: 600 !important; font-size: 13.5px !important; }
 
 /* Láminas: un solo tratamiento para todas (grises, tinte cálido, grano), así quedan como un mismo archivo */
 .psn-placa { margin: 14px 0 18px; display: grid; grid-template-columns: minmax(140px, 26%) 1fr; gap: 16px; align-items: end; }

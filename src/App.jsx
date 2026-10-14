@@ -14,18 +14,9 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
    Afinidad/equivalente: #5C7A5E
    ============================================================ */
 const COLORS = {
-  paper: "#E9E3D4",
-  paperDark: "#DAD2BE",
-  ink: "#1B1915",
-  inkSoft: "#575248",
-  primary: "#A23A1E",
-  primaryDark: "#1C1A17",
-  clay: "#A23A1E",
-  garnet: "#A82B2B",
-  sage: "#4F6B4A",
-  gold: "#9C7A2E",
-  line: "#BBB198",
-  cardBg: "#F1ECDF",
+  paper: "#FBF6EA", paperDark: "#F0E5CB", ink: "#22312E", inkSoft: "#566763",
+  primary: "#C2452B", primaryDark: "#17433F", clay: "#C2452B", garnet: "#B5283F",
+  sage: "#2B8A6E", gold: "#C98F12", line: "#DACBA6", cardBg: "#FFFBF1",
 };
 
 /* Sistema de temas: COLORS es un objeto MUTABLE referenciado por
@@ -45,14 +36,14 @@ const COLORS = {
    módulos; solo cambia la paleta "estructural" (fondo, tinta, tarjetas).
    */
 const TEMA_CLARO = {
-  paper: "#E9E3D4", paperDark: "#DAD2BE", ink: "#1B1915", inkSoft: "#575248",
-  primary: "#A23A1E", primaryDark: "#1C1A17", clay: "#A23A1E", garnet: "#A82B2B",
-  sage: "#4F6B4A", gold: "#9C7A2E", line: "#BBB198", cardBg: "#F1ECDF",
+  paper: "#FBF6EA", paperDark: "#F0E5CB", ink: "#22312E", inkSoft: "#566763",
+  primary: "#C2452B", primaryDark: "#17433F", clay: "#C2452B", garnet: "#B5283F",
+  sage: "#2B8A6E", gold: "#C98F12", line: "#DACBA6", cardBg: "#FFFBF1",
 };
 const TEMA_OSCURO = {
-  paper: "#211F1B", paperDark: "#171512", ink: "#E8E1CE", inkSoft: "#B0A893",
-  primary: "#E0875A", primaryDark: "#0F0E0C", clay: "#E0875A", garnet: "#E27C6B",
-  sage: "#9DB690", gold: "#D2AE5B", line: "#3A362E", cardBg: "#292621",
+  paper: "#1F2E2B", paperDark: "#162320", ink: "#F3EBD6", inkSoft: "#B7C2B8",
+  primary: "#F28B68", primaryDark: "#0E1B19", clay: "#F28B68", garnet: "#F0838F",
+  sage: "#7FD0A8", gold: "#EDBB47", line: "#34504A", cardBg: "#27403A",
 };
 const TEMA_ALTO_CONTRASTE = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
@@ -74,15 +65,16 @@ function aplicarVarsTema(nombre) {
     const r = document.documentElement;
     const t = TEMAS[nombre] || TEMA_CLARO;
     r.dataset.tema = nombre;
-    r.style.setProperty("--canvas", nombre === "oscuro" ? "#0D0C0A" : nombre === "alto-contraste" ? "#000000" : "#1C1A17");
-    r.style.setProperty("--sombra", nombre === "oscuro" ? "#D2AE5B" : nombre === "alto-contraste" ? "#FFD400" : "#9C7A2E");
+    r.style.setProperty("--canvas", nombre === "oscuro" ? "#0F1D1A" : nombre === "alto-contraste" ? "#000000" : "#17433F");
+    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#1A2B28" : nombre === "alto-contraste" ? "#000000" : "#84BFB2");
+    r.style.setProperty("--sombra", nombre === "oscuro" ? "#EDBB47" : nombre === "alto-contraste" ? "#FFD400" : "#C98F12");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
     // En modo oscuro los colores de perspectiva se aclaran para conservar contraste sobre fondo azul noche.
     if (typeof PERSPECTIVA_COLOR !== "undefined") Object.assign(PERSPECTIVA_COLOR, nombre === "oscuro" ? PERSP_COLOR_OSCURO : PERSP_COLOR_CLARO);
   } catch (e) {}
 }
-const PERSP_COLOR_CLARO = { "Humanista-existencial": "#8A5A12", "Psicodinámica": "#9E2F45", "Sistémica": "#2E4F8A", "Sistémica y familiar": "#2E4F8A", "Conductual": "#2F6B4F", "Cognitivo-Conductual": "#A14A1C", "Integradora": "#62408F", "Integradora y ecléctica": "#62408F", "Transpersonal": "#2A6470" };
-const PERSP_COLOR_OSCURO = { "Humanista-existencial": "#E0B050", "Psicodinámica": "#E58A9E", "Sistémica": "#8FAEE6", "Sistémica y familiar": "#8FAEE6", "Conductual": "#8CC9A5", "Cognitivo-Conductual": "#EA9E6E", "Integradora": "#BCA3E6", "Integradora y ecléctica": "#BCA3E6", "Transpersonal": "#7FCAD6" };
+const PERSP_COLOR_CLARO = { "Humanista-existencial": "#B27700", "Psicodinámica": "#C01F4F", "Sistémica": "#2457D6", "Sistémica y familiar": "#2457D6", "Conductual": "#0B7A55", "Cognitivo-Conductual": "#D2480F", "Integradora": "#7340D6", "Integradora y ecléctica": "#7340D6", "Transpersonal": "#0A7B8C" };
+const PERSP_COLOR_OSCURO = { "Humanista-existencial": "#FFC233", "Psicodinámica": "#FF7A98", "Sistémica": "#7FA8FF", "Sistémica y familiar": "#7FA8FF", "Conductual": "#4FDBA8", "Cognitivo-Conductual": "#FF9566", "Integradora": "#BE98FF", "Integradora y ecléctica": "#BE98FF", "Transpersonal": "#4FD9EE" };
 if (typeof document !== "undefined") aplicarVarsTema("claro");
 
 /* Paleta reservada para ESTADO DEL SISTEMA (íntegro / advertencia / error),
@@ -1921,7 +1913,7 @@ const ESCUELAS_SEED = [
     id: "h6", perspectiva: "Humanista-existencial", subfamilia: "Psicoterapia y Análisis Existencial (tradición frankliana)", fundamentosTeoricos: ["fenomenologiaexistencial"], nombre: "Logoterapia Clásica",
     autores: "Viktor E. Frankl",
     fundamentacion: "«Tercera Escuela Vienesa de Psicoterapia», sucesora del Psicoanálisis de Freud y la Psicología Individual de Adler (Längle, 2007). Del griego logos ('sentido'), se define como psicoterapia centrada en el sentido de la existencia humana y en la búsqueda de dicho sentido (Frankl, 2015). Frente al principio de placer freudiano y la voluntad de poder adleriana, postula la «voluntad de sentido» como fuerza motivadora primaria (Längle, 2007; Frankl, 2015). Es la matriz histórica y antropológica de la que se escindió formalmente en 1991 el Análisis Existencial Personal de la Escuela de Viena contemporánea (`h6b`); ver esa ficha para el desarrollo diferenciado post-Frankl.",
-    ontologia: "Ontología Dimensional o Unitas Multiplex: el ser humano es una unidad indivisible bio-psico-espiritual (somática, psíquica y noética/espiritual), donde la dimensión noética —sede de la libertad, la responsabilidad y el sentido— nunca enferma, aunque el cuerpo y la psique sí puedan hacerlo (Frankl, 1994c; Guberman y Pérez Soto, 2004).",
+    ontologia: "Ontología Dimensional o Unitas Multiplex: el ser humano es una unidad indivisible bio-psico-espiritual (somática, psíquica y noética/espiritual), donde la dimensión noética —sede de la libertad, la responsabilidad y el sentido— nunca enferma, aunque el cuerpo y la psique sí puedan hacerlo (Frankl, 1994c; Guberman y Pérez Soto, 2005).",
     epistemologia: "Fenomenológica y antirreduccionista: rechaza el psicologismo y el pandeterminismo (reducir todo acto humano a mecanismo de defensa, instinto reprimido o respuesta fisiológica), reclamando una «psicología de las alturas» que valide las aspiraciones espirituales del paciente como fenómenos auténticos, no como epifenómenos patológicos (Frankl, 2010).",
     metodologia: "Diálogo Socrático o mayéutica (ironía socrática, expansión fenomenológica, evocación del sentido) combinado con técnicas específicas de ruptura de círculos viciosos neuróticos (intención paradójica, derreflexión); explícitamente no manualizada ni sesión-por-sesión: «la infinita diversidad de pacientes elimina la posibilidad de extrapolación de un paciente a otro» (Frankl, 2001, p. 147).",
     criterioVerdad: "Pragmático-fenomenológico: el sentido hallado se verifica por el alivio vivencial y la resolución del círculo vicioso neurótico que reporta el propio paciente, nunca por prescripción externa del terapeuta: Frankl sostiene que el terapeuta deja en manos del propio paciente decidir ante quién se siente responsable y de qué (Frankl, 2018, p. 23).",
@@ -5299,7 +5291,7 @@ const CITAS_AMPLIADAS = {
     "Frankl, V. E. (1994c), citado en Logoterapia: Recursos Noéticos centrados en la psicoterapia.",
     "Frankl, V. E. (1994c), citado en Los modos de ser inauténticos.",
     "Frankl, V. E. (2010), citado en El hombre en busca de sentido.",
-    "Guberman, M., Pérez Soto, E. (1998). Diccionario de logoterapia.",
+    "Guberman, M. y Pérez Soto, E. (2005). Diccionario de logoterapia.",
     "Längle, A. (1993), citado en Längle, S. (2003).",
     "Längle, A. (1998b), citado en Längle (2007).",
     "Längle, A. (2000a), citado en Croquevielle y Traverso (2009).",
@@ -6169,7 +6161,7 @@ const SUBVARIANTES_ESCUELA = {
       definicionTextual: "La intención paradójica es «un procedimiento en donde se invita al paciente a desear precisamente aquello que teme»",
       fuenteDefinicion: "Frankl, V. (1994). Logoterapia y Análisis Existencial. Herder.",
       conceptosClave: ["Intención paradójica", "Derreflexión", "Apelación (psicoterapia apelativa)"],
-      manual: "Frankl, V. (1994). Logoterapia y Análisis Existencial. Herder; Guberman, M., Pérez Soto, E. (1998). Diccionario de logoterapia. Grupo Editorial Lumen.",
+      manual: "Frankl, V. (1994). Logoterapia y Análisis Existencial. Herder; Guberman, M. y Pérez Soto, E. (2005). Diccionario de logoterapia. Grupo Editorial Lumen.",
     },
     {
       nombre: "Análisis Existencial Personal (Escuela de Viena contemporánea)",
