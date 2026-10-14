@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { MIRADAS } from "./Funciones2.jsx";
 import { registrar, ordenar, resumen, cuando, useRepaso } from "./Repaso.js";
 
@@ -89,16 +89,11 @@ export function AdivinaEscuela({ escuelas, glosario, anioOrigen, colorDe, onIrAE
     setSesion((s) => ({ ok: s.ok + (ok ? 1 : 0), n: s.n + 1 }));
   };
 
+  useEffect(() => { if (pool.length) nueva(); }, []); // eslint-disable-line
   const info = ronda && anioOrigen[ronda.e.id];
   return (
     <Panel titulo="Adivina la escuela" sub="Tres pistas, cuatro opciones: ¿de qué escuela se trata?" abierto resumenIds={ids} clase="psn-prac-intro">
-      {!ronda ? (
-        <div className="psn-prac-inicio">
-          <p>Te mostramos una idea central y, si la necesitas, las técnicas y el origen de una escuela. Cuantas menos pistas uses, más se espacia el próximo repaso de esa escuela.</p>
-          <button className="psn-btn psn-btn-primario" onClick={nueva}>Jugar →</button>
-          <Resumen ids={ids} />
-        </div>
-      ) : (
+      {ronda && (
         <div>
           <ol className="psn-prac-pistas">
             <li>
@@ -143,125 +138,6 @@ export function AdivinaEscuela({ escuelas, glosario, anioOrigen, colorDe, onIrAE
 }
 
 /* ---------------------------------------------------------------------------
-   2 · LÍNEA DEL TIEMPO PARA COMPLETAR (módulo de Escuelas): se relaciona, no se escribe
-   --------------------------------------------------------------------------- */
-export function LineaTiempoJuego({ escuelas, anioOrigen, color }) {
-  const items = useMemo(() => escuelas.filter((e) => anioOrigen[e.id] && anioOrigen[e.id].anio && anioOrigen[e.id].hito), [escuelas, anioOrigen]);
-  const ids = useMemo(() => items.map((e) => "tl:" + e.id), [items]);
-  const [modo, setModo] = useState("escuela"); // escuela: se colocan escuelas en (año + hito); anio: se colocan años en (escuela + hito)
-  const [ronda, setRonda] = useState(null);
-  const [sel, setSel] = useState(null);
-  const [puesto, setPuesto] = useState({});
-  const [revisado, setRevisado] = useState(false);
-
-  const nueva = (m = modo) => {
-    const elegidas = ordenar(ids).slice(0, Math.min(6, items.length)).map((id) => items.find((e) => "tl:" + e.id === id)).filter(Boolean);
-    const slots = [...elegidas].sort((a, b) => anioOrigen[a.id].anio - anioOrigen[b.id].anio);
-    const fichas = azar(elegidas.map((e) => ({ id: "f" + e.id, de: e.id, anio: anioOrigen[e.id].anio, nombre: e.nombre })));
-    setRonda({ slots, fichas });
-    setSel(null); setPuesto({}); setRevisado(false); setModo(m);
-  };
-
-  if (items.length < 3) return null;
-  const libres = ronda ? ronda.fichas.filter((f) => !Object.values(puesto).includes(f.id)) : [];
-  const colocar = (slotId) => {
-    if (revisado) return;
-    if (sel) { setPuesto((p) => { const n = { ...p }; Object.keys(n).forEach((k) => { if (n[k] === sel) delete n[k]; }); n[slotId] = sel; return n; }); setSel(null); }
-    else if (puesto[slotId]) setPuesto((p) => { const n = { ...p }; delete n[slotId]; return n; });
-  };
-  const ok = (slot) => { const f = ronda.fichas.find((x) => x.id === puesto[slot.id]); if (!f) return false; return modo === "escuela" ? f.de === slot.id : f.anio === anioOrigen[slot.id].anio; };
-  const revisar = () => {
-    setRevisado(true);
-    ronda.slots.forEach((s) => registrar("tl:" + s.id, ok(s) ? 2 : 0));
-  };
-  const aciertos = ronda ? ronda.slots.filter(ok).length : 0;
-  const etq = (f) => (modo === "escuela" ? f.nombre : String(f.anio));
-
-  return (
-    <Panel titulo="Completa la línea del tiempo" sub="Relaciona cada ficha con su lugar: sin escribir" resumenIds={ids}>
-      <div className="psn-prac-modos" role="group" aria-label="Modo">
-        <button className={modo === "escuela" ? "on" : ""} onClick={() => nueva("escuela")}>Poner escuelas en su año y su hito</button>
-        <button className={modo === "anio" ? "on" : ""} onClick={() => nueva("anio")}>Poner años en cada escuela</button>
-      </div>
-      {!ronda ? (
-        <div className="psn-prac-inicio"><button className="psn-btn psn-btn-primario" onClick={() => nueva()}>Empezar →</button><Resumen ids={ids} /></div>
-      ) : (
-        <>
-          <p className="psn-prac-ayuda">Toca una ficha y luego el lugar donde va. Para quitar una ficha, toca el lugar donde está.</p>
-          <div className="psn-prac-banco" role="group" aria-label="Fichas disponibles">
-            {libres.length === 0 && <span className="psn-prac-vacio">Todas colocadas.</span>}
-            {libres.map((f) => <button key={f.id} className={sel === f.id ? "on" : ""} onClick={() => setSel(sel === f.id ? null : f.id)} style={{ "--pc": color }}>{etq(f)}</button>)}
-          </div>
-          <ol className="psn-prac-linea" style={{ "--pc": color }}>
-            {ronda.slots.map((s) => {
-              const f = ronda.fichas.find((x) => x.id === puesto[s.id]);
-              const estadoS = revisado ? (ok(s) ? "ok" : "mal") : "";
-              return (
-                <li key={s.id} className={estadoS}>
-                  <button className="slot" onClick={() => colocar(s.id)} aria-label={f ? `Quitar ${etq(f)}` : "Colocar la ficha seleccionada aquí"}>
-                    <span className="ref">{modo === "escuela" ? <><b>{anioOrigen[s.id].anio}</b> {anioOrigen[s.id].hito}</> : <><b>{s.nombre}</b> {anioOrigen[s.id].hito}</>}</span>
-                    <span className="ficha">{f ? etq(f) : "· · ·"}</span>
-                  </button>
-                  {revisado && !ok(s) && <span className="corr">Correcto: {modo === "escuela" ? s.nombre : anioOrigen[s.id].anio}</span>}
-                </li>
-              );
-            })}
-          </ol>
-          <div className="psn-prac-acc">
-            {!revisado ? <button className="psn-btn psn-btn-primario" disabled={Object.keys(puesto).length < ronda.slots.length} onClick={revisar}>Comprobar</button>
-              : <><strong>{aciertos} de {ronda.slots.length}</strong><button className="psn-btn psn-btn-primario" onClick={() => nueva()}>Otra ronda</button></>}
-          </div>
-          <Resumen ids={ids} />
-        </>
-      )}
-    </Panel>
-  );
-}
-
-/* ---------------------------------------------------------------------------
-   3 · REPASO DE ESCUELAS (módulo de Escuelas): tarjeta con autoevaluación
-   --------------------------------------------------------------------------- */
-export function RepasoEscuelas({ escuelas, glosario, anioOrigen, colorDe, onIrAEscuela }) {
-  const ids = useMemo(() => escuelas.map((e) => "esc:" + e.id), [escuelas]);
-  const [id, setId] = useState(null);
-  const [ver, setVer] = useState(false);
-  const e = id && escuelas.find((x) => "esc:" + x.id === id);
-  const siguiente = () => { setId(ordenar(ids)[0]); setVer(false); };
-  const info = e && anioOrigen[e.id];
-  const conceptos = e ? glosario.filter((g) => g.escuela === e.id && g.tipo === "concepto").slice(0, 4) : [];
-  const nota = (res) => { registrar(id, res); siguiente(); };
-  return (
-    <Panel titulo="Repaso de escuelas" sub="Tarjetas con repaso espaciado" resumenIds={ids}>
-      {!e ? (
-        <div className="psn-prac-inicio"><p>Recuerda quién la fundó, qué propone y qué técnicas usa; luego compara y dinos qué tal te fue. Lo que falles volverá pronto; lo que sepas, cada vez más espaciado.</p><button className="psn-btn psn-btn-primario" onClick={siguiente}>Empezar →</button><Resumen ids={ids} /></div>
-      ) : (
-        <div className="psn-prac-tarjeta" style={{ "--pc": colorDe(e.perspectiva) }}>
-          <p className="psn-prac-persp">{e.perspectiva}</p>
-          <h4>{e.nombre}</h4>
-          {!ver ? <button className="psn-btn psn-btn-primario" onClick={() => setVer(true)}>Ver la respuesta</button> : (
-            <>
-              <dl>
-                {e.autores && <><dt>Autores</dt><dd>{e.autores}</dd></>}
-                {info && <><dt>Origen</dt><dd>{info.anio}. {info.hito}</dd></>}
-                {conceptos.length > 0 && <><dt>Conceptos</dt><dd>{conceptos.map((c) => c.termino).join(" · ")}</dd></>}
-                {(e.tecnicas || []).length > 0 && <><dt>Técnicas</dt><dd>{e.tecnicas.slice(0, 4).map((t) => String(t).split(" (")[0]).join(" · ")}</dd></>}
-              </dl>
-              <div className="psn-prac-acc">
-                <button className="psn-btn" onClick={() => nota(0)}>No la recordaba</button>
-                <button className="psn-btn" onClick={() => nota(1)}>Casi</button>
-                <button className="psn-btn psn-btn-primario" onClick={() => nota(2)}>La sabía</button>
-                <button className="psn-prac-link" onClick={() => onIrAEscuela(e.id)}>Abrir la ficha</button>
-              </div>
-            </>
-          )}
-          <Resumen ids={ids} />
-        </div>
-      )}
-    </Panel>
-  );
-}
-
-/* ---------------------------------------------------------------------------
    4 · ¿QUIÉN LO DIRÍA? + abogado del diablo (Comparación)
    --------------------------------------------------------------------------- */
 const CAMPOS_CMP = [
@@ -288,12 +164,11 @@ export function QuienLoDiria({ perspectivas, colorDe }) {
   const [sesion, setSesion] = useState({ ok: 0, n: 0 });
   const nueva = () => { const top = ordenar(ids).slice(0, 5); const id = top[Math.floor(Math.random() * top.length)]; setIt(pool.find((x) => x.id === id)); setResp(null); };
   const elegir = (p) => { if (resp) return; setResp(p.id); const ok = p.id === it.p.id; registrar(it.id, ok ? 2 : 0); setSesion((s) => ({ ok: s.ok + (ok ? 1 : 0), n: s.n + 1 })); };
+  useEffect(() => { if (pool.length) nueva(); }, []); // eslint-disable-line
   const objecion = (pid) => (MIRADAS[pid] && MIRADAS[pid].limites) || null;
   return (
-    <Panel titulo="¿Quién lo diría?" sub="Adivina la perspectiva y enfréntala a su abogado del diablo" resumenIds={ids}>
-      {!it ? (
-        <div className="psn-prac-inicio"><button className="psn-btn psn-btn-primario" onClick={nueva}>Jugar →</button><Resumen ids={ids} /></div>
-      ) : (
+    <Panel titulo="¿Quién lo diría?" sub="Adivina la perspectiva y enfréntala a su abogado del diablo" abierto resumenIds={ids} clase="psn-prac-intro">
+      {it && (
         <div>
           <p className="psn-prac-campo">{it.c.t}</p>
           <blockquote className="psn-prac-cita"><Desplegable texto={it.t.replace(ENMASCARA, "…")} max={340} /></blockquote>
@@ -344,12 +219,11 @@ export function TraduceACiegas({ enlaces, glosario, escuelas, colorDe, onIrAEscu
     setQ({ l, de, a, opciones: azar([a.nombre, ...azar(otros).slice(0, 3)]) });
     setResp(null);
   };
+  useEffect(() => { if (pool.length) nueva(); }, []); // eslint-disable-line
   const elegir = (n) => { if (resp) return; setResp(n); const ok = n === q.a.nombre; registrar("tr:" + q.l.id, ok ? 2 : 0); setSesion((s) => ({ ok: s.ok + (ok ? 1 : 0), n: s.n + 1 })); };
   return (
-    <Panel titulo="Traduce a ciegas" sub="¿Cómo se dice esto en otra escuela?" resumenIds={ids}>
-      {!q ? (
-        <div className="psn-prac-inicio"><p>Te damos un concepto de una escuela y eliges cuál es su correspondiente en otra. Tras responder verás qué tipo de puente es: equivalente, análogo, solapamiento… o un falso amigo.</p><button className="psn-btn psn-btn-primario" onClick={nueva}>Jugar →</button><Resumen ids={ids} /></div>
-      ) : (
+    <Panel titulo="Traduce a ciegas" sub="¿Cómo se dice esto en otra escuela?" abierto resumenIds={ids} clase="psn-prac-intro">
+      {q && (
         <div>
           <p className="psn-prac-campo">En <b style={{ color: colorDe(porEsc[q.de.escuela].perspectiva) }}>{porEsc[q.de.escuela].nombre}</b> se dice</p>
           <blockquote className="psn-prac-cita">«{q.de.nombre}»</blockquote>

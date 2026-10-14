@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos, AvataresSub } from "./Funciones.jsx";
 import { LecturaCasos } from "./MiCaso.jsx";
-import { AdivinaEscuela, LineaTiempoJuego, RepasoEscuelas, QuienLoDiria, TraduceACiegas } from "./Practica.jsx";
+import { AdivinaEscuela, QuienLoDiria, TraduceACiegas } from "./Practica.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
@@ -42,11 +42,6 @@ const TEMA_CLARO = {
   sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE",
 };
 const TEMA_OSCURO = {
-  paper: "#10262B", paperDark: "#0A1A1F", ink: "#EAE5D3", inkSoft: "#9FB6BA",
-  primary: "#5CBFC8", primaryDark: "#071419", clay: "#E3A64A", garnet: "#E58A7A",
-  sage: "#8FCB9B", gold: "#E3A64A", line: "#27474E", cardBg: "#173238",
-};
-const TEMA_ALTO_CONTRASTE = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
   // e iconos en blanco fijo (no dinámico) por herencia del diseño
   // original; por eso aquí se deja en negro en vez de en el amarillo de
@@ -56,7 +51,7 @@ const TEMA_ALTO_CONTRASTE = {
   primary: "#FFD400", primaryDark: "#000000", clay: "#FFD400", garnet: "#FF6B6B",
   sage: "#7CFFB2", gold: "#FFD400", line: "#FFFFFF", cardBg: "#000000",
 };
-const TEMAS = { claro: TEMA_CLARO, oscuro: TEMA_OSCURO, "alto-contraste": TEMA_ALTO_CONTRASTE };
+const TEMAS = { claro: TEMA_CLARO, oscuro: TEMA_OSCURO };
 const TEMA_STORAGE_KEY = "psicoterapias:tema";
 // Publica los tokens de color como variables CSS en <html>, para que la
 // hoja de estilos global (index.css: fondos, texturas, brillos) use la
@@ -66,9 +61,9 @@ function aplicarVarsTema(nombre) {
     const r = document.documentElement;
     const t = TEMAS[nombre] || TEMA_CLARO;
     r.dataset.tema = nombre;
-    r.style.setProperty("--canvas", nombre === "oscuro" ? "#051014" : nombre === "alto-contraste" ? "#000000" : "#0B3640");
-    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#040B0E" : nombre === "alto-contraste" ? "#000000" : "#071A1F");
-    r.style.setProperty("--sombra", nombre === "oscuro" ? "#E3A64A" : nombre === "alto-contraste" ? "#FFD400" : "#B8741A");
+    r.style.setProperty("--canvas", nombre === "oscuro" ? "#000000" : "#0B3640");
+    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#000000" : "#071A1F");
+    r.style.setProperty("--sombra", nombre === "oscuro" ? "#FFD400" : "#B8741A");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
     // En modo oscuro los colores de perspectiva se aclaran para conservar contraste sobre fondo azul noche.
     if (typeof PERSPECTIVA_COLOR !== "undefined") Object.assign(PERSPECTIVA_COLOR, nombre === "oscuro" ? PERSP_COLOR_OSCURO : PERSP_COLOR_CLARO);
@@ -16187,7 +16182,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         onIrAComparar={() => irA("comparacion")}
         onModoEstudio={setModoEstudio ? () => setModoEstudio((v) => !v) : undefined}
       />
-      <AdivinaEscuela escuelas={escuelas} glosario={GLOSARIO} anioOrigen={ANIO_ORIGEN} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
+      {modoEstudio && <AdivinaEscuela escuelas={escuelas} glosario={GLOSARIO} anioOrigen={ANIO_ORIGEN} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />}
       <CreditosFotos />
       {modoEstudio && <RetoRetratos />}
       {modoEstudio && <TarjetasRepaso glosario={GLOSARIO} escuelas={escuelas} colorDe={(p) => PERSPECTIVA_COLOR[p]} />}
@@ -16624,7 +16619,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
         titulo="Comparar, perspectiva por perspectiva" todasVoces
         subtitulo="Comparación campo por campo entre perspectivas completas o escuelas seleccionadas, conservando en cada columna el vocabulario propio de su marco teórico."
       />
-      <QuienLoDiria perspectivas={perspectivas} colorDe={(p) => PERSPECTIVA_COLOR[p]} />
+      {modoEstudio && <QuienLoDiria perspectivas={perspectivas} colorDe={(p) => PERSPECTIVA_COLOR[p]} />}
       <details className="psn-detalles">
         <summary>Debate simulado <small>— dos escuelas frente a frente</small></summary>
         <DebateSimulado modoEstudio={modoEstudio} escuelas={escuelas} enlaces={enlaces || ENLACES_SEED} colorDe={(p) => PERSPECTIVA_COLOR[p]} />
@@ -17285,8 +17280,6 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
               />
             </div>
           )}
-          <LineaTiempoJuego escuelas={escuelas.filter((e) => e.perspectiva === NOMBRE_CORTO_PERSPECTIVA[persp.id])} anioOrigen={ANIO_ORIGEN} color={color} />
-          <RepasoEscuelas escuelas={escuelas.filter((e) => e.perspectiva === NOMBRE_CORTO_PERSPECTIVA[persp.id])} glosario={GLOSARIO} anioOrigen={ANIO_ORIGEN} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={irAEscuela} />
 
           <div
             onClick={() => setVistaPanorama(!vistaPanorama)}
@@ -20543,7 +20536,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
         <summary>Traductor de lenguaje clínico <small>— un término, siete vocabularios</small></summary>
         <TraductorClinico nudos={CONCEPTOS_TRANSVERSALES} idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} perspectivasFund={FUNDAMENTOS_PERSPECTIVAS} escuelas={escuelas} glosario={GLOSARIO} enlaces={enlaces} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} perspectivas={nombresPerspectivas(escuelas)} />
       </details>
-      <TraduceACiegas enlaces={enlaces || ENLACES_SEED} glosario={GLOSARIO} escuelas={escuelas} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
+      {modoEstudio && <TraduceACiegas enlaces={enlaces || ENLACES_SEED} glosario={GLOSARIO} escuelas={escuelas} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />}
 
       <div style={{ marginTop: 12, marginBottom: 4 }}>
         <div
@@ -21501,18 +21494,20 @@ export default function App() {
   // referencias a COLORS.algo en los hijos recojan el valor nuevo.
   const [tema, setTema] = useState("claro");
   const [, setTemaVersion] = useState(0);
-  function cambiarTema(nuevo) {
+  function cambiarTema(nuevo, persistir = true) {
     Object.assign(COLORS, TEMAS[nuevo] || TEMA_CLARO);
     aplicarVarsTema(nuevo);
     setTema(nuevo);
     setTemaVersion((v) => v + 1);
+    if (!persistir) return;
     try {
       window.localStorage.setItem(TEMA_STORAGE_KEY, nuevo);
     } catch (e) {}
   }
   useEffect(() => {
     try {
-      const guardado = window.localStorage.getItem(TEMA_STORAGE_KEY);
+      let guardado = window.localStorage.getItem(TEMA_STORAGE_KEY);
+      if (guardado === "alto-contraste") guardado = "oscuro";
       if (guardado && TEMAS[guardado]) {
         Object.assign(COLORS, TEMAS[guardado]);
         aplicarVarsTema(guardado);
@@ -21569,6 +21564,22 @@ export default function App() {
   // anterior" apropiada a su tipo de contenido; el interruptor en sí es
   // uno solo y vive aquí, no duplicado por módulo.
   const [modoEstudio, setModoEstudio] = useState(false);
+  /* Al entrar en modo estudio la pantalla pasa al tema oscuro con un destello; al salir vuelve al tema anterior. */
+  const temaPrevioRef = useRef(null);
+  const primeraRef = useRef(true);
+  const [destello, setDestello] = useState({ n: 0, entra: true });
+  useEffect(() => {
+    if (primeraRef.current) { primeraRef.current = false; return; }
+    try { document.documentElement.dataset.estudio = modoEstudio ? "1" : "0"; } catch (e) {}
+    if (modoEstudio) {
+      temaPrevioRef.current = tema;
+      if (tema !== "oscuro") cambiarTema("oscuro", false);
+    } else if (temaPrevioRef.current) {
+      cambiarTema(temaPrevioRef.current, false);
+      temaPrevioRef.current = null;
+    }
+    setDestello((d) => ({ n: d.n + 1, entra: modoEstudio }));
+  }, [modoEstudio]); // eslint-disable-line
   // Recalculado automáticamente en cada render donde cambien estos cuatro
   // estados (useMemo, no un botón "verificar" ni un intervalo): es el mismo
   // chequeo que corre en tests/data-integrity.test.js sobre los datos
@@ -22150,10 +22161,11 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             </button>
           )}
 
+          {modoEstudio && <span className="psn-estudio-pill" title="Modo estudio activo">● Modo estudio</span>}
           <button
-            onClick={() => cambiarTema(tema === "claro" ? "oscuro" : tema === "oscuro" ? "alto-contraste" : "claro")}
-            title={`Tema: ${tema}. Clic para cambiar a ${tema === "claro" ? "oscuro" : tema === "oscuro" ? "alto contraste" : "claro"}.`}
-            aria-label="Cambiar tema visual (claro / oscuro / alto contraste)"
+            onClick={() => cambiarTema(tema === "claro" ? "oscuro" : "claro")}
+            title={`Tema: ${tema}. Clic para cambiar a ${tema === "claro" ? "oscuro" : "claro"}.`}
+            aria-label="Cambiar tema visual (claro / oscuro)"
             style={{
               display: "flex", alignItems: "center", justifyContent: "center",
               width: 30, height: 30, border: "none", borderRadius: "50%",
@@ -22162,7 +22174,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             onMouseEnter={(ev) => { ev.currentTarget.style.background = "rgba(255,255,255,0.12)"; }}
             onMouseLeave={(ev) => { ev.currentTarget.style.background = "transparent"; }}
           >
-            {tema === "claro" ? <span style={{ fontSize: 14 }}>☀︎</span> : tema === "oscuro" ? <span style={{ fontSize: 14 }}>☾</span> : <span style={{ fontSize: 14 }}>◐</span>}
+            {tema === "claro" ? <span style={{ fontSize: 14 }}>☀︎</span> : <span style={{ fontSize: 14 }}>☾</span>}
           </button>
 
           <div style={{ position: "relative" }}>
@@ -22258,6 +22270,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
         </div>
       </div>
 
+      {destello.n > 0 && <div key={destello.n} className={"psn-estudio-flash " + (destello.entra ? "entra" : "sale")} aria-hidden="true"><span>{destello.entra ? "Modo estudio" : "Fin del modo estudio"}</span></div>}
       {statsAbiertas && (
         <>
           <div style={{ position: "fixed", inset: 0, zIndex: 1100 }} onClick={() => setStatsAbiertas(false)} />
