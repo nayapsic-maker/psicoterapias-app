@@ -4,6 +4,7 @@ import { MiLectura } from "./MiCaso.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
+import { Placa } from "./Placas.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "./Iconos.jsx";
 
 /* ============================================================
@@ -17044,6 +17045,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
         autores={AUTORES_POR_PERSPECTIVA[perspectivaId]}
         tituloAutores="Voces de esta perspectiva"
       />
+      <Placa id={perspectivaId} />
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "16px 0 20px" }}>
         {FUNDAMENTOS_PERSPECTIVAS.map((p) => {

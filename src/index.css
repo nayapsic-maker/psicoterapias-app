@@ -1027,3 +1027,19 @@ h1, h2, h3, .psn-titulo, .psn-sub { font-family: var(--f-display); font-weight: 
 .psn-miradas article, .psn-tl-item button, .psn-terr, .psn-rosa-petalos li, .psn-trad-origen { border-left-width: 3px !important; }
 /* el fondo de estrellas queda solo en portada; en módulos, papel y grano */
 html:not([data-vista="intro"]) .psn-cosmos { opacity: .1 !important; }
+
+/* Láminas: un solo tratamiento para todas (grises, tinte cálido, grano), así quedan como un mismo archivo */
+.psn-placa { margin: 14px 0 18px; display: grid; grid-template-columns: minmax(150px, 34%) 1fr; gap: 16px; align-items: end; }
+.psn-placa img { width: 100%; height: auto; max-height: 260px; object-fit: cover; display: block; filter: grayscale(1) sepia(.28) contrast(1.06) brightness(.97); mix-blend-mode: multiply; border: 1px solid var(--c-line); background: var(--c-paperDark); }
+.psn-placa figcaption { font: 14px/1.5 var(--f-text); color: var(--c-inkSoft); }
+.psn-placa figcaption b { display: block; font: 700 16px/1.3 var(--f-display); color: var(--c-ink); margin-bottom: 2px; }
+.psn-placa figcaption small { display: block; margin-top: 4px; font: italic 13px/1.4 var(--f-mono); opacity: .8; }
+html[data-tema="oscuro"] .psn-placa img { mix-blend-mode: normal; filter: grayscale(1) sepia(.3) brightness(.8) contrast(1.05); }
+.psn-franja { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 22px 0 8px; align-items: start; }
+.psn-franja .psn-placa { display: block; margin: 0; }
+.psn-franja .psn-placa img { aspect-ratio: 4 / 5; max-height: none; }
+.psn-franja .psn-placa figcaption { margin-top: 8px; font-size: 13px; color: inherit; opacity: .9; }
+.psn-franja .psn-placa figcaption b { font-size: 14.5px; }
+.psn-franja .psn-placa img { mix-blend-mode: normal; filter: grayscale(1) sepia(.25) contrast(1.05) brightness(.9); }
+@media (max-width: 900px) { .psn-franja { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .psn-placa { grid-template-columns: 1fr; } .psn-franja { grid-template-columns: 1fr 1fr; gap: 10px; } .psn-franja figcaption small { display: none; } }

@@ -1,4 +1,5 @@
 import React from "react";
+import { FranjaArchivo } from "./Placas.jsx";
 import { AUTORES, ALIAS_AUTOR } from "./autores.js";
 
 /* ============================================================
@@ -400,9 +401,7 @@ export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFu
         </div>
       </div>
 
-      <figure className="psn-cabina">
-        <Escena nombre="sesion" />
-      </figure>
+      <FranjaArchivo />
 
       <div className="psn-fundadores" aria-label="Algunas de las voces de la psicología">
         <div className="psn-fundadores-pista">
