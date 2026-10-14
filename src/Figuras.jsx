@@ -377,14 +377,13 @@ export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFu
     <section className="psn-hero" aria-label="Presentación">
       <div className="psn-hero-top">
         <div>
-          <div className="psn-eyebrow">Cuaderno de estudio · {perspectivas.length} perspectivas</div>
           <h1 className="psn-titulo">
             Psico<span>nautas</span>
           </h1>
           <p className="psn-sub">Navegación por el espacio psicoterapéutico</p>
         </div>
         <div className="psn-bajada">
-          <p>Cada escuela nombra el sufrimiento a su manera y tiene su propia idea de qué produce el cambio y qué vale como prueba clínica. Aquí están sus conceptos, protocolos y fuentes, con la página de donde sale cada cosa.</p>
+          <p>Cada escuela nombra el sufrimiento a su manera y tiene su propia idea de qué produce el cambio y cuál es el criterio de verdad.</p>
           <div className="psn-botones">
             <button className="psn-btn psn-btn-primario" onClick={onIrAFundamentos}>
               Ver las escuelas →

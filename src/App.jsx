@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos, AvataresSub } from "./Funciones.jsx";
-import { MiLectura } from "./MiCaso.jsx";
+import { LecturaCasos } from "./MiCaso.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
@@ -19566,7 +19566,7 @@ function TablaProtocolos({ filas, ordenTabla, cambiarOrden }) {
   );
 }
 
-function ModuloPlanificador({ irA, escuelas, foco, modoEstudio, setModoEstudio, onIrAEscuela }) {
+function ModuloPlanificador({ irA, escuelas, foco, modoEstudio, setModoEstudio, onIrAEscuela, enlaces }) {
   const [q, setQ] = useState("");
   const [vista, setVista] = useState("rosa"); // "rosa" | "torre" | "tarjetas" | "tabla"
   const [ordenTabla, setOrdenTabla] = useState({ col: "perspectiva", asc: true });
@@ -19697,13 +19697,20 @@ function ModuloPlanificador({ irA, escuelas, foco, modoEstudio, setModoEstudio, 
         subtitulo="Protocolos completos y técnicas puntuales, con pasos interactivos, objetivo clínico clasificado y comparación de hasta tres a la vez."
       />
       <GaleriaCasos />
-      <aside className="psn-mc-enlace">
-        <div>
-          <strong>Mi lectura de un caso</strong>
-          <span>Escribe un caso anonimizado y obtén las siete miradas, los protocolos y técnicas que podrían encajar y sus fuentes en APA.</span>
-        </div>
-        <button className="psn-btn psn-btn-primario" onClick={() => irA("micaso")}>Hacer mi lectura →</button>
-      </aside>
+      <LecturaCasos
+        escuelas={escuelas}
+        perspectivas={FUNDAMENTOS_PERSPECTIVAS}
+        colorDe={(p) => PERSPECTIVA_COLOR[p]}
+        idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)}
+        glosario={GLOSARIO}
+        nudos={CONCEPTOS_TRANSVERSALES}
+        enlaces={enlaces}
+        protocolos={PROTOCOLOS_SEED}
+        procedimientos={PROCEDIMIENTOS_CLINICOS}
+        protocolosListos={protocolosCargados()}
+        onIrAEscuela={onIrAEscuela}
+        onIrAProtocolos={onIrAEscuela}
+      />
 
       {/* Banda fija con la distinción operativa, siempre visible al entrar
           al módulo — antes esta diferencia solo se insinuaba con un matiz
@@ -21346,7 +21353,6 @@ const TABS = [
   { id: "planificador", label: "Protocolos y Técnicas", icono: ClipboardList },
   { id: "diccionario", label: "Diccionario", icono: Languages },
   { id: "comparacion", label: "Comparación", icono: Scale },
-  { id: "micaso", label: "Mi caso", icono: FileText },
 ];
 
 // Verificador de integridad "en vivo": la MISMA regla que corre dentro de la
@@ -21527,7 +21533,7 @@ export default function App() {
     });
   }
   const [buscadorMovil, setBuscadorMovil] = useState(false);
-  useEffect(() => { const h = (ev) => { window.__casoPendiente = ev.detail; setTab("micaso", "Caso de práctica"); }; window.addEventListener("psn-caso", h); return () => window.removeEventListener("psn-caso", h); }, []);
+  useEffect(() => { const h = (ev) => { window.__casoPendiente = ev.detail; if (tab !== "planificador") setTab("planificador", "Caso de práctica"); }; window.addEventListener("psn-caso", h); return () => window.removeEventListener("psn-caso", h); }, []);
   useEffect(() => { try { document.documentElement.dataset.vista = tab; } catch (e) {} }, [tab]);
   const [, setProtocolosListos] = useState(protocolosCargados());
   useEffect(() => { cargarProtocolos().then(() => setProtocolosListos(true)); }, []);
@@ -22031,7 +22037,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             style={{
               color: "#fff",
               fontFamily: "var(--f-display)",
-              fontSize: "clamp(14.5px, 3.6vw, 17px)",
+              fontSize: "clamp(21px, 5vw, 30px)",
               fontWeight: 600,
               letterSpacing: "-0.01em",
               whiteSpace: "nowrap",
@@ -22039,7 +22045,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
               textOverflow: "ellipsis",
             }}
           >
-            Psiconautas
+            Psico<i style={{ color: "var(--c-gold)", fontStyle: "inherit" }}>nautas</i>
           </span>
           <ChevronDown
             size={13}
@@ -22264,7 +22270,6 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
                 ["diccionario", "Diccionario y traductor", `${GLOSARIO.filter((g) => g.tipo === "concepto").length} conceptos que se pueden traducir entre escuelas`],
                 ["comparacion", "Comparación", "Dos escuelas frente a frente"],
                 ["buscador", "Buscador global", "Todo el contenido en un solo lugar"],
-                ["micaso", "Mi lectura de un caso", "Un caso con tus palabras, leído desde cada escuela"],
               ].map(([id, nombre, detalle]) => (
                 <li key={id}>
                   <button onClick={() => { setTab(id); setStatsAbiertas(false); }} className={tab === id ? "on" : ""}>
@@ -22525,7 +22530,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
         )}
         {tab === "planificador" && !protocolosCargados() && <p className="psn-vacio">Cargando protocolos y técnicas…</p>}
         {tab === "planificador" && protocolosCargados() && (
-          <ModuloPlanificador irA={setTab} escuelas={escuelas} foco={focoPlanificador} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} onIrAEscuela={irAEscuela} />
+          <ModuloPlanificador irA={setTab} escuelas={escuelas} foco={focoPlanificador} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} onIrAEscuela={irAEscuela} enlaces={enlaces} />
         )}
         {tab === "diccionario" && (
           <ModuloDiccionario
@@ -22540,25 +22545,6 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             modoEstudio={modoEstudio}
             setModoEstudio={setModoEstudio}
           />
-        )}
-        {tab === "micaso" && (
-          <>
-            <Cabecera icono={<FileText size={18} />} titulo="Mi lectura de un caso" subtitulo="Escribe un caso anonimizado y obtén una lectura desde las siete perspectivas, con los protocolos y técnicas de la biblioteca que podrían encajar, sus fuentes en APA y lo que falta preguntar." />
-            <MiLectura
-              escuelas={escuelas}
-              perspectivas={FUNDAMENTOS_PERSPECTIVAS}
-              colorDe={(p) => PERSPECTIVA_COLOR[p]}
-              idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)}
-              glosario={GLOSARIO}
-              nudos={CONCEPTOS_TRANSVERSALES}
-              enlaces={enlaces}
-              protocolos={PROTOCOLOS_SEED}
-              procedimientos={PROCEDIMIENTOS_CLINICOS}
-              protocolosListos={protocolosCargados()}
-              onIrAEscuela={irAEscuela}
-              onIrAProtocolos={irAProtocolo}
-            />
-          </>
         )}
         {tab === "comparacion" && <ModuloComparacion escuelas={escuelas} onIrAEscuela={irAEscuela} modoEstudio={modoEstudio} enlaces={enlaces} />}
       </div>

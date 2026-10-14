@@ -47,15 +47,11 @@ function posiblesIdentificadores(texto) {
   return out;
 }
 
-const uid = () => Math.random().toString(36).slice(2, 9);
-const vacio = () => ({ id: uid(), titulo: "Caso sin título", creado: Date.now(), campos: Object.fromEntries(CAMPOS.map((c) => [c.k, ""])), apagados: [], formulacion: "", siguiente: "" });
-
-function cargar() {
-  try { const j = JSON.parse(localStorage.getItem(CLAVE) || "[]"); return Array.isArray(j) ? j : []; } catch (e) { return []; }
-}
-function guardar(lista) {
-  try { localStorage.setItem(CLAVE, JSON.stringify(lista)); } catch (e) { /* sin almacenamiento: el caso vive solo en esta sesión */ }
-}
+const CLAVE_NOTAS = "psiconautas:lectura-casos:v1";
+const campos0 = (e) => ({ datos: "", motivo: e.c.motivo, historia: e.c.historia, contexto: e.c.contexto, salud: "", seguridad: "", recursos: e.c.recursos, meta: e.c.meta });
+function notas() { try { return JSON.parse(localStorage.getItem(CLAVE_NOTAS) || "{}") || {}; } catch (e) { return {}; } }
+function guardarNotas(o) { try { localStorage.setItem(CLAVE_NOTAS, JSON.stringify(o)); } catch (e) { /* sin almacenamiento: solo esta sesión */ } }
+const armar = () => { const n = notas(); return CASOS.map((e, i) => ({ id: "c" + i, titulo: e.t, ejemplo: i, campos: campos0(e), apagados: [], formulacion: "", siguiente: "", ...(n["c" + i] || {}) })); };
 
 /* Temas de contexto (quién, dónde): orientan poco por sí solos y solo suman si hay otro tema clínico en juego. */
 const CONTEXTO = new Set(["familia", "pareja", "soledad", "trabajo", "cultura", "genero", "infancia", "salud", "sueno", "dependencia"]);
@@ -85,45 +81,34 @@ function Cita({ fuente }) {
   return <span className="psn-mc-cita">{c.enTexto && <em>{c.enTexto}</em>}</span>;
 }
 
-export function MiLectura({ escuelas, perspectivas, colorDe, idDe, glosario, nudos, enlaces, protocolos, procedimientos, protocolosListos, onIrAEscuela, onIrAProtocolos }) {
-  const [casos, setCasos] = useState(() => { const c = cargar(); return c.length ? c : [vacio()]; });
-  const [idAct, setIdAct] = useState(() => (casos[0] ? casos[0].id : null));
+export function LecturaCasos({ escuelas, perspectivas, colorDe, idDe, glosario, nudos, enlaces, protocolos, procedimientos, protocolosListos, onIrAEscuela, onIrAProtocolos }) {
+  const [casos, setCasos] = useState(armar);
+  const [idAct, setIdAct] = useState(null);
   const [copiado, setCopiado] = useState("");
   const [abierta, setAbierta] = useState(null);
   const informeRef = useRef(null);
+  const topRef = useRef(null);
   const bibLista = useBibliografia();
 
-  const caso = casos.find((c) => c.id === idAct) || casos[0];
-  useEffect(() => { guardar(casos); }, [casos]);
+  const caso = casos.find((c) => c.id === idAct) || null;
+  useEffect(() => { guardarNotas(Object.fromEntries(casos.map((c) => [c.id, { formulacion: c.formulacion, siguiente: c.siguiente, apagados: c.apagados }]))); }, [casos]);
 
-  /* Los casos de práctica de la galería se cargan como casos nuevos. */
+  /* La galería de casos (Protocolos y Técnicas) abre el caso elegido. */
   useEffect(() => {
-    const abrir = (i) => {
-      const e = CASOS[i];
-      if (!e) return;
-      const n = vacio();
-      n.titulo = e.t;
-      n.campos = { ...n.campos, motivo: e.c.motivo, historia: e.c.historia, contexto: e.c.contexto, recursos: e.c.recursos, meta: e.c.meta };
-      n.ejemplo = i;
-      setCasos((prev) => {
-        const ya = prev.find((c) => c.ejemplo === i);
-        if (ya) { setIdAct(ya.id); return prev; }
-        setIdAct(n.id);
-        return [n, ...prev.filter((c) => Object.values(c.campos).some((v) => v.trim()) || c.formulacion)];
-      });
-    };
+    const abrir = (i) => { setIdAct("c" + i); setTimeout(() => topRef.current && topRef.current.scrollIntoView({ behavior: "smooth", block: "start" }), 120); };
     if (typeof window.__casoPendiente === "number") { abrir(window.__casoPendiente); window.__casoPendiente = null; }
     const h = (ev) => abrir(ev.detail);
     window.addEventListener("psn-caso", h);
     return () => window.removeEventListener("psn-caso", h);
   }, []);
 
-  const cambiar = (parche) => setCasos((prev) => prev.map((c) => (c.id === caso.id ? { ...c, ...parche } : c)));
-  const cambiarCampo = (k, v) => cambiar({ campos: { ...caso.campos, [k]: v } });
+  const cambiar = (parche) => setCasos((prev) => prev.map((c) => (c.id === idAct ? { ...c, ...parche } : c)));
 
-  const texto = CAMPOS.map((c) => caso.campos[c.k]).join(". ");
+  const vac = { campos: campos0({ c: {} }), apagados: [], formulacion: "", siguiente: "", titulo: "" };
+  const cs_ = caso || vac;
+  const texto = CAMPOS.map((c) => cs_.campos[c.k] || "").join(". ");
   const det = useMemo(() => analiza(texto), [texto]);
-  const temas = det.temas.filter((t) => !caso.apagados.includes(t.id));
+  const temas = det.temas.filter((t) => !cs_.apagados.includes(t.id));
   const riesgos = det.riesgos;
   const q = normT(texto);
   const longitud = texto.replace(/[.\s]/g, "").length;
@@ -189,7 +174,7 @@ export function MiLectura({ escuelas, perspectivas, colorDe, idDe, glosario, nud
     return temas.filter((t) => !CONTEXTO.has(t.id) && !RIESGOS[t.id] && !cubiertos.has(t.id));
   }, [candidatos, temas, protocolosListos]);
   const pendientes = PENDIENTES.filter((x) => !x.re.test(q));
-  const cobertura = CAMPOS.filter((c) => caso.campos[c.k].trim().length > 12).length;
+  
 
   /* ---------- Referencias del informe (APA, sin repetidos) ---------- */
   const referencias = useMemo(() => {
@@ -232,59 +217,27 @@ export function MiLectura({ escuelas, perspectivas, colorDe, idDe, glosario, nud
     setTimeout(() => URL.revokeObjectURL(a.href), 500);
   };
 
-  const nuevo = () => { const n = vacio(); setCasos((p) => [n, ...p]); setIdAct(n.id); };
-  const borrar = () => {
-    if (!window.confirm("¿Borrar este caso de este navegador? No se puede deshacer.")) return;
-    setCasos((p) => { const r = p.filter((c) => c.id !== caso.id); const s = r.length ? r : [vacio()]; setIdAct(s[0].id); return s; });
-  };
-
   return (
-    <section className="psn-mc">
-      <p className="psn-mc-aviso">
-        <strong>Antes de escribir:</strong> usa un caso ficticio o anonimizado (sin nombres, direcciones ni datos que identifiquen a la persona). Todo lo que escribes se queda en este navegador; la aplicación no envía nada a ningún servidor.
-      </p>
-
-      <div className="psn-mc-casos" role="tablist" aria-label="Mis casos">
-        {casos.map((c) => (
-          <button key={c.id} role="tab" aria-selected={c.id === caso.id} className={c.id === caso.id ? "on" : ""} onClick={() => setIdAct(c.id)}>
-            {c.titulo || "Caso sin título"}
-          </button>
-        ))}
-        <button className="mas" onClick={nuevo}>+ Nuevo caso</button>
-      </div>
-
-      <div className="psn-mc-ejemplos">
-        <span>Casos de práctica:</span>
+    <section className="psn-mc" ref={topRef}>
+      <div className="psn-mc-casos" role="tablist" aria-label="Los cinco casos">
         {CASOS.map((c, i) => (
-          <button key={c.t} onClick={() => window.dispatchEvent(new CustomEvent("psn-caso", { detail: i }))} title={c.sub}>
-            <img src={fotoCaso(c.av)} alt="" width="24" height="24" /> {c.t}
+          <button key={c.t} role="tab" aria-selected={idAct === "c" + i} className={idAct === "c" + i ? "on" : ""} onClick={() => setIdAct("c" + i)} title={c.sub}>
+            <img src={fotoCaso(c.av)} alt="" width="26" height="26" /> {c.t}
           </button>
         ))}
       </div>
-
+      {!caso && <p className="psn-mc-vacio">Elige uno de los cinco casos para ver cómo lo leería cada perspectiva, qué protocolos y técnicas de la biblioteca podrían encajar y dónde discrepan las escuelas.</p>}
+      {caso && (
       <div className="psn-mc-cuerpo">
         <div className="psn-mc-entrada">
-          <label className="psn-mc-titulo">
-            <span>Título del caso</span>
-            <input value={caso.titulo} onChange={(e) => cambiar({ titulo: e.target.value })} maxLength={80} />
-          </label>
-          {CAMPOS.map((c) => (
-            <label key={c.k}>
-              <span>{c.t}</span>
-              <textarea value={caso.campos[c.k]} onChange={(e) => cambiarCampo(c.k, e.target.value)} rows={c.filas} placeholder={c.ph} />
-            </label>
-          ))}
-          {ids.length > 0 && (
-            <div className="psn-mc-ident" role="alert">
-              <strong>Posibles datos identificables:</strong> {ids.join(", ")}. Considera anonimizar antes de exportar o compartir el informe.
-            </div>
-          )}
-          <div className="psn-mc-acciones">
-            <button onClick={nuevo}>Nuevo caso</button>
-            <button onClick={() => cambiar({ campos: Object.fromEntries(CAMPOS.map((c) => [c.k, ""])), apagados: [], formulacion: "", siguiente: "" })}>Vaciar</button>
-            <button className="peligro" onClick={borrar}>Borrar este caso</button>
-          </div>
-          <p className="psn-mc-prog" aria-live="polite">{cobertura} de {CAMPOS.length} apartados con contenido · {longitud} caracteres</p>
+          <h3 className="psn-mc-caso-t">{caso.titulo}</h3>
+          <p className="psn-mc-caso-s">{CASOS[caso.ejemplo].sub}</p>
+          <dl className="psn-mc-ficha">
+            {CAMPOS.filter((c) => (caso.campos[c.k] || "").trim()).map((c) => (
+              <React.Fragment key={c.k}><dt>{c.t}</dt><dd>{caso.campos[c.k]}</dd></React.Fragment>
+            ))}
+          </dl>
+          <p className="psn-mc-prog">Caso ficticio de práctica. Tus notas (formulación y siguiente paso) se guardan solo en este navegador.</p>
         </div>
 
         <article className="psn-mc-informe" ref={informeRef}>
@@ -353,6 +306,12 @@ export function MiLectura({ escuelas, perspectivas, colorDe, idDe, glosario, nud
                           <div className="cuerpo">
                             <h6>Qué mira</h6>
                             <p>{m.mira}</p>
+                            <h6>Cómo concibe el problema</h6>
+                            <p>{m.concepcion}</p>
+                            <h6>Rol del terapeuta</h6>
+                            <p>{m.rol}</p>
+                            <h6>Qué buscaría lograr</h6>
+                            <p>{m.exito}</p>
                             <h6>Preguntas que haría</h6>
                             <ul>{m.preguntas.map((x) => <li key={x}>{x}</li>)}</ul>
                             {cs.length > 0 && (
@@ -379,6 +338,17 @@ export function MiLectura({ escuelas, perspectivas, colorDe, idDe, glosario, nud
                   })}
                 </div>
                 <p className="psn-mc-nota">Cada perspectiva se resume con su lógica general; el detalle verificado y citado de cada escuela está en su ficha.</p>
+                <div className="psn-mc-matriz" role="region" aria-label="Matriz comparativa" tabIndex={0}>
+                  <table>
+                    <caption>Las siete lecturas, una al lado de otra</caption>
+                    <thead><tr><th>Perspectiva</th><th>Formula el problema como</th><th>Busca lograr</th><th>Puede pasar por alto</th></tr></thead>
+                    <tbody>
+                      {perspectivas.map((p) => { const m = MIRADAS[p.id]; return m ? (
+                        <tr key={p.id} style={{ "--pc": colorDe(p.nombre) }}><th scope="row">{p.nombre}</th><td>{m.problema}</td><td>{m.exito}</td><td>{m.limites}</td></tr>
+                      ) : null; })}
+                    </tbody>
+                  </table>
+                </div>
               </section>
 
               <section>
@@ -469,6 +439,7 @@ export function MiLectura({ escuelas, perspectivas, colorDe, idDe, glosario, nud
           <p className="psn-mc-pie">Ejercicio de estudio y orientación: no sustituye el juicio clínico, el diagnóstico ni la supervisión. Las lecturas por perspectiva son síntesis generales de redacción propia; los protocolos y las técnicas provienen de la biblioteca y se citan con su fuente.</p>
         </article>
       </div>
+      )}
     </section>
   );
 }
