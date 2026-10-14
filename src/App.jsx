@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos, AvataresSub } from "./Funciones.jsx";
 import { LecturaCasos } from "./MiCaso.jsx";
+import { AdivinaEscuela, LineaTiempoJuego, RepasoEscuelas, QuienLoDiria, TraduceACiegas } from "./Practica.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
@@ -16186,6 +16187,7 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         onIrAComparar={() => irA("comparacion")}
         onModoEstudio={setModoEstudio ? () => setModoEstudio((v) => !v) : undefined}
       />
+      <AdivinaEscuela escuelas={escuelas} glosario={GLOSARIO} anioOrigen={ANIO_ORIGEN} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
       <CreditosFotos />
       {modoEstudio && <RetoRetratos />}
       {modoEstudio && <TarjetasRepaso glosario={GLOSARIO} escuelas={escuelas} colorDe={(p) => PERSPECTIVA_COLOR[p]} />}
@@ -16622,6 +16624,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
         titulo="Comparar, perspectiva por perspectiva" todasVoces
         subtitulo="Comparación campo por campo entre perspectivas completas o escuelas seleccionadas, conservando en cada columna el vocabulario propio de su marco teórico."
       />
+      <QuienLoDiria perspectivas={perspectivas} colorDe={(p) => PERSPECTIVA_COLOR[p]} />
       <details className="psn-detalles">
         <summary>Debate simulado <small>— dos escuelas frente a frente</small></summary>
         <DebateSimulado modoEstudio={modoEstudio} escuelas={escuelas} enlaces={enlaces || ENLACES_SEED} colorDe={(p) => PERSPECTIVA_COLOR[p]} />
@@ -17282,6 +17285,8 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
               />
             </div>
           )}
+          <LineaTiempoJuego escuelas={escuelas.filter((e) => e.perspectiva === NOMBRE_CORTO_PERSPECTIVA[persp.id])} anioOrigen={ANIO_ORIGEN} color={color} />
+          <RepasoEscuelas escuelas={escuelas.filter((e) => e.perspectiva === NOMBRE_CORTO_PERSPECTIVA[persp.id])} glosario={GLOSARIO} anioOrigen={ANIO_ORIGEN} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={irAEscuela} />
 
           <div
             onClick={() => setVistaPanorama(!vistaPanorama)}
@@ -20538,6 +20543,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
         <summary>Traductor de lenguaje clínico <small>— un término, siete vocabularios</small></summary>
         <TraductorClinico nudos={CONCEPTOS_TRANSVERSALES} idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} perspectivasFund={FUNDAMENTOS_PERSPECTIVAS} escuelas={escuelas} glosario={GLOSARIO} enlaces={enlaces} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} perspectivas={nombresPerspectivas(escuelas)} />
       </details>
+      <TraduceACiegas enlaces={enlaces || ENLACES_SEED} glosario={GLOSARIO} escuelas={escuelas} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
 
       <div style={{ marginTop: 12, marginBottom: 4 }}>
         <div

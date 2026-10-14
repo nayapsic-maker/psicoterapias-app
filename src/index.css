@@ -1086,3 +1086,49 @@ html[data-tema="oscuro"] .psn-banda img { opacity: .7; filter: grayscale(1) sepi
 .psn-mc-matriz thead th { font: 700 12px var(--f-text); color: var(--c-inkSoft); border-top: 0; }
 .psn-mc-matriz tbody th { border-left: 4px solid var(--pc); font-weight: 700; color: var(--pc); white-space: nowrap; }
 @media (max-width: 1100px) { .psn-mc-cuerpo { grid-template-columns: 1fr !important; } .psn-mc-entrada { position: static !important; max-height: none !important; } }
+
+/* ---------- Ejercicios del modo estudio ---------- */
+.psn-prac { margin: 16px 0; border: 1px solid var(--c-line); border-radius: 14px; background: var(--c-cardBg); }
+.psn-prac > summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding: 14px 18px; cursor: pointer; list-style: none; }
+.psn-prac > summary::-webkit-details-marker { display: none; }
+.psn-prac-t { font: italic 600 21px/1.2 var(--f-display); color: var(--c-ink); }
+.psn-prac-s { font: 14px var(--f-text); color: var(--c-inkSoft); flex: 1 1 220px; }
+.psn-prac-r { font: 600 12.5px var(--f-text); color: var(--c-gold); border: 1px solid currentColor; border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.psn-prac[open] > summary { border-bottom: 1px solid var(--c-line); }
+.psn-prac-cuerpo { padding: 14px 18px 18px; font: 15px/1.55 var(--f-text); }
+.psn-prac-intro { border-left: 5px solid var(--c-gold); }
+.psn-prac-pistas { margin: 0 0 10px; padding-left: 20px; display: grid; gap: 8px; }
+.psn-prac-pistas b { font: 700 12.5px var(--f-text); color: var(--c-primary); display: block; }
+.psn-prac-pistas p { margin: 2px 0 0; }
+.psn-prac-opciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; margin: 12px 0; }
+.psn-prac-opciones button, .psn-prac-banco button, .psn-prac-modos button { padding: 10px 14px; border: 1.5px solid var(--c-line); border-radius: 12px; background: var(--c-paper); color: var(--c-ink); font: 600 14px/1.3 var(--f-text); cursor: pointer; text-align: left; }
+.psn-prac-opciones button:hover:not(:disabled), .psn-prac-banco button:hover { border-color: var(--c-primary); }
+.psn-prac-opciones button.ok, .psn-prac-linea li.ok .slot { border-color: var(--c-sage); background: color-mix(in srgb, var(--c-sage) 18%, var(--c-paper)); }
+.psn-prac-opciones button.mal, .psn-prac-linea li.mal .slot { border-color: var(--c-garnet); background: color-mix(in srgb, var(--c-garnet) 14%, var(--c-paper)); }
+.psn-prac-opciones button:disabled { cursor: default; opacity: .95; }
+.psn-prac-fb { margin-top: 6px; padding: 10px 14px; border-radius: 12px; border-left: 5px solid var(--c-sage); background: color-mix(in srgb, var(--c-sage) 10%, var(--c-paper)); }
+.psn-prac-fb.mal { border-left-color: var(--c-garnet); background: color-mix(in srgb, var(--c-garnet) 8%, var(--c-paper)); }
+.psn-prac-fb p { margin: 0 0 8px; }
+.psn-prac-abogado { margin: 8px 0; padding: 8px 12px; border-radius: 10px; background: var(--c-paperDark); }
+.psn-prac-acc { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.psn-prac-link, .psn-prac-mas { background: none; border: 0; padding: 0; color: var(--c-primary); text-decoration: underline; font: 600 13.5px var(--f-text); cursor: pointer; }
+.psn-prac-sesion, .psn-prac-resumen { margin: 10px 0 0; font: 13px var(--f-text); color: var(--c-inkSoft); }
+.psn-prac-resumen { display: inline; } .psn-prac-resumen b { color: var(--c-ink); }
+.psn-prac-campo { margin: 0; font: 700 12.5px var(--f-text); color: var(--c-inkSoft); }
+.psn-prac-cita { margin: 6px 0 10px; padding: 4px 0 4px 14px; border-left: 3px solid var(--c-gold); font: italic 400 17px/1.5 var(--f-display); }
+.psn-prac-modos { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; } .psn-prac-modos button.on { background: var(--c-primary); color: #fff; border-color: var(--c-primary); }
+.psn-prac-ayuda { margin: 0 0 8px; color: var(--c-inkSoft); font-size: 13.5px; }
+.psn-prac-banco { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; padding: 8px; border: 1.5px dashed var(--c-line); border-radius: 12px; margin-bottom: 12px; }
+.psn-prac-banco button.on { background: var(--c-primary); color: #fff; border-color: var(--c-primary); }
+.psn-prac-vacio { color: var(--c-inkSoft); font-style: italic; }
+.psn-prac-linea { list-style: none; margin: 0; padding: 0 0 0 14px; border-left: 3px solid var(--pc, var(--c-primary)); display: grid; gap: 10px; }
+.psn-prac-linea li { position: relative; }
+.psn-prac-linea li::before { content: ""; position: absolute; left: -22px; top: 18px; width: 11px; height: 11px; border-radius: 50%; background: var(--pc, var(--c-primary)); border: 2px solid var(--c-paper); }
+.psn-prac-linea .slot { display: grid; grid-template-columns: 1fr minmax(120px, 34%); gap: 12px; width: 100%; padding: 10px 14px; border: 1.5px solid var(--c-line); border-radius: 12px; background: var(--c-paper); color: var(--c-ink); cursor: pointer; text-align: left; font: 14px/1.4 var(--f-text); }
+.psn-prac-linea .ref b { font-weight: 700; }
+.psn-prac-linea .ficha { align-self: center; justify-self: end; padding: 4px 10px; border-radius: 999px; background: var(--c-paperDark); font-weight: 700; text-align: center; }
+.psn-prac-linea .corr { display: block; margin: 3px 0 0 14px; font-size: 13px; color: var(--c-garnet); }
+.psn-prac-tarjeta { border-left: 6px solid var(--pc); padding-left: 14px; }
+.psn-prac-tarjeta h4 { margin: 0 0 8px; font-size: 24px; } .psn-prac-persp { margin: 0; font: 700 12.5px var(--f-text); color: var(--pc); }
+.psn-prac-tarjeta dt { font: 700 12.5px var(--f-text); color: var(--c-inkSoft); margin-top: 8px; } .psn-prac-tarjeta dd { margin: 2px 0 0; }
+@media (max-width: 600px) { .psn-prac-linea .slot { grid-template-columns: 1fr; } .psn-prac-linea .ficha { justify-self: start; } .psn-prac > summary { padding: 12px 14px; } }
