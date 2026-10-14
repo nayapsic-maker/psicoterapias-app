@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos, AvataresSub } from "./Funciones.jsx";
+import { MiLectura } from "./MiCaso.jsx";
+import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
 import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, ChevronDown, Plus, Trash2, Save, Download, Upload, X, Stamp, AlertTriangle, FileText, Home, Scale, RotateCcw, Copy } from "lucide-react";
@@ -571,87 +573,87 @@ const CLASIFICACION_FILOSOFICA_PERSPECTIVA = {
    ubica el punto en el eje temporal. */
 const ANIO_ORIGEN = {
   // ---------- HUMANISTA-EXISTENCIAL ----------
-  h1: { anio: 1942, fuente: "Rogers, Counseling and Psychotherapy (introduce la terapia no directiva)." },
-  h2: { anio: 1998, fuente: "Discurso presidencial de Seligman ante la APA que lanza el programa de Psicología Positiva." },
-  h3: { anio: 1951, fuente: "Perls, Hefferline y Goodman, Gestalt Therapy: Excitement and Growth in the Human Personality." },
-  h3b: { anio: 1954, fuente: "Fundación del Instituto Gestalt de Cleveland (segundo instituto gestáltico de la historia); sistematización del Ciclo de la Experiencia por Miriam Polster y Bill Warner, cristalizada en Polster y Polster, Gestalt Therapy Integrated (1973) y Zinker, El proceso creativo en la terapia guestáltica (1977)." },
-  h3c: { anio: 1993, fuente: "Yontef, Awareness, Dialogue and Process (recopilación que cristaliza formalmente el giro relacional-dialógico); antecedente directo en Wheeler, Gestalt Reconsidered (1991)." },
-  h4: { anio: 1958, fuente: "May, Angel y Ellenberger (eds.), Existence: A New Dimension in Psychiatry and Psychology." },
-  h5: { anio: 1988, fuente: "van Deurzen, Existential Counselling in Practice (consolidación de la escuela británica)." },
-  h6: { anio: 1946, fuente: "Frankl, El hombre en busca de sentido (difusión de la logoterapia; los primeros escritos son de 1938)." },
-  h6b: { anio: 1991, fuente: "Ruptura formal entre Frankl y Längle: Frankl renuncia a la presidencia honoraria de la GLE-International; Längle, A. (1993), Die 'Personale Existenzanalyse' (PEA) als therapeutisches Konzept, sistematiza por primera vez el AEP como núcleo clínico independiente." },
-  h6c: { anio: 1964, fuente: "Crumbaugh, J. C., Maholick, L. T. (1964), An experimental study in existentialism, Journal of Clinical Psychology (validación psicométrica fundacional del PIL); el manual técnico del programa de cinco pasos se publica en Crumbaugh, J. C. (1973), Logoanálisis." },
-  h6d: { anio: 2007, fuente: "Martínez, E. (2007), Psicoterapia y sentido de vida. Psicología clínica de orientación logoterapéutica, Ed. Herder (sistematización fundacional del modelo como psicoterapia clínica estructurada)." },
-  h6e: { anio: 1971, fuente: "Lukas, E. (1971/1972), Logotherapie als Persönlichkeitstheorie, tesis doctoral inédita (Universidad de Viena), primer esfuerzo de investigación empírica y estandarización de constructos logoterapéuticos (Logotest, 1971)." },
-  h7: { anio: 1983, fuente: "Miller, primer artículo sobre entrevista motivacional en Behavioural Psychotherapy." },
-  h8: { anio: 1985, fuente: "~ Convergencia de integración humanista (Rowan, Erskine) documentada desde mediados de los 80." },
-  h9: { anio: 1978, fuente: "Gendlin, Focusing (primer libro de divulgación clínica del método)." },
-  h10: { anio: 1972, fuente: "Chesler, Women and Madness (obra fundacional más citada del movimiento; Chesler ya había cofundado la Association for Women in Psychology en 1969)." },
-  h11: { anio: 1942, fuente: "Binswanger, primeros escritos de daseinsanálisis; Boss consolida el enfoque en 1957." },
+  h1: { anio: 1942, hito: "Introduce la terapia no directiva.", fuente: "Rogers, C. R. (1942). *Counseling and psychotherapy*." },
+  h2: { anio: 1998, hito: "Discurso presidencial de Seligman ante la American Psychological Association que lanza el programa de Psicología Positiva.", fuente: null },
+  h3: { anio: 1951, hito: "Obra fundacional de la terapia gestalt.", fuente: "Perls, F., Hefferline, R., y Goodman, P. (1951). *Gestalt therapy: Excitement and growth in the human personality*." },
+  h3b: { anio: 1954, hito: "Fundación del Instituto Gestalt de Cleveland, segundo instituto gestáltico de la historia; el Ciclo de la Experiencia se sistematiza con Miriam Polster y Bill Warner y se consolida en Polster y Polster (1973) y Zinker (1977).", fuente: "Polster, E., y Polster, M. (1973). *Gestalt therapy integrated: Contours of theory and practice*." },
+  h3c: { anio: 1993, hito: "Recopilación que cristaliza el giro relacional-dialógico; antecedente directo en Wheeler (1991).", fuente: "Yontef, G. M. (1993). *Awareness, dialogue and process: Essays on Gestalt therapy*." },
+  h4: { anio: 1958, hito: "Libro que introduce la psicología existencial en la psiquiatría estadounidense.", fuente: "May, R., Angel, E., y Ellenberger, H. F. (Eds.). (1958). *Existence: A new dimension in psychiatry and psychology*." },
+  h5: { anio: 1988, hito: "Consolidación de la escuela existencial británica.", fuente: "Van Deurzen, E. (1988). *Existential counselling in practice*." },
+  h6: { anio: 1946, hito: "Difusión de la logoterapia; los primeros escritos de Frankl son de 1938.", fuente: "Frankl, V. E. (1946). *El hombre en busca de sentido*." },
+  h6b: { anio: 1991, hito: "Ruptura formal entre Frankl y Längle: Frankl renuncia a la presidencia honoraria de la GLE-International; Längle sistematiza por primera vez el Análisis Existencial Personal como núcleo clínico independiente.", fuente: "Längle, A. (1993). *Die «Personale Existenzanalyse» (PEA) als therapeutisches Konzept*. GLE." },
+  h6c: { anio: 1964, hito: "Validación psicométrica fundacional del Purpose in Life Test; el manual técnico del programa de cinco pasos se publica en 1973.", fuente: "Crumbaugh, J. C., y Maholick, L. T. (1964). An experimental study in existentialism. *Journal of Clinical Psychology, 20*(2)." },
+  h6d: { anio: 2007, hito: "Sistematización fundacional del modelo como psicoterapia clínica estructurada.", fuente: "Martínez, E. (2007). *Psicoterapia y sentido de vida: Psicología clínica de orientación logoterapéutica*. Herder." },
+  h6e: { anio: 1971, hito: "Primer esfuerzo de investigación empírica y de estandarización de constructos logoterapéuticos (Logotest, 1971); tesis doctoral inédita.", fuente: "Lukas, E. (1972). *Logotherapie als Persönlichkeitstheorie* [Tesis doctoral inédita]. Universidad de Viena." },
+  h7: { anio: 1983, hito: "Primer artículo de Miller sobre entrevista motivacional.", fuente: "Miller, W. R. (1983). Motivational interviewing with problem drinkers. *Behavioural Psychotherapy, 11*(2)." },
+  h8: { anio: 1985, hito: "Convergencia de integración humanista documentada desde mediados de los años ochenta (Rowan, Erskine).", fuente: null },
+  h9: { anio: 1978, hito: "Primer libro de divulgación clínica del método.", fuente: "Gendlin, E. T. (1978). *Focusing*." },
+  h10: { anio: 1972, hito: "Obra fundacional más citada del movimiento; Chesler ya había cofundado la Association for Women in Psychology en 1969.", fuente: "Chesler, P. (1972). *Women and madness*." },
+  h11: { anio: 1942, hito: "Primeros escritos de daseinsanálisis; Boss consolida el enfoque en 1957.", fuente: null },
   // ---------- PSICODINÁMICA ----------
-  p1: { anio: 1900, fuente: "Freud, La interpretación de los sueños." },
-  p2: { anio: 1936, fuente: "A. Freud, El yo y los mecanismos de defensa." },
-  p3: { anio: 1932, fuente: "M. Klein, El psicoanálisis de niños." },
-  p3b: { anio: 1940, fuente: "Fairbairn, «Schizoid factors in the personality» (1940), primer quiebre metapsicológico sistemático de la Escuela Independiente." },
-  p4: { anio: 1983, fuente: "Greenberg y Mitchell, Object Relations in Psychoanalytic Theory (preludio); Mitchell bautiza y sistematiza la escuela en Relational Concepts in Psychoanalysis, 1988." },
-  p4b: { anio: 1984, fuente: "Atwood y Stolorow, Structures of Subjectivity: Explorations in Psychoanalytic Phenomenology (formalizado y bautizado como 'campo intersubjetivo' en Contexts of Being, 1992)." },
-  p5: { anio: 1978, fuente: "Davanloo, Basic Principles and Technique in Short-Term Dynamic Psychotherapy (1978) es el primer manual publicado de la familia; Strupp & Binder, Psychotherapy in a New Key (TLDP), 1984; Luborsky, Principles of Psychoanalytic Psychotherapy (manual SE/CCRT), 1984." },
-  p10: { anio: 1967, fuente: "Kernberg, «Borderline personality organization», Journal of the American Psychoanalytic Association (artículo fundacional del modelo estructural); formalización clínica de la TFP como tal desde 1989 (Kernberg, Selzer, Koenigsberg, Carr & Appelbaum)." },
-  p6: { anio: 1953, fuente: "Lacan, «Función y campo de la palabra y del lenguaje» (Discurso de Roma)." },
-  p7: { anio: 1911, fuente: "Ruptura de Adler con la Sociedad Psicoanalítica de Viena." },
-  p8: { anio: 1913, fuente: "Ruptura de Jung con Freud (1913) tras Símbolos de transformación (1911-1912); primer pilar experimental en Jung y Riklin, Investigaciones experimentales sobre las asociaciones de sujetos sanos (1904), origen de la teoría de los complejos." },
-  p9: { anio: 1971, fuente: "Kohut, Análisis del self." },
+  p1: { anio: 1900, hito: "Obra fundacional del psicoanálisis.", fuente: "Freud, S. (1900). *La interpretación de los sueños*." },
+  p2: { anio: 1936, hito: "Obra que formula la psicología del yo.", fuente: "Freud, A. (1936). *El yo y los mecanismos de defensa*." },
+  p3: { anio: 1932, hito: "Obra fundacional del psicoanálisis kleiniano de niños.", fuente: "Klein, M. (1932). *El psicoanálisis de niños*." },
+  p3b: { anio: 1940, hito: "Primer quiebre metapsicológico sistemático de la Escuela Independiente.", fuente: "Fairbairn, W. R. D. (1940). Schizoid factors in the personality." },
+  p4: { anio: 1983, hito: "Preludio del psicoanálisis relacional; Mitchell bautiza y sistematiza la escuela en 1988.", fuente: "Greenberg, J. R., y Mitchell, S. A. (1983). *Object relations in psychoanalytic theory*. Harvard University Press." },
+  p4b: { anio: 1984, hito: "Formalizado y bautizado como «campo intersubjetivo» en Contexts of Being (1992).", fuente: "Atwood, G. E., y Stolorow, R. D. (1984). *Structures of subjectivity: Explorations in psychoanalytic phenomenology*. Analytic Press." },
+  p5: { anio: 1978, hito: "Primer manual publicado de la familia; siguen Strupp y Binder (1984) y Luborsky (1984).", fuente: "Davanloo, H. (1978). *Basic principles and technique in short-term dynamic psychotherapy*." },
+  p10: { anio: 1967, hito: "Artículo fundacional del modelo estructural; la formalización clínica de la TFP es de 1989 (Kernberg, Selzer, Koenigsberg, Carr y Appelbaum).", fuente: "Kernberg, O. F. (1967). Borderline personality organization. *Journal of the American Psychoanalytic Association, 15*(3), 641–685." },
+  p6: { anio: 1953, hito: "Discurso de Roma.", fuente: "Lacan, J. (1953). Función y campo de la palabra y del lenguaje en psicoanálisis." },
+  p7: { anio: 1911, hito: "Ruptura de Adler con la Sociedad Psicoanalítica de Viena.", fuente: null },
+  p8: { anio: 1913, hito: "Ruptura de Jung con Freud (1913) tras Símbolos de transformación (1911–1912); primer pilar experimental: Jung y Riklin (1904), origen de la teoría de los complejos.", fuente: "Jung, C. G. (1912/1952). *Símbolos de transformación*." },
+  p9: { anio: 1971, hito: "Obra inaugural de la psicología del self.", fuente: "Kohut, H. (1971). *Análisis del self*." },
   // ---------- SISTÉMICA ----------
-  s1: { anio: 1966, fuente: "Bowen, primera presentación sistemática de su teoría familiar." },
-  s2: { anio: 1974, fuente: "Minuchin, Families and Family Therapy." },
-  s3: { anio: 1959, fuente: "Fundación del Mental Research Institute (Jackson) en Palo Alto." },
-  s4: { anio: 1971, fuente: "Constitución formal del equipo de Milán (Selvini Palazzoli, Boscolo, Cecchin y Prata) tras su ruptura con el psicoanálisis; el Centro per lo Studio della Famiglia había sido fundado por Selvini Palazzoli en 1967 (Armijo et al., 2014)." },
-  s5: { anio: 1978, fuente: "Fundación formal del Brief Family Therapy Center (BFTC) de Milwaukee por de Shazer y Berg (Beyebach, 2014)." },
-  s6: { anio: 1990, fuente: "White y Epston, Narrative Means to Therapeutic Ends." },
-  s7: { anio: 1964, fuente: "Satir, Conjoint Family Therapy, 1ª ed. (Science and Behavior Books; 3ª ed. revisada 1983) — obra fundacional más citada; complementada por el trabajo paralelo de Whitaker desde los años 60, documentado más tardíamente en Napier y Whitaker, 1978." },
-  s8: { anio: 1973, fuente: "Boszormenyi-Nagy y Spark, Invisible Loyalties." },
+  s1: { anio: 1966, hito: "Primera presentación sistemática de la teoría familiar de Bowen.", fuente: null },
+  s2: { anio: 1974, hito: "Obra fundacional de la terapia estructural.", fuente: "Minuchin, S. (1974). *Families and family therapy*. Harvard University Press." },
+  s3: { anio: 1959, hito: "Fundación del Mental Research Institute (Jackson) en Palo Alto.", fuente: null },
+  s4: { anio: 1971, hito: "Constitución formal del equipo de Milán tras su ruptura con el psicoanálisis; el Centro per lo Studio della Famiglia había sido fundado por Selvini Palazzoli en 1967.", fuente: "Armijo Núñez, B., Gómez Macías, V., y Suárez Rodríguez, T. (2014). Terapia de la escuela de Milán. En A. Moreno Fernández (Ed.), *Manual de terapia sistémica* (pp. 266–296). Desclée De Brouwer." },
+  s5: { anio: 1978, hito: "Fundación formal del Brief Family Therapy Center de Milwaukee por de Shazer y Berg.", fuente: "Beyebach, M. (2014). Terapia breve centrada en soluciones. En A. Moreno Fernández (Ed.), *Manual de terapia sistémica* (pp. 353–378). Desclée De Brouwer." },
+  s6: { anio: 1990, hito: "Obra fundacional de la terapia narrativa.", fuente: "White, M., y Epston, D. (1990). *Narrative means to therapeutic ends*. Norton." },
+  s7: { anio: 1964, hito: "Obra fundacional más citada de la terapia familiar experiencial (1.ª ed.; 3.ª ed. revisada, 1983); complementada por el trabajo de Whitaker desde los años sesenta, documentado en Napier y Whitaker (1978).", fuente: "Satir, V. (1964). *Conjoint family therapy*. Science and Behavior Books." },
+  s8: { anio: 1973, hito: "Obra fundacional de la terapia familiar contextual.", fuente: "Boszormenyi-Nagy, I., y Spark, G. M. (1973). *Invisible loyalties*. Harper & Row." },
   // ---------- CONDUCTUAL / COGNITIVO-CONDUCTUAL ----------
-  c1: { anio: 1958, fuente: "Wolpe, Psychotherapy by Reciprocal Inhibition." },
-  c2: { anio: 1955, fuente: "Ellis, formulación inicial de la terapia racional (luego TREC)." },
-  c3: { anio: 1967, fuente: "Beck, Depression: Causes and Treatment." },
-  c4: { anio: 1999, fuente: "Hayes, Strosahl y Wilson, Acceptance and Commitment Therapy (primer manual)." },
-  c5: { anio: 1993, fuente: "Linehan, Cognitive-Behavioral Treatment of Borderline Personality Disorder." },
-  c6: { anio: 1991, fuente: "Kohlenberg y Tsai, formulación inicial de la FAP." },
-  c7: { anio: 1990, fuente: "Young, primeros escritos sobre terapia de esquemas para trastornos de personalidad." },
-  c8: { anio: 2002, fuente: "Segal, Williams y Teasdale, Mindfulness-Based Cognitive Therapy for Depression." },
-  c10: { anio: 1963, fuente: "Bandura y Walters, Social Learning and Personality Development." },
-  c11: { anio: 1924, fuente: "Kantor, Principles of Psychology (bases del interconductismo)." },
-  c17: { anio: 1974, fuente: "Goldfried, Decenteceo y Weinberg (1974), artículo fundacional de la reestructuración racional sistemática." },
-  c18: { anio: 1971, fuente: "Maultsby, primeros escritos sobre terapia de conducta racional." },
-  c19: { anio: 1971, fuente: "Meichenbaum y Goodman, entrenamiento en autoinstrucciones." },
-  c20: { anio: 1974, fuente: "Meichenbaum, primeros desarrollos del entrenamiento en inoculación de estrés." },
-  c21: { anio: 1971, fuente: "Suinn y Richardson, Anxiety Management Training." },
-  c22: { anio: 1971, fuente: "D'Zurilla y Goldfried, Problem solving and behavior modification." },
-  c23: { anio: 1970, fuente: "Kanfer, Self-regulation: Research issues and speculations." },
-  c12: { anio: 1967, fuente: "Stampfl y Levis, Essentials of implosive therapy, Journal of Abnormal Psychology." },
-  c13: { anio: 1935, fuente: "Max, «Breaking up a homosexual fixation by the conditioned reaction technique», uno de los primeros casos publicados de aversión clásica (Kantorovich había reportado un uso similar para el alcoholismo ya en torno a 1930)." },
-  c14: { anio: 1949, fuente: "Salter, Conditioned Reflex Therapy (considerado por buena parte de la historiografía el primer manual sistemático de terapia de conducta)." },
-  c15: { anio: 1965, fuente: "Ayllon y Azrin, «The measurement and reinforcement of behavior of psychotics», Journal of the Experimental Analysis of Behavior (consolidado en su libro de 1968)." },
-  c16: { anio: 1971, fuente: "Stuart, «Behavioral contracting within the families of delinquents», Journal of Behavior Therapy and Experimental Psychiatry." },
-  c24: { anio: 1987, fuente: "Lovaas, «Behavioral treatment and normal educational and intellectual functioning in young autistic children», Journal of Consulting and Clinical Psychology." },
-  c25: { anio: 1966, fuente: "Cautela, «Treatment of compulsive behavior by covert sensitization», Psychological Record." },
-  c26: { anio: 1996, fuente: "Jacobson et al., «A component analysis of cognitive-behavioral treatment for depression», Journal of Consulting and Clinical Psychology." },
-  c27: { anio: 1996, fuente: "Jacobson y Christensen, Integrative Couple Therapy: Promoting Acceptance and Change." },
-  c29: { anio: 2005, fuente: "Gilbert (Ed.), Compassion: Conceptualisations, Research and Use in Psychotherapy (Routledge, 2005); formulación sistemática en Gilbert (2010), Compassion Focused Therapy: Distinctive Features." },
-  c30: { anio: 2013, fuente: "Lynch, Gray, Hempel, Titley, Chen y O'Mahen (2013), Radically open-dialectical behavior therapy for adult anorexia nervosa, BMC Psychiatry, 13, 293." },
+  c1: { anio: 1958, hito: "Obra fundacional de la desensibilización sistemática.", fuente: "Wolpe, J. (1958). *Psychotherapy by reciprocal inhibition*. Stanford University Press." },
+  c2: { anio: 1955, hito: "Formulación inicial de la terapia racional, luego TREC.", fuente: null },
+  c3: { anio: 1967, hito: "Primer libro de Beck sobre la depresión.", fuente: "Beck, A. T. (1967). *Depression: Causes and treatment*." },
+  c4: { anio: 1999, hito: "Primer manual de ACT.", fuente: "Hayes, S. C., Strosahl, K. D., y Wilson, K. G. (1999). *Acceptance and commitment therapy*. Guilford Press." },
+  c5: { anio: 1993, hito: "Manual fundacional de la terapia dialéctico-conductual.", fuente: "Linehan, M. M. (1993). *Cognitive-behavioral treatment of borderline personality disorder*. Guilford Press." },
+  c6: { anio: 1991, hito: "Formulación inicial de la psicoterapia analítico-funcional.", fuente: "Kohlenberg, R. J., y Tsai, M. (1991). *Functional analytic psychotherapy: Creating intense and curative therapeutic relationships*. Plenum Press." },
+  c7: { anio: 1990, hito: "Primeros escritos de Young sobre terapia de esquemas para trastornos de personalidad.", fuente: null },
+  c8: { anio: 2002, hito: "Manual fundacional de la terapia cognitiva basada en mindfulness.", fuente: "Segal, Z. V., Williams, J. M. G., y Teasdale, J. D. (2002). *Mindfulness-based cognitive therapy for depression*. Guilford Press." },
+  c10: { anio: 1963, hito: "Libro fundacional de la teoría del aprendizaje social.", fuente: "Bandura, A., y Walters, R. H. (1963). *Social learning and personality development*. Holt." },
+  c11: { anio: 1924, hito: "Bases del interconductismo.", fuente: "Kantor, J. R. (1924–1926). *Principles of psychology* (Vols. I y II). Principia Press." },
+  c17: { anio: 1974, hito: "Artículo fundacional de la reestructuración racional sistemática.", fuente: "Goldfried, M. R., Decenteceo, E. T., y Weinberg, L. (1974). Systematic rational restructuring as a self-control technique. *Behavior Therapy, 5*, 247–254." },
+  c18: { anio: 1971, hito: "Primeros escritos de Maultsby sobre terapia de conducta racional.", fuente: null },
+  c19: { anio: 1971, hito: "Entrenamiento en autoinstrucciones.", fuente: null },
+  c20: { anio: 1974, hito: "Primeros desarrollos del entrenamiento en inoculación de estrés.", fuente: null },
+  c21: { anio: 1971, hito: "Primer programa de entrenamiento en el manejo de la ansiedad.", fuente: "Suinn, R. M., y Richardson, F. (1971). Anxiety management training: A nonspecific behavior therapy program for anxiety control. *Behavior Therapy, 2*, 498–510." },
+  c22: { anio: 1971, hito: "Artículo fundacional de la terapia de solución de problemas.", fuente: "D'Zurilla, T. J., y Goldfried, M. R. (1971). Problem solving and behavior modification. *Journal of Abnormal Psychology, 78*(1), 107–126." },
+  c23: { anio: 1970, hito: "Artículo fundacional de la terapia de autocontrol.", fuente: "Kanfer, F. H. (1970). Self-regulation: Research issues and speculations. En C. Neuringer y J. L. Michael (Eds.), *Behavior modification in clinical psychology*. Appleton-Century-Crofts." },
+  c12: { anio: 1967, hito: "Artículo fundacional de la terapia implosiva.", fuente: "Stampfl, T. G., y Levis, D. J. (1967). Essentials of implosive therapy: A learning-theory-based psychodynamic behavioral therapy. *Journal of Abnormal Psychology, 72*(6), 496–503." },
+  c13: { anio: 1935, hito: "Uno de los primeros casos publicados de aversión clásica; Kantorovich había reportado un uso similar para el alcoholismo hacia 1930.", fuente: "Max, L. W. (1935). Breaking up a homosexual fixation by the conditioned reaction technique: A case study. *Psychological Bulletin, 32*, 734." },
+  c14: { anio: 1949, hito: "Considerado por buena parte de la historiografía el primer manual sistemático de terapia de conducta.", fuente: "Salter, A. (1949). *Conditioned reflex therapy*." },
+  c15: { anio: 1965, hito: "Artículo fundacional de la economía de fichas; se consolida en el libro de 1968.", fuente: "Ayllon, T., y Azrin, N. H. (1965). The measurement and reinforcement of behavior of psychotics. *Journal of the Experimental Analysis of Behavior, 8*(6), 357–383." },
+  c16: { anio: 1971, hito: "Artículo fundacional del contrato conductual en familias de delincuentes.", fuente: "Stuart, R. B. (1971). Behavioral contracting within the families of delinquents. *Journal of Behavior Therapy and Experimental Psychiatry*." },
+  c24: { anio: 1987, hito: "Estudio fundacional del programa UCLA de intervención conductual temprana.", fuente: "Lovaas, O. I. (1987). Behavioral treatment and normal educational and intellectual functioning in young autistic children. *Journal of Consulting and Clinical Psychology, 55*(1), 3–9." },
+  c25: { anio: 1966, hito: "Artículo fundacional de la sensibilización encubierta.", fuente: "Cautela, J. R. (1966). Treatment of compulsive behavior by covert sensitization. *Psychological Reports, 16*, 33–41." },
+  c26: { anio: 1996, hito: "Análisis de componentes que sustenta la activación conductual.", fuente: "Jacobson, N. S., Dobson, K. S., Truax, P. A., Addis, M. E., Koerner, K., Gollan, J. K., Gortner, E., y Prince, S. E. (1996). A component analysis of cognitive-behavioral treatment for depression. *Journal of Consulting and Clinical Psychology, 64*(2)." },
+  c27: { anio: 1996, hito: "Libro fundacional de la terapia conductual integral de pareja.", fuente: "Jacobson, N. S., y Christensen, A. (1996). *Integrative couple therapy: Promoting acceptance and change*. W. W. Norton." },
+  c29: { anio: 2005, hito: "Primera obra editada sobre compasión y psicoterapia; la formulación sistemática de la CFT es de 2010.", fuente: "Gilbert, P. (Ed.). (2005). *Compassion: Conceptualisations, research and use in psychotherapy*. Routledge." },
+  c30: { anio: 2013, hito: "Primer ensayo sobre RO-DBT en anorexia nerviosa del adulto.", fuente: "Lynch, T. R., Gray, K. L. H., Hempel, R. J., Titley, M., Chen, E. Y., y O'Mahen, H. A. (2013). Radically open-dialectical behavior therapy for adult anorexia nervosa. *BMC Psychiatry, 13*, 293." },
   // ---------- INTEGRADORA ----------
-  i1: { anio: 1936, fuente: "Rosenzweig, «Some implicit common factors in diverse methods of psychotherapy»." },
-  i2: { anio: 1967, fuente: "Lazarus, «In Support of Technical Eclecticism», Psychological Reports (acuña el término «eclecticismo técnico»)." },
-  i3: { anio: 1977, fuente: "Wachtel, Psychoanalysis and Behavior Therapy (integración teórica influyente)." },
-  i4: { anio: 1992, fuente: "Messer, «A critical examination of belief structures in integrative and eclectic psychotherapy» (Handbook of Psychotherapy Integration, Norcross y Goldfried, Eds.), artículo seminal sobre integración asimilativa." },
-  i5: { anio: 1979, fuente: "Beutler, «Toward Specific Psychological Therapies for Specific Conditions» (Journal of Consulting and Clinical Psychology), primer artículo formal de la Selección Sistemática de Tratamiento." },
+  i1: { anio: 1936, hito: "Artículo que inaugura la tesis de los factores comunes.", fuente: "Rosenzweig, S. (1936). Some implicit common factors in diverse methods of psychotherapy. *American Journal of Orthopsychiatry*." },
+  i2: { anio: 1967, hito: "Artículo que acuña el término «eclecticismo técnico».", fuente: "Lazarus, A. A. (1967). In support of technical eclecticism. *Psychological Reports, 21*(2), 415–416." },
+  i3: { anio: 1977, hito: "Integración teórica influyente entre psicoanálisis y terapia conductual.", fuente: "Wachtel, P. L. (1977). *Psychoanalysis and behavior therapy*. Basic Books." },
+  i4: { anio: 1992, hito: "Artículo seminal sobre integración asimilativa.", fuente: "Messer, S. B. (1992). A critical examination of belief structures in integrative and eclectic psychotherapy. En J. C. Norcross y M. R. Goldfried (Eds.), *Handbook of psychotherapy integration*. Basic Books." },
+  i5: { anio: 1979, hito: "Primer artículo formal de la Selección Sistemática de Tratamiento.", fuente: "Beutler, L. E. (1979). Toward specific psychological therapies for specific conditions. *Journal of Consulting and Clinical Psychology, 47*(5)." },
   // ---------- TRANSPERSONAL ----------
-  t1: { anio: 1969, fuente: "Maslow, «Toward a Humanistic Biology» (agosto de 1969, a partir de memorandos para el Salk Institute), donde declara: «también estoy desarrollando lo que podría llamarse una cuarta psicología trascendental» (Maslow, 1969, citado en Maslow, 1971). El grupo fundador (Maslow, Sutich, Grof, Fadiman) ya se había reunido en Menlo Park en 1967 para bautizar la disciplina hermana «psicología transpersonal» (t2)." },
-  t2: { anio: 1969, fuente: "Fundación del Journal of Transpersonal Psychology (Sutich)." },
-  t3: { anio: 1965, fuente: "Assagioli, Psychosynthesis: A Manual of Principles and Techniques (origen en su tesis de 1911)." },
-  t4: { anio: 1975, fuente: "~ Grof, desarrollo de la respiración holotrópica tras la prohibición legal del LSD (1973-75)." },
-  t5: { anio: 1977, fuente: "Wilber, The Spectrum of Consciousness." },
-  t6: { anio: 1988, fuente: "Washburn, The Ego and the Dynamic Ground." },
+  t1: { anio: 1969, hito: "Maslow declara que está desarrollando «una cuarta psicología trascendental»; el grupo fundador (Maslow, Sutich, Grof, Fadiman) se reunió en Menlo Park en 1967 para bautizar la «psicología transpersonal».", fuente: "Maslow, A. H. (1969). *Toward a humanistic biology*." },
+  t2: { anio: 1969, hito: "Fundación del Journal of Transpersonal Psychology (Sutich).", fuente: null },
+  t3: { anio: 1965, hito: "Manual fundacional de la psicosíntesis; su origen está en la tesis de 1911.", fuente: "Assagioli, R. (1965). *Psychosynthesis: A manual of principles and techniques*." },
+  t4: { anio: 1975, hito: "Desarrollo de la respiración holotrópica tras la prohibición legal del LSD (1973–1975).", fuente: null },
+  t5: { anio: 1977, hito: "Obra fundacional de la psicología integral.", fuente: "Wilber, K. (1977). *The spectrum of consciousness*." },
+  t6: { anio: 1988, hito: "Modelo dinámico-dialéctico del desarrollo transpersonal.", fuente: "Washburn, M. (1988). *The ego and the dynamic ground*." },
 };
 
 /* ============================================================
@@ -14334,7 +14336,7 @@ function ModalDefinicion({ dato, onCerrar, onIrAProtocolo, onIrAEscuela }) {
               </div>
             )}
             <div style={{ fontFamily: "var(--f-mono)", fontSize: 11, color: COLORS.inkSoft, borderTop: `1px dashed ${COLORS.line}`, paddingTop: 10 }}>
-              — {dato.fuente}
+              — <Fuente texto={dato.fuente} />
             </div>
             {escuelaId && (
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 14, paddingTop: 12, borderTop: `1px solid ${COLORS.line}` }}>
@@ -17611,8 +17613,9 @@ function LineaDeTiempoPerspectiva({ escuelas, color, onIrAEscuela, teorias = [] 
   const [hover, setHover] = useState(null);
   const anioDe = (e) => (ANIO_ORIGEN[e.id] ? ANIO_ORIGEN[e.id].anio : extraerAnio(e.fundamentacion || e.origenHistorico));
   const fuenteDe = (e) => (ANIO_ORIGEN[e.id] ? ANIO_ORIGEN[e.id].fuente : null);
+  const hitoDe = (e) => (ANIO_ORIGEN[e.id] ? ANIO_ORIGEN[e.id].hito : null);
   const conAnio = escuelas
-    .map((e) => ({ e, anio: anioDe(e), fuente: fuenteDe(e) }))
+    .map((e) => ({ e, anio: anioDe(e), fuente: fuenteDe(e), hito: hitoDe(e) }))
     .filter((x) => x.anio)
     .sort((a, b) => a.anio - b.anio);
   const sinAnio = escuelas.filter((e) => !anioDe(e));
@@ -17739,9 +17742,9 @@ function LineaDeTiempoPerspectiva({ escuelas, color, onIrAEscuela, teorias = [] 
       <div style={{ fontFamily: FONT_MONO, fontSize: 10, color: COLORS.inkSoft, textAlign: "center", marginTop: 4 }}>
         clic sobre un punto para abrir la ficha completa · pase el cursor sobre un punto para ver la fuente del año
       </div>
-      {hover && conAnio.find((x) => x.e.id === hover)?.fuente && (
+      {hover && (conAnio.find((x) => x.e.id === hover)?.hito || conAnio.find((x) => x.e.id === hover)?.fuente) && (
         <div style={{ marginTop: 8, background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 5, padding: "8px 12px", fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.ink }}>
-          <strong>{conAnio.find((x) => x.e.id === hover).e.nombre}</strong> ({conAnio.find((x) => x.e.id === hover).anio}) — {conAnio.find((x) => x.e.id === hover).fuente}
+          <strong>{conAnio.find((x) => x.e.id === hover).e.nombre}</strong> ({conAnio.find((x) => x.e.id === hover).anio}) — {conAnio.find((x) => x.e.id === hover).hito}{conAnio.find((x) => x.e.id === hover).fuente && <Fuente texto={conAnio.find((x) => x.e.id === hover).fuente} compacta />}
         </div>
       )}
       {sinAnio.length > 0 && (
@@ -18215,7 +18218,7 @@ function FichaPerspectiva({ nombrePerspectiva, escuelas, onIrADiccionario }) {
             <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>
               {escuela.nombre} — {protocolo.nombre}
             </div>
-            <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: COLORS.inkSoft, marginBottom: 3 }}>{protocolo.fuente}</div>
+            <div style={{ marginBottom: 6 }}><Fuente texto={protocolo.fuente} /></div>
             <div style={{ fontFamily: "var(--f-text)", fontSize: 12.5 }}>
               <strong>Población: </strong>
               {protocolo.poblacion}
@@ -19078,7 +19081,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                 {procedimientos.map((proc, i) => (
                   <div key={i} style={{ borderLeft: `3px solid ${COLORS.sage}`, paddingLeft: 12, marginBottom: 14 }}>
                     <div style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, marginBottom: 2 }}>{proc.nombre}</div>
-                    <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
+                    <div style={{ marginBottom: 6 }}><Fuente texto={proc.fuente} /></div>
                     <PasosInteractivos pasos={proc.fases} colorAcento={COLORS.sage} />
                     {proc.porQueFunciona && (
                       <div style={{ background: COLORS.paperDark, borderRadius: 8, padding: 10, marginTop: 6, marginBottom: 6, borderLeft: `3px solid ${COLORS.clay}` }}>
@@ -19127,14 +19130,14 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                   citas.map((c, i) =>
                     typeof c === "string" ? (
                       <p key={`cita-${i}`} style={estiloReferenciaBibliografica()}>
-                        {c}
+                        <Fuente texto={c} soloReferencia />
                       </p>
                     ) : (
                       <div key={`cita-${i}`} style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "flex-start" }}>
                         <span style={{ fontFamily: "Georgia,serif", fontSize: 22, color: color, lineHeight: 1, flexShrink: 0 }}>\u201c</span>
                         <div>
                           <p style={{ margin: 0, fontFamily: "var(--f-text)", fontStyle: "italic", fontSize: 13.5, lineHeight: 1.55, color: COLORS.ink }}>{c.idea}</p>
-                          <div style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, color: COLORS.inkSoft, marginTop: 3 }}>\u2014 {c.fuente}</div>
+                          <div style={{ marginTop: 3 }}><Fuente texto={c.fuente} /></div>
                         </div>
                       </div>
                     )
@@ -19142,7 +19145,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                 {(e.referencias || []).length > 0 &&
                   e.referencias.map((r, i) => (
                     <p key={`ref-${i}`} style={estiloReferenciaBibliografica()}>
-                      {r}
+                      <Fuente texto={r} soloReferencia />
                     </p>
                   ))}
               </div>
@@ -19399,7 +19402,7 @@ function TablaProtocolosGenerica({ filas, ordenTabla, cambiarOrden, tituloVacio 
                     }}
                     title={fuenteLarga ? "Clic para ver la fuente completa" : undefined}
                   >
-                    {f.fuente}
+                    <Fuente texto={f.fuente} soloReferencia />
                   </td>
                 </tr>
               );
@@ -19569,7 +19572,7 @@ function TablaProtocolos({ filas, ordenTabla, cambiarOrden }) {
   );
 }
 
-function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrAEscuela }) {
+function ModuloPlanificador({ irA, escuelas, foco, modoEstudio, setModoEstudio, onIrAEscuela }) {
   const [q, setQ] = useState("");
   const [vista, setVista] = useState("rosa"); // "rosa" | "torre" | "tarjetas" | "tabla"
   const [ordenTabla, setOrdenTabla] = useState({ col: "perspectiva", asc: true });
@@ -19700,10 +19703,13 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrA
         subtitulo="Protocolos completos y técnicas puntuales, con pasos interactivos, objetivo clínico clasificado y comparación de hasta tres a la vez."
       />
       <GaleriaCasos />
-      <details className="psn-detalles">
-        <summary>Caso clínico en 7 miradas <small>— un mismo caso, leído desde cada perspectiva</small></summary>
-        <CasoSieteMiradas nudos={CONCEPTOS_TRANSVERSALES} glosario={GLOSARIO} modoEstudio={modoEstudio} idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} escuelas={escuelas} perspectivas={FUNDAMENTOS_PERSPECTIVAS} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
-      </details>
+      <aside className="psn-mc-enlace">
+        <div>
+          <strong>Mi lectura de un caso</strong>
+          <span>Escribe un caso anonimizado y obtén las siete miradas, los protocolos y técnicas que podrían encajar y sus fuentes en APA.</span>
+        </div>
+        <button className="psn-btn psn-btn-primario" onClick={() => irA("micaso")}>Hacer mi lectura →</button>
+      </aside>
 
       {/* Banda fija con la distinción operativa, siempre visible al entrar
           al módulo — antes esta diferencia solo se insinuaba con un matiz
@@ -19868,7 +19874,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrA
                                 </div>
                                 {protocolosEscuela.map((p, i) => (
                                   <Desplegable key={i} titulo={p.nombre} subtitulo="protocolo" color={COLORS.sage} defaultAbierto={false}>
-                                    <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{p.fuente}</div>
+                                    <div style={{ marginBottom: 6 }}><Fuente texto={p.fuente} /></div>
                                     <PasosInteractivos pasos={p.fases} colorAcento={COLORS.sage} />
                                     {p.porQueFunciona && (
                                       <div style={{ background: COLORS.paperDark, borderRadius: 8, padding: 10, marginTop: 6, borderLeft: `3px solid ${COLORS.garnet}` }}>
@@ -19879,7 +19885,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrA
                                     {p.condiciones && <DetalleCondiciones texto={p.condiciones} />}
                                     {p._origen === "principal" && (PROCEDIMIENTOS_CLINICOS[e.id] || []).filter(esFaseProc).map((f, k) => (
                                       <Desplegable key={"f" + k} titulo={f.nombre} subtitulo="detalle del protocolo" color={COLORS.sage} defaultAbierto={false}>
-                                        <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{f.fuente}</div>
+                                        <div style={{ marginBottom: 6 }}><Fuente texto={f.fuente} /></div>
                                         <PasosInteractivos pasos={f.fases} colorAcento={COLORS.sage} />
                                         {f.porQueFunciona && <p style={{ margin: "6px 0 0", fontFamily: "var(--f-text)", fontSize: 12, lineHeight: 1.5, color: COLORS.ink }}><strong>Por qué funciona: </strong>{f.porQueFunciona}</p>}
                                         {f.condiciones && <DetalleCondiciones texto={f.condiciones} />}
@@ -19924,7 +19930,7 @@ function ModuloPlanificador({ escuelas, foco, modoEstudio, setModoEstudio, onIrA
                                 </div>
                                 {tecnicasEscuela.map((proc, i) => (
                                   <Desplegable key={i} titulo={proc.nombre} subtitulo="técnica" color={COLORS.clay} defaultAbierto={false}>
-                                    <div style={{ fontFamily: "var(--f-mono)", fontSize: 10, color: COLORS.inkSoft, marginBottom: 6 }}>{proc.fuente}</div>
+                                    <div style={{ marginBottom: 6 }}><Fuente texto={proc.fuente} /></div>
                                     <PasosInteractivos pasos={proc.fases} colorAcento={COLORS.clay} />
                                     {proc.porQueFunciona && (
                                       <div style={{ background: COLORS.cardBg, borderRadius: 8, padding: 10, marginBottom: 6, borderLeft: `3px solid ${COLORS.clay}` }}>
@@ -21225,7 +21231,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                 <p style={{ margin: "0 0 8px", fontFamily: "var(--f-text)", fontSize: 14.5, lineHeight: 1.6, color: COLORS.ink }}>
                   {conceptoActual.definicion}
                 </p>
-                <div style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, color: COLORS.inkSoft, marginBottom: 16 }}>— {conceptoActual.fuente}</div>
+                <div style={{ marginBottom: 16 }}><Fuente texto={conceptoActual.fuente} /></div>
 
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8, flexWrap: "wrap", gap: 8 }}>
                   <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet }}>
@@ -21346,6 +21352,7 @@ const TABS = [
   { id: "planificador", label: "Protocolos y Técnicas", icono: ClipboardList },
   { id: "diccionario", label: "Diccionario", icono: Languages },
   { id: "comparacion", label: "Comparación", icono: Scale },
+  { id: "micaso", label: "Mi caso", icono: FileText },
 ];
 
 // Verificador de integridad "en vivo": la MISMA regla que corre dentro de la
@@ -21526,6 +21533,7 @@ export default function App() {
     });
   }
   const [buscadorMovil, setBuscadorMovil] = useState(false);
+  useEffect(() => { const h = (ev) => { window.__casoPendiente = ev.detail; setTab("micaso", "Caso de práctica"); }; window.addEventListener("psn-caso", h); return () => window.removeEventListener("psn-caso", h); }, []);
   useEffect(() => { try { document.documentElement.dataset.vista = tab; } catch (e) {} }, [tab]);
   const [, setProtocolosListos] = useState(protocolosCargados());
   useEffect(() => { cargarProtocolos().then(() => setProtocolosListos(true)); }, []);
@@ -22411,6 +22419,8 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             </div>
           )}
 
+          <RefsIncompletas />
+
           {integridad.ok && integridad.advertencias.length === 0 && (
             <p style={{ margin: 0, fontFamily: "ui-serif,Georgia,serif", fontSize: 12.5, color: STATUS_COLORS.ok }}>
               ✓ Todas las referencias entre escuelas, enlaces, planes y glosario son válidas, y todas las escuelas tienen citas, protocolo y glosario propios.
@@ -22520,7 +22530,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
         )}
         {tab === "planificador" && !protocolosCargados() && <p className="psn-vacio">Cargando protocolos y técnicas…</p>}
         {tab === "planificador" && protocolosCargados() && (
-          <ModuloPlanificador escuelas={escuelas} foco={focoPlanificador} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} onIrAEscuela={irAEscuela} />
+          <ModuloPlanificador irA={setTab} escuelas={escuelas} foco={focoPlanificador} modoEstudio={modoEstudio} setModoEstudio={setModoEstudio} onIrAEscuela={irAEscuela} />
         )}
         {tab === "diccionario" && (
           <ModuloDiccionario
@@ -22535,6 +22545,25 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             modoEstudio={modoEstudio}
             setModoEstudio={setModoEstudio}
           />
+        )}
+        {tab === "micaso" && (
+          <>
+            <Cabecera icono={<FileText size={18} />} titulo="Mi lectura de un caso" subtitulo="Escribe un caso anonimizado y obtén una lectura desde las siete perspectivas, con los protocolos y técnicas de la biblioteca que podrían encajar, sus fuentes en APA y lo que falta preguntar." />
+            <MiLectura
+              escuelas={escuelas}
+              perspectivas={FUNDAMENTOS_PERSPECTIVAS}
+              colorDe={(p) => PERSPECTIVA_COLOR[p]}
+              idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)}
+              glosario={GLOSARIO}
+              nudos={CONCEPTOS_TRANSVERSALES}
+              enlaces={enlaces}
+              protocolos={PROTOCOLOS_SEED}
+              procedimientos={PROCEDIMIENTOS_CLINICOS}
+              protocolosListos={protocolosCargados()}
+              onIrAEscuela={irAEscuela}
+              onIrAProtocolos={irAProtocolo}
+            />
+          </>
         )}
         {tab === "comparacion" && <ModuloComparacion escuelas={escuelas} onIrAEscuela={irAEscuela} modoEstudio={modoEstudio} enlaces={enlaces} />}
       </div>

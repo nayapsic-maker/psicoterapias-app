@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { analiza, semejantes, RIESGOS } from "./Deteccion.js";
 import { AFINES } from "./Afines.js";
+import Fuente from "./Fuente.jsx";
 import { slugsDeAutores, AUTORES } from "./Figuras.jsx";
 import { norm, unir, oraciones, Mini, COLOR_REL, barajar, recortar } from "./Funciones.jsx";
 
@@ -708,7 +709,7 @@ const NOCIONES = [
     "Estados afectivos como puertas a niveles más profundos de experiencia."),
 ];
 
-const NOCION_NODO = {
+export const NOCION_NODO = {
   ansiedad: "ansiedad", sintoma: "sintoma", resistencia: "resistencia", relacion: "relacion_terapeutica", cambio: "mecanismo_cambio",
   apego: "apego", culpa: "culpa", duelo: "muerte_finitud", inconsciente: "inconsciente", self: "self", motivacion: "motivacion",
   cuerpo: "cuerpo_somatico", libertad: "libertad_determinismo", emocion: "emocion", cultura: "contexto_social", meta: "criterio_cura",
@@ -868,7 +869,7 @@ export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEs
             <span className="psn-chip">{origen.perspectiva} · {origen.nombre}</span>
             <h4>{c.termino}</h4>
             <p>{c.definicion}</p>
-            {c.fuente && <small className="psn-fuente">Fuente: {c.fuente}</small>}
+            {c.fuente && <small className="psn-fuente"><Fuente texto={c.fuente} /></small>}
           </article>
           <h5 className="psn-sub-h">Cómo se dice en las demás perspectivas ({total} {total === 1 ? "puente" : "puentes"})</h5>
           <div className="psn-trad-grid">
