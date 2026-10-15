@@ -1,39 +1,47 @@
 import React, { useMemo, useState } from "react";
-import { PARALELOS } from "./datos/paralelos.js";
+import { PARALELOS, EXTRAS } from "./datos/paralelos.js";
 import Fuente from "./Fuente.jsx";
 import { recortar } from "./Funciones.jsx";
 
 /* Paralelos entre perspectivas: matriz por perspectiva y modo «traducir de A a B». */
-export default function Paralelos({ glosario, escuelas, colorDe, idDe, perspectivas, onIrAEscuela }) {
-  const [pid, setPid] = useState(PARALELOS[0].id);
+export default function Paralelos({ glosario, escuelas, colorDe, perspectivas, onIrAEscuela, nudos = [] }) {
+  const LISTA = useMemo(
+    () => [
+      ...nudos.map((n) => ({ id: n.id, titulo: n.nombre, pregunta: n.descripcion, celdas: n.porPerspectiva.map((c) => ({ e: c.escuela, t: c.termino, texto: c.definicion })), ...(EXTRAS[n.id] || {}) })),
+      ...PARALELOS,
+    ],
+    [nudos]
+  );
+  const [pid, setPid] = useState(LISTA[0].id);
   const [de, setDe] = useState("");
   const [a, setA] = useState("");
   const porId = useMemo(() => Object.fromEntries(escuelas.map((e) => [e.id, e])), [escuelas]);
   const gl = useMemo(() => Object.fromEntries(glosario.map((g) => [g.escuela + "|" + g.termino, g])), [glosario]);
-  const par = PARALELOS.find((p) => p.id === pid);
+  const par = LISTA.find((p) => p.id === pid) || LISTA[0];
   const celdas = par.celdas
     .map((c) => ({ ...c, g: gl[c.e + "|" + c.t], E: porId[c.e] }))
-    .filter((c) => c.g && c.E);
+    .filter((c) => c.E);
   const por = (p) => celdas.filter((c) => c.E.perspectiva === p);
   const hayTraduccion = de && a && de !== a;
   const Celda = ({ c }) => (
     <div className="psn-par-celda">
       <b>{c.t}</b>
-      <p>{c.matiz}</p>
-      <details>
-        <summary>Definición del glosario</summary>
-        <p>{c.g.definicion}</p>
-        {c.g.fuente && <small className="psn-fuente"><Fuente texto={c.g.fuente} /></small>}
-      </details>
+      <p>{c.texto || c.matiz}</p>
+      {c.g && (
+        <details>
+          <summary>Definición del glosario</summary>
+          <p>{c.g.definicion}</p>
+          {c.g.fuente && <small className="psn-fuente"><Fuente texto={c.g.fuente} /></small>}
+        </details>
+      )}
       <button onClick={() => onIrAEscuela(c.E.id)}>{c.E.nombre}</button>
     </div>
   );
   return (
     <section className="psn-paralelos">
-      <h5 className="psn-sub-h">Paralelos entre perspectivas</h5>
-      <p className="psn-intro">Cada paralelo reúne términos del glosario que responden a la misma pregunta clínica. Los matices son síntesis orientativa; la definición y la fuente de cada término vienen del glosario.</p>
+      <p className="psn-intro">Cada tema reúne el término con que cada perspectiva responde a la misma pregunta clínica, y permite traducir de una perspectiva a otra. Los temas con «diferencia clave» y «falso amigo» traen matices de síntesis orientativa; en los demás, la definición es la de la propia perspectiva.</p>
       <div className="psn-trad-cands" role="tablist" aria-label="Paralelos">
-        {PARALELOS.map((p) => (
+        {LISTA.map((p) => (
           <button key={p.id} className={p.id === pid ? "on" : ""} onClick={() => setPid(p.id)}>{p.titulo}</button>
         ))}
       </div>
@@ -71,8 +79,8 @@ export default function Paralelos({ glosario, escuelas, colorDe, idDe, perspecti
           ))}
         </div>
       )}
-      <p className="psn-aviso"><b>Diferencia clave:</b> {par.diferencia}</p>
-      <p className="psn-aviso"><b>Falso amigo:</b> {par.falso}</p>
+      {par.diferencia && <p className="psn-aviso"><b>Diferencia clave:</b> {par.diferencia}</p>}
+      {par.falso && <p className="psn-aviso"><b>Falso amigo:</b> {par.falso}</p>}
     </section>
   );
 }

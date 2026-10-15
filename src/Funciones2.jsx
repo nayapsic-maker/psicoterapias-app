@@ -2,7 +2,6 @@ import React, { useMemo, useState, useEffect } from "react";
 import { analiza, semejantes, RIESGOS } from "./Deteccion.js";
 import { AFINES } from "./Afines.js";
 import Fuente from "./Fuente.jsx";
-import Paralelos from "./Paralelos.jsx";
 import { slugsDeAutores, AUTORES } from "./Figuras.jsx";
 import { norm, unir, oraciones, Mini, COLOR_REL, barajar, recortar } from "./Funciones.jsx";
 
@@ -852,7 +851,6 @@ export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEs
           ))}
         </div>
       )}
-      {q.length < 3 && <Paralelos glosario={glosario} escuelas={escuelas} colorDe={colorDe} idDe={idDe} perspectivas={perspectivas} onIrAEscuela={onIrAEscuela} />}
       {q.length >= 3 && candidatos.length === 0 && nociones.length === 0 && <p className="psn-vacio">No encontré ese término. Prueba con otra palabra más específica o con una de las nociones sugeridas.</p>}
       {candidatos.length > 0 && <h5 className="psn-sub-h">En el glosario y el diccionario traslacional</h5>}
       {candidatos.length > 1 && (
@@ -1189,10 +1187,16 @@ export function RosaDeEjes({ campos, perspectivas, colorDe, modoEstudio = false 
               </g>
             );
           })}
-          <text x={cx} y={cy - 4} textAnchor="middle" style={{ font: "800 11px var(--f-display)" }} fill="var(--c-ink)">
-            {eje.label.split(" ").slice(0, 2).join(" ")}
-          </text>
-          <text x={cx} y={cy + 12} textAnchor="middle" style={{ font: "500 9px var(--f-mono)" }} fill="var(--c-inkSoft)">{eje.grupo === "filosofico" ? "coordenada filosófica" : "eje narrativo"}</text>
+          {(() => {
+            const w = eje.label.split(" ");
+            const m = Math.ceil(w.length / 2);
+            const lineas = w.length > 2 ? [w.slice(0, m).join(" "), w.slice(m).join(" ")] : [eje.label];
+            return (
+              <text textAnchor="middle" style={{ font: "800 11px var(--f-display)" }} fill="var(--c-ink)">
+                {lineas.map((l, i) => <tspan key={i} x={cx} y={cy + 4 + (i - (lineas.length - 1) / 2) * 14}>{l}</tspan>)}
+              </text>
+            );
+          })()}
         </svg>
         <ol className="psn-rosa-leyenda">
           {campos.map((c, i) => (
@@ -1205,8 +1209,7 @@ export function RosaDeEjes({ campos, perspectivas, colorDe, modoEstudio = false 
       <div className="psn-rosa-petalos">
         <header>
           <h4>{eje.label}</h4>
-          <span className="psn-chip">{eje.grupo === "filosofico" ? "coordenada filosófica" : "eje narrativo"}</span>
-          {modoEstudio && (
+                    {modoEstudio && (
             <button className={`psn-btn ${ciego ? "psn-btn-primario" : ""}`} onClick={() => { setCiego(!ciego); setAdivina({}); setAbierto(null); }}>
               {ciego ? "Mostrar nombres" : "Modo adivina"}
             </button>

@@ -5,6 +5,7 @@ import { AdivinaEscuela, QuienLoDiria, TraduceACiegas } from "./Practica.jsx";
 import PorMotivo from "./PorMotivo.jsx";
 import FichaTermino, { CoberturaDiccionario } from "./FichaTermino.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
+import Paralelos from "./Paralelos.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
 import { BandaPerspectiva } from "./Placas.jsx";
@@ -16884,7 +16885,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
       )}
 
       {nivel === "perspectivas" && vista === "rosa" && (
-        <RosaDeEjes campos={campos} perspectivas={perspectivas} colorDe={(p) => PERSPECTIVA_COLOR[p.nombre] || COLORS.primary} modoEstudio={modoEstudio} />
+        <RosaDeEjes campos={campos.filter((c) => c.grupo === "narrativo")} perspectivas={perspectivas} colorDe={(p) => PERSPECTIVA_COLOR[p.nombre] || COLORS.primary} modoEstudio={modoEstudio} />
       )}
 
       {nivel === "perspectivas" && vista === "tarjetas" && (
@@ -20657,7 +20658,6 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
   const [conceptoGlosario, setConceptoGlosario] = useState(focoInicial?.termino || null);
   const [escuelaTecnica, setEscuelaTecnica] = useState(escuelas[0]?.id);
   const [tecnicaGlosario, setTecnicaGlosario] = useState(null);
-  const [introAbierta, setIntroAbierta] = useState(false);
   const [filosofiaCienciaAbierta, setFilosofiaCienciaAbierta] = useState(false);
   const [nuevoA, setNuevoA] = useState({ escuela: escuelas[0]?.id, nombre: "" });
   const [nuevoB, setNuevoB] = useState({ escuela: escuelas[0]?.id, nombre: "" });
@@ -20773,30 +20773,10 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
         )}
       </div>
 
-      <div style={{ marginTop: 12, marginBottom: 4 }}>
-        <div
-          onClick={() => setIntroAbierta(!introAbierta)}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            cursor: "pointer",
-            background: COLORS.paperDark,
-            border: `1px solid ${COLORS.line}`,
-            borderRadius: 12,
-            padding: "10px 14px",
-          }}
-        >
-          {introAbierta ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-          <span style={{ fontFamily: "var(--f-display)", fontSize: 13.5, fontWeight: 700 }}>
-            Conceptos que atraviesan las 7 perspectivas
-          </span>
-          <span style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, color: COLORS.inkSoft }}>
-            ({CONCEPTOS_TRANSVERSALES.length} nudos temáticos — introducción de referencia antes de navegar escuela por escuela)
-          </span>
-        </div>
-        {introAbierta && <IntroConceptosTransversales />}
-      </div>
+      <details className="psn-detalles">
+        <summary>Conceptos transversales y paralelos <small>— {CONCEPTOS_TRANSVERSALES.length + 2} temas: cómo cada perspectiva responde a la misma pregunta, con modo «traducir de A a B»</small></summary>
+        <Paralelos nudos={CONCEPTOS_TRANSVERSALES} glosario={GLOSARIO} escuelas={escuelas} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} perspectivas={nombresPerspectivas(escuelas)} />
+      </details>
 
       <PanelEstadisticasDiccionario enlaces={enlaces} escuelas={escuelas} />
 
@@ -21110,57 +21090,6 @@ function PanelEstadisticasDiccionario({ enlaces, escuelas }) {
 }
 
 /* ---------- Comparadores de referencia rápida (técnicas / psicopatología) ---------- */
-function IntroConceptosTransversales() {
-  const [abierto, setAbierto] = useState(CONCEPTOS_TRANSVERSALES[0].id);
-  const actual = CONCEPTOS_TRANSVERSALES.find((c) => c.id === abierto);
-  return (
-    <div style={{ background: COLORS.cardBg, borderLeft: `1px solid ${COLORS.line}`, borderRight: `1px solid ${COLORS.line}`, borderBottom: `1px solid ${COLORS.line}`, borderTop: "none", borderRadius: "0 0 6px 6px", padding: 16, marginBottom: 6 }}>
-      <p style={{ fontFamily: "var(--f-text)", fontSize: 12.5, color: COLORS.inkSoft, marginTop: 0 }}>
-        Antes de navegar escuela por escuela, esta es una referencia rápida: {CONCEPTOS_TRANSVERSALES.length} nudos conceptuales (el síntoma, la ansiedad, el self, el inconsciente, la resistencia, la relación terapéutica, el mecanismo de cambio, el criterio de cura, el rol del terapeuta, la temporalidad, el lenguaje, el cuerpo, la motivación, la manualización, la culpa, el apego temprano, la muerte y la finitud, la libertad y el determinismo, la emoción y el afecto, y el contexto social y cultural, entre otros) con el término y la definición propios de cada una de las siete perspectivas, lado a lado (donde aplica).
-      </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
-        {CONCEPTOS_TRANSVERSALES.map((c) => (
-          <span
-            key={c.id}
-            onClick={() => setAbierto(c.id)}
-            style={{
-              fontFamily: "var(--f-mono)",
-              fontSize: 10.5,
-              padding: "4px 9px",
-              borderRadius: 8,
-              cursor: "pointer",
-              border: `1px solid ${abierto === c.id ? COLORS.primaryDark : COLORS.line}`,
-              background: abierto === c.id ? COLORS.paperDark : COLORS.cardBg,
-              fontWeight: abierto === c.id ? 700 : 400,
-            }}
-          >
-            {c.nombre}
-          </span>
-        ))}
-      </div>
-      {actual && (
-        <div>
-          <p style={{ fontSize: 12, color: COLORS.inkSoft, fontFamily: "var(--f-text)", marginTop: 0 }}>{actual.descripcion}</p>
-          <div style={{ display: "grid", gap: 10 }}>
-            {actual.porPerspectiva.map((p, i) => {
-              const color = PERSPECTIVA_COLOR[p.perspectiva];
-              return (
-                <div key={i} style={{ borderLeft: `4px solid ${color}`, paddingLeft: 12 }}>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap", marginBottom: 3 }}>
-                    <span style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, color, textTransform: "uppercase" }}>{p.perspectiva}</span>
-                    <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5 }}>{p.termino}</span>
-                  </div>
-                  <p style={{ margin: 0, fontFamily: "var(--f-text)", fontSize: 13, lineHeight: 1.5 }}>{p.definicion}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
 function ComparadorCampo({ escuelas, campo, filtro, colorEtiqueta }) {
   const perspectivas = [...new Set(escuelas.map((e) => e.perspectiva))];
   const f = (filtro || "").toLowerCase();
@@ -22286,7 +22215,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
                   irACoincidencia(ev.shiftKey ? -1 : 1);
                 }
               }}
-              placeholder="Buscar en esta página…  ( / )"
+              placeholder="Buscar en Psiconautas"
               aria-label="Buscar y resaltar coincidencias en la página actual. Atajo: tecla oblicua. Enter: siguiente, Shift+Enter: anterior."
               style={{
                 padding: coincidenciasPagina.soportado && filtro.trim().length >= 2 ? "7px 64px 7px 30px" : "7px 12px 7px 30px",

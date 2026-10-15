@@ -18,37 +18,6 @@ export const PARALELOS = [
     falso: "«Distancia» no es disociación ni evitación: en todos los casos se busca más contacto con la experiencia, no menos.",
   },
   {
-    id: "aceptacion",
-    titulo: "Aceptación y contención de lo difícil",
-    pregunta: "¿Cuál es la actitud ante el malestar: combatirlo, sostenerlo o abrirse a él?",
-    celdas: [
-      { e: "h1", t: "Aceptación incondicional", matiz: "Actitud del terapeuta hacia la persona; es condición relacional del cambio." },
-      { e: "p3", t: "Contención (Bion)", matiz: "El terapeuta recibe y transforma lo insoportable para devolverlo tolerable; la aceptación es función de procesamiento." },
-      { e: "p3b", t: "Holding (Winnicott)", matiz: "Sostén del ambiente que permite existir sin angustia insoportable." },
-      { e: "c5", t: "Aceptación radical", matiz: "Aceptar la realidad como paso previo al cambio; se entrena como habilidad." },
-      { e: "c2", t: "Aceptación incondicional (de sí, de otros, de la vida)", matiz: "Antídoto filosófico frente a las exigencias absolutistas; se argumenta, no solo se siente." },
-      { e: "c4", t: "Evitación experiencial", matiz: "Es el polo contrario: el problema es el control del malestar, no el malestar mismo." },
-      { e: "t3", t: "Judo Psicológico (Técnica de Aceptación)", matiz: "Usar la emoción negativa como material de trabajo en lugar de combatirla." },
-    ],
-    diferencia: "Para unos la aceptación es una actitud del terapeuta (humanista, psicodinámico); para otros es una postura que la persona aprende frente a su experiencia (cognitivo-conductual, transpersonal).",
-    falso: "«Aceptación incondicional» (Rogers) valora a la persona; «aceptación radical» acepta la realidad. No son intercambiables, aunque comparten la palabra.",
-  },
-  {
-    id: "alianza",
-    titulo: "Relación terapéutica y alianza",
-    pregunta: "¿Qué vínculo entre terapeuta y consultante hace posible el trabajo?",
-    celdas: [
-      { e: "p2", t: "Alianza terapéutica", matiz: "Parte realista y colaborativa de la relación, distinta de la transferencia." },
-      { e: "h4", t: "La Relación Terapéutica como Encuentro Curativo", matiz: "La relación misma es lo que cura, más que las interpretaciones." },
-      { e: "s2", t: "Joining (acomodación)", matiz: "El terapeuta se acomoda al lenguaje y estilo de la familia como paso previo a reestructurar." },
-      { e: "c3", t: "Empirismo colaborativo", matiz: "Terapeuta y paciente investigan juntos la validez de los pensamientos." },
-      { e: "i1", t: "Alianza de trabajo", matiz: "Factor común con peso propio sobre el resultado, sea cual sea el modelo." },
-      { e: "t2", t: "Contenedor seguro y presencia del terapeuta", matiz: "Crear un entorno protegido para que la experiencia se despliegue." },
-    ],
-    diferencia: "El psicodinámico la distingue de la transferencia; el humanista la hace el mecanismo central; el sistémico la entiende como acomodación al sistema; el cognitivo-conductual, como trabajo cooperativo.",
-    falso: "«Alianza» no significa lo mismo en todas partes: en psicoanálisis es un aspecto de la relación; en la integradora, un factor común transversal.",
-  },
-  {
     id: "ciclos",
     titulo: "Patrones que se repiten",
     pregunta: "¿Por qué la persona vuelve una y otra vez a la misma dificultad?",
@@ -63,17 +32,11 @@ export const PARALELOS = [
     diferencia: "La explicación cambia: pulsión (Freud), relación temprana (CMP, esquemas), aprendizaje (TRAP) o función en el sistema (juego familiar). La clínica coincide en que el patrón se sostiene a sí mismo.",
     falso: "«Esquema» no es igual en psicodinámica y cognitivo: aquí es una estructura de cognición y memoria; allá, una organización relacional.",
   },
-  {
-    id: "supuestos",
-    titulo: "Creencias de fondo sobre uno mismo y el mundo",
-    pregunta: "¿Qué estructura previa organiza cómo la persona interpreta lo que vive?",
-    celdas: [
-      { e: "h5", t: "Perspectiva del mundo (Worldview)", matiz: "Concepción personal de la realidad, necesariamente parcial." },
-      { e: "p4b", t: "Principios organizadores", matiz: "Esquemas prerreflexivos afectivo-relacionales de la primera infancia." },
-      { e: "c3", t: "Creencias nucleares (core beliefs)", matiz: "Ideas absolutas y globales, más profundas que los pensamientos automáticos." },
-      { e: "c16", t: "Cuberantes (operantes cubiertas) y conducta gobernada por reglas", matiz: "La conducta verbal se explica como operante encubierta y reglas." },
-    ],
-    diferencia: "Se pasa de lo prerreflexivo (psicodinámico) a lo explícito y discutible (cognitivo) o a la regla verbal (conductual). El humanista lo trata como horizonte de sentido personal.",
-    falso: "«Creencia» es una proposición discutible para el cognitivo, pero para el relacional-psicodinámico lo nuclear no es proposicional: no se refuta, se revive y se reelabora.",
-  },
 ];
+
+/* Matices que se agregan a temas transversales ya existentes (mismo tema, no se duplica). */
+export const EXTRAS = {
+  relacion_terapeutica: { diferencia: "El psicodinámico la distingue de la transferencia; el humanista la hace el mecanismo central; el sistémico la entiende como acomodación al sistema; el cognitivo-conductual, como trabajo cooperativo.", falso: "«Alianza» no significa lo mismo en todas partes: en psicoanálisis es un aspecto de la relación; en la integradora, un factor común transversal." },
+  atencion_plena: { diferencia: "Para unos la aceptación es una actitud del terapeuta (humanista, psicodinámico); para otros es una postura que la persona aprende frente a su experiencia (cognitivo-conductual, transpersonal).", falso: "«Aceptación incondicional» (Rogers) valora a la persona; «aceptación radical» acepta la realidad. No son intercambiables, aunque comparten la palabra." },
+  pensamiento: { diferencia: "Se pasa de lo prerreflexivo (psicodinámico) a lo explícito y discutible (cognitivo) o a la regla verbal (conductual). El humanista lo trata como horizonte de sentido personal.", falso: "«Creencia» es una proposición discutible para el cognitivo, pero para el relacional-psicodinámico lo nuclear no es proposicional: no se refuta, se revive y se reelabora." },
+};
