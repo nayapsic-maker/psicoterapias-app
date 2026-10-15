@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from "react"
 import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos, AvataresSub } from "./Funciones.jsx";
 import { LecturaCasos } from "./MiCaso.jsx";
 import { AdivinaEscuela, QuienLoDiria, TraduceACiegas } from "./Practica.jsx";
+import PorMotivo from "./PorMotivo.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
@@ -19695,6 +19696,7 @@ function ModuloPlanificador({ irA, escuelas, foco, modoEstudio, setModoEstudio, 
         subtitulo="Protocolos completos y técnicas puntuales, con pasos interactivos, objetivo clínico clasificado y comparación de hasta tres a la vez."
       />
       <GaleriaCasos />
+      <PorMotivo escuelas={escuelas} perspectivas={FUNDAMENTOS_PERSPECTIVAS} protocolos={PROTOCOLOS_SEED} procedimientos={PROCEDIMIENTOS_CLINICOS} listos={protocolosCargados()} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />
       <LecturaCasos
         escuelas={escuelas}
         perspectivas={FUNDAMENTOS_PERSPECTIVAS}
