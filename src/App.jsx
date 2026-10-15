@@ -3,6 +3,7 @@ import { LineaTiempoGlobal, MapaRed, QuizEscuela, RetoRetratos, AvataresSub } fr
 import { LecturaCasos } from "./MiCaso.jsx";
 import { AdivinaEscuela, QuienLoDiria, TraduceACiegas } from "./Practica.jsx";
 import PorMotivo from "./PorMotivo.jsx";
+import FichaTermino, { CoberturaDiccionario } from "./FichaTermino.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import { CasoSieteMiradas, TraductorClinico, DebateSimulado, TarjetasRepaso, GaleriaCasos, RosaDeEjes, ExamenSimulado, TorreSupuestos } from "./Funciones2.jsx";
 import { LogoPsiconautas, HeroMision, RetratosPerspectiva, GaleriaAutores, CreditosFotos, AUTORES_POR_PERSPECTIVA, RetratosEscuela, Retrato, GaleriaTodasLasVoces } from "./Figuras.jsx";
@@ -20539,6 +20540,7 @@ function ModuloDiccionario({ escuelas, enlaces, setEnlaces, enlacesTecnicas, set
         <TraductorClinico nudos={CONCEPTOS_TRANSVERSALES} idDe={(n) => PERSPECTIVA_ID_POR_NOMBRE[n] || (n.startsWith("Sist") ? "sistemica" : n.startsWith("Integr") ? "integradora" : null)} perspectivasFund={FUNDAMENTOS_PERSPECTIVAS} escuelas={escuelas} glosario={GLOSARIO} enlaces={enlaces} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} perspectivas={nombresPerspectivas(escuelas)} />
       </details>
       {modoEstudio && <TraduceACiegas enlaces={enlaces || ENLACES_SEED} glosario={GLOSARIO} escuelas={escuelas} colorDe={(p) => PERSPECTIVA_COLOR[p]} onIrAEscuela={onIrAEscuela} />}
+      <CoberturaDiccionario escuelas={escuelas} glosario={GLOSARIO} enlaces={enlaces || ENLACES_SEED} colorDe={(p) => PERSPECTIVA_COLOR[p]} />
 
       <div style={{ marginTop: 12, marginBottom: 4 }}>
         <div
@@ -21234,6 +21236,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                   {conceptoActual.definicion}
                 </p>
                 <div style={{ marginBottom: 16 }}><Fuente texto={conceptoActual.fuente} /></div>
+                <FichaTermino concepto={conceptoActual} escuelaId={escuelaGlosario} conceptosEscuela={conceptosEscuela} protocolos={PROTOCOLOS_SEED} procedimientos={PROCEDIMIENTOS_CLINICOS} onIrAConcepto={setConceptoGlosario} />
 
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8, flexWrap: "wrap", gap: 8 }}>
                   <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet }}>
