@@ -1172,3 +1172,4 @@ html[data-tema="oscuro"] .psn-caso-ejemplos button:hover, html[data-tema="oscuro
 .psn-cob-tabla thead th { font: 700 12px var(--f-text); color: var(--c-inkSoft); border-top: 0; } .psn-cob-tabla tbody th { font-weight: 600; border-left: 4px solid var(--pc); }
 .psn-cob-tabla .barra { display: block; height: 8px; min-width: 90px; background: var(--c-paperDark); border-radius: 4px; overflow: hidden; } .psn-cob-tabla .barra i { display: block; height: 100%; background: var(--pc); }
 .psn-cob-tabla tr.baja td:nth-child(2) { color: var(--c-gold); font-weight: 700; }
+.psn-ficha-tema { padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--c-gold) 22%, transparent); color: var(--c-ink); font: 600 13px var(--f-text); }

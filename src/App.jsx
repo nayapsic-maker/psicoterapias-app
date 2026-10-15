@@ -21236,7 +21236,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                   {conceptoActual.definicion}
                 </p>
                 <div style={{ marginBottom: 16 }}><Fuente texto={conceptoActual.fuente} /></div>
-                <FichaTermino concepto={conceptoActual} escuelaId={escuelaGlosario} conceptosEscuela={conceptosEscuela} protocolos={PROTOCOLOS_SEED} procedimientos={PROCEDIMIENTOS_CLINICOS} onIrAConcepto={setConceptoGlosario} />
+                <FichaTermino concepto={conceptoActual} escuelaId={escuelaGlosario} conceptosEscuela={conceptosEscuela} protocolos={PROTOCOLOS_SEED} procedimientos={PROCEDIMIENTOS_CLINICOS} onIrAConcepto={setConceptoGlosario} glosario={GLOSARIO} escuelas={escuelas} onIrAOtro={(esc, term) => { setEscuelaGlosario(esc); setConceptoGlosario(term); }} />
 
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8, flexWrap: "wrap", gap: 8 }}>
                   <div style={{ fontFamily: FONT_MONO, fontSize: 10.5, textTransform: "uppercase", color: COLORS.garnet }}>

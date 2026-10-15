@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
-import { normT } from "./Deteccion.js";
+import { normT, analiza } from "./Deteccion.js";
 import Fuente from "./Fuente.jsx";
 
 const palabras = (t) => new Set(normT(String(t || "")).split(" ").filter((w) => w.length > 5));
 
 /* Ampliación de la ficha de un concepto: dónde se aplica (protocolos y técnicas de su escuela que lo mencionan)
    y qué otros conceptos de la misma escuela se le parecen por su definición. */
-export default function FichaTermino({ concepto, escuelaId, conceptosEscuela, protocolos, procedimientos, onIrAConcepto }) {
+export default function FichaTermino({ concepto, escuelaId, conceptosEscuela, protocolos, procedimientos, onIrAConcepto, glosario = [], escuelas = [], onIrAOtro }) {
   const base = useMemo(() => normT(String(concepto.termino).split(" (")[0]), [concepto]);
   const aplica = useMemo(() => {
     if (base.length < 5) return [];
@@ -21,12 +21,15 @@ export default function FichaTermino({ concepto, escuelaId, conceptosEscuela, pr
     return conceptosEscuela
       .filter((c) => c.termino !== concepto.termino)
       .map((c) => { const b = palabras(c.definicion); let n = 0; a.forEach((w) => { if (b.has(w)) n += 1; }); return { c, s: n / Math.sqrt(a.size * (b.size || 1)) }; })
-      .filter((x) => x.s > 0.07)
+      .filter((x) => x.s > 0)
       .sort((x, y) => y.s - x.s)
-      .slice(0, 5)
+      .slice(0, 4)
       .map((x) => x.c);
   }, [concepto, conceptosEscuela]);
-  if (aplica.length === 0 && vecinos.length === 0) return null;
+  const temas = useMemo(() => analiza(String(concepto.termino) + ". " + String(concepto.definicion)).temas.slice(0, 4), [concepto]);
+  const otros = useMemo(() => glosario.filter((g) => g.escuela !== escuelaId && g.tipo === concepto.tipo && base.length > 4 && normT(String(g.termino).split(" (")[0]) === base).slice(0, 5), [glosario, escuelaId, concepto, base]);
+  const nombreEsc = (id) => (escuelas.find((e) => e.id === id) || {}).nombre || id;
+  if (aplica.length === 0 && vecinos.length === 0 && temas.length === 0 && otros.length === 0) return null;
   return (
     <div className="psn-ficha-ext">
       {aplica.length > 0 && (
@@ -43,6 +46,18 @@ export default function FichaTermino({ concepto, escuelaId, conceptosEscuela, pr
               </li>
             ))}
           </ul>
+        </section>
+      )}
+      {temas.length > 0 && (
+        <section>
+          <h5>Se relaciona con estos motivos de consulta</h5>
+          <div className="psn-ficha-vecinos">{temas.map((t) => <span key={t.id} className="psn-ficha-tema">{t.t}</span>)}</div>
+        </section>
+      )}
+      {otros.length > 0 && (
+        <section>
+          <h5>El mismo término en otras escuelas</h5>
+          <div className="psn-ficha-vecinos">{otros.map((g) => <button key={g.escuela + g.termino} onClick={() => onIrAOtro && onIrAOtro(g.escuela, g.termino)}>{g.termino} · {nombreEsc(g.escuela)}</button>)}</div>
         </section>
       )}
       {vecinos.length > 0 && (
