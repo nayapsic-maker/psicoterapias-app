@@ -205,7 +205,7 @@ const LECTURA_REL = {
 };
 export function TraduceACiegas({ enlaces, glosario, escuelas, colorDe, onIrAEscuela }) {
   const porEsc = useMemo(() => Object.fromEntries(escuelas.map((e) => [e.id, e])), [escuelas]);
-  const pool = useMemo(() => enlaces.filter((l) => l.conceptoA.escuela !== l.conceptoB.escuela && porEsc[l.conceptoA.escuela] && porEsc[l.conceptoB.escuela]), [enlaces, porEsc]);
+  const pool = useMemo(() => enlaces.filter((l) => ["equivalente aproximado", "análogo funcional", "solapamiento parcial"].includes(l.relacion) && l.conceptoA.escuela !== l.conceptoB.escuela && porEsc[l.conceptoA.escuela] && porEsc[l.conceptoB.escuela]), [enlaces, porEsc]);
   const ids = useMemo(() => pool.map((l) => "tr:" + l.id), [pool]);
   const [q, setQ] = useState(null);
   const [resp, setResp] = useState(null);
