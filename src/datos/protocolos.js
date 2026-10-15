@@ -2368,6 +2368,21 @@ export const PROCEDIMIENTOS_CLINICOS = {
   ],
   i1: [
     {
+      nombre: "Asesoramiento en el duelo: cuatro tareas y diez principios (Worden)",
+      tipo: "protocolo",
+      fuente: "Worden, J. W. (2013). El tratamiento del duelo: Asesoramiento psicológico y terapia (4.ª ed.). Paidós, pp. 57–68 y 112–127.",
+      poblacion: "Personas en duelo agudo tras la muerte de un ser querido; se aplica «con independencia de la filosofía de asesoramiento que se siga y del contexto de trabajo» (Worden, 2013, p. 112).",
+      fases: [
+        "Tarea I — Aceptar la realidad de la pérdida: afrontar plenamente que la persona ha muerto y no volverá; lo contrario es la negación de la realidad, del significado o de la irreversibilidad (Worden, 2013, pp. 57–58). Principio 1: hacer que la persona hable de la pérdida (dónde ocurrió, cómo se enteró, cómo fue el funeral), con tiempo, porque muchas viudas necesitan hasta tres meses para creerlo del todo (pp. 112–113).",
+        "Tarea II — Elaborar el dolor de la pérdida: el dolor físico, emocional y conductual no reconocido se manifiesta en síntomas o conductas anormales; todo lo que permite evitarlo prolonga el duelo (Worden, 2013, p. 62). Principio 2: ayudar a identificar y vivir los sentimientos, especialmente ira, culpa, ansiedad, desamparo y soledad (pp. 113–120).",
+        "Tarea III — Adaptarse a un mundo sin el fallecido: tres áreas de adaptación, externas (roles que desempeñaba), internas (imagen de sí) y espirituales (creencias, valores y supuestos sobre el mundo) (Worden, 2013, p. 64). Principio 3: ayudar a vivir sin el fallecido, y Principio 4: ayudar a dotar de significado la pérdida (pp. 120–121).",
+        "Tarea IV — Hallar una conexión perdurable con el fallecido al embarcarse en una vida nueva: en esta edición Worden sustituye «retirar la energía emocional» por mantener vínculos continuos, porque las personas no se desvinculan de los difuntos (Worden, 2013, p. 67). Principio 5: facilitar la recolocación emocional del fallecido, ayudando a encontrarle un lugar nuevo para poder establecer otras relaciones (pp. 122–123).",
+        "Principios transversales: 6, dar tiempo para elaborar el duelo (p. 123); 7, interpretar la conducta «normal» para aliviar la sensación de volverse loco (p. 124); 8, tener en cuenta las diferencias individuales (p. 125); 9, examinar defensas y estilos de afrontamiento (p. 126).",
+        "Principio 10 — Identificar patologías y derivar: entre el 10 y el 15 por ciento de las personas en duelo desarrollan alguna forma de duelo complicado; cuando el asesoramiento no basta, se deriva (Worden, 2013, p. 127).",
+      ],
+      condiciones: "Es asesoramiento del duelo agudo y su adaptación, no psicoterapia del duelo complicado; la parte sobre duelo patológico y su tratamiento se desarrolla en capítulos posteriores del mismo libro, que no se incorporan aquí.",
+    },
+    {
       nombre: "Reparación de rupturas en la alianza de trabajo (ruptura-resolución)",
       tipo: "técnica",
       fuente: "Safran, J. D., Muran, J. C. (2000). Negotiating the Therapeutic Alliance. Guilford Press.",

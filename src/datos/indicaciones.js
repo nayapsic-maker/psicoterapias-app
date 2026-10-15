@@ -3,6 +3,7 @@
    Clave: «escuela|comienzo del nombre». Los pasos internos de un protocolo (p. ej. «Regla 2» de la FAP)
    no figuran: se consultan dentro de su protocolo. Los temas son los de Deteccion.js. */
 export const INDICACIONES = {
+  "i1|Asesoramiento en el duelo: cu": ["duelo"],
   // ---- Humanista-existencial
   "h2|Psicoterapia Positiva (PTP, 1": ["animo"],
   "h2|Psicoterapia Positiva, manual": ["animo"],
