@@ -879,6 +879,20 @@ export const PROCEDIMIENTOS_CLINICOS = {
   ],
   c3: [
     {
+      nombre: "Terapia cognitivo-conductual para los trastornos de la conducta alimentaria: etapas y componentes (Waller et al.)",
+      tipo: "protocolo",
+      fuente: "Waller, G., Cordery, H., Corstorphine, E., Hinrichsen, H., Lawson, R., Mountford, V., y Russell, K. (2007). Cognitive behavioral therapy for eating disorders: A comprehensive treatment guide. Cambridge University Press, pp. 13–14 y 154–238.",
+      poblacion: "Personas con trastornos de la conducta alimentaria, desde los problemas más simples hasta los más complejos o con comorbilidad; el libro defiende aplicar principios con flexibilidad y no seguir los protocolos de forma rígida (Waller et al., 2007, p. 13).",
+      fases: [
+        "Etapas generales, que no forman una secuencia rígida sino temas que se solapan y a los que se vuelve: implicación del paciente y, si procede, de la familia; evaluación; explicación del tratamiento y sus límites; formulación integral; planificación con el paciente; aumento de la motivación; psicoeducación; estructuración de la ingesta; trabajo sobre los objetivos centrales con técnicas cognitivo-conductuales; aumento o estabilización del peso; trabajo con la comorbilidad; qué hacer cuando la TCC no funciona; prevención de recaídas y cierre (Waller et al., 2007, pp. 13–14).",
+        "Duración: se fija un número de sesiones a partir de la evaluación y la formulación; normalmente 20 en la bulimia o la bulimia atípica y 40 cuando hace falta alcanzar un peso saludable, con sesiones adicionales (10–20) si hay comorbilidad importante. Si el peso es tan bajo que supone sobre todo un riesgo médico y nutricional, no se ofrece TCC en ese momento (Waller et al., 2007, p. 14).",
+        "Automonitoreo y peso: uso de diarios de alimentación, con su justificación, formato, dificultades y límites (pp. 154–161), y pesaje semanal con gráfica de peso (pp. 162–174), según el índice del libro.",
+        "Habilidades cognitivo-conductuales básicas: preguntas socráticas (p. 177), flecha descendente (p. 179), reestructuración cognitiva (p. 183), pensamiento en continuo (p. 184), registros de datos positivos (p. 187) y experimentos conductuales (p. 190), según el índice del libro.",
+        "Sobrevaloración de la comida, el peso y la forma: formulación con creencias sobrevaloradas, gráfico circular de autoevaluación y estrategias cognitivas y conductuales para modificarla (pp. 197–223); y trabajo con la imagen corporal, cuyo objetivo es la aceptación más que la satisfacción (pp. 224–238), según el índice del libro.",
+      ],
+      condiciones: "Los apartados de 3 a 15 y de 16 a 23 se describen aquí a partir del índice del libro y de la lectura de los capítulos 1 y 2; el contenido detallado de cada técnica debe consultarse en el texto. La evaluación del riesgo médico previa al tratamiento ocupa el capítulo 3 (pp. 16–27).",
+    },
+    {
       nombre: "Técnicas conductuales de la Terapia Cognitiva",
       tipo: "técnica",
       fuente: "Ruiz, Díaz y Villalobos (2012), pp. 384–386.",
