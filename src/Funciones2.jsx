@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { analiza, semejantes, RIESGOS } from "./Deteccion.js";
 import { AFINES } from "./Afines.js";
 import Fuente from "./Fuente.jsx";
+import Paralelos from "./Paralelos.jsx";
 import { slugsDeAutores, AUTORES } from "./Figuras.jsx";
 import { norm, unir, oraciones, Mini, COLOR_REL, barajar, recortar } from "./Funciones.jsx";
 
@@ -851,6 +852,7 @@ export function TraductorClinico({ escuelas, glosario, enlaces, colorDe, onIrAEs
           ))}
         </div>
       )}
+      {q.length < 3 && <Paralelos glosario={glosario} escuelas={escuelas} colorDe={colorDe} idDe={idDe} perspectivas={perspectivas} onIrAEscuela={onIrAEscuela} />}
       {q.length >= 3 && candidatos.length === 0 && nociones.length === 0 && <p className="psn-vacio">No encontré ese término. Prueba con otra palabra más específica o con una de las nociones sugeridas.</p>}
       {candidatos.length > 0 && <h5 className="psn-sub-h">En el glosario y el diccionario traslacional</h5>}
       {candidatos.length > 1 && (

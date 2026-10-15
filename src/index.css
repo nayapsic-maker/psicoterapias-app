@@ -1178,3 +1178,10 @@ html[data-tema="oscuro"] .psn-caso-ejemplos button:hover, html[data-tema="oscuro
   .psn-rosa-leyenda { gap: 2px 8px; }
   .psn-rosa-leyenda button { padding: 10px 8px; min-height: 40px; box-sizing: border-box; display: flex; align-items: center; }
 }
+
+/* Paralelos entre perspectivas */
+.psn-par-selector{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0}
+.psn-par-selector select{max-width:100%;background:var(--bg,inherit);color:inherit;border:1px solid currentColor;border-radius:6px;padding:4px 6px}
+.psn-par-celda{margin:0 0 10px;padding-bottom:8px;border-bottom:1px dashed rgba(128,128,128,.4)}
+.psn-par-celda p{margin:4px 0}
+.psn-par-celda summary{cursor:pointer;font-size:.85em;opacity:.85}
