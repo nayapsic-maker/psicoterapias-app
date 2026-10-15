@@ -1548,21 +1548,6 @@ export const PROCEDIMIENTOS_CLINICOS = {
         "Funciona porque en vez de interpretar la proyección, la pone en escena: al ver representada su propia percepción exagerada, el paciente puede reconocer la parte suya en la proyección sin sentirse acusado.",
     },
     {
-      nombre: "Ejercicio de contemplación estética (entrenamiento fenomenológico entre sesiones) — Escuela de Cleveland",
-      tipo: "técnica",
-      fuente: "Zinker, J. (2001), citado en Zinker (1977/2001).",
-      fases: [
-        "Paso 1 — Asignación del espacio: se instruye al consultante a acudir a un lugar de contemplación estética (museo, exposición, concierto) fuera de su ambiente habitual de estrés.",
-        "Paso 2 — Focalización y contemplación: se le pide que observe en silencio una sola obra durante un tiempo prolongado, sin juzgar si es 'buena' o 'mala'.",
-        "Paso 3 — Traducción fenomenológica: tarea de registro escrito describiendo con precisión lo observado, buscando el lenguaje organísmico exacto para los micro-detalles.",
-        "Paso 4 — Asimilación en sesión: en el siguiente encuentro se discute cómo ese esfuerzo contemplativo afinó la agudeza visual y emocional del cliente para observar su propio mundo interno.",
-      ],
-      condiciones:
-        "Tarea entre sesiones (no técnica intrasesión) orientada a romper el hábito de racionalización y enjuiciamiento prematuro ('sobre-detallismo' intelectual), entrenando la recolección de datos fenomenológicos crudos.",
-      porQueFunciona:
-        "Funciona porque traslada al terreno seguro del arte el mismo músculo perceptivo —observar sin juzgar ni explicar— que luego se requiere para percibir la propia experiencia corporal y emocional en sesión.",
-    },
-    {
       nombre: "Evolución de un experimento gestáltico en diez etapas (Zinker, texto original)",
       tipo: "técnica",
       fuente: "Zinker, J. (2003). El proceso creativo en la terapia guestáltica (L. Justo, Trad.). Editorial Paidós. (Obra original publicada en 1977; reimpresión de 2003), cap. 6, pp. 108–111.",
