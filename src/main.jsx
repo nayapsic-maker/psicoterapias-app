@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -9,7 +9,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Cosmos />
     <ErrorBoundary>
-      <App />
+      <Suspense fallback={null}>
+        <App />
+      </Suspense>
     </ErrorBoundary>
   </StrictMode>,
 )
