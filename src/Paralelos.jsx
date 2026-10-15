@@ -40,10 +40,12 @@ export default function Paralelos({ glosario, escuelas, colorDe, perspectivas, o
   return (
     <section className="psn-paralelos">
       <p className="psn-intro">Cada tema reúne el término con que cada perspectiva responde a la misma pregunta clínica, y permite traducir de una perspectiva a otra. Los temas con «diferencia clave» y «falso amigo» traen matices de síntesis orientativa; en los demás, la definición es la de la propia perspectiva.</p>
-      <div className="psn-trad-cands" role="tablist" aria-label="Paralelos">
-        {LISTA.map((p) => (
-          <button key={p.id} className={p.id === pid ? "on" : ""} onClick={() => setPid(p.id)}>{p.titulo}</button>
-        ))}
+      <div className="psn-par-selector">
+        <label>Tema{" "}
+          <select value={par.id} onChange={(e) => setPid(e.target.value)} aria-label="Tema de comparación">
+            {LISTA.map((p) => <option key={p.id} value={p.id}>{p.titulo}</option>)}
+          </select>
+        </label>
       </div>
       <p><b>{par.pregunta}</b></p>
       <div className="psn-par-selector">

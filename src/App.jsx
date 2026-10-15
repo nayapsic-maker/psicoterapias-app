@@ -21660,8 +21660,11 @@ export default function App() {
   const temaPrevioRef = useRef(null);
   const primeraRef = useRef(true);
   const [destello, setDestello] = useState({ n: 0, entra: true });
+  const modoPrevioRef = useRef(false);
   useEffect(() => {
     if (primeraRef.current) { primeraRef.current = false; return; }
+    if (modoPrevioRef.current === modoEstudio) return;
+    modoPrevioRef.current = modoEstudio;
     try { document.documentElement.dataset.estudio = modoEstudio ? "1" : "0"; } catch (e) {}
     if (modoEstudio) {
       temaPrevioRef.current = tema;
