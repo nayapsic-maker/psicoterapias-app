@@ -2121,7 +2121,7 @@ const ESCUELAS_SEED = [
       "Miller, W. R., Rollnick, S. (2002). Motivational Interviewing (2.ª ed.). Guilford Press.",
       "Miller, W. R., Forcehimes, A. A., Zweben, A. (2019). Treating addiction: A guide for professionals (2.ª ed.). Guilford Press.",
       "Rollnick, S., Miller, W. R., Butler, C. C. (2023). Motivational interviewing in health care (2.ª ed.). Guilford Press.",
-      "Lizarraga, S., Ayarra, M. (2011). Entrevista motivacional.",
+      "Lizarraga, S., Ayarra, M. (2001). Entrevista motivacional.",
       "Hettema, J., Steele, J., Miller, W. R. (2005). Motivational interviewing. Annual Review of Clinical Psychology, 1.",
       "Project MATCH Research Group (1993, 1997). Project MATCH: Rationale and methods. Alcoholism: Clinical and Experimental Research, 17.",
       "Magill, M. et al. (2014). The technical hypothesis of motivational interviewing. Journal of Consulting and Clinical Psychology, 82(6).",

@@ -1210,7 +1210,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de entrevista motivacional breve (30 segundos a 15 minutos)",
       tipo: "técnica",
-      fuente: "Lizarraga, S. y Ayarra, M. (2011). Entrevista motivacional, pp. 6 y 13; Torres Carvajal, G. A. (2010). La entrevista motivacional en adicciones. Revista Colombiana de Psiquiatría, 39(Supl.).",
+      fuente: "Lizarraga, S. y Ayarra, M. (2001). Entrevista motivacional, pp. 6 y 13; Torres Carvajal, G. A. (2010). La entrevista motivacional en adicciones. Revista Colombiana de Psiquiatría, 39(Supl.).",
       fases: [
         "1. Inicio: introducir el tema mediante pregunta abierta y solicitud de permiso («¿Quieres que hablemos de...?»).",
         "2. Exploración de motivos de preocupación con técnicas de apoyo narrativo.",
