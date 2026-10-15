@@ -14137,7 +14137,7 @@ function EtiquetaDefinible({ termino, escuelaId, tipo, onAbrir, color, icono, co
       style={{
         fontFamily: "var(--f-mono)",
         fontSize: 10.5,
-        color: color || COLORS.primaryDark,
+        color: color || COLORS.ink,
         background: COLORS.cardBg,
         border: `1px solid ${color || COLORS.primary}`,
         borderRadius: 8,
@@ -15156,13 +15156,13 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
           )}
 
           {resultados.transversalesR.length > 0 && (
-            <BloqueResultados titulo="Nudos temáticos transversales" color={COLORS.primaryDark}>
+            <BloqueResultados titulo="Nudos temáticos transversales" color={COLORS.ink}>
               {resultados.transversalesR.map((t, i) => (
                 <ResultadoItem
                   query={q}
                   modoEstudio={modoEstudio}
                   key={"tr" + i}
-                  color={PERSPECTIVA_COLOR[t.perspectiva] || COLORS.primaryDark}
+                  color={PERSPECTIVA_COLOR[t.perspectiva] || COLORS.ink}
                   etiqueta={`${t.cluster} · ${t.perspectiva}`}
                   titulo={t.termino}
                   texto={t._frag}
@@ -15529,7 +15529,7 @@ function BotonExportarImagen({ onClick, etiqueta = "exportar imagen" }) {
       style={{
         display: "inline-flex", alignItems: "center", gap: 5, fontFamily: FONT_MONO, fontSize: 10.5,
         padding: "5px 11px", borderRadius: 14, border: `1px solid ${COLORS.line}`, background: COLORS.cardBg,
-        color: COLORS.primaryDark, cursor: "pointer",
+        color: COLORS.ink, cursor: "pointer",
       }}
     >
       <Download size={12} /> {etiqueta}
@@ -15659,7 +15659,7 @@ function ContenedorPanZoom({ children, altura = 420, escalaMin = 0.5, escalaMax 
 }
 const ESTILO_BOTON_ZOOM = {
   width: 30, height: 30, borderRadius: "50%", border: "none", background: COLORS.cardBg,
-  color: COLORS.primaryDark, fontSize: 15, fontWeight: 700, cursor: "pointer", lineHeight: 1,
+  color: COLORS.ink, fontSize: 15, fontWeight: 700, cursor: "pointer", lineHeight: 1,
   boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
 };
 
@@ -16118,12 +16118,12 @@ const ESCUELA_REPRESENTATIVA_POR_PERSPECTIVA = {
 function DetalleCobertura({ escuelas, enlaces, glosario, protocolos, nudos }) {
   const [abierto, setAbierto] = useState(false);
   const stats = [
-    { n: 7, label: "perspectivas", color: COLORS.primaryDark },
+    { n: 7, label: "perspectivas", color: COLORS.ink },
     { n: escuelas.length, label: "escuelas", color: COLORS.garnet },
     { n: enlaces.length, label: "enlaces traslacionales", color: COLORS.clay },
     { n: glosario.length, label: "términos de glosario", color: COLORS.sage },
     { n: protocolos, label: "protocolos y técnicas", color: COLORS.gold },
-    { n: nudos, label: "nudos temáticos", color: COLORS.primaryDark },
+    { n: nudos, label: "nudos temáticos", color: COLORS.ink },
   ];
   return (
     <div style={{ marginBottom: 22 }}>
@@ -16382,7 +16382,7 @@ function TablaComparativa({ entidades, campos, colorDe, idDe, nombreDe, onClickE
               titulo: "Tabla comparativa",
               columnas: [{ label: "Categoría" }, ...entidades.map((ent) => ({ label: nombreDe(ent) }))],
               filas: camposVisibles.map((c) => [c.label, ...entidades.map((ent) => c.get(ent) || "—")]),
-              colorAcento: COLORS.primaryDark,
+              colorAcento: COLORS.ink,
             })
           }
         />
@@ -18092,8 +18092,8 @@ function Cabecera({ icono, titulo, subtitulo, colorAcento, autores, tituloAutore
   const gradienteSiete = `linear-gradient(to right, ${Object.values(PERSPECTIVA_COLOR).slice(0, 7).join(", ")})`;
   return (
     <div style={{ paddingBottom: 14 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, color: colorAcento || COLORS.primaryDark }}>
-        <span style={{ display: "flex", color: colorAcento || COLORS.primaryDark }}>{icono}</span>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, color: colorAcento || COLORS.ink }}>
+        <span style={{ display: "flex", color: colorAcento || COLORS.ink }}>{icono}</span>
         <h2 style={{ fontFamily: "var(--f-display)", fontSize: 23, fontWeight: 600, margin: 0, color: COLORS.ink, letterSpacing: "-0.01em" }}>{titulo}</h2>
       </div>
       {subtitulo && <p style={{ fontSize: 13, color: COLORS.inkSoft, marginTop: 7, maxWidth: 760, lineHeight: 1.55, fontFamily: "var(--f-text)" }}>{subtitulo}</p>}
@@ -22477,7 +22477,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
               style={{
                 display: "flex", alignItems: "center", gap: 3, flexShrink: 0,
                 background: COLORS.paperDark, border: `1px solid ${COLORS.line}`, borderRadius: 20,
-                padding: "3px 10px", cursor: "pointer", fontFamily: FONT_MONO, fontSize: 10.5, fontWeight: 700, color: COLORS.primaryDark,
+                padding: "3px 10px", cursor: "pointer", fontFamily: FONT_MONO, fontSize: 10.5, fontWeight: 700, color: COLORS.ink,
               }}
             >
               ‹ atrás
@@ -22498,7 +22498,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
                       background: esActual ? COLORS.paperDark : "transparent",
                       borderRadius: 14, padding: "3px 9px",
                       fontFamily: FONT_MONO, fontSize: 10.5,
-                      color: esActual ? COLORS.primaryDark : COLORS.inkSoft,
+                      color: esActual ? COLORS.ink : COLORS.inkSoft,
                       fontWeight: esActual ? 700 : 400,
                     }}
                   >
