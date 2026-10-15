@@ -19,7 +19,7 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
 const COLORS = {
   paper: "#F5F1E6", paperDark: "#E7E3D4", ink: "#12292E", inkSoft: "#46606A",
   primary: "#14606B", primaryDark: "#0C2F36", clay: "#B8741A", garnet: "#9E3B3B",
-  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE", onAcento: "#FFFFFF",
+  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE", onAcento: "#FFFFFF", hover: "#FAF6EC", hoverEtiqueta: "#CFC8B0", aviso: "#FBF3E9",
 };
 
 /* Sistema de temas: COLORS es un objeto MUTABLE referenciado por
@@ -41,7 +41,7 @@ const COLORS = {
 const TEMA_CLARO = {
   paper: "#F5F1E6", paperDark: "#E7E3D4", ink: "#12292E", inkSoft: "#46606A",
   primary: "#14606B", primaryDark: "#0C2F36", clay: "#B8741A", garnet: "#9E3B3B",
-  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE", onAcento: "#FFFFFF",
+  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE", onAcento: "#FFFFFF", hover: "#FAF6EC", hoverEtiqueta: "#CFC8B0", aviso: "#FBF3E9",
 };
 const TEMA_OSCURO = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
@@ -51,7 +51,7 @@ const TEMA_OSCURO = {
   // contraste que este tema existe para evitar.
   paper: "#000000", paperDark: "#0A0A0A", ink: "#FFFFFF", inkSoft: "#E0E0E0",
   primary: "#FFD400", primaryDark: "#000000", clay: "#FFD400", garnet: "#FF6B6B",
-  sage: "#7CFFB2", gold: "#FFD400", line: "#FFFFFF", cardBg: "#000000", onAcento: "#000000",
+  sage: "#7CFFB2", gold: "#FFD400", line: "#FFFFFF", cardBg: "#000000", onAcento: "#000000", hover: "#1C1C1C", hoverEtiqueta: "#2B2B2B", aviso: "#141414",
 };
 const TEMAS = { claro: TEMA_CLARO, oscuro: TEMA_OSCURO };
 const TEMA_STORAGE_KEY = "psicoterapias:tema";
@@ -14436,7 +14436,7 @@ function ModalDefinicion({ dato, onCerrar, onIrAProtocolo, onIrAEscuela }) {
             )}
           </>
         ) : (
-          <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 12, padding: 12 }}>
+          <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: COLORS.aviso, border: `1px solid ${COLORS.gold}`, borderRadius: 12, padding: 12 }}>
             <AlertTriangle size={16} color={COLORS.gold} style={{ flexShrink: 0, marginTop: 2 }} />
             <p style={{ margin: 0, fontFamily: "var(--f-text)", fontSize: 13.5, lineHeight: 1.5, color: COLORS.ink }}>{dato.mensajePendiente}</p>
           </div>
@@ -16131,7 +16131,7 @@ function MapaConceptualEscuelas({ escuelas, onIrAEscuela }) {
                 onKeyDown={activarConTeclado(() => setSeleccionId(n.e.id))}
               >
                 <circle cx={n.x} cy={n.y} r={10} fill={n.hub.color} stroke={activo ? COLORS.gold : COLORS.paper} strokeWidth={activo ? 3 : 1.5} opacity={0.9} />
-                <text x={n.x} y={n.y + 3.5} textAnchor="middle" fontFamily={FONT_MONO} fontWeight={700} fontSize={9} fill="#fff" style={{ pointerEvents: "none" }}>
+                <text x={n.x} y={n.y + 3.5} textAnchor="middle" fontFamily={FONT_MONO} fontWeight={700} fontSize={9} fill={COLORS.onAcento} style={{ pointerEvents: "none" }}>
                   {n.e.nombre.charAt(0)}
                 </text>
                 <text
@@ -16511,7 +16511,7 @@ function TablaComparativa({ entidades, campos, colorDe, idDe, nombreDe, onClickE
                 onMouseEnter={() => setFilaHover(c.key)}
                 onMouseLeave={() => setFilaHover((f) => (f === c.key ? null : f))}
                 style={{
-                  background: filaHover === c.key ? COLORS.line : COLORS.paperDark,
+                  background: filaHover === c.key ? COLORS.hoverEtiqueta : COLORS.paperDark,
                   borderTop: i > 0 ? `1px solid ${COLORS.line}` : "none",
                   borderRight: `1px solid ${COLORS.line}`,
                   padding: "10px 8px",
@@ -16541,7 +16541,7 @@ function TablaComparativa({ entidades, campos, colorDe, idDe, nombreDe, onClickE
                       borderTop: i > 0 ? `1px solid ${COLORS.line}` : "none",
                       borderLeft: `1px solid ${COLORS.line}`,
                       padding: "10px 10px",
-                      background: filaHover === c.key ? "#faf6ec" : COLORS.cardBg,
+                      background: filaHover === c.key ? COLORS.hover : COLORS.cardBg,
                       cursor: texto && texto.length > truncarA ? "pointer" : "default",
                       transition: "background 0.12s",
                     }}
@@ -17178,11 +17178,11 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
           width: "fit-content",
         }}
       >
-        <BookOpen size={14} color={vistaAutores ? "#fff" : COLORS.ink} />
+        <BookOpen size={14} color={vistaAutores ? COLORS.cardBg : COLORS.ink} />
         <span style={{ fontFamily: "Georgia,serif", fontSize: 13, fontWeight: 700, color: vistaAutores ? COLORS.onAcento : COLORS.ink }}>
           Autores y teorías fundantes ({AUTORES_TEORICOS.length})
         </span>
-        <span style={{ fontFamily: FONT_MONO, fontSize: 10, color: vistaAutores ? "#fff" : COLORS.inkSoft }}>{vistaAutores ? "ocultar ▲" : "ver ▼"}</span>
+        <span style={{ fontFamily: FONT_MONO, fontSize: 10, color: vistaAutores ? COLORS.cardBg : COLORS.inkSoft }}>{vistaAutores ? "ocultar ▲" : "ver ▼"}</span>
       </div>
 
       {vistaAutores && (
@@ -18624,7 +18624,7 @@ function DetalleCondiciones({ texto }) {
         {abierto ? "▾ ocultar condiciones y delimitaciones" : "▸ ver condiciones y delimitaciones (enlace)"}
       </span>
       {abierto && (
-        <p style={{ margin: "6px 0 0", fontFamily: "var(--f-text)", fontSize: 12, lineHeight: 1.55, color: COLORS.ink, background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 8, padding: 10 }}>
+        <p style={{ margin: "6px 0 0", fontFamily: "var(--f-text)", fontSize: 12, lineHeight: 1.55, color: COLORS.ink, background: COLORS.aviso, border: `1px solid ${COLORS.gold}`, borderRadius: 8, padding: 10 }}>
           {texto}
         </p>
       )}
@@ -19442,7 +19442,7 @@ function TablaProtocolosGenerica({ filas, ordenTabla, cambiarOrden, tituloVacio 
                   onMouseLeave={() => setFilaHover((k) => (k === key ? null : k))}
                   style={{
                     borderBottom: `1px solid ${COLORS.line}`,
-                    background: hover ? "#faf6ec" : i % 2 === 0 ? "transparent" : COLORS.paperDark,
+                    background: hover ? COLORS.hover : i % 2 === 0 ? "transparent" : COLORS.paperDark,
                     transition: "background 0.1s",
                   }}
                 >
@@ -20124,7 +20124,7 @@ function TraductorEnVivo({ escuelas, enlaces, tipo, onSeleccionar }) {
                 }}
                 style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 12px", cursor: "pointer", borderBottom: i < resultados.length - 1 ? `1px solid ${COLORS.paperDark}` : "none" }}
                 onMouseEnter={(ev) => (ev.currentTarget.style.background = COLORS.paperDark)}
-                onMouseLeave={(ev) => (ev.currentTarget.style.background = "#fff")}
+                onMouseLeave={(ev) => (ev.currentTarget.style.background = COLORS.cardBg)}
               >
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontFamily: FONT_SERIF, fontWeight: 700, fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{g.termino}</div>
@@ -21120,7 +21120,7 @@ function ComparadorPsicopatologias({ escuelas, filtro }) {
 
   return (
     <div style={{ display: "grid", gap: 20 }}>
-      <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: "#FBF3E9", border: `1px solid ${COLORS.gold}`, borderRadius: 12, padding: 12, marginBottom: 4 }}>
+      <div style={{ display: "flex", gap: 8, alignItems: "flex-start", background: COLORS.aviso, border: `1px solid ${COLORS.gold}`, borderRadius: 12, padding: 12, marginBottom: 4 }}>
         <AlertTriangle size={15} color={COLORS.gold} style={{ flexShrink: 0, marginTop: 2 }} />
         <p style={{ margin: 0, fontFamily: "var(--f-text)", fontSize: 12.5, color: COLORS.ink, lineHeight: 1.5 }}>
           Esta comparación pone una al lado de otra las concepciones de psicopatología <em>en los propios términos de cada escuela</em>. No implica que describan el mismo fenómeno: comparar no es igualar. Para la traducción explícita entre conceptos —con su tipo de relación y su nota de distorsión— usa el glosario.
@@ -21191,7 +21191,7 @@ function GrafoConceptual({ centro, colorCentro, nodos, onIrA }) {
       })}
       {/* nodo central */}
       <circle cx={CX} cy={CY} r={26} fill={colorCentro} stroke={COLORS.paper} strokeWidth={2.5} />
-      <text x={CX} y={CY + 4} textAnchor="middle" fontFamily={FONT_SERIF} fontWeight={700} fontSize={9.5} fill="#fff">
+      <text x={CX} y={CY + 4} textAnchor="middle" fontFamily={FONT_SERIF} fontWeight={700} fontSize={9.5} fill={COLORS.onAcento}>
         {centro.length > 16 ? centro.slice(0, 14) + "…" : centro}
       </text>
       {/* nodos periféricos */}
@@ -21209,7 +21209,7 @@ function GrafoConceptual({ centro, colorCentro, nodos, onIrA }) {
             onClick={() => onIrA(n)}
           >
             <circle cx={nx} cy={ny} r={esActivo ? 21 : 18} fill={n.otroColor} stroke={COLORS.paper} strokeWidth={2} />
-            <text x={nx} y={ny + 3.5} textAnchor="middle" fontFamily={FONT_SERIF} fontWeight={700} fontSize={8} fill="#fff">
+            <text x={nx} y={ny + 3.5} textAnchor="middle" fontFamily={FONT_SERIF} fontWeight={700} fontSize={8} fill={COLORS.onAcento}>
               {n.otro.nombre.length > 13 ? n.otro.nombre.slice(0, 11) + "…" : n.otro.nombre}
             </text>
             {esActivo && (
