@@ -183,7 +183,7 @@ const CRITERIOS_VERDAD = [
   { clave: "correspondencia", test: /correspondencia|\bempíric|\bobservable|\bexperimental\b/i, abrev: "COR", label: "Correspondencia empírica", color: "#4A6B70" },
   { clave: "pragmatico", test: /pragmátic/i, abrev: "PRAG", label: "Pragmático", color: "#9C6B4A" },
   { clave: "coherencia", test: /coherencia/i, abrev: "COH", label: "Coherencia narrativa/sistémica", color: "#5C7A5E" },
-  { clave: "hermeneutico", test: /hermenéutic|narrativ/i, abrev: "HERM", label: "Hermenéutico-narrativo", color: "#B08A3E" },
+  { clave: "hermeneutico", test: /hermenéutic|narrativ/i, abrev: "HERM", label: "Hermenéutico-narrativo", color: "#8A6420" },
   // Se amplió con «empátic» y «experiencial» (con límite de palabra, para
   // no capturar «experimental» por error): varias escuelas humanistas y
   // psicodinámicas relacionales describen su criterio de verdad como
