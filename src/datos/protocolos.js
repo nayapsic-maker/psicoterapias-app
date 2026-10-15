@@ -768,7 +768,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Estructura paso a paso de una sesión psicoanalítica clásica",
       tipo: "técnica",
-      fuente: "Freud, S. (1912, 1913). Consejos al médico / Sobre la iniciación del tratamiento.",
+      fuente: "Freud, S. (1912). Consejos al médico sobre el tratamiento psicoanalítico; Freud, S. (1913). Sobre la iniciación del tratamiento (Nuevos consejos sobre la técnica del psicoanálisis, I).",
       fases: [
         "Establecimiento del encuadre: hora fija de sesión reservada al paciente, uso del diván con el analista fuera del campo visual, para aislar la transferencia de contaminaciones externas (Freud, 1913, pp. 127, 134).",
         "Apertura mediante la regla fundamental: se prohíbe toda agenda o revisión de temas preparados; el paciente dice todo lo que le venga a la mente, como lo haría un viajero que describe a su vecino cómo cambia el paisaje ante su vista (Freud, 1913, OC 12, p. 136; paráfrasis).",
@@ -781,7 +781,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "La técnica activa para fobias (única excepción a la no-directividad)",
       tipo: "técnica",
-      fuente: "Freud, S. (1919a, p. 158). Nuevos caminos de la terapia psicoanalítica.",
+      fuente: "",
       fases: [
         "El terapeuta reconoce que la sola asociación libre en el consultorio no basta para curar una fobia grave.",
         "Se instruye al paciente a exponerse deliberadamente a la situación temida en la vida real («andar por la calle y luchar con la angustia»).",
@@ -1036,7 +1036,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Autoanálisis Racional (RSA — Rational Self-Analysis)",
       tipo: "técnica",
-      fuente: "Maultsby (1971b, 1975, 1984).",
+      fuente: "Maultsby, M. C. (1971). Systematic, written homework in psychotherapy. Psychotherapy: Theory, Research y Practice, 8(3), 195–198; Maultsby, M. C. (1975). Help yourself to happiness: Through rational self-counseling. Esplanade Books; Maultsby, M. C. (1984). Rational behavior therapy. Prentice-Hall.",
       fases: [
         "Delimitación del formato: hoja dividida en dos mitades (izquierda: anatomía del problema; derecha: reestructuración).",
         "Registro de la columna izquierda — Sección A (acontecimiento descrito como lo grabaría una cámara, sin adjetivos ni suposiciones), Sección C (emoción o conducta perturbadora) y Sección B (pensamientos/autoverbalizaciones entre A y C).",
@@ -1063,7 +1063,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Práctica diaria de IRE y exposición in vivo (tareas entre sesiones)",
       tipo: "técnica",
-      fuente: "Maultsby (1971b, 1984).",
+      fuente: "Maultsby, M. C. (1971). Systematic, written homework in psychotherapy. Psychotherapy: Theory, Research y Practice, 8(3), 195–198; Maultsby, M. C. (1984). Rational behavior therapy. Prentice-Hall.",
       fases: [
         "Establecimiento del régimen: ejercicio de IRE ensayado en sesión, un mínimo de 10 minutos diarios en casa.",
         "Ejecución autónoma: evocar la situación A acordada, repetir con convicción las nuevas creencias (rBs) del RSA y forzar la emoción adaptativa.",
@@ -1112,7 +1112,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Intervención por tecnologías positivas (\"Smiling is Fun\")",
       tipo: "técnica",
-      fuente: "Botella, C., Baños, R. M., Guillen, V. (2017), en Positive Psychology Interventions in Practice. Springer.",
+      fuente: "Botella, C., Baños, R. M., Guillen, V. (2017). Positive technologies for improving health and well-being. En C. Proctor (Ed.), Positive psychology interventions in practice (pp. 219–234). Springer.",
       fases: [
         "Evaluación inicial: información al usuario sobre su situación de estrés, depresión y capacidad de afrontamiento (Botella, Baños y Guillen, 2017).",
         "Módulos secuenciales de activación conductual, reestructuración cognitiva y estrategias de psicología positiva, con avance autoguiado.",
@@ -1127,7 +1127,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Terapia Cognitivo-Conductual Positiva (Positive CBT)",
       tipo: "protocolo",
-      fuente: "Bannink, F. P. (2017), en Positive Psychology Interventions in Practice. Springer.",
+      fuente: "Bannink, F. P. (2017). Positive CBT in practice. En C. Proctor (Ed.), Positive psychology interventions in practice (pp. 15–28). Springer.",
       fases: [
         "Fortalecer la alianza terapéutica y evaluar primero fortalezas, recursos y lo que funciona (no el déficit).",
         "Traducir quejas en objetivos: «¿qué le gustaría ver en cambio?», descartando la lista de problemas al trabajar con lo que el cliente quiere.",
@@ -1447,7 +1447,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de representación de polaridades (el juego de la antítesis) — Gestalt clásica",
       tipo: "técnica",
-      fuente: "Levitsky, A., Perls, F. (1970/1973), en Fagan y Shepherd (Comps.), Teoría y técnica de la psicoterapia guestáltica. Amorrortu.",
+      fuente: "Levitsky, A., Perls, F. (1970/1973), citado en Fagan, J., Shepherd, I. L. (2005). Teoría y técnica de la psicoterapia guestáltica. Amorrortu.",
       fases: [
         "Paso 1 — Identificar la evitación en la superficie: no buscar motivos ocultos; preguntar «¿Qué hace usted que le impida obtener lo que desea en este momento, en esta situación inmediata?» (Fagan y Shepherd, 1973).",
         "Paso 2 — Explicitación del lenguaje no verbal: pedir al paciente que traduzca en palabras un gesto, imagen o síntoma físico; «Ponle palabras a tu movimiento de asentimiento», «Si tus lágrimas pudieran hablar, ¿qué dirían?» (De Casso, 2003).",
@@ -1461,7 +1461,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica del taller grupal (hot seat / silla caliente) — Gestalt clásica",
       tipo: "técnica",
-      fuente: "Cohn, R. C. (1970/1973), en Fagan y Shepherd (Comps.), Teoría y técnica de la psicoterapia guestáltica. Amorrortu.",
+      fuente: "Cohn, R. C. (1970/1973), citado en Fagan, J., Shepherd, I. L. (2005). Teoría y técnica de la psicoterapia guestáltica. Amorrortu.",
       fases: [
         "Paso 1 — Encuadre de la silla caliente: Perls invita «¿Quién quiere trabajar ahora conmigo? Estoy disponible»; el paciente voluntario recibe diez o cien minutos «mientras el grupo cumple fundamentalmente el papel de espectador» (Cohn, 1970/1973).",
         "Paso 2 — Resolución de polaridades (silla vacía): dividir espacialmente las fuerzas antagónicas del paciente para que dialoguen entre sí; «Cambie de lugar [...] Invente un guión o diálogo entre dos opuestos [...] por ejemplo, el dominador y el dominado» (Perls, 1977).",
@@ -1520,7 +1520,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de intervención fenomenológica-estética para parejas y familias — Escuela de Cleveland",
       tipo: "técnica",
-      fuente: "Zinker, J., Nevis, S. M. (s.f.), en Zinker, J., Bosquejos.",
+      fuente: "",
       fases: [
         "Paso 1 — Presencia y charla trivial: aclimatar a la pareja/familia antes de entrar en el conflicto.",
         "Paso 2 — Establecimiento de reglas y frontera: explicar el rol de testigo del terapeuta y retirarse físicamente de la interacción, dejando que «algo se haga figura».",
@@ -1855,7 +1855,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Registro de Seguimiento de Caso (estructura de sesión típica en 7 pasos)",
       tipo: "técnica",
-      fuente: "Martínez, E. (2009b, 2011), en Las psicoterapias existenciales. El Manual Moderno.",
+      fuente: "Martínez Ortiz, E. (Comp.). (2011). Las psicoterapias existenciales. Manual Moderno.",
       fases: [
         "Paso 1 — Ubicación de datos generales y encuadre inicial: registro formal de datos de la ficha clínica y apertura del espacio en clima empático.",
         "Paso 2 — Autodescripción vivencial: se transcriben literalmente las frases clave del consultante sobre su estado emocional, cognitivo y corporal en el 'aquí y ahora'.",
@@ -1938,7 +1938,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Método de la analítica existencial en 3 fases (Ludwig Binswanger)",
       tipo: "técnica",
-      fuente: "Binswanger, citado en Martínez Ortiz, E. (Comp.). (2011). Las psicoterapias existenciales. Manual Moderno, pp. 148 y 159 (los tres objetivos de la analítica existencial).",
+      fuente: "Martínez Ortiz, E. (Comp.). (2011). Las psicoterapias existenciales. Manual Moderno, pp. 148 y 159 (los tres objetivos de la analítica existencial).",
       fases: [
         "Análisis de la génesis de sentido: investigar la biografía del paciente para localizar el punto en que su proyecto de mundo se distorsionó o quedó anclado.",
         "Análisis de las estructuras básicas: mapear cómo se sostiene hoy ese bloqueo, sin dejarse «encantar por los síntomas», buscando el sentido intencional oculto tras ellos.",
@@ -1966,7 +1966,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de exploración de las coordenadas existenciales (tiempo)",
       tipo: "técnica",
-      fuente: "Binswanger, citado en Martínez Ortiz, E. (Comp.). (2011). Las psicoterapias existenciales. Manual Moderno, p. 142 (éxtasis temporales y anclajes).",
+      fuente: "Martínez Ortiz, E. (Comp.). (2011). Las psicoterapias existenciales. Manual Moderno, p. 142 (éxtasis temporales y anclajes).",
       fases: [
         "Mapeo temporal fenomenológico: identificar en qué «éxtasis temporal» está anclado el paciente —pasado (depresivos), presente puro (psicopáticos) o futuro (ansiosos)—, sacrificando las otras dos dimensiones.",
         "Re-orientación hacia la futurización: reabrir las posibilidades del paciente reorientándolo hacia su «poder-ser», dado que «el tiempo fundamental del existente es el futuro hacia el cual nos dirigimos y creamos».",
@@ -2010,7 +2010,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de programación de la acción (PIH)",
       tipo: "técnica",
-      fuente: "Beltrán Ortega, M., en Gimeno-Bayón Cobos, A. (Ed.). (2018). Siete casos clínicos tratados con psicoterapia integradora humanista. Desclée de Brouwer, pp. 85–86 y 96 (Anexo I, «Etapa tercera: los programas de acción»).",
+      fuente: "Gimeno-Bayón Cobos, A. (Ed.). (2018). Siete casos clínicos tratados con psicoterapia integradora humanista. Desclée de Brouwer, pp. 85–86 y 96 (Anexo I, «Etapa tercera: los programas de acción»).",
       fases: [
         "Identificación o definición del problema o problemas que el paciente presenta.",
         "Jerarquización: establecer cuál problema es el más urgente y requiere abordaje inmediato.",
@@ -2056,7 +2056,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de la «Fantasía del Proyecto» (PIH)",
       tipo: "técnica",
-      fuente: "Caso «La princesita caprichosa», en Gimeno-Bayón Cobos, A. (Ed.). (2018). Siete casos clínicos tratados con psicoterapia integradora humanista. Desclée de Brouwer, pp. 47 y 49–51 (fantasía del proyecto, Ferrucci, 1987).",
+      fuente: "Gimeno-Bayón Cobos, A. (Ed.). (2018). Siete casos clínicos tratados con psicoterapia integradora humanista. Desclée de Brouwer, pp. 47 y 49–51 (fantasía del proyecto, Ferrucci, 1987).",
       fases: [
         "Identificación del momento clínico: se aplica tras una decisión valorativa ya tomada, para ayudar a mantenerla, o ante malestar difuso y caos-confusión.",
         "Inducción de la fantasía guiada: con tono pausado, guiar al paciente a imaginar un paisaje natural relajante y un camino que asciende a una montaña donde simboliza su nuevo objetivo vital.",
