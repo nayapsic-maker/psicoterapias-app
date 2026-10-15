@@ -65,7 +65,7 @@ export function Emblema({ perspectiva, color, tam = 44 }) {
   else dibujo = <path d="M12 2.5 C12.7 8.4 15.6 11.3 21.5 12 C15.6 12.7 12.7 15.6 12 21.5 C11.3 15.6 8.4 12.7 2.5 12 C8.4 11.3 11.3 8.4 12 2.5Z" fill="currentColor" />;
   return (
     <span className="psn-emblema" style={{ width: tam, height: tam, background: color }} aria-hidden="true">
-      <svg viewBox="0 0 24 24" width={tam * 0.62} height={tam * 0.62} style={{ color: "#fff" }}>{dibujo}</svg>
+      <svg viewBox="0 0 24 24" width={tam * 0.62} height={tam * 0.62} style={{ color: COLORS.onAcento }}>{dibujo}</svg>
     </span>
   );
 }

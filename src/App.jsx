@@ -17,7 +17,7 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
 const COLORS = {
   paper: "#F5F1E6", paperDark: "#E7E3D4", ink: "#12292E", inkSoft: "#46606A",
   primary: "#14606B", primaryDark: "#0C2F36", clay: "#B8741A", garnet: "#9E3B3B",
-  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE",
+  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE", onAcento: "#FFFFFF",
 };
 
 /* Sistema de temas: COLORS es un objeto MUTABLE referenciado por
@@ -39,7 +39,7 @@ const COLORS = {
 const TEMA_CLARO = {
   paper: "#F5F1E6", paperDark: "#E7E3D4", ink: "#12292E", inkSoft: "#46606A",
   primary: "#14606B", primaryDark: "#0C2F36", clay: "#B8741A", garnet: "#9E3B3B",
-  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE",
+  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE", onAcento: "#FFFFFF",
 };
 const TEMA_OSCURO = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
@@ -49,7 +49,7 @@ const TEMA_OSCURO = {
   // contraste que este tema existe para evitar.
   paper: "#000000", paperDark: "#0A0A0A", ink: "#FFFFFF", inkSoft: "#E0E0E0",
   primary: "#FFD400", primaryDark: "#000000", clay: "#FFD400", garnet: "#FF6B6B",
-  sage: "#7CFFB2", gold: "#FFD400", line: "#FFFFFF", cardBg: "#000000",
+  sage: "#7CFFB2", gold: "#FFD400", line: "#FFFFFF", cardBg: "#000000", onAcento: "#000000",
 };
 const TEMAS = { claro: TEMA_CLARO, oscuro: TEMA_OSCURO };
 const TEMA_STORAGE_KEY = "psicoterapias:tema";
@@ -14043,7 +14043,7 @@ function SelloCriterio({ texto }) {
         fontWeight: 700,
         fontSize: 9.5,
         letterSpacing: "0.04em",
-        color: "#fff",
+        color: COLORS.onAcento,
         background: c.color,
         borderRadius: 6,
         padding: "2px 7px",
@@ -14080,7 +14080,7 @@ function BadgeEnlaces({ escuelaId, enlaces, onIrADiccionario, small }) {
         fontFamily: FONT_MONO,
         fontWeight: 700,
         fontSize: small ? 8.5 : 9.5,
-        color: vacio ? COLORS.inkSoft : "#fff",
+        color: vacio ? COLORS.inkSoft : COLORS.onAcento,
         background: vacio ? "transparent" : COLORS.primary,
         border: vacio ? `1px dashed ${COLORS.line}` : "none",
         borderRadius: 10,
@@ -14151,7 +14151,7 @@ function EtiquetaDefinible({ termino, escuelaId, tipo, onAbrir, color, icono, co
     >
       {termino}
       {typeof contador === "number" && contador > 0 && (
-        <span style={{ fontSize: 8.5, background: COLORS.garnet, color: "#fff", borderRadius: 14, padding: "0 4px" }}>{contador}</span>
+        <span style={{ fontSize: 8.5, background: COLORS.garnet, color: COLORS.onAcento, borderRadius: 14, padding: "0 4px" }}>{contador}</span>
       )}
       <span style={{ fontSize: 9, opacity: 0.7 }}>{icono || "ⓘ"}</span>
     </span>
@@ -14423,7 +14423,7 @@ function ModalAutorTeorico({ autor, onCerrar, escuelasFundamentadas, perspectiva
                   fontFamily: FONT_MONO,
                   fontSize: 10,
                   fontWeight: 700,
-                  color: "#fff",
+                  color: COLORS.onAcento,
                   background: PERSPECTIVA_COLOR[p] || COLORS.inkSoft,
                   borderRadius: 8,
                   padding: "2px 8px",
@@ -14584,7 +14584,7 @@ function Boton({ children, onClick, variant = "default", small, title, style, di
     opacity: disabled ? 0.4 : 1,
   };
   const variants = {
-    default: { background: COLORS.primary, color: document.documentElement.dataset.tema === "claro" ? "#fff" : "#0A1612" },
+    default: { background: COLORS.primary, color: document.documentElement.dataset.tema === "claro" ? COLORS.cardBg : "#0A1612" },
     ghost: { background: "transparent", color: document.documentElement.dataset.tema === "claro" ? COLORS.primaryDark : COLORS.ink },
     danger: { background: "transparent", color: COLORS.garnet, border: `1px solid ${COLORS.garnet}` },
   };
@@ -14947,7 +14947,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
                   style={{
                     fontFamily: FONT_MONO, fontSize: 10.5, padding: "4px 9px", borderRadius: 12,
                     border: `1px solid ${color}`, cursor: "pointer",
-                    background: activo ? color : "transparent", color: activo ? "#fff" : color,
+                    background: activo ? color : "transparent", color: activo ? COLORS.cardBg : color,
                   }}
                 >
                   {p}
@@ -14971,7 +14971,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
                   style={{
                     fontFamily: FONT_MONO, fontSize: 10.5, padding: "4px 9px", borderRadius: 12,
                     border: `1px solid ${c.color}`, cursor: "pointer",
-                    background: activo ? c.color : "transparent", color: activo ? "#fff" : c.color,
+                    background: activo ? c.color : "transparent", color: activo ? COLORS.cardBg : c.color,
                   }}
                 >
                   {c.label}
@@ -14987,7 +14987,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
                   style={{
                     fontFamily: FONT_MONO, fontSize: 10.5, padding: "4px 9px", borderRadius: 12,
                     border: `1px dashed ${COLORS.inkSoft}`, cursor: "pointer",
-                    background: activo ? COLORS.inkSoft : "transparent", color: activo ? "#fff" : COLORS.inkSoft,
+                    background: activo ? COLORS.inkSoft : "transparent", color: activo ? COLORS.cardBg : COLORS.inkSoft,
                   }}
                 >
                   Criterio propio / fuera de los 6 ejes
@@ -15003,7 +15003,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
             style={{
               fontFamily: FONT_MONO, fontSize: 10.5, padding: "4px 9px", borderRadius: 12,
               border: `1px solid ${COLORS.gold}`, cursor: "pointer",
-              background: soloConProcedimientos ? COLORS.gold : "transparent", color: soloConProcedimientos ? "#fff" : COLORS.gold,
+              background: soloConProcedimientos ? COLORS.gold : "transparent", color: soloConProcedimientos ? COLORS.cardBg : COLORS.gold,
             }}
           >
             Solo con procedimientos clínicos documentados
@@ -15014,7 +15014,7 @@ function ModuloBuscador({ escuelas, enlaces, enlacesTecnicas, planes, onIrAEscue
             style={{
               fontFamily: FONT_MONO, fontSize: 10.5, padding: "4px 9px", borderRadius: 12,
               border: `1px solid ${COLORS.clay}`, cursor: "pointer",
-              background: soloAutor ? COLORS.clay : "transparent", color: soloAutor ? "#fff" : COLORS.clay,
+              background: soloAutor ? COLORS.clay : "transparent", color: soloAutor ? COLORS.cardBg : COLORS.clay,
             }}
           >
             Buscar solo por autor
@@ -15974,7 +15974,7 @@ function MapaConceptualEscuelas({ escuelas, onIrAEscuela }) {
           onClick={volverAVistaGeneral}
           style={{
             fontFamily: FONT_MONO, fontSize: 10.5, padding: "6px 13px", borderRadius: 16, cursor: "pointer",
-            border: `1px solid ${COLORS.primaryDark}`, background: !perspFocalizada ? COLORS.primaryDark : "transparent", color: !perspFocalizada ? "#fff" : COLORS.primaryDark,
+            border: `1px solid ${COLORS.primaryDark}`, background: !perspFocalizada ? COLORS.primaryDark : "transparent", color: !perspFocalizada ? COLORS.cardBg : COLORS.primaryDark,
             transform: !perspFocalizada ? "scale(1.04)" : "scale(1)", boxShadow: !perspFocalizada ? `0 3px 10px ${COLORS.primaryDark}45` : "none",
             transition: "transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease",
           }}
@@ -15987,7 +15987,7 @@ function MapaConceptualEscuelas({ escuelas, onIrAEscuela }) {
             onClick={() => irAHub(hub)}
             style={{
               fontFamily: FONT_MONO, fontSize: 10.5, padding: "6px 13px", borderRadius: 16, cursor: "pointer",
-              border: `1.5px solid ${hub.color}`, background: perspFocalizada === hub.persp ? hub.color : "transparent", color: perspFocalizada === hub.persp ? "#fff" : hub.color, fontWeight: 700,
+              border: `1.5px solid ${hub.color}`, background: perspFocalizada === hub.persp ? hub.color : "transparent", color: perspFocalizada === hub.persp ? COLORS.cardBg : hub.color, fontWeight: 700,
               transform: perspFocalizada === hub.persp ? "scale(1.04)" : "scale(1)", boxShadow: perspFocalizada === hub.persp ? `0 3px 10px ${hub.color}55` : "none",
               transition: "transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease",
             }}
@@ -16396,7 +16396,7 @@ function TablaComparativa({ entidades, campos, colorDe, idDe, nombreDe, onClickE
               onClick={onClickEntidad ? () => onClickEntidad(ent) : undefined}
               style={{
                 background: colorDe(ent),
-                color: "#fff",
+                color: COLORS.onAcento,
                 borderBottom: `2px solid ${COLORS.line}`,
                 padding: "8px 10px",
                 fontFamily: "Georgia,serif",
@@ -16498,7 +16498,7 @@ function SelectorEscuelasComparador({ escuelas, seleccionadas, setSeleccionadas,
               key={e.id}
               style={{
                 display: "inline-flex", alignItems: "center", gap: 5,
-                fontFamily: FONT_MONO, fontSize: 11, color: "#fff", background: color,
+                fontFamily: FONT_MONO, fontSize: 11, color: COLORS.onAcento, background: color,
                 borderRadius: 14, padding: "3px 6px 3px 10px",
               }}
             >
@@ -16506,7 +16506,7 @@ function SelectorEscuelasComparador({ escuelas, seleccionadas, setSeleccionadas,
               <button
                 onClick={() => setSeleccionadas(seleccionadas.filter((id) => id !== e.id))}
                 aria-label={`Quitar ${e.nombre} de la comparación`}
-                style={{ background: "rgba(255,255,255,0.25)", border: "none", borderRadius: "50%", color: "#fff", cursor: "pointer", width: 16, height: 16, display: "flex", alignItems: "center", justifyContent: "center" }}
+                style={{ background: "rgba(255,255,255,0.25)", border: "none", borderRadius: "50%", color: COLORS.cardBg, cursor: "pointer", width: 16, height: 16, display: "flex", alignItems: "center", justifyContent: "center" }}
               >
                 <X size={10} />
               </button>
@@ -16631,7 +16631,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
             onClick={() => setNivel("perspectivas")}
             style={{
               fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-              background: nivel === "perspectivas" ? COLORS.primary : "transparent", color: nivel === "perspectivas" ? "#fff" : COLORS.inkSoft,
+              background: nivel === "perspectivas" ? COLORS.primary : "transparent", color: nivel === "perspectivas" ? COLORS.cardBg : COLORS.inkSoft,
             }}
           >
             7 perspectivas
@@ -16640,7 +16640,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
             onClick={() => setNivel("escuelas")}
             style={{
               fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-              background: nivel === "escuelas" ? COLORS.primary : "transparent", color: nivel === "escuelas" ? "#fff" : COLORS.inkSoft,
+              background: nivel === "escuelas" ? COLORS.primary : "transparent", color: nivel === "escuelas" ? COLORS.cardBg : COLORS.inkSoft,
             }}
           >
             Escuelas sueltas
@@ -16652,7 +16652,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
             title="Dial de ejes con pétalos por perspectiva"
             style={{
               fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-              background: vista === "rosa" ? COLORS.garnet : "transparent", color: vista === "rosa" ? "#fff" : COLORS.inkSoft,
+              background: vista === "rosa" ? COLORS.garnet : "transparent", color: vista === "rosa" ? COLORS.cardBg : COLORS.inkSoft,
             }}
           >
             Rosa de ejes
@@ -16662,7 +16662,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
             title="Los seis supuestos filosóficos apilados; compara dos perspectivas y mira dónde se abre la grieta"
             style={{
               fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-              background: vista === "torre" ? COLORS.garnet : "transparent", color: vista === "torre" ? "#fff" : COLORS.inkSoft,
+              background: vista === "torre" ? COLORS.garnet : "transparent", color: vista === "torre" ? COLORS.cardBg : COLORS.inkSoft,
             }}
           >
             Torre de supuestos
@@ -16672,7 +16672,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
             title="Ver una categoría a la vez, en profundidad"
             style={{
               fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-              background: vista === "tarjetas" ? COLORS.garnet : "transparent", color: vista === "tarjetas" ? "#fff" : COLORS.inkSoft,
+              background: vista === "tarjetas" ? COLORS.garnet : "transparent", color: vista === "tarjetas" ? COLORS.cardBg : COLORS.inkSoft,
             }}
           >
             Tarjetas
@@ -16682,7 +16682,7 @@ function ModuloComparacion({ escuelas, onIrAEscuela, modoEstudio, enlaces }) {
             title="Ver todas las categorías a la vez en una tabla"
             style={{
               fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-              background: vista === "tabla" ? COLORS.garnet : "transparent", color: vista === "tabla" ? "#fff" : COLORS.inkSoft,
+              background: vista === "tabla" ? COLORS.garnet : "transparent", color: vista === "tabla" ? COLORS.cardBg : COLORS.inkSoft,
             }}
           >
             Tabla comparativa
@@ -17053,8 +17053,8 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
                 padding: "7px 12px",
                 borderRadius: 20,
                 cursor: "pointer",
-                color: activo ? "#fff" : c,
-                background: activo ? c : "#fff",
+                color: activo ? COLORS.onAcento : c,
+                background: activo ? c : COLORS.cardBg,
                 border: `1.5px solid ${c}`,
                 transform: activo ? "scale(1.045)" : "scale(1)",
                 boxShadow: activo ? `0 4px 14px ${c}55` : "none",
@@ -17080,13 +17080,13 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
           padding: "10px 14px",
           borderRadius: 14,
           cursor: "pointer",
-          background: vistaAutores ? COLORS.ink : "#fff",
+          background: vistaAutores ? COLORS.ink : COLORS.cardBg,
           border: `1.5px solid ${COLORS.ink}`,
           width: "fit-content",
         }}
       >
         <BookOpen size={14} color={vistaAutores ? "#fff" : COLORS.ink} />
-        <span style={{ fontFamily: "Georgia,serif", fontSize: 13, fontWeight: 700, color: vistaAutores ? "#fff" : COLORS.ink }}>
+        <span style={{ fontFamily: "Georgia,serif", fontSize: 13, fontWeight: 700, color: vistaAutores ? COLORS.onAcento : COLORS.ink }}>
           Autores y teorías fundantes ({AUTORES_TEORICOS.length})
         </span>
         <span style={{ fontFamily: FONT_MONO, fontSize: 10, color: vistaAutores ? "#fff" : COLORS.inkSoft }}>{vistaAutores ? "ocultar ▲" : "ver ▼"}</span>
@@ -17138,7 +17138,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
                         fundamenta escuelas en {persps.length} perspectivas distintas
                       </div>
                     )}
-                    <span style={{ fontFamily: FONT_MONO, fontSize: 10, fontWeight: 700, color: "#fff", background: COLORS.sage, borderRadius: 20, padding: "2px 9px" }}>
+                    <span style={{ fontFamily: FONT_MONO, fontSize: 10, fontWeight: 700, color: COLORS.onAcento, background: COLORS.sage, borderRadius: 20, padding: "2px 9px" }}>
                       fundamenta {n} escuela{n === 1 ? "" : "s"}
                     </span>
                   </div>
@@ -17259,7 +17259,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
               transition: "background 0.15s",
             }}
           >
-            <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, color: vistaLinea ? "#fff" : COLORS.ink }}>
+            <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, color: vistaLinea ? COLORS.onAcento : COLORS.ink }}>
               🕓 Línea de tiempo de {persp.nombre}
             </span>
             <span style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, color: vistaLinea ? "#fff" : color, fontWeight: 700 }}>
@@ -17297,7 +17297,7 @@ function ModuloPerspectivas({ escuelas, setEscuelas, filtro, setFiltro, onAbrirD
               transition: "background 0.15s",
             }}
           >
-            <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, color: vistaPanorama ? "#fff" : COLORS.ink }}>
+            <span style={{ fontFamily: "Georgia,serif", fontWeight: 700, fontSize: 13.5, color: vistaPanorama ? COLORS.onAcento : COLORS.ink }}>
               📊 Panorama de protocolos, técnicas y procedimientos de {persp.nombre}
             </span>
             <span style={{ fontFamily: "var(--f-mono)", fontSize: 10.5, color: vistaPanorama ? "#fff" : PERSPECTIVA_COLOR[persp.nombre], fontWeight: 700 }}>
@@ -17540,7 +17540,7 @@ function SeccionSubperspectivasInterna({ perspectivaId, color, onIrAEscuela, esc
                       </span>
                     )}
                     {enConstruccion && (
-                      <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: "#fff", background: COLORS.clay, borderRadius: 6, padding: "1px 6px", letterSpacing: 0.3 }}>
+                      <span style={{ fontFamily: "var(--f-mono)", fontSize: 9, color: COLORS.onAcento, background: COLORS.clay, borderRadius: 6, padding: "1px 6px", letterSpacing: 0.3 }}>
                         ⚠ en construcción — falta fuente primaria
                       </span>
                     )}
@@ -17815,7 +17815,7 @@ function FichaFundamento({ p, onIrAEscuela, escuelas, enlaces }) {
                     style={{
                       fontFamily: "var(--f-mono)",
                       fontSize: 10,
-                      color: "#fff",
+                      color: COLORS.onAcento,
                       background: j === 0 ? color : COLORS.inkSoft,
                       borderRadius: 8,
                       padding: "2px 7px",
@@ -17945,7 +17945,7 @@ function Desplegable({ titulo, subtitulo, color, defaultAbierto = false, childre
                 style={{
                   display: "inline-flex", alignItems: "center", justifyContent: "center",
                   width: 20, height: 20, borderRadius: "50%", background: color || COLORS.primary,
-                  color: "#fff", fontFamily: FONT_MONO, fontSize: 10, fontWeight: 700, flexShrink: 0,
+                  color: COLORS.onAcento, fontFamily: FONT_MONO, fontSize: 10, fontWeight: 700, flexShrink: 0,
                 }}
               >
                 {m[1]}
@@ -18473,7 +18473,7 @@ function PasoIndividual({ numero, texto, completado, onToggle, color, quitarPref
         style={{
           flexShrink: 0, width: 20, height: 20, borderRadius: "50%", marginTop: 1, cursor: "pointer",
           border: `1.5px solid ${completado ? color : COLORS.line}`, background: completado ? color : "transparent",
-          color: "#fff", fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_MONO,
+          color: COLORS.onAcento, fontSize: 11, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_MONO,
           transform: destello ? "scale(1.35)" : "scale(1)",
           boxShadow: destello ? `0 0 0 5px ${color}33` : "none",
           transition: "transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.32s ease, background 0.15s ease, border-color 0.15s ease",
@@ -18563,7 +18563,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
           top: -14,
           left: 18,
           background: color,
-          color: "#fff",
+          color: COLORS.onAcento,
           fontFamily: FONT_MONO,
           fontSize: 9.5,
           fontWeight: 700,
@@ -18678,7 +18678,7 @@ function FichaEscuela({ e, editando, onEditar, onGuardar, onCambiar, onBorrar, o
                     fontFamily: FONT_MONO,
                     fontSize: 11,
                     fontWeight: 700,
-                    color: "#fff",
+                    color: COLORS.onAcento,
                     background: COLORS.inkSoft,
                     borderRadius: 20,
                     padding: "3px 11px",
@@ -19227,7 +19227,7 @@ function FiltroObjetivos({ objetivoActivo, setObjetivoActivo, objetivosPresentes
         onClick={() => setObjetivoActivo(null)}
         style={{
           fontFamily: FONT_MONO, fontSize: 10, padding: "3px 9px", borderRadius: 12, cursor: "pointer",
-          border: `1px solid ${COLORS.line}`, background: !objetivoActivo ? COLORS.primary : "transparent", color: !objetivoActivo ? "#fff" : COLORS.inkSoft,
+          border: `1px solid ${COLORS.line}`, background: !objetivoActivo ? COLORS.primary : "transparent", color: !objetivoActivo ? COLORS.cardBg : COLORS.inkSoft,
         }}
       >
         todos los objetivos
@@ -19240,7 +19240,7 @@ function FiltroObjetivos({ objetivoActivo, setObjetivoActivo, objetivosPresentes
             fontFamily: FONT_MONO, fontSize: 10, padding: "3px 9px", borderRadius: 12, cursor: "pointer",
             border: `1px solid ${o.color}`,
             background: objetivoActivo === o.id ? o.color : "transparent",
-            color: objetivoActivo === o.id ? "#fff" : o.color,
+            color: objetivoActivo === o.id ? COLORS.onAcento : o.color,
           }}
         >
           {o.label}
@@ -19368,7 +19368,7 @@ function TablaProtocolosGenerica({ filas, ordenTabla, cambiarOrden, tituloVacio 
                           key={obj.id}
                           style={{
                             fontFamily: FONT_MONO, fontSize: 9.5, padding: "1px 6px", borderRadius: 6, display: "inline-block",
-                            color: obj.color ? "#fff" : COLORS.inkSoft,
+                            color: obj.color ? COLORS.onAcento : COLORS.inkSoft,
                             background: obj.color || "transparent",
                             border: obj.color ? "none" : `1px dashed ${COLORS.line}`,
                             opacity: objetivoActivo && obj.id !== objetivoActivo ? 0.45 : 1,
@@ -19481,7 +19481,7 @@ function ComparadorProtocolos({ filas }) {
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 4, margin: "6px 0 10px" }}>
                   {f.objetivos.map((o) => (
-                    <span key={o.id} style={{ fontFamily: FONT_MONO, fontSize: 9, padding: "1px 6px", borderRadius: 6, color: o.color ? "#fff" : COLORS.inkSoft, background: o.color || "transparent", border: o.color ? "none" : `1px dashed ${COLORS.line}` }}>
+                    <span key={o.id} style={{ fontFamily: FONT_MONO, fontSize: 9, padding: "1px 6px", borderRadius: 6, color: o.color ? COLORS.onAcento : COLORS.inkSoft, background: o.color || "transparent", border: o.color ? "none" : `1px dashed ${COLORS.line}` }}>
                       {o.label}
                     </span>
                   ))}
@@ -19511,7 +19511,7 @@ function TablaProtocolos({ filas, ordenTabla, cambiarOrden }) {
       onClick={() => setFiltroTipo(id)}
       style={{
         fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-        background: filtroTipo === id ? COLORS.primary : "transparent", color: filtroTipo === id ? "#fff" : COLORS.inkSoft,
+        background: filtroTipo === id ? COLORS.primary : "transparent", color: filtroTipo === id ? COLORS.cardBg : COLORS.inkSoft,
       }}
     >
       {label}
@@ -19748,7 +19748,7 @@ function ModuloPlanificador({ irA, escuelas, foco, modoEstudio, setModoEstudio, 
             title="Ver perspectiva → escuela → protocolo, en profundidad"
             style={{
               fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-              background: vista === "tarjetas" ? COLORS.garnet : "transparent", color: vista === "tarjetas" ? "#fff" : COLORS.inkSoft,
+              background: vista === "tarjetas" ? COLORS.garnet : "transparent", color: vista === "tarjetas" ? COLORS.cardBg : COLORS.inkSoft,
             }}
           >
             Tarjetas
@@ -19758,7 +19758,7 @@ function ModuloPlanificador({ irA, escuelas, foco, modoEstudio, setModoEstudio, 
             title="Ver todos los protocolos y técnicas en una sola tabla comparable y ordenable"
             style={{
               fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-              background: vista === "tabla" ? COLORS.garnet : "transparent", color: vista === "tabla" ? "#fff" : COLORS.inkSoft,
+              background: vista === "tabla" ? COLORS.garnet : "transparent", color: vista === "tabla" ? COLORS.cardBg : COLORS.inkSoft,
             }}
           >
             Tabla comparativa
@@ -19768,7 +19768,7 @@ function ModuloPlanificador({ irA, escuelas, foco, modoEstudio, setModoEstudio, 
             title="Comparar hasta 3 protocolos o técnicas lado a lado, paso a paso"
             style={{
               fontFamily: FONT_MONO, fontSize: 11, padding: "5px 12px", borderRadius: 16, border: "none", cursor: "pointer",
-              background: vista === "comparar" ? COLORS.garnet : "transparent", color: vista === "comparar" ? "#fff" : COLORS.inkSoft,
+              background: vista === "comparar" ? COLORS.garnet : "transparent", color: vista === "comparar" ? COLORS.cardBg : COLORS.inkSoft,
             }}
           >
             Comparar
@@ -20403,7 +20403,7 @@ function PanelFiltrosGrafo({ relacionesActivas, toggleRelacion, fidelidadesActiv
               style={{
                 fontFamily: FONT_MONO, fontSize: 10, padding: "3px 8px", borderRadius: 10,
                 border: `1px solid ${info.color}`, cursor: "pointer",
-                background: activo ? info.color : "transparent", color: activo ? "#fff" : info.color,
+                background: activo ? info.color : "transparent", color: activo ? COLORS.cardBg : info.color,
               }}
             >
               {info.abrev} {nombre}
@@ -20426,7 +20426,7 @@ function PanelFiltrosGrafo({ relacionesActivas, toggleRelacion, fidelidadesActiv
                   style={{
                     fontFamily: FONT_MONO, fontSize: 10, padding: "3px 8px", borderRadius: 10,
                     border: `1px solid ${color}`, cursor: "pointer",
-                    background: activo ? color : "transparent", color: activo ? "#fff" : color,
+                    background: activo ? color : "transparent", color: activo ? COLORS.cardBg : color,
                   }}
                 >
                   {nombre}
@@ -20451,7 +20451,7 @@ function PanelFiltrosGrafo({ relacionesActivas, toggleRelacion, fidelidadesActiv
               style={{
                 fontFamily: FONT_MONO, fontSize: 10, padding: "3px 8px", borderRadius: 10,
                 border: `1px solid ${COLORS.inkSoft}`, cursor: "pointer",
-                background: activo ? COLORS.inkSoft : "transparent", color: activo ? "#fff" : COLORS.inkSoft,
+                background: activo ? COLORS.inkSoft : "transparent", color: activo ? COLORS.cardBg : COLORS.inkSoft,
               }}
             >
               {fd.label}
@@ -20886,7 +20886,7 @@ function PanelEstadisticasDiccionario({ enlaces, escuelas }) {
                 <span
                   key={e.id}
                   style={{
-                    fontFamily: FONT_MONO, fontSize: 10.5, color: "#fff",
+                    fontFamily: FONT_MONO, fontSize: 10.5, color: COLORS.onAcento,
                     background: PERSPECTIVA_COLOR[e.perspectiva] || COLORS.primary,
                     borderRadius: 12, padding: "3px 9px",
                   }}
@@ -20943,7 +20943,7 @@ function IntroConceptosTransversales() {
               borderRadius: 8,
               cursor: "pointer",
               border: `1px solid ${abierto === c.id ? COLORS.primaryDark : COLORS.line}`,
-              background: abierto === c.id ? COLORS.paperDark : "#fff",
+              background: abierto === c.id ? COLORS.paperDark : COLORS.cardBg,
               fontWeight: abierto === c.id ? 700 : 400,
             }}
           >
@@ -21185,7 +21185,7 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                     fontFamily: "var(--f-display)",
                     fontSize: 12.5,
                     border: `1px solid ${escuelaGlosario === e.id ? pColor : COLORS.line}`,
-                    background: escuelaGlosario === e.id ? COLORS.paperDark : "#fff",
+                    background: escuelaGlosario === e.id ? COLORS.paperDark : COLORS.cardBg,
                   }}
                 >
                   {e.nombre}
@@ -21214,8 +21214,8 @@ function GlosarioPorEscuela({ escuelas, enlaces, escuelaGlosario, setEscuelaGlos
                     borderRadius: 8,
                     cursor: "pointer",
                     border: `1px solid ${normalizarTermino(conceptoGlosario) === normalizarTermino(c.termino) ? color : COLORS.line}`,
-                    background: normalizarTermino(conceptoGlosario) === normalizarTermino(c.termino) ? color : "#fff",
-                    color: normalizarTermino(conceptoGlosario) === normalizarTermino(c.termino) ? "#fff" : COLORS.ink,
+                    background: normalizarTermino(conceptoGlosario) === normalizarTermino(c.termino) ? color : COLORS.cardBg,
+                    color: normalizarTermino(conceptoGlosario) === normalizarTermino(c.termino) ? COLORS.onAcento : COLORS.ink,
                   }}
                 >
                   {c.termino}
