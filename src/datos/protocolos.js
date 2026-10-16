@@ -781,7 +781,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "La técnica activa para fobias (única excepción a la no-directividad)",
       tipo: "técnica",
-      fuente: "",
+      fuente: "Freud, S. (1919, p. 161). Nuevos caminos de la terapia psicoanalítica. En Obras completas (Vol. 17). Amorrortu.",
       fases: [
         "El terapeuta reconoce que la sola asociación libre en el consultorio no basta para curar una fobia grave.",
         "Se instruye al paciente a exponerse deliberadamente a la situación temida en la vida real («andar por la calle y luchar con la angustia»).",
@@ -1520,7 +1520,7 @@ export const PROCEDIMIENTOS_CLINICOS = {
     {
       nombre: "Técnica de intervención fenomenológica-estética para parejas y familias — Escuela de Cleveland",
       tipo: "técnica",
-      fuente: "",
+      fuente: "Zinker, J., y Nevis, S. M. (1994). Lo estético en terapia gestáltica de parejas. En J. Zinker, Bosquejos: Piezas de un mosaico (2001, pp. 191–226). Gestalt Institute of Cleveland Press, p. 193",
       fases: [
         "Paso 1 — Presencia y charla trivial: aclimatar a la pareja/familia antes de entrar en el conflicto.",
         "Paso 2 — Establecimiento de reglas y frontera: explicar el rol de testigo del terapeuta y retirarse físicamente de la interacción, dejando que «algo se haga figura».",

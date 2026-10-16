@@ -4000,7 +4000,7 @@
 "key": "jung|1944|psicologia",
 "apa": "Jung, C. G. (1944). Psicología y alquimia. En *Obra completa* (Vol. 12). Editorial Trotta.",
 "flags": [],
-"n": 2,
+"n": 3,
 "first": "Jung",
 "anio": "1944",
 "raw": "Jung, C. G. (1944). Psicología y Alquimia. Obra Completa, Vol. 12. Editorial Trotta."
@@ -4026,6 +4026,15 @@
 "first": "Jung",
 "anio": "1953",
 "raw": "Jung, C. G. (1953). Two Essays on Analytical Psychology."
+},
+{
+"key": "jung|1954|practica",
+"apa": "Jung, C. G. (1954). La práctica de la psicoterapia. En *Obra completa* (Vol. 16). Editorial Trotta.",
+"flags": [],
+"n": 1,
+"first": "Jung",
+"anio": "1954",
+"raw": "Jung, C. G. (1954). La práctica de la psicoterapia. En Obra completa (Vol. 16). Editorial Trotta."
 },
 {
 "key": "jung|1954|arquetipos",
@@ -6790,6 +6799,15 @@
 "raw": "Perls, F. (1969). Gestalt Therapy Verbatim. Real People Press."
 },
 {
+"key": "perls|1969|dentro",
+"apa": "Perls, F. (1969/1975). *Dentro y fuera del tarro de la basura*. Cuatro Vientos.",
+"flags": [],
+"n": 1,
+"first": "Perls",
+"anio": "1969/1975",
+"raw": "Perls, F. (1969/1975). Dentro y fuera del tarro de la basura. Cuatro Vientos."
+},
+{
 "key": "perls|1994|gestalt",
 "apa": "Perls, F., Hefferline, R., y Goodman, P. (1994). *Gestalt therapy: Excitement and growth in the human personality*. The Gestalt Journal Press.",
 "flags": [
@@ -9177,7 +9195,7 @@
 "key": "zinker|1994|estetico",
 "apa": "Zinker, J., y Nevis, S. M. (1994). Lo estético en terapia gestáltica de parejas. En *J. Zinker (2001), Bosquejos: Piezas de un mosaico* (pp. 191–226). Gestalt Institute of Cleveland Press.",
 "flags": [],
-"n": 2,
+"n": 3,
 "first": "Zinker",
 "anio": "1994",
 "raw": "Zinker, J., y Nevis, S. M. (1994). Lo estético en terapia gestáltica de parejas. En J. Zinker (2001), Bosquejos: Piezas de un mosaico (pp. 191–226). Gestalt Institute of Cleveland Press, p. 192."

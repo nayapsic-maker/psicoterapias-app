@@ -1,6 +1,7 @@
 import re,unicodedata,json,collections,sys,os
 SRC="/Users/nicolasayasandoval/Downloads/psicoterapias-app/src/"
-A=open(SRC+"App.jsx").read()+open(SRC+"datos/protocolos.js").read()+open(SRC+"autores.js").read()
+import glob
+A=open(SRC+"App.jsx").read()+"".join(open(f).read() for f in sorted(glob.glob(SRC+"datos/*.js")) if not f.endswith("bibliografia.js"))+open(SRC+"autores.js").read()
 
 def todas():
     """Todas las cadenas con aspecto de cita, sin repetir."""

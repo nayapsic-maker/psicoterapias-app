@@ -361,3 +361,15 @@ _K={
 "teilharddechardin|1955|fenomeno":None,
 }
 EXTRA.update({k:v for k,v in _K.items() if v}); OV.update(_K)
+# 2026-10-15 — fichas que estaban sin fuente
+_L2={
+"freud|1905|fragmento":"Freud, S. (1991). *Fragmento de análisis de un caso de histeria*. En *Obras completas* (J. L. Etcheverry, Trad.; Vol. 7). Amorrortu. (Obra original publicada en 1905)",
+"freud|1919|nuevos":"Freud, S. (1992). *Nuevos caminos de la terapia psicoanalítica*. En *Obras completas* (J. L. Etcheverry, Trad.; Vol. 17). Amorrortu. (Obra original publicada en 1919)",
+"minuchin|2007|evaluacion":"Minuchin, S., Nichols, M. P., y Lee, W.-Y. (2007). *Evaluación de familias y parejas: Del síntoma al sistema* (J. Piatigorsky, Trad.). Paidós.",
+"morenofernandez|2018|manual":"Moreno Fernández, A. (2018). *Manual de terapia sistémica: Principios y herramientas de intervención*. Desclée De Brouwer.",
+"perls|1969|dentro":"Perls, F. (1975). *Dentro y fuera del tarro de la basura*. Cuatro Vientos. (Obra original publicada en 1969)",
+"perls|1969|suenos":"Perls, F. (1974). *Sueños y existencia*. Cuatro Vientos. (Obra original publicada en 1969)",
+"jung|1944|psicologia":"Jung, C. G. (2005). *Psicología y alquimia* (Obra completa, Vol. 12). Trotta. (Obra original publicada en 1944)",
+"jung|1954|practica":"Jung, C. G. (1996). *La práctica de la psicoterapia* (Obra completa, Vol. 16). Trotta. (Obra original publicada en 1954)",
+}
+EXTRA.update(_L2); OV.update(_L2)
