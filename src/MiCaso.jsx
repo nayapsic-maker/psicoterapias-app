@@ -222,7 +222,7 @@ export function LecturaCasos({ escuelas, perspectivas, colorDe, idDe, glosario, 
       <div className="psn-mc-casos" role="tablist" aria-label="Los cinco casos">
         {CASOS.map((c, i) => (
           <button key={c.t} role="tab" aria-selected={idAct === "c" + i} className={idAct === "c" + i ? "on" : ""} onClick={() => setIdAct("c" + i)} title={c.sub}>
-            <img src={fotoCaso(c.av)} alt="" width="26" height="26" /> {c.t}
+            <img loading="lazy" decoding="async" src={fotoCaso(c.av)} alt="" width="26" height="26" /> {c.t}
           </button>
         ))}
       </div>

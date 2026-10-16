@@ -319,7 +319,7 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
       <div className="psn-caso-ejemplos">
         {CASOS.map((c, i) => (
           <button key={c.t} className={activo === i ? "on" : ""} onClick={() => { setCampos(c.c); setActivo(i); setAbierto(null); }}>
-            <img src={fotoCaso(c.av)} alt="" width="26" height="26" style={{ objectFit: "cover" }} /> {c.t}
+            <img loading="lazy" decoding="async" src={fotoCaso(c.av)} alt="" width="26" height="26" style={{ objectFit: "cover" }} /> {c.t}
           </button>
         ))}
         <button onClick={() => { setCampos(vacio); setAbierto(null); setActivo(null); }}>Limpiar</button>
@@ -361,7 +361,7 @@ export function CasoSieteMiradas({ escuelas, perspectivas, colorDe, onIrAEscuela
         <>
           {activo !== null && CASOS[activo] && (
             <div className="psn-caso-cab">
-              <img className={CASOS[activo].ancho ? "ancho" : ""} src={fotoCaso(CASOS[activo].av)} alt={`Retrato de ${CASOS[activo].t}`} width={CASOS[activo].ancho ? 200 : 84} height={CASOS[activo].ancho ? 100 : 84} />
+              <img loading="lazy" decoding="async" className={CASOS[activo].ancho ? "ancho" : ""} src={fotoCaso(CASOS[activo].av)} alt={`Retrato de ${CASOS[activo].t}`} width={CASOS[activo].ancho ? 200 : 84} height={CASOS[activo].ancho ? 100 : 84} />
               <div>
                 <strong>{CASOS[activo].t}</strong>
                 <span>{CASOS[activo].sub}</span>
@@ -1091,7 +1091,7 @@ export function DebateSimulado({ escuelas, enlaces, colorDe, modoEstudio = false
             <>
               <p className="psn-ronda">Caso en disputa · {caso.t}</p>
               <div className="psn-caso-cab">
-                <img className={caso.ancho ? "ancho" : ""} src={fotoCaso(caso.av)} alt={`Retrato de ${caso.t}`} width={caso.ancho ? 160 : 72} height={caso.ancho ? 80 : 72} />
+                <img loading="lazy" decoding="async" className={caso.ancho ? "ancho" : ""} src={fotoCaso(caso.av)} alt={`Retrato de ${caso.t}`} width={caso.ancho ? 160 : 72} height={caso.ancho ? 80 : 72} />
                 <div><strong>{caso.t}</strong><span>{caso.c.motivo}</span></div>
               </div>
               <div className="psn-contactos">

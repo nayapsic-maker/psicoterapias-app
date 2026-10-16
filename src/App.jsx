@@ -8922,7 +8922,12 @@ export default function App() {
   useEffect(() => { const h = (ev) => { window.__casoPendiente = ev.detail; if (tab !== "planificador") setTab("planificador", "Caso de práctica"); }; window.addEventListener("psn-caso", h); return () => window.removeEventListener("psn-caso", h); }, []);
   useEffect(() => { try { document.documentElement.dataset.vista = tab; } catch (e) {} }, [tab]);
   const [, setProtocolosListos] = useState(protocolosCargados());
-  useEffect(() => { cargarProtocolos().then(() => setProtocolosListos(true)); }, []);
+  useEffect(() => {
+    // Los protocolos pesan ~0,5 MB: se piden cuando la página ya pintó, para no competir con la primera carga.
+    const pedir = () => cargarProtocolos().then(() => setProtocolosListos(true));
+    const id = window.requestIdleCallback ? window.requestIdleCallback(pedir, { timeout: 2500 }) : setTimeout(pedir, 1200);
+    return () => { if (window.cancelIdleCallback && window.requestIdleCallback) window.cancelIdleCallback(id); else clearTimeout(id); };
+  }, []);
   const [escuelas, setEscuelas] = useState(ESCUELAS_SEED);
   const [enlaces, setEnlaces] = useState(ENLACES_SEED);
   const [enlacesTecnicas, setEnlacesTecnicas] = useState(ENLACES_TECNICAS_SEED);
