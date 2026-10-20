@@ -1,3 +1,4 @@
+import { LogoHorizontal } from "./Marca.jsx";
 import React from "react";
 import { Collage } from "./Placas.jsx";
 import { AUTORES, ALIAS_AUTOR } from "./autores.js";
@@ -375,6 +376,7 @@ const FUNDADORES = ["freud", "jung", "rogers", "skinner", "beck", "satir", "masl
 export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFundamentos, onIrAComparar, onModoEstudio }) {
   return (
     <section className="psn-hero" aria-label="Presentación">
+      <p className="psn-hero-aval"><span>Un proyecto de</span><LogoHorizontal tono="positivo" /></p>
       <div className="psn-hero-top">
         <div>
           <h1 className="psn-titulo">

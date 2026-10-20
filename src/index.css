@@ -6,21 +6,23 @@
    Las variables --c-* y --canvas las publica App.jsx (aplicarVarsTema).
    ============================================================ */
 :root {
-  --f-display: "Newsreader", Georgia, "Times New Roman", serif;
-  --f-serif: "Newsreader", Georgia, serif;
-  --f-text: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --canvas: #0B3640;
-  --canvas-mod: #071A1F;
-  --c-paper: #F5F1E6;
-  --c-paperDark: #E7E3D4;
-  --c-ink: #12292E;
-  --c-inkSoft: #46606A;
-  --c-primary: #14606B;
-  --c-line: #CFC8B0;
-  --c-cardBg: #FAF7EE;
-  --c-gold: #B8741A;
-  --sombra: #B8741A;
+  --f-display: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  --f-serif: "Libre Baskerville", Georgia, serif;
+  --f-text: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --canvas: #2E4756;
+  --canvas-mod: #223641;
+  --c-paper: #F3F5F4;
+  --c-paperDark: #E4E9E6;
+  --c-ink: #1F2B28;
+  --c-inkSoft: #4A5D57;
+  --c-primary: #3F5B4F;
+  --c-cta: #9E5F3E;
+  --c-claro: #C9D6CC;
+  --c-line: #C9D6CC;
+  --c-cardBg: #FFFFFF;
+  --c-gold: #B8775A;
+  --sombra: #B8775A;
   --grano: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 .97  0 0 0 0 .9  0 0 0 .07 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
 }
 
@@ -187,7 +189,7 @@ h2 { font-weight: 800; }
   box-shadow: 4px 4px 0 var(--c-ink);
 }
 .psn-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--c-ink); }
-.psn-btn-primario { background: var(--c-primary); color: var(--c-onAcento, #fff); }
+.psn-btn-primario { background: var(--c-cta); color: var(--c-onAcento, #fff); }
 .psn-btn-texto { border-color: transparent; box-shadow: none; background: transparent; text-decoration: underline; text-underline-offset: 4px; }
 .psn-btn-texto:hover { box-shadow: none; transform: none; }
 
@@ -1206,3 +1208,20 @@ html[data-tema="oscuro"] .psn-caso-ejemplos button:hover, html[data-tema="oscuro
 .psn-barra-estudio button{margin-left:auto;font:700 11px var(--f-mono);border:1px solid var(--c-gold);background:transparent;color:inherit;border-radius:14px;padding:4px 12px;cursor:pointer}
 .psn-persp-cuerpo>button{justify-self:start}
 @media (max-width:640px){.psn-persp>summary b{flex:1 1 auto;order:0}.psn-persp>summary::after{order:1;margin-left:0}.psn-persp>summary span{order:2;flex:1 1 100%}}
+
+/* Presencia Psicología: logo principal, aval y pie (manual de identidad) */
+.psn-logo-pres{display:inline-flex;flex-direction:column;align-items:center;gap:6px;width:var(--w,150px);font-family:"Libre Baskerville",Georgia,serif}
+.psn-logo-pres.claro{color:var(--c-claro)}
+.psn-logo-pres.positivo{color:#3F5B4F}
+.psn-logo-pres-nombre{font-size:calc(var(--w)*.125);letter-spacing:.14em;line-height:1;font-weight:400}
+.psn-logo-pres-sub{font-size:calc(var(--w)*.055);letter-spacing:.34em;line-height:1;opacity:.85;margin-right:-.34em}
+.psn-logo-hor{display:inline-flex;align-items:center;gap:10px;font:400 15px "Libre Baskerville",Georgia,serif;letter-spacing:.16em}
+.psn-logo-hor.positivo{color:#3F5B4F}
+.psn-logo-hor.claro{color:var(--c-claro)}
+.psn-hero-aval{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 10px;color:var(--c-inkSoft);font:500 12px var(--f-text)}
+.psn-pie-marca{position:relative;z-index:2;background:#3F5B4F;color:var(--c-claro);margin-top:28px;padding:26px clamp(14px,4vw,34px)}
+.psn-pie-marca-in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:18px 34px}
+.psn-pie-marca p{margin:0;font:400 13px/1.55 var(--f-text);max-width:46ch}
+.psn-pie-marca b{font-weight:600}
+html[data-tema="oscuro"] .psn-pie-marca{background:#000;border-top:2px solid var(--c-claro)}
+html[data-tema="oscuro"] .psn-logo-hor.positivo,html[data-tema="oscuro"] .psn-logo-pres.positivo{color:var(--c-claro)}

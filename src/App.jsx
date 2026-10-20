@@ -10,6 +10,7 @@ import PorMotivo from "./PorMotivo.jsx";
 import FichaTermino, { CoberturaDiccionario } from "./FichaTermino.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import Paralelos from "./Paralelos.jsx";
+import { Ojo, PieMarca } from "./Marca.jsx";
 import { ESCUELAS_SEED } from "./datos/escuelas.js";
 import { GLOSARIO } from "./datos/glosario.js";
 import { ENLACES_SEED } from "./datos/enlaces.js";
@@ -39,9 +40,9 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
    Afinidad/equivalente: #5C7A5E
    ============================================================ */
 const COLORS = {
-  paper: "#F5F1E6", paperDark: "#E7E3D4", ink: "#12292E", inkSoft: "#46606A",
-  primary: "#14606B", primaryDark: "#0C2F36", clay: "#B8741A", garnet: "#9E3B3B",
-  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE", onAcento: "#FFFFFF", hover: "#FAF6EC", hoverEtiqueta: "#CFC8B0", aviso: "#FBF3E9",
+  paper: "#F3F5F4", paperDark: "#E4E9E6", ink: "#1F2B28", inkSoft: "#4A5D57",
+  primary: "#3F5B4F", primaryDark: "#3F5B4F", clay: "#B8775A", garnet: "#9E3B3B",
+  sage: "#3F7D4E", gold: "#B8775A", line: "#C9D6CC", cardBg: "#FFFFFF", onAcento: "#FFFFFF", hover: "#ECF0EE", hoverEtiqueta: "#C9D6CC", aviso: "#F7F0EB", cta: "#9E5F3E", claro: "#C9D6CC",
 };
 
 /* Sistema de temas: COLORS es un objeto MUTABLE referenciado por
@@ -60,10 +61,12 @@ const COLORS = {
    no romper la asociación de color aprendida por el usuario entre
    módulos; solo cambia la paleta "estructural" (fondo, tinta, tarjetas).
    */
+// Paleta de Presencia Psicología: salvia (principal), pizarra (secundario), bruma (fondo), tinta (texto);
+// terracota solo como acento decorativo y terracota profunda (cta) para botones y enlaces.
 const TEMA_CLARO = {
-  paper: "#F5F1E6", paperDark: "#E7E3D4", ink: "#12292E", inkSoft: "#46606A",
-  primary: "#14606B", primaryDark: "#0C2F36", clay: "#B8741A", garnet: "#9E3B3B",
-  sage: "#3F7D4E", gold: "#B8741A", line: "#CFC8B0", cardBg: "#FAF7EE", onAcento: "#FFFFFF", hover: "#FAF6EC", hoverEtiqueta: "#CFC8B0", aviso: "#FBF3E9",
+  paper: "#F3F5F4", paperDark: "#E4E9E6", ink: "#1F2B28", inkSoft: "#4A5D57",
+  primary: "#3F5B4F", primaryDark: "#3F5B4F", clay: "#B8775A", garnet: "#9E3B3B",
+  sage: "#3F7D4E", gold: "#B8775A", line: "#C9D6CC", cardBg: "#FFFFFF", onAcento: "#FFFFFF", hover: "#ECF0EE", hoverEtiqueta: "#C9D6CC", aviso: "#F7F0EB", cta: "#9E5F3E", claro: "#C9D6CC",
 };
 const TEMA_OSCURO = {
   // primaryDark se usa como fondo de la barra de cabecera, que tiene texto
@@ -72,8 +75,8 @@ const TEMA_OSCURO = {
   // acento — texto blanco sobre amarillo puro sería justo el tipo de bajo
   // contraste que este tema existe para evitar.
   paper: "#000000", paperDark: "#0A0A0A", ink: "#FFFFFF", inkSoft: "#E0E0E0",
-  primary: "#FFD400", primaryDark: "#000000", clay: "#FFD400", garnet: "#FF6B6B",
-  sage: "#7CFFB2", gold: "#FFD400", line: "#FFFFFF", cardBg: "#000000", onAcento: "#000000", hover: "#1C1C1C", hoverEtiqueta: "#2B2B2B", aviso: "#141414",
+  primary: "#C9D6CC", primaryDark: "#000000", clay: "#E0A584", garnet: "#FF6B6B",
+  sage: "#7CFFB2", gold: "#E0A584", line: "#FFFFFF", cardBg: "#000000", onAcento: "#000000", hover: "#1C1C1C", hoverEtiqueta: "#2B2B2B", aviso: "#141414", cta: "#E0A584", claro: "#C9D6CC",
 };
 const TEMAS = { claro: TEMA_CLARO, oscuro: TEMA_OSCURO };
 const TEMA_STORAGE_KEY = "psicoterapias:tema";
@@ -85,9 +88,9 @@ function aplicarVarsTema(nombre) {
     const r = document.documentElement;
     const t = TEMAS[nombre] || TEMA_CLARO;
     r.dataset.tema = nombre;
-    r.style.setProperty("--canvas", nombre === "oscuro" ? "#000000" : "#0B3640");
-    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#000000" : "#071A1F");
-    r.style.setProperty("--sombra", nombre === "oscuro" ? "#FFD400" : "#B8741A");
+    r.style.setProperty("--canvas", nombre === "oscuro" ? "#000000" : "#2E4756");
+    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#000000" : "#223641");
+    r.style.setProperty("--sombra", nombre === "oscuro" ? "#E0A584" : "#B8775A");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
     // En modo oscuro los colores de perspectiva se aclaran para conservar contraste sobre fondo azul noche.
     if (typeof PERSPECTIVA_COLOR !== "undefined") Object.assign(PERSPECTIVA_COLOR, nombre === "oscuro" ? PERSP_COLOR_OSCURO : PERSP_COLOR_CLARO);
@@ -2038,7 +2041,7 @@ function Boton({ children, onClick, variant = "default", small, title, style, di
     opacity: disabled ? 0.4 : 1,
   };
   const variants = {
-    default: { background: COLORS.primary, color: document.documentElement.dataset.tema === "claro" ? COLORS.cardBg : "#0A1612" },
+    default: { background: COLORS.cta, color: document.documentElement.dataset.tema === "claro" ? "#FFFFFF" : "#0A1612", border: `1px solid ${COLORS.cta}` },
     ghost: { background: "transparent", color: document.documentElement.dataset.tema === "claro" ? COLORS.primaryDark : COLORS.ink },
     danger: { background: "transparent", color: COLORS.garnet, border: `1px solid ${COLORS.garnet}` },
   };
@@ -9458,6 +9461,9 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
             flex: "1 1 auto",
           }}
         >
+          <span className="psn-cab-ojo" title="Presencia Psicología" style={{ color: "var(--c-claro)", display: "inline-flex", alignItems: "center", paddingRight: 12, marginRight: 4, borderRight: "1px solid rgba(255,255,255,0.28)", flexShrink: 0 }}>
+            <Ojo tam={34} titulo="Presencia Psicología" />
+          </span>
           <span
             style={{
               color: "#fff",
@@ -9470,7 +9476,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
               textOverflow: "ellipsis",
             }}
           >
-            Psico<i style={{ color: "var(--c-gold)", fontStyle: "inherit" }}>nautas</i>
+            Psico<i style={{ color: "var(--c-claro)", fontStyle: "inherit" }}>nautas</i>
           </span>
           <ChevronDown
             size={13}
@@ -9975,6 +9981,8 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
         )}
         {tab === "comparacion" && <ModuloComparacion escuelas={escuelas} onIrAEscuela={irAEscuela} modoEstudio={modoEstudio} enlaces={enlaces} />}
       </div>
+
+      <PieMarca />
 
       <ModalDefinicion dato={definicionModal} onCerrar={() => setDefinicionModal(null)} onIrAProtocolo={irAProtocolo} onIrAEscuela={irAEscuela} />
       {historialAbierto && <PanelHistorial historial={historial} onCerrar={() => setHistorialAbierto(false)} />}
