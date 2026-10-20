@@ -31,7 +31,7 @@ export function LogoHorizontal({ tono = "positivo", className = "" }) {
   return (
     <span className={`psn-logo-hor ${tono} ${className}`} role="img" aria-label="Presencia Psicología">
       <Ojo tam={34} />
-      <span>PRESENCIA</span>
+      <span>PRESENCIA <small>PSICOLOGÍA</small></span>
     </span>
   );
 }

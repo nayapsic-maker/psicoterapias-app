@@ -9,9 +9,9 @@
   --f-display: "Libre Baskerville", Georgia, "Times New Roman", serif;
   --f-serif: "Libre Baskerville", Georgia, serif;
   --f-text: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-mono: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --canvas: #2E4756;
-  --canvas-mod: #223641;
+  --f-mono: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --canvas: #0B3640;
+  --canvas-mod: #071A1F;
   --c-paper: #F3F5F4;
   --c-paperDark: #E4E9E6;
   --c-ink: #1F2B28;
@@ -1215,13 +1215,17 @@ html[data-tema="oscuro"] .psn-caso-ejemplos button:hover, html[data-tema="oscuro
 .psn-logo-pres.positivo{color:#3F5B4F}
 .psn-logo-pres-nombre{font-size:calc(var(--w)*.125);letter-spacing:.14em;line-height:1;font-weight:400}
 .psn-logo-pres-sub{font-size:calc(var(--w)*.055);letter-spacing:.34em;line-height:1;opacity:.85;margin-right:-.34em}
-.psn-logo-hor{display:inline-flex;align-items:center;gap:10px;font:400 15px "Libre Baskerville",Georgia,serif;letter-spacing:.16em}
+.psn-logo-hor{display:inline-flex;align-items:center;gap:10px;font:400 13px "Libre Baskerville",Georgia,serif;letter-spacing:.16em}
 .psn-logo-hor.positivo{color:#3F5B4F}
 .psn-logo-hor.claro{color:var(--c-claro)}
-.psn-hero-aval{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 10px;color:var(--c-inkSoft);font:500 12px var(--f-text)}
+.psn-hero-aval{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:4px 12px;margin:0 0 8px;color:var(--c-inkSoft);font:500 12px var(--f-text)}
 .psn-pie-marca{position:relative;z-index:2;background:#3F5B4F;color:var(--c-claro);margin-top:28px;padding:26px clamp(14px,4vw,34px)}
 .psn-pie-marca-in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:18px 34px}
 .psn-pie-marca p{margin:0;font:400 13px/1.55 var(--f-text);max-width:46ch}
 .psn-pie-marca b{font-weight:600}
 html[data-tema="oscuro"] .psn-pie-marca{background:#000;border-top:2px solid var(--c-claro)}
 html[data-tema="oscuro"] .psn-logo-hor.positivo,html[data-tema="oscuro"] .psn-logo-pres.positivo{color:var(--c-claro)}
+.psn-logo-hor small{font-size:.78em;letter-spacing:.3em;opacity:.85}
+@media (max-width:520px){.psn-hero-aval{justify-content:center}}
+.psn-hero-aval{width:100%;box-sizing:border-box}
+.psn-hero .psn-hero-aval{max-width:none}

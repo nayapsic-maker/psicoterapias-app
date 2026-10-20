@@ -41,7 +41,7 @@ import { Search, BookOpen, Network, ClipboardList, Languages, ChevronRight, Chev
    ============================================================ */
 const COLORS = {
   paper: "#F3F5F4", paperDark: "#E4E9E6", ink: "#1F2B28", inkSoft: "#4A5D57",
-  primary: "#3F5B4F", primaryDark: "#3F5B4F", clay: "#B8775A", garnet: "#9E3B3B",
+  primary: "#3F5B4F", primaryDark: "#0C2F36", clay: "#B8775A", garnet: "#9E3B3B",
   sage: "#3F7D4E", gold: "#B8775A", line: "#C9D6CC", cardBg: "#FFFFFF", onAcento: "#FFFFFF", hover: "#ECF0EE", hoverEtiqueta: "#C9D6CC", aviso: "#F7F0EB", cta: "#9E5F3E", claro: "#C9D6CC",
 };
 
@@ -65,7 +65,7 @@ const COLORS = {
 // terracota solo como acento decorativo y terracota profunda (cta) para botones y enlaces.
 const TEMA_CLARO = {
   paper: "#F3F5F4", paperDark: "#E4E9E6", ink: "#1F2B28", inkSoft: "#4A5D57",
-  primary: "#3F5B4F", primaryDark: "#3F5B4F", clay: "#B8775A", garnet: "#9E3B3B",
+  primary: "#3F5B4F", primaryDark: "#0C2F36", clay: "#B8775A", garnet: "#9E3B3B",
   sage: "#3F7D4E", gold: "#B8775A", line: "#C9D6CC", cardBg: "#FFFFFF", onAcento: "#FFFFFF", hover: "#ECF0EE", hoverEtiqueta: "#C9D6CC", aviso: "#F7F0EB", cta: "#9E5F3E", claro: "#C9D6CC",
 };
 const TEMA_OSCURO = {
@@ -88,8 +88,8 @@ function aplicarVarsTema(nombre) {
     const r = document.documentElement;
     const t = TEMAS[nombre] || TEMA_CLARO;
     r.dataset.tema = nombre;
-    r.style.setProperty("--canvas", nombre === "oscuro" ? "#000000" : "#2E4756");
-    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#000000" : "#223641");
+    r.style.setProperty("--canvas", nombre === "oscuro" ? "#000000" : "#0B3640");
+    r.style.setProperty("--canvas-mod", nombre === "oscuro" ? "#000000" : "#071A1F");
     r.style.setProperty("--sombra", nombre === "oscuro" ? "#E0A584" : "#B8775A");
     Object.entries(t).forEach(([k, v]) => r.style.setProperty(`--c-${k}`, v));
     // En modo oscuro los colores de perspectiva se aclaran para conservar contraste sobre fondo azul noche.
@@ -9476,7 +9476,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
               textOverflow: "ellipsis",
             }}
           >
-            Psico<i style={{ color: "var(--c-claro)", fontStyle: "inherit" }}>nautas</i>
+            Psico<i style={{ color: "var(--c-gold)", fontStyle: "inherit" }}>nautas</i>
           </span>
           <ChevronDown
             size={13}
