@@ -1219,7 +1219,7 @@ html[data-tema="oscuro"] .psn-caso-ejemplos button:hover, html[data-tema="oscuro
 .psn-logo-hor.positivo{color:#3F5B4F}
 .psn-logo-hor.claro{color:var(--c-claro)}
 .psn-hero-aval{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:4px 12px;margin:0 0 8px;color:var(--c-inkSoft);font:500 12px var(--f-text)}
-.psn-pie-marca{position:relative;z-index:2;background:#3F5B4F;color:var(--c-claro);margin-top:28px;padding:26px clamp(14px,4vw,34px)}
+.psn-pie-marca{position:relative;z-index:2;background:#0C2F36;color:var(--c-claro);margin-top:28px;padding:26px clamp(14px,4vw,34px)}
 .psn-pie-marca-in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:18px 34px}
 .psn-pie-marca p{margin:0;font:400 13px/1.55 var(--f-text);max-width:46ch}
 .psn-pie-marca b{font-weight:600}
