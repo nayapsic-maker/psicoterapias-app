@@ -1204,15 +1204,3 @@ html[data-tema="oscuro"] .psn-caso-ejemplos button:hover, html[data-tema="oscuro
 .psn-persp-cuerpo p{margin:0;font:400 13.5px/1.6 var(--f-text)}
 .psn-barra-estudio{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0;padding:6px 12px;border:1px solid var(--c-gold);border-radius:10px;font:600 11px var(--f-mono)}
 .psn-barra-estudio button{margin-left:auto;font:700 11px var(--f-mono);border:1px solid var(--c-gold);background:transparent;color:inherit;border-radius:14px;padding:4px 12px;cursor:pointer}
-
-/* Marca madre: Presencia Psicología (tokens provisionales hasta recibir la identidad visual) */
-:root{--marca:#14606B;--marca-acento:#B8863B;--marca-fuente:var(--f-display)}
-.psn-marca-wordmark{display:inline-flex;align-items:center;gap:8px;font:500 14px var(--marca-fuente);letter-spacing:.02em}
-.psn-marca-wordmark b{font-weight:800}
-.psn-marca-wordmark.chico{font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-.psn-marca-punto{width:10px;height:10px;border-radius:50%;background:var(--marca-acento);box-shadow:0 0 0 3px color-mix(in srgb,var(--marca) 35%,transparent)}
-.psn-marca-pie{max-width:1180px;margin:0 auto;padding:18px clamp(14px,4vw,34px) 34px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;color:var(--c-inkSoft);font:400 12px var(--f-text);border-top:1px dashed var(--c-line)}
-.psn-marca-pie small{flex:1 1 100%;opacity:.8}
-.psn-marca-hero{margin:0 0 6px;text-align:center;color:var(--c-inkSoft)}
-.psn-persp-cuerpo>button{justify-self:start}
-@media (max-width:640px){.psn-persp>summary b{flex:1 1 auto;order:0}.psn-persp>summary::after{order:1;margin-left:0}.psn-persp>summary span{order:2;flex:1 1 100%}}

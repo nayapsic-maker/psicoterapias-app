@@ -10,7 +10,6 @@ import PorMotivo from "./PorMotivo.jsx";
 import FichaTermino, { CoberturaDiccionario } from "./FichaTermino.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import Paralelos from "./Paralelos.jsx";
-import { FirmaMarca } from "./Marca.jsx";
 import { ESCUELAS_SEED } from "./datos/escuelas.js";
 import { GLOSARIO } from "./datos/glosario.js";
 import { ENLACES_SEED } from "./datos/enlaces.js";
@@ -9976,7 +9975,6 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
         )}
         {tab === "comparacion" && <ModuloComparacion escuelas={escuelas} onIrAEscuela={irAEscuela} modoEstudio={modoEstudio} enlaces={enlaces} />}
       </div>
-      <FirmaMarca />
 
       <ModalDefinicion dato={definicionModal} onCerrar={() => setDefinicionModal(null)} onIrAProtocolo={irAProtocolo} onIrAEscuela={irAEscuela} />
       {historialAbierto && <PanelHistorial historial={historial} onCerrar={() => setHistorialAbierto(false)} />}

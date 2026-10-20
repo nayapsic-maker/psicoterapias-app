@@ -1,4 +1,3 @@
-import { SelloMarcaHero } from "./Marca.jsx";
 import React from "react";
 import { Collage } from "./Placas.jsx";
 import { AUTORES, ALIAS_AUTOR } from "./autores.js";
@@ -376,7 +375,6 @@ const FUNDADORES = ["freud", "jung", "rogers", "skinner", "beck", "satir", "masl
 export function HeroMision({ perspectivas, totalEscuelas, totalTerminos, onIrAFundamentos, onIrAComparar, onModoEstudio }) {
   return (
     <section className="psn-hero" aria-label="Presentación">
-      <SelloMarcaHero />
       <div className="psn-hero-top">
         <div>
           <h1 className="psn-titulo">
