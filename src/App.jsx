@@ -10,6 +10,7 @@ import PorMotivo from "./PorMotivo.jsx";
 import FichaTermino, { CoberturaDiccionario } from "./FichaTermino.jsx";
 import Fuente, { RefsIncompletas } from "./Fuente.jsx";
 import Paralelos from "./Paralelos.jsx";
+import { FirmaMarca } from "./Marca.jsx";
 import { ESCUELAS_SEED } from "./datos/escuelas.js";
 import { GLOSARIO } from "./datos/glosario.js";
 import { ENLACES_SEED } from "./datos/enlaces.js";
@@ -3618,6 +3619,17 @@ function DetalleCobertura({ escuelas, enlaces, glosario, protocolos, nudos }) {
   );
 }
 
+/* Una línea por perspectiva para la introducción (síntesis orientativa de redacción propia). */
+const RESUMEN_PERSPECTIVA = {
+  humanista: "El sufrimiento como bloqueo del crecimiento y del sentido; el cambio nace de la relación y de la experiencia presente.",
+  psicodinamica: "El sufrimiento como conflicto en gran parte inconsciente; el cambio llega al hacer consciente lo que se repite.",
+  sistemica: "El problema vive en las relaciones; se cambia el sistema y no solo a la persona.",
+  conductual: "La conducta se aprende en contextos; se cambia modificando sus antecedentes y consecuencias.",
+  cognitivo: "El malestar depende de cómo se interpreta lo que ocurre; se cambia examinando pensamientos y conductas.",
+  integradora: "Combina recursos de varios enfoques según la persona, el momento y la evidencia.",
+  transpersonal: "Incluye la dimensión espiritual y los estados ampliados de conciencia en el proceso de cambio.",
+};
+
 function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAEscuela, enlaces }) {
   const perspectivas = FUNDAMENTOS_PERSPECTIVAS;
   const camposTablaIntro = [
@@ -3653,28 +3665,10 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         nudos={CONCEPTOS_TRANSVERSALES.length}
       />
 
-      {setModoEstudio && (
-        <div
-          style={{
-            display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
-            background: modoEstudio ? `${COLORS.gold}18` : COLORS.paperDark, border: `1px solid ${modoEstudio ? COLORS.gold : COLORS.line}`,
-            borderRadius: 12, padding: "10px 14px", marginBottom: 20,
-          }}
-        >
-          <span style={{ fontFamily: FONT_MONO, fontSize: 11, color: modoEstudio ? (document.documentElement.dataset.tema === "claro" ? "#7A5A12" : COLORS.gold) : COLORS.ink }}>
-            {modoEstudio
-              ? "◆ Modo estudio activo: el contenido de cada módulo se muestra extendido y sin truncar."
-              : "El modo estudio expande automáticamente fundamentación, conceptos y pasos en todos los módulos — útil para leer a fondo en vez de solo consultar."}
-          </span>
-          <button
-            onClick={() => setModoEstudio((v) => !v)}
-            style={{
-              marginLeft: "auto", fontFamily: FONT_MONO, fontSize: 11, fontWeight: 700, padding: "6px 14px", borderRadius: 16, cursor: "pointer",
-              border: `1px solid ${COLORS.gold}`, background: modoEstudio ? COLORS.gold : "transparent", color: modoEstudio ? "#1D2B26" : (document.documentElement.dataset.tema === "claro" ? "#7A5A12" : COLORS.gold),
-            }}
-          >
-            {modoEstudio ? "Desactivar modo estudio" : "Activar modo estudio"}
-          </button>
+      {setModoEstudio && modoEstudio && (
+        <div className="psn-barra-estudio">
+          <span>◆ Modo estudio activo: todo se muestra extendido y sin truncar.</span>
+          <button onClick={() => setModoEstudio(false)}>Desactivar</button>
         </div>
       )}
 
@@ -3684,6 +3678,29 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         </div>
       )}
 
+      {!modoEstudio && (
+        <div className="psn-persp-lista" role="list">
+          {perspectivas.map((p) => {
+            const color = PERSPECTIVA_COLOR[p.nombre];
+            const def = p.contexto?.definicion || p.origenHistorico || "";
+            const resumen = RESUMEN_PERSPECTIVA[p.id] || def.slice(0, 120) + "…";
+            return (
+              <details key={p.id} className="psn-persp" style={{ "--pc": color }} role="listitem">
+                <summary>
+                  <b>{p.nombre}</b>
+                  <span>{resumen}</span>
+                </summary>
+                <div className="psn-persp-cuerpo">
+                  <RetratosPerspectiva id={p.id} color={color} />
+                  <p>{def}</p>
+                  <Boton variant="ghost" onClick={() => irA("fundamentos")}>Ver esta perspectiva →</Boton>
+                </div>
+              </details>
+            );
+          })}
+        </div>
+      )}
+      {modoEstudio && (
       <div style={{ display: "grid", gridTemplateColumns: modoEstudio ? "1fr" : "repeat(auto-fit, minmax(min(280px, 100%), 1fr))", gap: 16 }}>
         {perspectivas.map((p) => {
           const color = PERSPECTIVA_COLOR[p.nombre];
@@ -3723,15 +3740,16 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
           );
         })}
       </div>
+      )}
 
       {/* Tabla comparativa compacta: un primer contraste de las 7
           perspectivas lado a lado, antes de profundizar en cualquiera de
           ellas — reutiliza el mismo componente TablaComparativa del
           Módulo de Comparación, con solo 4 campos para no saturar a
           alguien que recién entra a la app. */}
-      <div style={{ marginTop: 28, marginBottom: 8, fontFamily: FONT_MONO, fontSize: 11, color: COLORS.inkSoft, textTransform: "uppercase" }}>
-        Primer contraste: las 7 perspectivas lado a lado
-      </div>
+      <details className="psn-detalles" open={modoEstudio || undefined}>
+        <summary>Primer contraste <small>— las 7 perspectivas lado a lado</small></summary>
+        <div style={{ padding: "6px 14px 14px" }}>
       <TablaComparativa
         entidades={perspectivas}
         campos={camposTablaIntro}
@@ -3740,6 +3758,8 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         nombreDe={(p) => p.nombre}
         truncarA={modoEstudio ? undefined : 140}
       />
+        </div>
+      </details>
 
       {/* Línea de tiempo global: TODAS las escuelas y TODAS las teorías
           fundantes (AUTORES_TEORICOS) de las 7 perspectivas en un solo
@@ -3747,9 +3767,9 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
           línea de tiempo por perspectiva del Módulo de Escuelas, esta da
           una vista panorámica de cómo se entrelazó históricamente todo
           el campo. */}
-      <div style={{ marginTop: 28, marginBottom: 8, fontFamily: FONT_MONO, fontSize: 11, color: COLORS.inkSoft, textTransform: "uppercase" }}>
-        Línea de tiempo global — escuelas y teorías fundantes de las 7 perspectivas
-      </div>
+      <details className="psn-detalles" open={modoEstudio || undefined}>
+        <summary>Línea de tiempo <small>— escuelas y teorías fundantes</small></summary>
+        <div style={{ padding: "6px 14px 14px" }}>
       <LineaTiempoGlobal
         escuelas={escuelas}
         anioDe={(e) => (ANIO_ORIGEN[e.id] ? ANIO_ORIGEN[e.id].anio : extraerAnio(e.fundamentacion || e.origenHistorico))}
@@ -3757,14 +3777,16 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         perspectivas={nombresPerspectivas(escuelas)}
         onIrAEscuela={onIrAEscuela}
       />
+        </div>
+      </details>
 
       {/* Mapa conceptual: árbol perspectiva → subfamilia → escuela,
           coloreado por perspectiva, con la definición de cada escuela
           disponible al pasar el cursor o tocar (sin tener que abrir la
           ficha completa para tener una primera idea de qué es). */}
-      <div style={{ marginTop: 28, marginBottom: 8, fontFamily: FONT_MONO, fontSize: 11, color: COLORS.inkSoft, textTransform: "uppercase" }}>
-        Mapa conceptual — las {escuelas.length} escuelas y sus divisiones internas
-      </div>
+      <details className="psn-detalles" open={modoEstudio || undefined}>
+        <summary>Mapa conceptual <small>— las escuelas y sus divisiones</small></summary>
+        <div style={{ padding: "6px 14px 14px" }}>
       <MapaRed
         escuelas={escuelas}
         enlaces={enlaces || ENLACES_SEED}
@@ -3773,15 +3795,9 @@ function ModuloIntroduccion({ irA, modoEstudio, setModoEstudio, escuelas, onIrAE
         nombreCorto={(p) => NOMBRE_CORTO_PERSPECTIVA[PERSPECTIVA_ID_POR_NOMBRE[p]] || p}
         onIrAEscuela={onIrAEscuela}
       />
+        </div>
+      </details>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 24, flexWrap: "wrap" }}>
-        <Boton onClick={() => irA("fundamentos")}>
-          <Network size={13} /> ir a las 7 perspectivas, escuelas y técnicas
-        </Boton>
-        <Boton variant="ghost" onClick={() => irA("comparacion")}>
-          <Scale size={13} /> ir al módulo de comparación
-        </Boton>
-      </div>
     </div>
   );
 }
@@ -9960,6 +9976,7 @@ function fusionarEscuelasConSemilla(guardadas, semilla) {
         )}
         {tab === "comparacion" && <ModuloComparacion escuelas={escuelas} onIrAEscuela={irAEscuela} modoEstudio={modoEstudio} enlaces={enlaces} />}
       </div>
+      <FirmaMarca />
 
       <ModalDefinicion dato={definicionModal} onCerrar={() => setDefinicionModal(null)} onIrAProtocolo={irAProtocolo} onIrAEscuela={irAEscuela} />
       {historialAbierto && <PanelHistorial historial={historial} onCerrar={() => setHistorialAbierto(false)} />}

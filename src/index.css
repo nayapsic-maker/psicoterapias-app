@@ -1190,3 +1190,29 @@ html[data-tema="oscuro"] .psn-caso-ejemplos button:hover, html[data-tema="oscuro
 .psn-cob-tabla{display:block;max-width:100%;overflow-x:auto}
 .psn-par-selector label{display:flex;flex-direction:column;gap:4px;flex:1 1 220px}
 .psn-par-selector select{width:100%;box-sizing:border-box}
+
+/* Introducción minimalista: perspectivas como lista desplegable */
+.psn-persp-lista{display:grid;gap:8px;margin:18px 0 6px}
+.psn-persp{border:2px solid var(--c-ink);border-left:8px solid var(--pc);border-radius:12px;background:var(--c-cardBg)}
+.psn-persp>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:6px 16px;padding:11px 14px;flex-wrap:wrap}
+.psn-persp>summary::-webkit-details-marker{display:none}
+.psn-persp>summary b{flex:0 0 190px;font:800 15px var(--f-display);color:var(--pc)}
+.psn-persp>summary span{flex:1 1 260px;font:400 13px/1.45 var(--f-text);color:var(--c-inkSoft)}
+.psn-persp>summary::after{content:"+";margin-left:auto;font:700 16px var(--f-mono)}
+.psn-persp[open]>summary::after{content:"–"}
+.psn-persp-cuerpo{padding:2px 16px 14px;display:grid;gap:10px}
+.psn-persp-cuerpo p{margin:0;font:400 13.5px/1.6 var(--f-text)}
+.psn-barra-estudio{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0;padding:6px 12px;border:1px solid var(--c-gold);border-radius:10px;font:600 11px var(--f-mono)}
+.psn-barra-estudio button{margin-left:auto;font:700 11px var(--f-mono);border:1px solid var(--c-gold);background:transparent;color:inherit;border-radius:14px;padding:4px 12px;cursor:pointer}
+
+/* Marca madre: Presencia Psicología (tokens provisionales hasta recibir la identidad visual) */
+:root{--marca:#14606B;--marca-acento:#B8863B;--marca-fuente:var(--f-display)}
+.psn-marca-wordmark{display:inline-flex;align-items:center;gap:8px;font:500 14px var(--marca-fuente);letter-spacing:.02em}
+.psn-marca-wordmark b{font-weight:800}
+.psn-marca-wordmark.chico{font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.psn-marca-punto{width:10px;height:10px;border-radius:50%;background:var(--marca-acento);box-shadow:0 0 0 3px color-mix(in srgb,var(--marca) 35%,transparent)}
+.psn-marca-pie{max-width:1180px;margin:0 auto;padding:18px clamp(14px,4vw,34px) 34px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;color:var(--c-inkSoft);font:400 12px var(--f-text);border-top:1px dashed var(--c-line)}
+.psn-marca-pie small{flex:1 1 100%;opacity:.8}
+.psn-marca-hero{margin:0 0 6px;text-align:center;color:var(--c-inkSoft)}
+.psn-persp-cuerpo>button{justify-self:start}
+@media (max-width:640px){.psn-persp>summary b{flex:1 1 auto;order:0}.psn-persp>summary::after{order:1;margin-left:0}.psn-persp>summary span{order:2;flex:1 1 100%}}
